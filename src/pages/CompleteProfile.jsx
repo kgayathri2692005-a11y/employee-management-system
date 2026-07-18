@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "../styles/CompleteProfile.css";
 
 function CompleteProfile() {
+
 const navigate = useNavigate();
+
+const [step, setStep] = useState(1);
 const currentUser = localStorage.getItem("email");
 
 const savedProfile =
@@ -12,6 +15,7 @@ const savedProfile =
   ) || {};
 
 const [toast, setToast] = useState("");
+const [warningToast, setWarningToast] = useState("");
 
 const [firstName, setFirstName] = useState(
   savedProfile.firstName || ""
@@ -19,44 +23,36 @@ const [firstName, setFirstName] = useState(
 const [lastName, setLastName] = useState(
   savedProfile.lastName || ""
 );
-const [fatherName, setFatherName] = useState(
-  savedProfile.fatherName || ""
-);
-const [motherName, setMotherName] = useState(
-    savedProfile.motherName || ""
-);
+
 const [gender, setGender] = useState(
   savedProfile.gender || ""
 );
 const [dob, setDob] = useState(
   savedProfile.dob || ""
 );
-const [education, setEducation] = useState(
-  savedProfile.education || ""
+const [age, setAge] = useState(savedProfile.age || "");
+
+const [mobileNumber, setMobileNumber] = useState(
+  savedProfile.mobileNumber || ""
 );
-const [occupation, setOccupation] = useState(
-  savedProfile.occupation || ""
+
+const [email, setEmail] = useState(
+  savedProfile.email || ""
 );
-const [salary, setSalary] = useState(
-  savedProfile.salary || ""
+
+const [maritalStatus, setMaritalStatus] = useState(
+  savedProfile.maritalStatus || ""
 );
-const [city, setCity] = useState(
-  savedProfile.city || ""
+
+const [height, setHeight] = useState(
+  savedProfile.height || ""
 );
-const [stateName, setStateName] = useState(
-  savedProfile.stateName || ""
-);
-const [address, setAddress] = useState(
-  savedProfile.address || ""
+
+const [weight, setWeight] = useState(
+  savedProfile.weight || ""
 );
 
 const [errors, setErrors] = useState({});
-
-const [extraImages, setExtraImages] = useState(
-  savedProfile.extraImages || []
-);
-const [showImages, setShowImages] = useState(false);
-
 const [profileImage, setProfileImage] = useState(
   savedProfile.profileImage || ""
 );
@@ -76,23 +72,8 @@ const handleProfileImage = (e) => {
   }
 };
 
-const handleExtraImages = (e) => {
-const files = Array.from(e.target.files);
-
-
-const imageUrls = files.map((file) =>
-  URL.createObjectURL(file)
-);
-
-setExtraImages([...extraImages, ...imageUrls]);
-
-
-};
-
 const handleSubmit = (e) => {
 e.preventDefault();
-
-
 const newErrors = {};
 
 if (firstName.trim().length < 3) {
@@ -104,77 +85,31 @@ if (lastName.trim().length < 2) {
   newErrors.lastName =
     "Last Name must contain at least 2 characters";
 }
-
-if (fatherName.trim().length < 3) {
-  newErrors.fatherName =
-    "Father Name must contain at least 3 characters";
-}
-
-if (motherName.trim().length < 3) {
-  newErrors.motherName =
-    "Mother Name must contain at least 3 characters";
-}
-
 if (!gender) {
   newErrors.gender =
     "Please select Gender";
 }
-
 if (!dob) {
   newErrors.dob =
     "Date Of Birth is required";
 }
-
-if (education.trim().length < 2) {
-  newErrors.education =
-    "Education must contain at least 2 characters";
-}
-
-if (occupation.trim().length < 2) {
-  newErrors.occupation =
-    "Occupation must contain at least 2 characters";
-}
-
-if (salary && Number(salary) < 0) {
-  newErrors.salary =
-    "Salary cannot be negative";
-}
-
-if (city.trim().length < 3) {
-  newErrors.city =
-    "City must contain at least 3 characters";
-}
-
-if (stateName.trim().length < 3) {
-  newErrors.stateName =
-    "State must contain at least 3 characters";
-}
-
-if (address.trim().length < 10) {
-  newErrors.address =
-    "Address must contain at least 10 characters";
-}
-
 setErrors(newErrors);
 
 if (Object.keys(newErrors).length > 0) {
   return;
 }
 const profileData = {
-  firstName,
-  lastName,
-  fatherName,
-  motherName,
-  gender,
-  dob,
-  education,
-  occupation,
-  salary,
-  city,
-  stateName,
-  address,
-  profileImage,
-  extraImages,
+    firstName,
+    lastName,
+    gender,
+    dob,
+    age,
+    mobileNumber,
+    email,
+    maritalStatus,
+    height,
+    weight,
+    profileImage
 };
 
 const loggedInUser =
@@ -212,10 +147,104 @@ setTimeout(() => {
 setTimeout(() => {
   setToast("");
 }, 3000);
-
-
 };
+const handleNext = () => {
 
+  const newErrors = {};
+
+  if (firstName.trim().length < 3) {
+    newErrors.firstName =
+      "First Name must contain at least 3 characters";
+  }
+
+  if (lastName.trim().length < 2) {
+    newErrors.lastName =
+      "Last Name must contain at least 2 characters";
+  }
+
+  if (!gender) {
+    newErrors.gender = "Please select Gender";
+  }
+
+  if (!dob) {
+    newErrors.dob = "Date Of Birth is required";
+  }
+
+  if (!age) {
+    newErrors.age = "Age is required";
+  }
+
+  if (!mobileNumber || mobileNumber.length !== 10) {
+    newErrors.mobileNumber =
+      "Enter a valid 10-digit mobile number";
+  }
+
+  if (!email) {
+    newErrors.email = "Email is required";
+  }
+
+  if (!maritalStatus) {
+    newErrors.maritalStatus =
+      "Please select Marital Status";
+  }
+
+  if (!height) {
+    newErrors.height = "Height is required";
+  }
+
+  if (!weight) {
+    newErrors.weight = "Weight is required";
+  }
+
+  if (!profileImage) {
+    newErrors.profileImage =
+      "Please upload a profile picture";
+  }
+
+  setErrors(newErrors);
+
+  if (Object.keys(newErrors).length > 0) {
+
+    setWarningToast(
+      "Please complete all required fields before continuing."
+    );
+
+    setTimeout(() => {
+      setWarningToast("");
+    }, 3000);
+
+    return;
+  }
+
+  const loggedInUser =
+    JSON.parse(localStorage.getItem("loggedInUser")) || {};
+
+  const currentUser = loggedInUser.email;
+
+  const allProfiles =
+    JSON.parse(localStorage.getItem("allProfiles")) || {};
+
+  allProfiles[currentUser] = {
+    firstName,
+    lastName,
+    gender,
+    dob,
+    age,
+    mobileNumber,
+    email,
+    maritalStatus,
+    height,
+    weight,
+    profileImage
+  };
+
+  localStorage.setItem(
+    "allProfiles",
+    JSON.stringify(allProfiles)
+  );
+
+  navigate("/complete-profile/religion");
+};
 return ( <div className="profile-page">
 
 
@@ -225,9 +254,24 @@ return ( <div className="profile-page">
     </div>
   )}
 
+  {warningToast && (
+  <div className="toast-warning">
+    {warningToast}
+  </div>
+)}
+
   <div className="profile-card">
 
-    <h2>Complete Your Profile</h2>
+    <h1 className="profile-title">
+    Complete Matrimony Profile
+</h1>
+
+<p className="profile-subtitle">
+    Basic Profile
+</p>
+    <p className="profile-subtitle">
+          Please complete your profile to continue.
+        </p>
 
     <form onSubmit={handleSubmit}>
 
@@ -302,73 +346,6 @@ return ( <div className="profile-page">
       </div>
 
       <div className="form-row">
-
-        <div className="form-group">
-          <label>Father Name *</label>
-
-          <input
-            type="text"
-            value={fatherName}
-            onChange={(e) => {
-              setFatherName(
-                e.target.value.replace(
-                  /[^a-zA-Z\s]/g,
-                  ""
-                )
-              );
-
-              setErrors({
-                ...errors,
-                fatherName: "",
-              });
-            }}
-            className={
-              errors.fatherName
-                ? "input-error"
-                : ""
-            }
-          />
-
-          {errors.fatherName && (
-            <p className="error-text">
-              {errors.fatherName}
-            </p>
-          )}
-        </div>
-
-        <div className="form-group">
-          <label>Mother Name *</label>
-
-          <input
-            type="text"
-            value={motherName}
-            onChange={(e) => {
-              setMotherName(
-                e.target.value.replace(
-                  /[^a-zA-Z\s]/g,
-                  ""
-                )
-              );
-
-              setErrors({
-                ...errors,
-                motherName: "",
-              });
-            }}
-            className={
-              errors.motherName
-                ? "input-error"
-                : ""
-            }
-          />
-
-          {errors.motherName && (
-            <p className="error-text">
-              {errors.motherName}
-            </p>
-          )}
-        </div>
-
       </div>
 
       <div className="form-row">
@@ -446,201 +423,100 @@ return ( <div className="profile-page">
         </div>
 
       </div>
+<div className="form-row">
 
-      <div className="form-row">
+  <div className="form-group">
+    <label>Age *</label>
 
-        <div className="form-group">
-          <label>Education *</label>
+    <input
+      type="number"
+      value={age}
+      onChange={(e) => setAge(e.target.value)}
+    />
+  </div>
 
-          <input
-            type="text"
-            value={education}
-            onChange={(e) => {
-              setEducation(
-                e.target.value
-              );
+  <div className="form-group">
+    <label>Mobile Number *</label>
 
-              setErrors({
-                ...errors,
-                education: "",
-              });
-            }}
-            className={
-              errors.education
-                ? "input-error"
-                : ""
-            }
-          />
+    <input
+      type="text"
+      maxLength="10"
+      value={mobileNumber}
+      onChange={(e) =>
+        setMobileNumber(
+          e.target.value.replace(/[^0-9]/g, "")
+        )
+      }
+    />
+  </div>
 
-          {errors.education && (
-            <p className="error-text">
-              {errors.education}
-            </p>
-          )}
-        </div>
+</div>
 
-        <div className="form-group">
-          <label>Occupation *</label>
+<div className="form-row">
 
-          <input
-            type="text"
-            value={occupation}
-            onChange={(e) => {
-              setOccupation(
-                e.target.value
-              );
+  <div className="form-group">
+    <label>Email *</label>
 
-              setErrors({
-                ...errors,
-                occupation: "",
-              });
-            }}
-            className={
-              errors.occupation
-                ? "input-error"
-                : ""
-            }
-          />
+    <input
+      type="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+    />
+  </div>
 
-          {errors.occupation && (
-            <p className="error-text">
-              {errors.occupation}
-            </p>
-          )}
-        </div>
+  <div className="form-group">
+    <label>Marital Status *</label>
 
-      </div>
+    <select
+      value={maritalStatus}
+      onChange={(e) =>
+        setMaritalStatus(e.target.value)
+      }
+    >
+      <option value="">Select</option>
+      <option>Never Married</option>
+      <option>Divorced</option>
+      <option>Widowed</option>
+    </select>
+  </div>
 
-      <div className="form-row">
+</div>
 
-        <div className="form-group">
-          <label>Salary</label>
+<div className="form-row">
 
-          <input
-            type="number"
-            value={salary}
-            onChange={(e) =>
-              setSalary(
-                e.target.value
-              )
-            }
-            min="0"
-          />
+  <div className="form-group">
+  <label>Height (cm) *</label>
 
-          {errors.salary && (
-            <p className="error-text">
-              {errors.salary}
-            </p>
-          )}
-        </div>
+  <input
+    type="text"
+    placeholder="Enter Height"
+    value={height}
+    maxLength={3}
+    onChange={(e) =>
+      setHeight(
+        e.target.value.replace(/[^0-9]/g, "")
+      )
+    }
+  />
+</div>
 
-        <div className="form-group">
-          <label>City *</label>
+  <div className="form-group">
+    <label>Weight *</label>
 
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => {
-              setCity(
-                e.target.value.replace(
-                  /[^a-zA-Z\s]/g,
-                  ""
-                )
-              );
+    <input
+      type="number"
+      placeholder="kg"
+      value={weight}
+      onChange={(e) => setWeight(e.target.value)}
+    />
+  </div>
 
-              setErrors({
-                ...errors,
-                city: "",
-              });
-            }}
-            className={
-              errors.city
-                ? "input-error"
-                : ""
-            }
-          />
-
-          {errors.city && (
-            <p className="error-text">
-              {errors.city}
-            </p>
-          )}
-        </div>
-
-      </div>
-
-      <div className="form-row">
-
-        <div className="form-group">
-          <label>State *</label>
-
-          <input
-            type="text"
-            value={stateName}
-            onChange={(e) => {
-              setStateName(
-                e.target.value.replace(
-                  /[^a-zA-Z\s]/g,
-                  ""
-                )
-              );
-
-              setErrors({
-                ...errors,
-                stateName: "",
-              });
-            }}
-            className={
-              errors.stateName
-                ? "input-error"
-                : ""
-            }
-          />
-
-          {errors.stateName && (
-            <p className="error-text">
-              {errors.stateName}
-            </p>
-          )}
-        </div>
-
-        <div className="form-group">
-          <label>Address *</label>
-
-          <input
-            type="text"
-            value={address}
-            onChange={(e) => {
-              setAddress(
-                e.target.value
-              );
-
-              setErrors({
-                ...errors,
-                address: "",
-              });
-            }}
-            className={
-              errors.address
-                ? "input-error"
-                : ""
-            }
-          />
-
-          {errors.address && (
-            <p className="error-text">
-              {errors.address}
-            </p>
-          )}
-        </div>
-
-      </div>
+</div>
       <div className="form-group">
 
   <label>
     Profile Picture
   </label>
-
 
   <input
     type="file"
@@ -672,100 +548,26 @@ return ( <div className="profile-page">
     )}
   </>
 )}
-
-</div>
-
-      <div className="form-group image-upload">
-
-        <label>
-          Additional Images
-        </label>
-
-        <input
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={
-            handleExtraImages
-          }
-        />
-
-        {extraImages.length > 0 && (
-          <>
-            <button
-              type="button"
-              className="view-images-btn"
-              onClick={() =>
-                setShowImages(
-                  !showImages
-                )
-              }
-            >
-              {showImages
-                ? "Hide Images"
-                : "View Images"}
-            </button>
-
-            {showImages && (
-              <div className="gallery">
-
-                {extraImages.map(
-                  (
-                    img,
-                    index
-                  ) => (
-                    <div
-                      key={index}
-                      className="image-box"
-                    >
-                      <img
-                        src={img}
-                        alt="Employee"
-                      />
-
-                      <button
-                        type="button"
-                        className="remove-btn"
-                        onClick={() =>
-                          setExtraImages(
-                            extraImages.filter(
-                              (
-                                _,
-                                i
-                              ) =>
-                                i !==
-                                index
-                            )
-                          )
-                        }
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  )
-                )}
-
-              </div>
-            )}
-          </>
-        )}
-
       </div>
 
-      <button
-        type="submit"
-        className="save-btn"
-      >
-        Save Profile
-      </button>
+      <h3 style={{ textAlign: "center" }}>
+  Step {step} of 7
+</h3>
+      <div className="button-group">
+  <button
+    type="button"
+    className="next-btn"
+    onClick={handleNext}
+  >
+    Next →
+  </button>
+</div>
 
     </form>
 
   </div>
 
 </div>
-
 );
 }
-
 export default CompleteProfile;

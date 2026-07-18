@@ -50,7 +50,7 @@ const profileData =
   className="navbar-profile-img"
 />
           <span className="navbar-profile-name">
-            {loggedInUser?.fullName || "User"}
+            {loggedInUser?.userName || "User"}
           </span>
 
         </div>

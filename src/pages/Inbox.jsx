@@ -53,6 +53,7 @@ useEffect(() => {
     .get("https://localhost:7064/api/User")
     .then((response) => {
   console.table(response.data);
+  console.log(currentUserId)
 
  const users = response.data
   .filter(user => {
@@ -60,6 +61,9 @@ useEffect(() => {
   if (user.userId === currentUserId) return false;
 
   const profile = allProfiles[user.email];
+  console.log("API Email:", user.email);
+console.log("All Profile Keys:", Object.keys(allProfiles));
+console.log("Profile Found:", allProfiles[user.email]);
   const gender = profile?.gender;
 
   if (!gender || !currentUserGender) return false;
@@ -82,7 +86,7 @@ useEffect(() => {
 
     return {
       id: user.userId,
-      name: user.fullName,
+      name: user.userName,
       email: user.email,
       role: "Employee",
       status: "online",

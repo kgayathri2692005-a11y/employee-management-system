@@ -122,19 +122,17 @@ function Register() {
       return;
     }
 
-   axios
-  .post(
-    "https://localhost:7064/api/Auth/register",
-    {
-      fullName,
-      email,
-      password,
-    }
-  )
+   axios.post("https://localhost:7064/api/Auth/register", {
+  userName: fullName,
+  email: email,
+  phoneNumber: phone,
+  password: password,
+})
   .then((response) => {
     const userData = {
   fullName,
   email,
+  phone,
   password,
 };
 

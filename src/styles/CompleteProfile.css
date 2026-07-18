@@ -194,27 +194,6 @@
   }
 }
 
-.toast-success {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #22c55e;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 8px;
-  font-weight: 600;
-  z-index: 999;
-}
-
-.error-text {
-  color: #ef4444;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
-.input-error {
-  border: 1px solid #ef4444 !important;
-}
 
 .image-box {
   display: flex;
@@ -251,4 +230,140 @@
   border-radius: 8px;
   font-weight: 600;
   z-index: 999;
+}
+.button-group{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:30px;
+}
+
+.next-btn{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 35px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+}
+
+.next-btn:hover{
+    background:#1d4ed8;
+}
+
+.profile-subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:25px;
+}
+
+.button-group-between{
+    display:flex;
+    justify-content:space-between;
+    margin-top:30px;
+}
+
+.previous-btn{
+    background:#e5e7eb;
+    color:#333;
+    border:none;
+    padding:12px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.previous-btn:hover{
+    background:#d1d5db;
+}
+
+.step-text{
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    margin-top:25px;
+}
+
+/* ---------- Multi Step Form ---------- */
+
+.profile-title{
+    text-align:center;
+    color:#1e40af;
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.profile-subtitle{
+    text-align:center;
+    color:#6b7280;
+    margin-bottom:35px;
+    font-size:16px;
+}
+
+.step-text{
+    text-align:center;
+    font-size:20px;
+    font-weight:700;
+    color:#1f2937;
+    margin-top:30px;
+}
+
+.button-group{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:35px;
+}
+
+.button-group-between{
+    display:flex;
+    justify-content:space-between;
+    margin-top:35px;
+}
+
+.next-btn,
+.previous-btn,
+.save-btn{
+    min-width:140px;
+    height:48px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.next-btn,
+.save-btn{
+    background:#2563eb;
+    color:white;
+}
+
+.next-btn:hover,
+.save-btn:hover{
+    background:#1d4ed8;
+}
+
+.previous-btn{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+.previous-btn:hover{
+    background:#d1d5db;
+}
+
+.toast-warning{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#f59e0b;
+    color:white;
+    padding:12px 18px;
+    border-radius:8px;
+    font-weight:600;
+    z-index:9999;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }

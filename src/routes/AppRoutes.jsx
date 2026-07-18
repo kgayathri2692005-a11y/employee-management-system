@@ -13,6 +13,11 @@ import AddUser from "../pages/AddUser";
 import EditUser from "../pages/EditUser";
 import Tracking from "../pages/Tracking";
 import ViewProfile from "../pages/ViewProfile";
+import ReligionIdentity from "../pages/ReligionIdentity";
+import EducationCareer from "../pages/EducationCareer";
+import FamilyLifestyle from "../pages/FamilyLifestyle";
+import PartnerPreference from "../pages/PartnerPreference";
+import Verification from "../pages/Verification";
 
 function AppRoutes() {
   return (
@@ -33,6 +38,26 @@ function AppRoutes() {
       <Route
   path="/view-profile"
   element={<ViewProfile />}
+/>
+<Route
+  path="/complete-profile/religion"
+  element={<ReligionIdentity />}
+/>
+<Route
+    path="/complete-profile/education"
+    element={<EducationCareer />}
+/>
+<Route
+    path="/complete-profile/family"
+    element={<FamilyLifestyle />}
+/>
+<Route
+    path="/complete-profile/partner"
+    element={<PartnerPreference />}
+/>
+<Route
+    path="/complete-profile/verification"
+    element={<Verification />}
 />
     </Routes>
   );
