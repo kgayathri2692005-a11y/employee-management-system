@@ -9,15 +9,9 @@ import Users from "../pages/Users";
 import Inbox from "../pages/Inbox";
 import MyProfile from "../pages/MyProfile";
 import OtpVerification from "../pages/OtpVerification";
-import AddUser from "../pages/AddUser";
-import EditUser from "../pages/EditUser";
 import Tracking from "../pages/Tracking";
 import ViewProfile from "../pages/ViewProfile";
-import ReligionIdentity from "../pages/ReligionIdentity";
-import EducationCareer from "../pages/EducationCareer";
-import FamilyLifestyle from "../pages/FamilyLifestyle";
-import PartnerPreference from "../pages/PartnerPreference";
-import Verification from "../pages/Verification";
+import Wishlist from "../pages/Wishlist";
 
 function AppRoutes() {
   return (
@@ -32,34 +26,20 @@ function AppRoutes() {
       <Route path="/inbox" element={<Inbox />} />
       <Route path="/myprofile" element={<MyProfile />} />
       <Route path="/otp" element={<OtpVerification />} />
-      <Route path="/add-user" element={<AddUser />} />
-      <Route path="/edit-user" element={<EditUser />} />
       <Route path="/tracking" element={<Tracking />} />
+      
       <Route
   path="/view-profile"
   element={<ViewProfile />}
 />
 <Route
-  path="/complete-profile/religion"
-  element={<ReligionIdentity />}
+  path="/wishlist"
+  element={<Wishlist />}
 />
 <Route
-    path="/complete-profile/education"
-    element={<EducationCareer />}
-/>
-<Route
-    path="/complete-profile/family"
-    element={<FamilyLifestyle />}
-/>
-<Route
-    path="/complete-profile/partner"
-    element={<PartnerPreference />}
-/>
-<Route
-    path="/complete-profile/verification"
-    element={<Verification />}
-/>
-    </Routes>
+    path="/complete-profile"
+    element={<CompleteProfile />}
+/>    </Routes>
   );
 }
 

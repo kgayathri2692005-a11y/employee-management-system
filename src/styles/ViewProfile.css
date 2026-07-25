@@ -1,163 +1,295 @@
+/* =========================================================
+   VIEW PROFILE PAGE
+========================================================= */
+
 .view-profile-container {
-  min-height: 100vh;
-  background: #f4f7fc;
+  padding: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Main Profile Card */
+.view-profile-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   PROFILE HEADER
+========================================================= */
+
+.view-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.view-profile-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #f3f3f3;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+}
+
+.view-profile-header-info h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  color: #222;
+}
+
+.view-profile-header-info p {
+  margin: 8px 0;
+  color: #666;
+  font-size: 16px;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.profile-action-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 30px 0 35px;
+  padding: 22px;
+  background: #fafafa;
+  border-radius: 16px;
+  border: 1px solid #eeeeee;
 }
 
-.profile-card {
-  width: 900px;
-  max-width: 95%;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
+/* Common Button Style */
 
-.profile-header {
-  background: linear-gradient(
-    135deg,
-    #4f46e5,
-    #2563eb
-  );
-
-  height: 220px;
-
-  border-radius: 20px 20px 0 0;
-}
-
-.profile-image {
-  width: 160px;
-  height: 160px;
-
-  border-radius: 50%;
-
-  object-fit: cover;
-
-  border: 6px solid white;
-
-  margin-top: -80px;
-
-  margin-left: 50%;
-
-  transform: translateX(-50%);
-}
-.profile-info {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.profile-info h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
-  color: #222;
-}
-
-.profile-info p {
-  font-size: 18px;
-  color: #666;
-}
-
-.profile-header h2 {
-  margin: 10px 0 5px;
-}
-
-.profile-header p {
-  opacity: 0.9;
-}
-
-.profile-details {
-  padding: 30px;
-}
-
-.detail-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.detail-row span {
-  font-weight: 600;
-  color: #555;
-}
-
-.detail-row p {
-  color: #222;
-}
-
-.info-section {
-  margin: 25px;
-  padding: 20px;
-
-  background: #f8fafc;
-
-  border-radius: 15px;
-}
-
-.info-section h3 {
-  margin-bottom: 20px;
-  color: #2563eb;
-}
-
-.info-grid {
-  display: grid;
-
-  grid-template-columns: 200px 1fr;
-
-  gap: 15px;
-}
-
-.label {
-  font-weight: 600;
-}
-
-.profile-stats{
-  display:flex;
-  gap:20px;
-  margin-top:30px;
-  margin-bottom:30px;
-}
-
-.stat-card{
-  flex:1;
-  background:#f8fafc;
-  padding:20px;
-  border-radius:12px;
-  text-align:center;
-  box-shadow:0 2px 10px rgba(0,0,0,0.05);
-}
-
-.stat-card h4{
-  color:#64748b;
-  font-size:14px;
-  margin-bottom:10px;
-}
-
-.stat-card p{
-  font-size:16px;
-  font-weight:600;
-  color:#1e293b;
-}
-
-.active-status{
-  color:#22c55e;
-}
-
-.back-btn {
-  background: #2952e3;
-  color: white;
+.profile-action-buttons button {
+  min-width: 190px;
+  height: 52px;
+  padding: 0 25px;
   border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
+  border-radius: 12px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
-.back-btn:hover {
-  opacity: 0.9;
+/* Send Interest */
+
+.interest-btn {
+  background: linear-gradient(135deg, #ff4b6e, #ff1744);
+  color: white;
+  box-shadow: 0 5px 15px rgba(255, 23, 68, 0.25);
+}
+
+.interest-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 23, 68, 0.35);
+}
+
+/* Interest Sent */
+
+.interest-btn.sent {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+  box-shadow: none;
+  cursor: default;
+}
+
+/* Message */
+
+.message-btn {
+  background: linear-gradient(135deg, #1976d2, #0d47a1);
+  color: white;
+  box-shadow: 0 5px 15px rgba(25, 118, 210, 0.25);
+}
+
+.message-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(25, 118, 210, 0.35);
+}
+
+/* Wishlist */
+
+.wishlist-btn {
+  background: #fff8e1;
+  color: #e69500;
+  border: 1px solid #ffd54f !important;
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.15);
+}
+
+.wishlist-btn:hover {
+  background: #ffecb3;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 193, 7, 0.25);
+}
+
+/* Wishlist Active */
+
+.wishlist-btn.active {
+  background: #fff3cd;
+  color: #b77900;
+  border: 1px solid #ffca28 !important;
+}
+
+/* =========================================================
+   PROFILE SECTIONS
+========================================================= */
+
+.view-profile-card section {
+  margin-top: 30px;
+  padding: 25px;
+  border: 1px solid #eeeeee;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.view-profile-card section h2 {
+  margin: 0 0 22px;
+  font-size: 21px;
+  color: #333;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #f1f1f1;
+}
+
+/* =========================================================
+   INFORMATION GRID
+========================================================= */
+
+.view-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.view-info-grid > div {
+  background: #fafafa;
+  padding: 16px 18px;
+  border-radius: 10px;
+  border: 1px solid #eeeeee;
+}
+
+.view-info-grid span {
+  display: block;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.view-info-grid strong {
+  display: block;
+  font-size: 16px;
+  color: #222;
+  word-break: break-word;
+}
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.view-profile-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.back-profile-btn {
+  padding: 13px 28px;
+  border: none;
+  border-radius: 10px;
+  background: #eeeeee;
+  color: #333;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.back-profile-btn:hover {
+  background: #dddddd;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .view-profile-container {
+    padding: 20px;
+  }
+
+  .view-profile-card {
+    padding: 22px;
+  }
+
+  .view-profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .view-profile-image {
+    width: 130px;
+    height: 130px;
+  }
+
+  .view-profile-header-info h1 {
+    font-size: 26px;
+  }
+
+  .profile-action-buttons {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .profile-action-buttons button {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .view-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .view-profile-container {
+    padding: 12px;
+  }
+
+  .view-profile-card {
+    padding: 15px;
+    border-radius: 14px;
+  }
+
+  .view-profile-image {
+    width: 110px;
+    height: 110px;
+  }
+
+  .view-profile-header-info h1 {
+    font-size: 23px;
+  }
+
+  .view-profile-card section {
+    padding: 18px;
+  }
+
+  .view-profile-card section h2 {
+    font-size: 18px;
+  }
+
 }
