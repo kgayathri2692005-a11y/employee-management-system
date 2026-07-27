@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 
 function Navbar() {
+
+  const notificationsRead =
+    localStorage.getItem("notificationsRead");
   const navigate = useNavigate();
 
   // Get currently logged-in user
@@ -16,6 +19,17 @@ function Navbar() {
   // Get profile of currently logged-in user only
   const profileData =
     allProfiles[loggedInUser.email] || {};
+
+    // Get all interest requests
+const interestRequests =
+  JSON.parse(localStorage.getItem("interestRequests")) || [];
+
+// Count only pending requests received by the logged-in user
+const pendingRequests = interestRequests.filter(
+  (request) =>
+    request.to === loggedInUser.email &&
+    request.status === "Pending"
+);
 
   // Create full name from CompleteProfile data
   const fullName = [
@@ -51,10 +65,20 @@ function Navbar() {
       {/* Right Side */}
       <div className="navbar-right">
 
-        <span className="navbar-notification">
-          🔔 Notifications
-        </span>
-
+<span
+  className="navbar-notification"
+  onClick={() => navigate("/notifications")}
+  style={{ cursor: "pointer" }}
+>
+  🔔 Notifications
+  {pendingRequests.length > 0 &&
+ notificationsRead !== "true" && (
+  <span className="notification-badge">
+    {pendingRequests.length}
+  </span>
+)}
+  
+</span>
         <div className="navbar-profile-container">
 
           {/* Profile Image */}

@@ -293,3 +293,14 @@
   }
 
 }
+
+.matched-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: default;
+  font-weight: 600;
+  opacity: 0.9;
+}

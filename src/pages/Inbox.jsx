@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import PageNavigation from "../components/PageNavigation";
 import { useLocation } from "react-router-dom";
 
 
@@ -40,6 +41,9 @@ const currentUserId = loggedInUser?.userId;
 const allProfiles =
   JSON.parse(localStorage.getItem("allProfiles")) || {};
 
+  const matchedUsers =
+  JSON.parse(localStorage.getItem("matchedUsers")) || [];
+
 const currentUserGender =
   allProfiles[loggedInUser?.email]?.gender;
 
@@ -59,6 +63,16 @@ useEffect(() => {
   .filter(user => {
 
   if (user.userId === currentUserId) return false;
+
+  const isMatched = matchedUsers.some(
+  (match) =>
+    (match.user1 === loggedInUser.email &&
+      match.user2 === user.email) ||
+    (match.user2 === loggedInUser.email &&
+      match.user1 === user.email)
+);
+
+if (!isMatched) return false;
 
   const profile = allProfiles[user.email];
   console.log("API Email:", user.email);
@@ -470,7 +484,10 @@ const sendMessage = () => {
         </div>
 
       </div>
-
+<PageNavigation
+    previous="/users"
+    next="/myprofile"
+/>
     </div>
   );
 }

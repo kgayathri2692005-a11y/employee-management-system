@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import PageNavigation from "../components/PageNavigation";
 
 import "../styles/Dashboard.css";
 import "../styles/Wishlist.css";
@@ -436,7 +437,9 @@ function Wishlist() {
         </div>
 
       </div>
-
+<PageNavigation
+    previous="/tracking"
+/>
     </div>
 
   );

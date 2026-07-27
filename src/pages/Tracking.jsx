@@ -1,5 +1,6 @@
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import PageNavigation from "../components/PageNavigation";
 import "../styles/Tracking.css";
 
 function Tracking() {
@@ -74,7 +75,10 @@ function Tracking() {
         </div>
 
       </div>
-
+<PageNavigation
+    previous="/myprofile"
+    next="/wishlist"
+/>
     </div>
   );
 }

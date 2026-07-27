@@ -88,3 +88,13 @@
 .card{
   border-top:4px solid #2563eb;
 }
+
+.notification-badge {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 12px;
+    margin-left: 6px;
+    font-weight: bold;
+}

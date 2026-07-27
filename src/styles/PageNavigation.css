@@ -1,0 +1,25 @@
+.page-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding: 20px 0;
+}
+
+.previous-btn,
+.next-btn {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.previous-btn:hover,
+.next-btn:hover {
+    background-color: #d81b60;
+}

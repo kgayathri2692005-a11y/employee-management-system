@@ -69,6 +69,17 @@ function Sidebar() {
             ⭐ Wishlist
           </NavLink>
         </li>
+        
+<li>
+  <NavLink
+    to="/ignored-profiles"
+    className={({ isActive }) =>
+      isActive ? "nav-item active" : "nav-item"
+    }
+  >
+    🚫 Ignored Profiles
+  </NavLink>
+</li>
       </ul>
     </div>
   );

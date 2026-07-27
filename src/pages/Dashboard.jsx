@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import DashboardCards from "../components/DashboardCards";
+import PageNavigation from "../components/PageNavigation";
 import "../styles/Dashboard.css";
 
 function Dashboard() {
+  const navigate = useNavigate();
   return (
     <div className="dashboard">
       <Sidebar />
@@ -38,8 +42,13 @@ function Dashboard() {
     </div>
   </div>
 </div>
+<PageNavigation
+  next="/Users"
+/>
       </div>
+      
     </div>
+    
   );
 }
 

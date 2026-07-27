@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import PageNavigation from "../components/PageNavigation";
 
 import "../styles/Dashboard.css";
 import "../styles/ViewProfile.css";
@@ -26,6 +28,9 @@ function ViewProfile() {
 
   const loggedInUser =
     JSON.parse(localStorage.getItem("loggedInUser")) || {};
+   
+    const matchedUsers =
+  JSON.parse(localStorage.getItem("matchedUsers")) || [];
 
   /*
   =========================================================
@@ -87,6 +92,14 @@ function ViewProfile() {
   const isOtherUser =
     profileEmail &&
     profileEmail !== loggedInUser.email;
+
+    const isMatched = matchedUsers.some(
+  (match) =>
+    (match.user1 === loggedInUser.email &&
+      match.user2 === profileEmail) ||
+    (match.user2 === loggedInUser.email &&
+      match.user1 === profileEmail)
+);
 
   /*
   =========================================================
@@ -504,40 +517,52 @@ function ViewProfile() {
   */
 
   const handleMessage = () => {
-    if (!isOtherUser) {
-      return;
-    }
+    console.log("===== HANDLE MESSAGE CLICKED =====");
+    alert("handleMessage called");
 
-    navigate(
-      "/inbox",
-      {
-        state: {
-          selectedUser: {
-            ...selectedUser,
+  if (!isOtherUser) {
+    return;
+  }
 
-            email:
-              profileEmail,
+  const matchedUsers =
+    JSON.parse(localStorage.getItem("matchedUsers")) || [];
 
-            name:
-              displayName,
+  const isMatched = matchedUsers.some(
+    (match) =>
+      (match.user1 === loggedInUser.email &&
+        match.user2 === profileEmail) ||
+      (match.user2 === loggedInUser.email &&
+        match.user1 === profileEmail)
+  );
+console.log("Logged In User:", loggedInUser.email);
+console.log("Profile Email:", profileEmail);
+console.log("Matched Users:", matchedUsers);
+console.log("Is Matched:", isMatched);
 
-            image:
-              profileImage,
+  if (!isMatched) {
 
-            occupation:
-              profileData.occupation ||
-              "",
-
-            city:
-              city,
-
-            stateName:
-              state
-          }
-        }
-      }
+    toast.error(
+      "🔒 You can chat only after your interest request is accepted."
     );
-  };
+
+    return;
+  }
+
+  navigate("/inbox", {
+    state: {
+      selectedUser: {
+        ...selectedUser,
+        email: profileEmail,
+        name: displayName,
+        image: profileImage,
+        occupation: profileData.occupation || "",
+        city: city,
+        stateName: state
+      }
+    }
+  });
+
+};
 
   /*
   =========================================================
@@ -608,26 +633,35 @@ function ViewProfile() {
 
                 {/* SEND INTEREST */}
 
-                <button
-                  className={
-                    interestSent
-                      ? "interest-btn sent"
-                      : "interest-btn"
-                  }
-                  onClick={
-                    handleSendInterest
-                  }
-                  disabled={
-                    interestSent
-                  }
-                >
+               {isMatched ? (
 
-                  {interestSent
-                    ? "❤️ Interest Sent"
-                    : "❤️ Send Interest"
-                  }
+  <button
+    className="matched-btn"
+    disabled
+  >
+    💞 Matched
+  </button>
 
-                </button>
+) : (
+
+  <button
+    className={
+      interestSent
+        ? "interest-btn sent"
+        : "interest-btn"
+    }
+    onClick={handleSendInterest}
+    disabled={interestSent}
+  >
+
+    {interestSent
+      ? "❤️ Interest Sent"
+      : "❤️ Send Interest"
+    }
+
+  </button>
+
+)}
 
                 {/* MESSAGE */}
 
@@ -946,6 +980,11 @@ function ViewProfile() {
           </div>
 
         </div>
+
+        <PageNavigation
+  previous="/Users"
+  next="/inbox"
+/>
 
       </div>
 

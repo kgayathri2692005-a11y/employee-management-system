@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import PageNavigation from "../components/PageNavigation";
+import { toast } from "react-toastify";
 
 import "../styles/Users.css";
 import "../styles/Dashboard.css";
@@ -12,6 +14,27 @@ function Users() {
 
   const [search, setSearch] = useState("");
   const [employees, setEmployees] = useState([]);
+
+ const loggedInUser =
+  JSON.parse(localStorage.getItem("loggedInUser")) || {};
+
+  const matchedUsers =
+  JSON.parse(localStorage.getItem("matchedUsers")) || [];
+
+const wishlistKey = `wishlist_${loggedInUser.email}`;
+
+const [wishlist, setWishlist] = useState(() => {
+  return JSON.parse(localStorage.getItem(wishlistKey)) || [];
+});
+
+const ignoredKey = `ignored_${loggedInUser.email}`;
+
+const [ignoredProfiles, setIgnoredProfiles] = useState(() => {
+    return JSON.parse(localStorage.getItem(ignoredKey)) || [];
+});
+
+  const [salaryFilter, setSalaryFilter] = useState("");
+const [placeFilter, setPlaceFilter] = useState("");
 
   /*
   =========================================================
@@ -392,37 +415,27 @@ function Users() {
   =========================================================
   */
 
-  const filteredEmployees =
-    employees.filter(
-      (employee) => {
+  
+         const filteredEmployees = employees.filter((employee) => {
 
-        const searchText =
-          search.toLowerCase();
+  const searchText = search.toLowerCase();
 
-        return (
+  const matchesSearch =
+    employee.name.toLowerCase().includes(searchText) ||
+    employee.designation.toLowerCase().includes(searchText) ||
+    employee.city.toLowerCase().includes(searchText);
 
-          employee.name
-            .toLowerCase()
-            .includes(
-              searchText
-            ) ||
+  const matchesSalary =
+    salaryFilter === "" ||
+    Number(employee.income) >= Number(salaryFilter);
 
-          employee.designation
-            .toLowerCase()
-            .includes(
-              searchText
-            ) ||
+  const matchesPlace =
+    placeFilter === "" ||
+    employee.city.toLowerCase().includes(placeFilter.toLowerCase()) ||
+    employee.stateName.toLowerCase().includes(placeFilter.toLowerCase());
 
-          employee.city
-            .toLowerCase()
-            .includes(
-              searchText
-            )
-
-        );
-
-      }
-    );
+  return matchesSearch && matchesSalary && matchesPlace;
+});
 
 
   /*
@@ -449,18 +462,51 @@ function Users() {
 
           <div className="search-section">
 
-            <input
-              type="text"
-              placeholder="Search profiles..."
-              value={search}
-              onChange={(e) =>
-                setSearch(
-                  e.target.value
-                )
-              }
-            />
+  <input
+    type="text"
+    placeholder="Search profiles..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
 
-          </div>
+  <select
+    value={salaryFilter}
+    onChange={(e) => setSalaryFilter(e.target.value)}
+  >
+    <option value="">Any Salary</option>
+    <option value="300000">Above ₹3 LPA</option>
+    <option value="500000">Above ₹5 LPA</option>
+    <option value="700000">Above ₹7 LPA</option>
+    <option value="1000000">Above ₹10 LPA</option>
+  </select>
+
+  <select
+  value={placeFilter}
+  onChange={(e) => setPlaceFilter(e.target.value)}
+>
+  <option value="">All Places</option>
+  <option value="Bangalore">Bangalore</option>
+  <option value="Mysore">Mysore</option>
+  <option value="Hyderabad">Hyderabad</option>
+  <option value="Chennai">Chennai</option>
+  <option value="Ballari">Ballari</option>
+  <option value="Hubli">Hubli</option>
+</select>
+
+
+
+<button
+  className="clear-filter-btn"
+  onClick={() => {
+    setSearch("");
+    setSalaryFilter("");
+    setPlaceFilter("");
+  }}
+>
+  Clear Filters
+</button>
+
+</div>
 
 
           {/* =================================================
@@ -469,8 +515,22 @@ function Users() {
 
           {filteredEmployees.length > 0 ? (
 
-            filteredEmployees.map(
-              (employee) => (
+          filteredEmployees
+  .filter(
+    (employee) =>
+      !ignoredProfiles.includes(employee.email)
+  )
+  .map((employee) => {
+
+    const isMatched = matchedUsers.some(
+      (match) =>
+        (match.user1 === loggedInUser.email &&
+          match.user2 === employee.email) ||
+        (match.user2 === loggedInUser.email &&
+          match.user1 === employee.email)
+    );
+
+    return (
 
                 <div
                   className="employee-card"
@@ -482,13 +542,18 @@ function Users() {
                   ================================================= */}
 
                   <img
-                    src={
-                      employee.image
-                    }
-                    alt={
-                      employee.name
-                    }
-                  />
+  src={employee.image}
+  alt={employee.name}
+  onClick={() =>
+    navigate("/view-profile", {
+      state: {
+        profile: employee,
+        from: "/users",
+      },
+    })
+  }
+  style={{ cursor: "pointer" }}
+/>
 
 
                   {/* =================================================
@@ -497,11 +562,22 @@ function Users() {
 
                   <div className="employee-info">
 
-                    <h3>
-                      {
-                        employee.name
-                      }
-                    </h3>
+                   <h3
+  onClick={() =>
+    navigate("/view-profile", {
+      state: {
+        profile: employee,
+        from: "/users",
+      },
+    })
+  }
+  style={{
+    cursor: "pointer",
+    color: "#e91e63",
+  }}
+>
+  {employee.name}
+</h3>
 
                     <p>
                       {
@@ -579,37 +655,130 @@ function Users() {
 
                     </button>
 
+                    {isMatched ? (
+
+  <button
+    className="matched-btn"
+    disabled
+  >
+    💞 Matched
+  </button>
+
+) : (
+
+  <button
+    onClick={() => {
+
+      const alreadyExists = wishlist.some(
+        (item) => item.email === employee.email
+      );
+
+      if (alreadyExists) {
+        toast.info("Interest already sent!");
+        return;
+      }
+
+      const updatedWishlist = [...wishlist, employee];
+
+      setWishlist(updatedWishlist);
+
+      localStorage.setItem(
+        wishlistKey,
+        JSON.stringify(updatedWishlist)
+      );
+
+      const interestRequests =
+        JSON.parse(localStorage.getItem("interestRequests")) || [];
+
+      interestRequests.push({
+        from: loggedInUser.email,
+        fromName: loggedInUser.userName || loggedInUser.name,
+        to: employee.email,
+        toName: employee.name,
+        status: "Pending",
+        sentOn: new Date().toLocaleString()
+      });
+
+      localStorage.setItem(
+        "interestRequests",
+        JSON.stringify(interestRequests)
+      );
+
+      toast.success("❤️ Interest Sent Successfully!");
+
+    }}
+  >
+    ❤️ Send Interest
+  </button>
+
+)}
+
+<button
+  onClick={() => {
+
+    const updatedIgnored = [
+      ...ignoredProfiles,
+      employee.email
+    ];
+
+    setIgnoredProfiles(updatedIgnored);
+
+    localStorage.setItem(
+      ignoredKey,
+      JSON.stringify(updatedIgnored)
+    );
+
+    toast.info("Profile Ignored");
+
+  }}
+>
+  ❌ Ignore
+</button>
+
 
                     {/* =================================================
                         MESSAGE
                     ================================================= */}
 
-                    <button
-                      onClick={() => {
+                    
+                       <button
+  onClick={() => {
 
-                        navigate(
-                          "/inbox",
-                          {
-                            state: {
-                              selectedUser:
-                                employee
-                            }
-                          }
-                        );
+    const matchedUsers =
+      JSON.parse(localStorage.getItem("matchedUsers")) || [];
 
-                      }}
-                    >
+    const isMatched = matchedUsers.some(
+      (match) =>
+        (match.user1 === loggedInUser.email &&
+          match.user2 === employee.email) ||
+        (match.user2 === loggedInUser.email &&
+          match.user1 === employee.email)
+    );
 
-                      💬 Message
+    if (!isMatched) {
+      toast.error(
+        "🔒 You can chat only after your interest request is accepted."
+      );
+      return;
+    }
 
-                    </button>
+    navigate("/inbox", {
+      state: {
+        selectedUser: employee
+      }
+    });
+
+  }}
+>
+  💬 Message
+</button>
 
                   </div>
 
                 </div>
 
-              )
-            )
+                            );
+            })
 
           ) : (
 
@@ -628,6 +797,11 @@ function Users() {
             </h3>
 
           )}
+
+       <PageNavigation
+  previous="/dashboard"
+  next="/inbox"
+/>
 
         </div>
 

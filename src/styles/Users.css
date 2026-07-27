@@ -80,3 +80,84 @@
 .buttons button:last-child:hover{
   background:#059669;
 }
+
+/* ===========================
+   FILTER SECTION
+=========================== */
+
+.search-section {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    flex-wrap: wrap;
+}
+
+.search-section input,
+.search-section select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-width: 200px;
+    font-size: 15px;
+    outline: none;
+}
+
+.search-section input:focus,
+.search-section select:focus {
+    border-color: #e91e63;
+}
+
+.clear-filter-btn {
+    padding: 10px 18px;
+    background: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.clear-filter-btn:hover {
+    background: #d81b60;
+}
+
+/* ===============================
+   PAGE NAVIGATION
+================================= */
+
+.page-navigation {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 30px;
+}
+
+.previous-btn {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.previous-btn:hover {
+    background-color: #d81b60;
+}
+
+.matched-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: default;
+  font-weight: 600;
+  opacity: 0.9;
+}

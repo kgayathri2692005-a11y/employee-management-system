@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import PageNavigation from "../components/PageNavigation";
 
 import "../styles/Dashboard.css";
 import "../styles/MyProfile.css";
@@ -497,7 +498,10 @@ const handleEditProfile = (step) => {
         </div>
 
       </div>
-
+<PageNavigation
+    previous="/inbox"
+    next="/tracking"
+/>
     </div>
   );
 }
