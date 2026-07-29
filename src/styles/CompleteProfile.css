@@ -1653,3 +1653,15 @@
 h3.address-heading {
     margin-top: 0 !important;
 }
+
+.optional-label {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #777;
+    background: #f3f3f3;
+    border-radius: 12px;
+    vertical-align: middle;
+}

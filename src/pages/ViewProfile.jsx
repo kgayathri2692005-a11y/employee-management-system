@@ -78,10 +78,17 @@ function ViewProfile() {
       Show logged-in user's profile.
   */
 
-  const profileData =
-    allProfiles[profileEmail] ||
-    selectedUser ||
-    {};
+const profileEntry =
+  Object.entries(allProfiles).find(
+    ([email]) =>
+      email.trim().toLowerCase() ===
+      profileEmail?.trim().toLowerCase()
+  );
+
+const profileData =
+  profileEntry?.[1] ||
+  selectedUser ||
+  {};
 
   /*
   =========================================================
@@ -224,11 +231,11 @@ function ViewProfile() {
   =========================================================
   */
 
-  const profileImage =
-    profileData.profileImage ||
-    profileData.profilePhoto ||
-    selectedUser?.image ||
-    "https://randomuser.me/api/portraits/lego/1.jpg";
+const profileImage =
+  profileData.profilePhoto ||
+  profileData.profileImage ||
+  selectedUser?.image ||
+  "https://randomuser.me/api/portraits/lego/1.jpg";
 
   /*
   =========================================================

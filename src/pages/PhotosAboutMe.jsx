@@ -58,128 +58,558 @@ function PhotosAboutMe({
         setAdditionalPhotos(
             savedProfile.additionalPhotos || []
         );
+/*
+=========================================================
+ABOUT ME - AUTOMATICALLY GENERATE FROM PROFILE DATA
+=========================================================
+*/
+
+if (savedProfile.aboutMe) {
+
+    // If user already edited/saved About Me,
+    // keep their existing text.
+    setAboutMe(savedProfile.aboutMe);
+
+} else {
+
+    const sections = [];
+
+    /*
+    =====================================================
+    PERSONAL + CAREER INTRODUCTION
+    =====================================================
+    */
+
+    const firstName =
+        savedProfile.firstName || "";
+
+    const lastName =
+        savedProfile.lastName || "";
+
+    const fullName =
+        `${firstName} ${lastName}`.trim();
+
+    const currentCity =
+        savedProfile.currentCity || "";
+
+    const qualification =
+        savedProfile.qualification || "";
+
+    const occupation =
+        savedProfile.occupation || "";
+
+    const income =
+        savedProfile.income || "";
 
 
-        /*
-        ABOUT ME
-        */
+    let introduction = "";
 
-        if (savedProfile.aboutMe) {
 
-            setAboutMe(
-                savedProfile.aboutMe
-            );
+    if (fullName) {
+
+        introduction +=
+            `I am ${fullName}`;
+
+    } else {
+
+        introduction +=
+            `I am`;
+
+    }
+
+
+    if (occupation) {
+
+        if (fullName) {
+
+            introduction +=
+                `, a ${occupation}`;
 
         } else {
 
-            /*
-            AUTOMATICALLY GENERATE ABOUT ME
-            */
+            introduction +=
+                ` a ${occupation}`;
 
-            const name =
-                `${savedProfile.firstName || ""} ${
-                    savedProfile.lastName || ""
-                }`.trim();
+        }
 
-            const qualification =
-                savedProfile.qualification || "";
-
-            const college =
-                savedProfile.college || "";
-
-            const occupation =
-                savedProfile.occupation || "";
-
-            const familyType =
-                savedProfile.familyType || "";
-
-            const partnerEducation =
-                savedProfile.partnerEducation || "";
-
-            const partnerOccupation =
-                savedProfile.partnerOccupation || "";
+    }
 
 
-            let generatedText = "";
+    if (currentCity) {
+
+        introduction +=
+            ` based in ${currentCity}`;
+
+    }
 
 
-            if (name) {
-
-                generatedText +=
-                    `I am ${name}`;
-
-            }
+    introduction += ".";
 
 
-            if (qualification) {
+    /*
+    QUALIFICATION
+    */
 
-                generatedText +=
-                    `, a ${qualification} graduate`;
+    if (qualification) {
 
-            }
+        introduction +=
+            ` I have completed ${qualification}`;
 
+        if (savedProfile.college) {
 
-            if (college) {
+            introduction +=
+                ` from ${savedProfile.college}`;
 
-                generatedText +=
-                    ` from ${college}`;
+        }
 
-            }
+        introduction += ".";
 
-
-            if (occupation) {
-
-                generatedText +=
-                    `. I am currently working as a ${occupation}`;
-
-            }
+    }
 
 
-            if (familyType) {
+    /*
+    INCOME
+    */
 
-                generatedText +=
-                    `. I come from a ${familyType.toLowerCase()} family`;
+    if (income) {
 
-            }
+        introduction +=
+            ` I currently earn an annual income of ${income}.`;
 
-
-            if (
-                partnerEducation ||
-                partnerOccupation
-            ) {
-
-                generatedText +=
-                    `. I am looking for a partner`;
-
-            }
+    }
 
 
-            if (partnerEducation) {
+    /*
+    =====================================================
+    RELIGION + LOCATION
+    =====================================================
+    */
 
-                generatedText +=
-                    ` who is educated`;
+    const religion =
+        savedProfile.religion || "";
 
-            }
+    const motherTongue =
+        savedProfile.motherTongue || "";
 
+    const nationality =
+        savedProfile.nationality || "";
 
-            if (partnerOccupation) {
+    const currentState =
+        savedProfile.currentState || "";
 
-                generatedText +=
-                    ` and preferably works as ${partnerOccupation}`;
-
-            }
-
-
-            generatedText +=
-                `. I value simplicity, understanding, respect and family values.`;
+    const currentCountry =
+        savedProfile.currentCountry || "";
 
 
-            setAboutMe(
-                generatedText
+    let backgroundText = "";
+
+
+    if (religion) {
+
+        backgroundText +=
+            `I belong to the ${religion} community`;
+
+    }
+
+
+    if (motherTongue) {
+
+        if (backgroundText) {
+
+            backgroundText +=
+                ` and my mother tongue is ${motherTongue}`;
+
+        } else {
+
+            backgroundText +=
+                `My mother tongue is ${motherTongue}`;
+
+        }
+
+    }
+
+
+    if (nationality) {
+
+        if (backgroundText) {
+
+            backgroundText +=
+                `. I am ${nationality}`;
+
+        } else {
+
+            backgroundText +=
+                `I am ${nationality}`;
+
+        }
+
+    }
+
+
+    if (currentState && currentCountry) {
+
+        backgroundText +=
+            ` based in ${currentState}, ${currentCountry}`;
+
+    } else if (currentState) {
+
+        backgroundText +=
+            ` based in ${currentState}`;
+
+    } else if (currentCountry) {
+
+        backgroundText +=
+            ` based in ${currentCountry}`;
+
+    }
+
+
+    if (backgroundText) {
+
+        backgroundText += ".";
+
+        sections.push(
+            backgroundText
+        );
+
+    }
+
+
+    /*
+    =====================================================
+    FAMILY
+    =====================================================
+    */
+
+    const fatherName =
+        savedProfile.fatherName || "";
+
+    const motherName =
+        savedProfile.motherName || "";
+
+    const siblings =
+        savedProfile.siblings || "";
+
+    const familyType =
+        savedProfile.familyType || "";
+
+
+    let familyText = "";
+
+
+    if (familyType) {
+
+        familyText +=
+            `I come from a ${familyType.toLowerCase()} family.`;
+
+    } else {
+
+        familyText +=
+            `I come from a close-knit family.`;
+
+    }
+
+
+    /*
+    Parents - ONLY NAMES
+    */
+
+    const familyDetails = [];
+
+
+    if (fatherName) {
+
+        familyDetails.push(
+            `Father: ${fatherName}`
+        );
+
+    }
+
+
+    if (motherName) {
+
+        familyDetails.push(
+            `Mother: ${motherName}`
+        );
+
+    }
+
+
+    /*
+    SIBLINGS
+    */
+
+    if (siblings) {
+
+        familyDetails.push(
+            `Siblings: ${siblings}`
+        );
+
+    }
+
+
+    if (familyDetails.length > 0) {
+
+        familyText +=
+            ` ${familyDetails.join(" • ")}.`;
+
+    }
+
+
+    if (
+        familyText.trim()
+    ) {
+
+        sections.push(
+            familyText
+        );
+
+    }
+
+
+    /*
+    =====================================================
+    LIFESTYLE
+    =====================================================
+    */
+
+    const foodPreference =
+        savedProfile.foodPreference || "";
+
+    const smokingHabit =
+        savedProfile.smokingHabit || "";
+
+    const drinkingHabit =
+        savedProfile.drinkingHabit || "";
+
+    const hobbies =
+        savedProfile.hobbies || "";
+
+
+    let lifestyleText = "";
+
+
+    if (foodPreference) {
+
+        lifestyleText +=
+            `I follow a ${foodPreference.toLowerCase()} lifestyle`;
+
+    }
+
+
+    if (smokingHabit) {
+
+        if (lifestyleText) {
+
+            lifestyleText +=
+                ` and I ${smokingHabit === "Never"
+                    ? "do not smoke"
+                    : `smoke ${smokingHabit.toLowerCase()}`
+                }`;
+
+        } else {
+
+            lifestyleText +=
+                `I ${smokingHabit === "Never"
+                    ? "do not smoke"
+                    : `smoke ${smokingHabit.toLowerCase()}`
+                }`;
+
+        }
+
+    }
+
+
+    if (drinkingHabit) {
+
+        if (lifestyleText) {
+
+            lifestyleText +=
+                ` and ${drinkingHabit === "Never"
+                    ? "do not drink"
+                    : `drink ${drinkingHabit.toLowerCase()}`
+                }`;
+
+        } else {
+
+            lifestyleText +=
+                `I ${drinkingHabit === "Never"
+                    ? "do not drink"
+                    : `drink ${drinkingHabit.toLowerCase()}`
+                }`;
+
+        }
+
+    }
+
+
+    if (lifestyleText) {
+
+        lifestyleText += ".";
+
+        sections.push(
+            lifestyleText
+        );
+
+    }
+
+
+    /*
+    =====================================================
+    HOBBIES
+    =====================================================
+    */
+
+    if (hobbies.trim()) {
+
+        sections.push(
+            `In my free time, I enjoy ${hobbies.trim()}.`
+        );
+
+    }
+
+
+    /*
+    =====================================================
+    PARTNER PREFERENCE
+    =====================================================
+    */
+
+    const partnerAgeFrom =
+        savedProfile.partnerAgeFrom || "";
+
+    const partnerAgeTo =
+        savedProfile.partnerAgeTo || "";
+
+    const partnerReligion =
+        savedProfile.partnerReligion || "";
+
+    const partnerEducation =
+        savedProfile.partnerEducation || "";
+
+    const partnerOccupation =
+        savedProfile.partnerOccupation || "";
+
+    const partnerCountry =
+        savedProfile.partnerCountry || "";
+
+
+    const partnerDetails = [];
+
+
+    if (partnerEducation) {
+
+        partnerDetails.push(
+            partnerEducation
+        );
+
+    }
+
+
+    if (partnerOccupation) {
+
+        partnerDetails.push(
+            partnerOccupation
+        );
+
+    }
+
+
+    if (partnerReligion) {
+
+        if (
+            partnerReligion !== "Any Religion"
+        ) {
+
+            partnerDetails.push(
+                `${partnerReligion} background`
             );
 
         }
 
+    }
+
+
+    let partnerText = "";
+
+
+    if (partnerDetails.length > 0) {
+
+        partnerText +=
+            `I am looking for a partner who is ${partnerDetails.join(", ")}.`;
+
+    } else {
+
+        partnerText +=
+            `I am looking for a caring and understanding partner.`;
+
+    }
+
+
+    /*
+    AGE RANGE
+    */
+
+    if (
+        partnerAgeFrom &&
+        partnerAgeTo
+    ) {
+
+        partnerText +=
+            ` Preferred age range: ${partnerAgeFrom}–${partnerAgeTo}.`;
+
+    } else if (partnerAgeFrom) {
+
+        partnerText +=
+            ` Preferred minimum age: ${partnerAgeFrom}.`;
+
+    } else if (partnerAgeTo) {
+
+        partnerText +=
+            ` Preferred maximum age: ${partnerAgeTo}.`;
+
+    }
+
+
+    /*
+    LOCATION
+    */
+
+    if (partnerCountry) {
+
+        partnerText +=
+            ` Preferred location: ${partnerCountry}.`;
+
+    }
+
+
+    sections.push(
+        partnerText
+    );
+
+
+    /*
+    =====================================================
+    FINAL ABOUT ME
+    =====================================================
+    */
+
+    const generatedText =
+        [
+            introduction,
+            ...sections
+        ]
+        .filter(
+            text => text && text.trim()
+        )
+        .join("\n\n");
+
+
+    setAboutMe(
+        generatedText
+    );
+
+}
     }, []);
 
 
@@ -771,17 +1201,19 @@ function PhotosAboutMe({
 
                     <h3>
 
-                        About Me
+    About Me
 
-                    </h3>
+    <span className="optional-label">
+        Optional
+    </span>
 
+</h3>
+<p className="photo-info">
 
-                    <p className="photo-info">
+    We've created this introduction using your profile information.
+    You can edit it before continuing.
 
-                        We created a short introduction using your
-                        profile information. You can edit it if you wish.
-
-                    </p>
+</p>
 
 
                     <textarea
