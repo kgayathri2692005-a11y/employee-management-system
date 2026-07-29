@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams  } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import Sidebar from "../components/Sidebar";
@@ -12,6 +12,9 @@ import "../styles/ViewProfile.css";
 function ViewProfile() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+
+const emailFromUrl = searchParams.get("email");
   const handleBack = () => {
   if (location.state?.from === "my-profile") {
     navigate(-1);
@@ -55,16 +58,29 @@ function ViewProfile() {
   selectedUser will contain the selected person's email.
   */
 
-  const selectedUser = location.state?.profile || null;
 
+  const selectedUser =
+    location.state?.profile ||
+    Object.values(allProfiles).find(
+        (user) => user.email === emailFromUrl
+    );
+  
+     
   /*
+  
   =========================================================
   PROFILE EMAIL
   =========================================================
   */
+ const allProfileslist =
+      JSON.parse(localStorage.getItem("allProfiles")) || {};
 
-  const profileEmail =
-    selectedUser?.email || loggedInUser.email;
+ const userslist = Object.entries(allProfileslist)
+ console.log("userslist"+userslist);
+console.log(selectedUser);
+  const profileEmail=
+     selectedUser?.email || loggedInUser.email;
+console.log("profileEmail"+profileEmail);
 
   /*
   =========================================================
@@ -77,7 +93,7 @@ function ViewProfile() {
   Otherwise:
       Show logged-in user's profile.
   */
-
+console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
   const profileData =
     allProfiles[profileEmail] ||
     selectedUser ||

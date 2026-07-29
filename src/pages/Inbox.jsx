@@ -38,11 +38,11 @@ function Inbox() {
 );
 
 const currentUserId = loggedInUser?.userId;
+const [matchedEmails, setMatchedEmails] = useState([]);
 const allProfiles =
   JSON.parse(localStorage.getItem("allProfiles")) || {};
 
-  const matchedUsers =
-  JSON.parse(localStorage.getItem("matchedUsers")) || [];
+ 
 
 const currentUserGender =
   allProfiles[loggedInUser?.email]?.gender;
@@ -52,7 +52,16 @@ console.log("Current Gender:", currentUserGender);
 useEffect(() => {
   const allProfiles =
   JSON.parse(localStorage.getItem("allProfiles")) || {};
-
+axios
+  .get(
+    `https://localhost:7064/api/Message/matched-users/${loggedInUser.email}`
+  )
+  .then((res) => {
+    setMatchedEmails(res.data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
   axios
     .get("https://localhost:7064/api/User")
     .then((response) => {
@@ -63,14 +72,7 @@ useEffect(() => {
   .filter(user => {
 
   if (user.userId === currentUserId) return false;
-
-  const isMatched = matchedUsers.some(
-  (match) =>
-    (match.user1 === loggedInUser.email &&
-      match.user2 === user.email) ||
-    (match.user2 === loggedInUser.email &&
-      match.user1 === user.email)
-);
+const isMatched = matchedEmails.includes(user.email);
 
 if (!isMatched) return false;
 

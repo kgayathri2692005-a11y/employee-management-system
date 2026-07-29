@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageNavigation from "../components/PageNavigation";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 import "../styles/Users.css";
 import "../styles/Dashboard.css";
@@ -71,7 +72,7 @@ const [placeFilter, setPlaceFilter] = useState("");
     const currentUserGender =
       currentUserProfile.gender;
 
-    console.log(
+    console.log(    
       "Logged In User:",
       loggedInUser
     );
@@ -667,7 +668,7 @@ const [placeFilter, setPlaceFilter] = useState("");
 ) : (
 
   <button
-    onClick={() => {
+    onClick={async () => {
 
       const alreadyExists = wishlist.some(
         (item) => item.email === employee.email
@@ -703,6 +704,69 @@ const [placeFilter, setPlaceFilter] = useState("");
         "interestRequests",
         JSON.stringify(interestRequests)
       );
+      try {
+
+  await axios.post(
+    "https://localhost:7064/api/Interest/send",
+    {
+      senderEmail: loggedInUser.email,
+      senderName: loggedInUser.userName || loggedInUser.name,
+
+      receiverEmail: employee.email,
+      receiverName: employee.name
+    }
+  );
+
+  console.log("Interest saved in database");
+
+}
+catch (error) {
+  console.log(error);
+}
+
+     try {
+      await axios.post(
+  "https://localhost:7064/api/Interest/send",
+  {
+    senderEmail: loggedInUser.email,
+    senderName: loggedInUser.userName || loggedInUser.name,
+
+    receiverEmail: employee.email,
+    receiverName: employee.name
+  }
+);
+  console.log("Calling Email API...");
+  console.log("Receiver Email:", employee.email);
+
+  const response = await axios.post(
+  "https://localhost:7064/api/Email/send-interest",
+  {
+    senderName: employee.name,
+    receiverName: employee.name,
+    receiverEmail: employee.email,
+
+    age: employee.dob
+      ? new Date().getFullYear() - new Date(employee.dob).getFullYear()
+      : "",
+
+    location:
+      `${employee.city}${employee.stateName ? ", " + employee.stateName : ""}`,
+
+    profession: employee.occupation || employee.designation,
+
+    profileLink: `http://localhost:3000/view-profile`,
+
+    acceptLink: `http://localhost:3000/interest/accept?from=${loggedInUser.email}&to=${employee.email}`,
+
+    rejectLink: `http://localhost:3000/interest/reject?from=${loggedInUser.email}&to=${employee.email}`
+  }
+);
+
+  console.log("API Success:", response.data);
+}
+catch (error) {
+  console.error("API Error:", error);
+}
 
       toast.success("❤️ Interest Sent Successfully!");
 

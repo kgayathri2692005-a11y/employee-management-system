@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 
 import "../styles/Notifications.css";
@@ -19,98 +20,61 @@ const [ignoreReason, setIgnoreReason] = useState("");
 
 const [otherReason, setOtherReason] = useState("");
 
-
-  useEffect(() => {
-
-    const interestRequests =
-      JSON.parse(localStorage.getItem("interestRequests")) || [];
-
-
-    const pendingRequests = interestRequests.filter(
-      (request) =>
-        request.to === loggedInUser.email &&
-        request.status === "Pending"
+const loadNotifications = async () => {
+  try {
+    const response = await axios.get(
+      `https://localhost:7064/api/Interest/received/${loggedInUser.email}`
     );
 
+    const pending = response.data.filter(
+      (request) => request.status === "Pending"
+    );
 
-    setNotifications(pendingRequests);
-    localStorage.setItem("notificationsRead", "true");
+    setNotifications(pending);
+  } catch (error) {
+    console.log(error);
+  } 
+};
 
+useEffect(() => {
+  loadNotifications();
+}, [loggedInUser.email]);
 
-  }, [loggedInUser.email]);
+const acceptInterest = async (request) => {
+  try {
+    await axios.put(
+      `https://localhost:7064/api/Interest/accept/${request.id}`
+    );
 
+    toast.success("Interest accepted ❤️");
 
+    loadNotifications();
 
- 
-
-  const acceptInterest = (selectedRequest) => {
-
-    console.log("Selected Request:", selectedRequest);
-
-  // Get all interest requests
-  const interestRequests =
-    JSON.parse(localStorage.getItem("interestRequests")) || [];
-
-  // Update the selected request
-  const updatedRequests = interestRequests.map((request) => {
-
-    if (
-      request.from === selectedRequest.from &&
-      request.to === selectedRequest.to &&
-      request.status === "Pending"
-    ) {
-      return {
-        ...request,
-        status: "Accepted",
-      };
-    }
-
-    return request;
-  });
-
-  // Save back to localStorage
-  localStorage.setItem(
-    "interestRequests",
-    JSON.stringify(updatedRequests)
-  );
-
-  // Get existing matches
-const matchedUsers =
-  JSON.parse(localStorage.getItem("matchedUsers")) || [];
-
-// Check if match already exists
-const alreadyMatched = matchedUsers.some(
-  (match) =>
-    (match.user1 === selectedRequest.from &&
-      match.user2 === selectedRequest.to) ||
-    (match.user1 === selectedRequest.to &&
-      match.user2 === selectedRequest.from)
-);
-
-// If not matched, create a new match
-if (!alreadyMatched) {
-  matchedUsers.push({
-    user1: selectedRequest.from,
-    user2: selectedRequest.to,
-  });
-
-  localStorage.setItem(
-    "matchedUsers",
-    JSON.stringify(matchedUsers)
-  );
-}
-
-  toast.success(
-    `${selectedRequest.fromName}'s request accepted ❤️`
-  );
-
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
 };
 
 
- const rejectInterest = () => {
+ const rejectInterest = async () => {
+  try {
+    await axios.put(
+      `https://localhost:7064/api/Interest/reject/${selectedRequest.id}`
+    );
 
     toast.error("Interest rejected ❌");
 
+    setShowIgnoreModal(false);
+    setIgnoreReason("");
+    setOtherReason("");
+
+    loadNotifications();
+
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
 };
 
 
@@ -317,11 +281,12 @@ if (!alreadyMatched) {
           Cancel
         </button>
 
-        <button
-          className="submit-btn"
-        >
-          Submit
-        </button>
+       <button
+  className="submit-btn"
+  onClick={rejectInterest}
+>
+  Submit
+</button>
 
       </div>
 
