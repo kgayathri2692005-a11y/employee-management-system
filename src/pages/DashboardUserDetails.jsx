@@ -18,15 +18,14 @@ function DashboardUserDetails() {
   const type =
     location.state?.type || "totalUsers";
 
+
   /*
   =========================================================
-  GET CURRENT USER STATUS
+  GET USER STATUS
   =========================================================
   */
 
   const getUserStatus = (profile) => {
-
-    // Explicit isActive has highest priority
 
     if (profile?.isActive === true) {
       return "Active";
@@ -35,8 +34,6 @@ function DashboardUserDetails() {
     if (profile?.isActive === false) {
       return "Inactive";
     }
-
-    // Explicit status comes next
 
     if (
       typeof profile?.status === "string" &&
@@ -55,29 +52,16 @@ function DashboardUserDetails() {
       if (status === "inactive") {
         return "Inactive";
       }
-    }
 
-    /*
-    If no explicit active/inactive information
-    exists, the profile currently exists in
-    allProfiles, so consider it Active.
-    */
+    }
 
     return "Active";
   };
 
+
   /*
   =========================================================
   GET PROFILE IMAGE
-  =========================================================
-
-  IMPORTANT:
-
-  profilePhoto = actual uploaded photo
-
-  profileImage = may contain default/demo image
-
-  Therefore profilePhoto MUST come first.
   =========================================================
   */
 
@@ -88,7 +72,7 @@ function DashboardUserDetails() {
     }
 
     /*
-    1. ACTUAL UPLOADED PROFILE PHOTO
+    1. Uploaded profile photo
     */
 
     if (
@@ -100,8 +84,9 @@ function DashboardUserDetails() {
 
     }
 
+
     /*
-    2. ACTUAL ADDITIONAL PHOTO
+    2. Additional photo
     */
 
     if (
@@ -122,11 +107,9 @@ function DashboardUserDetails() {
 
     }
 
-    /*
-    3. PROFILE IMAGE
 
-    Only use this when there is no uploaded
-    profilePhoto or additional photo.
+    /*
+    3. Profile image
     */
 
     if (
@@ -138,13 +121,15 @@ function DashboardUserDetails() {
 
     }
 
+
     /*
-    4. FINAL FALLBACK
+    4. Fallback
     */
 
     return "https://randomuser.me/api/portraits/lego/1.jpg";
 
   };
+
 
   /*
   =========================================================
@@ -172,6 +157,7 @@ function DashboardUserDetails() {
 
   };
 
+
   /*
   =========================================================
   GET PHONE
@@ -190,6 +176,7 @@ function DashboardUserDetails() {
 
   };
 
+
   /*
   =========================================================
   GET OCCUPATION
@@ -205,9 +192,10 @@ function DashboardUserDetails() {
 
   };
 
+
   /*
   =========================================================
-  GET LOCATION
+  GET CITY
   =========================================================
   */
 
@@ -221,6 +209,13 @@ function DashboardUserDetails() {
 
   };
 
+
+  /*
+  =========================================================
+  GET STATE
+  =========================================================
+  */
+
   const getState = (profile) => {
 
     return (
@@ -232,6 +227,7 @@ function DashboardUserDetails() {
 
   };
 
+
   /*
   =========================================================
   LOAD DATA
@@ -242,20 +238,17 @@ function DashboardUserDetails() {
 
     const allProfiles =
       JSON.parse(
-        localStorage.getItem(
-          "allProfiles"
-        )
+        localStorage.getItem("allProfiles")
       ) || {};
 
     const matchedUsers =
       JSON.parse(
-        localStorage.getItem(
-          "matchedUsers"
-        )
+        localStorage.getItem("matchedUsers")
       ) || [];
 
     const profilesArray =
       Object.entries(allProfiles);
+
 
     /*
     =========================================================
@@ -263,8 +256,7 @@ function DashboardUserDetails() {
     =========================================================
     */
 
-    let filteredUsers =
-      profilesArray;
+    let filteredUsers = profilesArray;
 
     if (type === "activeUsers") {
 
@@ -276,6 +268,7 @@ function DashboardUserDetails() {
 
     }
 
+
     if (type === "inactiveUsers") {
 
       filteredUsers =
@@ -285,6 +278,7 @@ function DashboardUserDetails() {
         );
 
     }
+
 
     /*
     =========================================================
@@ -305,12 +299,6 @@ function DashboardUserDetails() {
                 profile,
                 email
               ),
-
-            /*
-            IMPORTANT:
-
-            This now prioritizes profilePhoto.
-            */
 
             image:
               getProfileImage(
@@ -355,9 +343,11 @@ function DashboardUserDetails() {
         }
       );
 
+
     setUsers(
       formattedUsers
     );
+
 
     /*
     =========================================================
@@ -380,6 +370,7 @@ function DashboardUserDetails() {
                   match.user2
                 ] || {};
 
+
               return {
 
                 user1Email:
@@ -400,13 +391,6 @@ function DashboardUserDetails() {
                     match.user2
                   ),
 
-                /*
-                IMPORTANT:
-
-                Same image logic is used
-                for matched users.
-                */
-
                 user1Image:
                   getProfileImage(
                     user1
@@ -423,35 +407,78 @@ function DashboardUserDetails() {
           )
         : [];
 
+
     setPairs(
       formattedPairs
     );
 
   }, [type]);
 
+
   /*
   =========================================================
-  PAGE TITLE
+  PAGE INFORMATION
   =========================================================
   */
 
-  const getTitle = () => {
+  const getPageInfo = () => {
 
     if (type === "activeUsers") {
-      return "🟢 Active Users";
+
+      return {
+        eyebrow: "LIVE COMMUNITY",
+        title: "Active Members",
+        description:
+          "Members who are currently active on your matrimony platform.",
+        icon: "🟢",
+        count: users.length
+      };
+
     }
+
 
     if (type === "inactiveUsers") {
-      return "⚪ Inactive Users";
+
+      return {
+        eyebrow: "MEMBER MANAGEMENT",
+        title: "Inactive Members",
+        description:
+          "Profiles that are currently inactive and may need attention.",
+        icon: "⚪",
+        count: users.length
+      };
+
     }
+
 
     if (type === "totalPairs") {
-      return "💞 Total Matched Pairs";
+
+      return {
+        eyebrow: "SUCCESSFUL CONNECTIONS",
+        title: "Matched Pairs",
+        description:
+          "Couples who have successfully matched through the platform.",
+        icon: "💕",
+        count: pairs.length
+      };
+
     }
 
-    return "👥 All Users";
+
+    return {
+      eyebrow: "MATRIMONY COMMUNITY",
+      title: "All Members",
+      description:
+        "Browse all registered members and explore their profiles.",
+      icon: "👥",
+      count: users.length
+    };
 
   };
+
+
+  const pageInfo = getPageInfo();
+
 
   /*
   =========================================================
@@ -463,9 +490,7 @@ function DashboardUserDetails() {
 
     const allProfiles =
       JSON.parse(
-        localStorage.getItem(
-          "allProfiles"
-        )
+        localStorage.getItem("allProfiles")
       ) || {};
 
     const profile =
@@ -481,6 +506,7 @@ function DashboardUserDetails() {
       return;
 
     }
+
 
     navigate(
       "/view-profile",
@@ -501,95 +527,113 @@ function DashboardUserDetails() {
 
   };
 
+
   /*
   =========================================================
-  RENDER USERS
+  USER PROFILE BUTTON
   =========================================================
   */
 
-  const renderUsers = () => {
+  const ProfileButton = ({
+    email,
+    active = false
+  }) => {
+
+    return (
+
+      <button
+        type="button"
+        className={
+          active
+            ? "dashboard-profile-btn active-btn"
+            : "dashboard-profile-btn"
+        }
+        onClick={() =>
+          openProfile(email)
+        }
+      >
+
+        👁 View Profile
+
+      </button>
+
+    );
+
+  };
+
+
+  /*
+  =========================================================
+  TOTAL USERS DESIGN
+  =========================================================
+  */
+
+  const renderTotalUsers = () => {
 
     if (users.length === 0) {
 
-      return (
-
-        <div className="dashboard-details-empty">
-
-          <div>
-            👤
-          </div>
-
-          <h3>
-            No users found
-          </h3>
-
-          <p>
-            There are no users available
-            in this category.
-          </p>
-
-        </div>
-
+      return renderEmpty(
+        "👥",
+        "No members found",
+        "There are currently no registered profiles."
       );
 
     }
 
+
     return (
 
-      <div className="dashboard-user-grid">
+      <div className="members-directory">
 
         {users.map(
           (user) => (
 
             <div
-              className="dashboard-user-card"
+              className="member-directory-card"
               key={user.email}
             >
 
-              {/* =================================================
-                  PROFILE IMAGE
-              ================================================= */}
+              <div className="member-photo-area">
 
-              <img
-                src={
-                  user.image ||
-                  "https://randomuser.me/api/portraits/lego/1.jpg"
-                }
-                alt={user.name}
-                className="dashboard-user-image"
-              />
+                <img
+                  src={
+                    user.image ||
+                    "https://randomuser.me/api/portraits/lego/1.jpg"
+                  }
+                  alt={user.name}
+                  onError={(e) => {
 
-              <div className="dashboard-user-info">
+                    e.currentTarget.onerror =
+                      null;
 
-                {/* NAME */}
+                    e.currentTarget.src =
+                      "https://randomuser.me/api/portraits/lego/1.jpg";
+
+                  }}
+                />
+
+                <span className="member-status-dot">
+                </span>
+
+              </div>
+
+
+              <div className="member-directory-info">
+
+                <span className="member-category">
+                  MEMBER
+                </span>
 
                 <h3>
                   {user.name}
                 </h3>
 
-                {/* EMAIL */}
-
-                <p>
-                  📧 {user.email}
+                <p className="member-main-detail">
+                  {user.occupation}
                 </p>
-
-                {/* PHONE */}
-
-                <p>
-                  📱 {user.phone}
-                </p>
-
-                {/* OCCUPATION */}
-
-                <p>
-                  💼 {user.occupation}
-                </p>
-
-                {/* LOCATION */}
 
                 <p>
                   📍{" "}
-
                   {user.city ||
                     "Location not added"}
 
@@ -598,57 +642,30 @@ function DashboardUserDetails() {
                     : ""}
                 </p>
 
-                {/* AGE */}
+                <div className="member-mini-details">
 
-                {user.age && (
+                  {user.age && (
+                    <span>
+                      🎂 {user.age}
+                    </span>
+                  )}
 
-                  <p>
-                    🎂 {user.age} years
-                  </p>
+                  {user.gender && (
+                    <span>
+                      👤 {user.gender}
+                    </span>
+                  )}
 
-                )}
+                </div>
 
-                {/* GENDER */}
+              </div>
 
-                {user.gender && (
 
-                  <p>
-                    👤 {user.gender}
-                  </p>
+              <div className="member-directory-action">
 
-                )}
-
-                {/* CURRENT STATUS */}
-
-                <span
-                  className={
-                    user.status === "Active"
-                      ? "dashboard-status active"
-                      : "dashboard-status inactive"
-                  }
-                >
-
-                  {user.status === "Active"
-                    ? "🟢 Active"
-                    : "⚪ Inactive"}
-
-                </span>
-
-                {/* VIEW PROFILE */}
-
-                <button
-                  type="button"
-                  className="dashboard-view-profile-btn"
-                  onClick={() =>
-                    openProfile(
-                      user.email
-                    )
-                  }
-                >
-
-                  👁 View Full Profile
-
-                </button>
+                <ProfileButton
+                  email={user.email}
+                />
 
               </div>
 
@@ -663,9 +680,265 @@ function DashboardUserDetails() {
 
   };
 
+
   /*
   =========================================================
-  RENDER MATCHED PAIRS
+  ACTIVE USERS DESIGN
+  =========================================================
+  */
+
+  const renderActiveUsers = () => {
+
+    if (users.length === 0) {
+
+      return renderEmpty(
+        "🟢",
+        "No active members",
+        "There are currently no active members."
+      );
+
+    }
+
+
+    return (
+
+      <div className="active-members-list">
+
+        {users.map(
+          (user, index) => (
+
+            <div
+              className="active-member-row"
+              key={user.email}
+            >
+
+              <div className="active-rank">
+                {String(index + 1).padStart(2, "0")}
+              </div>
+
+
+              <div className="active-photo-wrapper">
+
+                <img
+                  src={
+                    user.image ||
+                    "https://randomuser.me/api/portraits/lego/1.jpg"
+                  }
+                  alt={user.name}
+                  onError={(e) => {
+
+                    e.currentTarget.onerror =
+                      null;
+
+                    e.currentTarget.src =
+                      "https://randomuser.me/api/portraits/lego/1.jpg";
+
+                  }}
+                />
+
+                <span className="online-indicator">
+                </span>
+
+              </div>
+
+
+              <div className="active-member-info">
+
+                <div className="active-name-row">
+
+                  <h3>
+                    {user.name}
+                  </h3>
+
+                  <span className="online-badge">
+                    ● Active now
+                  </span>
+
+                </div>
+
+                <p>
+                  💼 {user.occupation}
+                </p>
+
+                <p>
+                  📍{" "}
+                  {user.city ||
+                    "Location not added"}
+
+                  {user.state
+                    ? `, ${user.state}`
+                    : ""}
+                </p>
+
+              </div>
+
+
+              <div className="active-member-meta">
+
+                {user.age && (
+                  <span>
+                    {user.age} yrs
+                  </span>
+                )}
+
+                {user.gender && (
+                  <span>
+                    {user.gender}
+                  </span>
+                )}
+
+              </div>
+
+
+              <ProfileButton
+                email={user.email}
+                active={true}
+              />
+
+            </div>
+
+          )
+        )}
+
+      </div>
+
+    );
+
+  };
+
+
+  /*
+  =========================================================
+  INACTIVE USERS DESIGN
+  =========================================================
+  */
+
+  const renderInactiveUsers = () => {
+
+    if (users.length === 0) {
+
+      return renderEmpty(
+        "⚪",
+        "No inactive members",
+        "Great! There are currently no inactive profiles."
+      );
+
+    }
+
+
+    return (
+
+      <div className="inactive-members-grid">
+
+        {users.map(
+          (user) => (
+
+            <div
+              className="inactive-member-card"
+              key={user.email}
+            >
+
+              <div className="inactive-card-header">
+
+                <span>
+                  INACTIVE
+                </span>
+
+                <span className="inactive-circle">
+                  ○
+                </span>
+
+              </div>
+
+
+              <div className="inactive-profile">
+
+                <img
+                  src={
+                    user.image ||
+                    "https://randomuser.me/api/portraits/lego/1.jpg"
+                  }
+                  alt={user.name}
+                  onError={(e) => {
+
+                    e.currentTarget.onerror =
+                      null;
+
+                    e.currentTarget.src =
+                      "https://randomuser.me/api/portraits/lego/1.jpg";
+
+                  }}
+                />
+
+                <h3>
+                  {user.name}
+                </h3>
+
+                <p className="inactive-occupation">
+                  {user.occupation}
+                </p>
+
+              </div>
+
+
+              <div className="inactive-info">
+
+                <div>
+                  <span>
+                    LOCATION
+                  </span>
+
+                  <strong>
+                    {user.city ||
+                      "Not added"}
+
+                    {user.state
+                      ? `, ${user.state}`
+                      : ""}
+                  </strong>
+                </div>
+
+
+                <div>
+                  <span>
+                    CONTACT
+                  </span>
+
+                  <strong>
+                    {user.phone}
+                  </strong>
+                </div>
+
+              </div>
+
+
+              <div className="inactive-card-footer">
+
+                <span>
+                  Profile inactive
+                </span>
+
+                <ProfileButton
+                  email={user.email}
+                />
+
+              </div>
+
+            </div>
+
+          )
+        )}
+
+      </div>
+
+    );
+
+  };
+
+
+  /*
+  =========================================================
+  MATCHED PAIRS DESIGN
   =========================================================
   */
 
@@ -673,140 +946,166 @@ function DashboardUserDetails() {
 
     if (pairs.length === 0) {
 
-      return (
-
-        <div className="dashboard-details-empty">
-
-          <div>
-            💔
-          </div>
-
-          <h3>
-            No matched pairs found
-          </h3>
-
-          <p>
-            There are currently no matched
-            users.
-          </p>
-
-        </div>
-
+      return renderEmpty(
+        "💕",
+        "No matched pairs yet",
+        "Successful matches will appear here."
       );
 
     }
 
+
     return (
 
-      <div className="dashboard-pairs-grid">
+      <div className="matches-showcase">
 
         {pairs.map(
           (pair, index) => (
 
             <div
-              className="dashboard-pair-card"
+              className="match-showcase-card"
               key={index}
             >
 
-              {/* =================================================
-                  USER 1
-              ================================================= */}
+              <div className="match-number">
+                MATCH #{String(index + 1).padStart(2, "0")}
+              </div>
 
-              <div
-                className="dashboard-pair-user"
-                onClick={() =>
-                  openProfile(
-                    pair.user1Email
-                  )
-                }
-              >
 
-                <img
-                  src={
-                    pair.user1Image ||
-                    "https://randomuser.me/api/portraits/lego/1.jpg"
-                  }
-                  alt={
-                    pair.user1Name
-                  }
-                />
+              <div className="match-users">
 
-                <h3>
-                  {pair.user1Name}
-                </h3>
+                {/* USER 1 */}
 
-                <p>
-                  {pair.user1Email}
-                </p>
-
-                <button
-                  type="button"
-                  onClick={(e) => {
-
-                    e.stopPropagation();
-
+                <div
+                  className="match-person"
+                  onClick={() =>
                     openProfile(
                       pair.user1Email
-                    );
-
-                  }}
+                    )
+                  }
                 >
-                  View Profile
-                </button>
 
-              </div>
+                  <div className="match-photo-ring">
 
-              {/* HEART */}
+                    <img
+                      src={
+                        pair.user1Image ||
+                        "https://randomuser.me/api/portraits/lego/1.jpg"
+                      }
+                      alt={pair.user1Name}
+                      onError={(e) => {
 
-              <div className="pair-heart">
-                ❤️
-              </div>
+                        e.currentTarget.onerror =
+                          null;
 
-              {/* =================================================
-                  USER 2
-              ================================================= */}
+                        e.currentTarget.src =
+                          "https://randomuser.me/api/portraits/lego/1.jpg";
 
-              <div
-                className="dashboard-pair-user"
-                onClick={() =>
-                  openProfile(
-                    pair.user2Email
-                  )
-                }
-              >
+                      }}
+                    />
 
-                <img
-                  src={
-                    pair.user2Image ||
-                    "https://randomuser.me/api/portraits/lego/1.jpg"
-                  }
-                  alt={
-                    pair.user2Name
-                  }
-                />
+                  </div>
 
-                <h3>
-                  {pair.user2Name}
-                </h3>
+                  <span>
+                    MEMBER 01
+                  </span>
 
-                <p>
-                  {pair.user2Email}
-                </p>
+                  <h3>
+                    {pair.user1Name}
+                  </h3>
 
-                <button
-                  type="button"
-                  onClick={(e) => {
+                  <button
+                    type="button"
+                    onClick={(e) => {
 
-                    e.stopPropagation();
+                      e.stopPropagation();
 
+                      openProfile(
+                        pair.user1Email
+                      );
+
+                    }}
+                  >
+                    View Profile
+                  </button>
+
+                </div>
+
+
+                {/* CONNECTION */}
+
+                <div className="match-connection">
+
+                  <div className="connection-line">
+                  </div>
+
+                  <div className="match-heart">
+                    ❤️
+                  </div>
+
+                  <span>
+                    MATCHED
+                  </span>
+
+                </div>
+
+
+                {/* USER 2 */}
+
+                <div
+                  className="match-person"
+                  onClick={() =>
                     openProfile(
                       pair.user2Email
-                    );
-
-                  }}
+                    )
+                  }
                 >
-                  View Profile
-                </button>
+
+                  <div className="match-photo-ring">
+
+                    <img
+                      src={
+                        pair.user2Image ||
+                        "https://randomuser.me/api/portraits/lego/1.jpg"
+                      }
+                      alt={pair.user2Name}
+                      onError={(e) => {
+
+                        e.currentTarget.onerror =
+                          null;
+
+                        e.currentTarget.src =
+                          "https://randomuser.me/api/portraits/lego/1.jpg";
+
+                      }}
+                    />
+
+                  </div>
+
+                  <span>
+                    MEMBER 02
+                  </span>
+
+                  <h3>
+                    {pair.user2Name}
+                  </h3>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+
+                      e.stopPropagation();
+
+                      openProfile(
+                        pair.user2Email
+                      );
+
+                    }}
+                  >
+                    View Profile
+                  </button>
+
+                </div>
 
               </div>
 
@@ -821,9 +1120,45 @@ function DashboardUserDetails() {
 
   };
 
+
   /*
   =========================================================
-  RENDER
+  EMPTY STATE
+  =========================================================
+  */
+
+  const renderEmpty = (
+    icon,
+    title,
+    description
+  ) => {
+
+    return (
+
+      <div className="dashboard-special-empty">
+
+        <div className="empty-icon">
+          {icon}
+        </div>
+
+        <h3>
+          {title}
+        </h3>
+
+        <p>
+          {description}
+        </p>
+
+      </div>
+
+    );
+
+  };
+
+
+  /*
+  =========================================================
+  MAIN RENDER
   =========================================================
   */
 
@@ -837,46 +1172,81 @@ function DashboardUserDetails() {
 
         <Navbar />
 
-        <div className="dashboard-details-page">
 
+        <div
+  className={`dashboard-details-page ${
+    type === "activeUsers"
+      ? "active-users-page"
+      : ""
+  }`}
+>
           {/* =================================================
-              HEADER
+              PAGE HEADER
           ================================================= */}
 
-          <div className="dashboard-details-header">
+          <div className="details-page-header">
 
-            <div>
+            <div className="details-heading">
+
+              <div className="details-eyebrow">
+                {pageInfo.icon}{" "}
+                {pageInfo.eyebrow}
+              </div>
 
               <h1>
-                {getTitle()}
+                {pageInfo.title}
               </h1>
 
               <p>
-                View and manage the
-                details below.
+                {pageInfo.description}
               </p>
 
             </div>
 
-            <button
-              type="button"
-              className="dashboard-back-btn"
-              onClick={() =>
-                navigate("/dashboard")
-              }
-            >
-              ← Back to Dashboard
-            </button>
+
+            <div className="details-header-right">
+
+              <div className="details-count">
+
+                <strong>
+                  {pageInfo.count}
+                </strong>
+
+                <span>
+                  {type === "totalPairs"
+                    ? "MATCHES"
+                    : "PROFILES"}
+                </span>
+
+              </div>
+
+
+              <button
+                type="button"
+                className="details-back-btn"
+                onClick={() =>
+                  navigate("/dashboard")
+                }
+              >
+                ← Dashboard
+              </button>
+
+            </div>
 
           </div>
 
+
           {/* =================================================
-              CONTENT
+              PAGE CONTENT
           ================================================= */}
 
           {type === "totalPairs"
             ? renderPairs()
-            : renderUsers()}
+            : type === "activeUsers"
+            ? renderActiveUsers()
+            : type === "inactiveUsers"
+            ? renderInactiveUsers()
+            : renderTotalUsers()}
 
         </div>
 

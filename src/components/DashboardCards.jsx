@@ -28,10 +28,6 @@ function DashboardCards() {
   */
 
   const getUserStatus = (profile) => {
-    /*
-    Explicit isActive has highest priority
-    */
-
     if (profile?.isActive === true) {
       return "Active";
     }
@@ -39,10 +35,6 @@ function DashboardCards() {
     if (profile?.isActive === false) {
       return "Inactive";
     }
-
-    /*
-    Explicit status
-    */
 
     if (
       typeof profile?.status === "string" &&
@@ -59,51 +51,7 @@ function DashboardCards() {
       }
     }
 
-    /*
-    Existing profile without an explicit inactive
-    status is treated as Active.
-
-    This MUST match DashboardUserDetails.jsx.
-    */
-
     return "Active";
-  };
-
-  /*
-  =========================================================
-  GET NAME
-  =========================================================
-  */
-
-  const getName = (profile, email) => {
-    const name =
-      `${profile?.firstName || ""} ${
-        profile?.lastName || ""
-      }`.trim();
-
-    return (
-      name ||
-      profile?.userName ||
-      profile?.fullName ||
-      email ||
-      "Unknown User"
-    );
-  };
-
-  /*
-  =========================================================
-  GET PHONE
-  =========================================================
-  */
-
-  const getPhone = (profile) => {
-    return (
-      profile?.phone ||
-      profile?.phoneNumber ||
-      profile?.mobile ||
-      profile?.mobileNumber ||
-      "Phone number not added"
-    );
   };
 
   /*
@@ -116,7 +64,7 @@ function DashboardCards() {
 
   /*
   =========================================================
-  ACTIVE USERS
+  USER COUNTS
   =========================================================
   */
 
@@ -125,30 +73,12 @@ function DashboardCards() {
       getUserStatus(profile) === "Active"
   );
 
-  /*
-  =========================================================
-  INACTIVE USERS
-  =========================================================
-  */
-
   const inactiveUsers = profilesArray.filter(
     ([, profile]) =>
       getUserStatus(profile) === "Inactive"
   );
 
-  /*
-  =========================================================
-  TOTAL USERS
-  =========================================================
-  */
-
   const totalUsers = profilesArray.length;
-
-  /*
-  =========================================================
-  TOTAL PAIRS
-  =========================================================
-  */
 
   const totalPairs = Array.isArray(matchedUsers)
     ? matchedUsers.length
@@ -182,71 +112,138 @@ function DashboardCards() {
       ================================================= */}
 
       <div
-        className="card"
+        className="dashboard-stat-card total-users-card"
         onClick={() =>
           handleCardClick("totalUsers")
         }
-        style={{
-          cursor: "pointer",
-        }}
       >
-        <h3>Total Users</h3>
+        <div className="stat-card-top">
+          <div className="stat-icon">
+            👥
+          </div>
 
-        <p>{totalUsers}</p>
+          <span className="stat-card-label">
+            COMMUNITY
+          </span>
+        </div>
+
+        <div className="stat-card-content">
+          <h3>Total Users</h3>
+
+          <p>{totalUsers}</p>
+
+          <span className="stat-description">
+            All registered profiles
+          </span>
+        </div>
+
+        <div className="stat-card-decoration">
+          👤
+        </div>
       </div>
+
 
       {/* =================================================
           ACTIVE USERS
       ================================================= */}
 
       <div
-        className="card"
+        className="dashboard-stat-card active-users-card"
         onClick={() =>
           handleCardClick("activeUsers")
         }
-        style={{
-          cursor: "pointer",
-        }}
       >
-        <h3>Active Users</h3>
+        <div className="stat-card-top">
+          <div className="stat-icon">
+            🟢
+          </div>
 
-        <p>{activeUsers.length}</p>
+          <span className="stat-card-label">
+            ACTIVE NOW
+          </span>
+        </div>
+
+        <div className="stat-card-content">
+          <h3>Active Users</h3>
+
+          <p>{activeUsers.length}</p>
+
+          <span className="stat-description">
+            Currently active profiles
+          </span>
+        </div>
+
+        <div className="active-pulse"></div>
       </div>
+
 
       {/* =================================================
           INACTIVE USERS
       ================================================= */}
 
       <div
-        className="card"
+        className="dashboard-stat-card inactive-users-card"
         onClick={() =>
           handleCardClick("inactiveUsers")
         }
-        style={{
-          cursor: "pointer",
-        }}
       >
-        <h3>Inactive Users</h3>
+        <div className="stat-card-top">
+          <div className="stat-icon">
+            ⚪
+          </div>
 
-        <p>{inactiveUsers.length}</p>
+          <span className="stat-card-label">
+            INACTIVE
+          </span>
+        </div>
+
+        <div className="stat-card-content">
+          <h3>Inactive Users</h3>
+
+          <p>{inactiveUsers.length}</p>
+
+          <span className="stat-description">
+            Profiles currently inactive
+          </span>
+        </div>
+
+        <div className="inactive-line"></div>
       </div>
+
 
       {/* =================================================
           TOTAL PAIRS
       ================================================= */}
 
       <div
-        className="card"
+        className="dashboard-stat-card total-pairs-card"
         onClick={() =>
           handleCardClick("totalPairs")
         }
-        style={{
-          cursor: "pointer",
-        }}
       >
-        <h3>Total Pairs</h3>
+        <div className="stat-card-top">
+          <div className="stat-icon">
+            💕
+          </div>
 
-        <p>{totalPairs}</p>
+          <span className="stat-card-label">
+            MATCHES
+          </span>
+        </div>
+
+        <div className="stat-card-content">
+          <h3>Total Pairs</h3>
+
+          <p>{totalPairs}</p>
+
+          <span className="stat-description">
+            Successful matched profiles
+          </span>
+        </div>
+
+        <div className="heart-decoration">
+          ♥
+        </div>
       </div>
 
     </div>

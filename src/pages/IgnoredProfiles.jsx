@@ -794,11 +794,11 @@ window.dispatchEvent(
 
         </div>
 
-      </div>
+              <PageNavigation
+          previous="/notifications"
+        />
 
-      <PageNavigation
-        previous="/notifications"
-      />
+      </div>
 
     </div>
 

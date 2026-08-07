@@ -652,23 +652,22 @@ function Wishlist() {
 
             </div>
 
-          )}
+                   )}
+
+          {/* =================================================
+              PAGE NAVIGATION
+          ================================================= */}
+
+          <PageNavigation
+            previous="/tracking"
+            next="/inbox"
+          />
 
         </div>
 
       </div>
 
-
-      {/* =================================================
-          PAGE NAVIGATION
-      ================================================= */}
-
-      <PageNavigation
-        previous="/tracking"
-      />
-
     </div>
-
   );
 
 }

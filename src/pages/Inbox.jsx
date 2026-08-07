@@ -539,11 +539,14 @@ const sendMessage = () => {
 
         </div>
 
+      
+        <PageNavigation
+          previous="/users"
+          next="/myprofile"
+        />
+
       </div>
-<PageNavigation
-    previous="/users"
-    next="/myprofile"
-/>
+
     </div>
   );
 }
