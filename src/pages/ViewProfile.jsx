@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useSearchParams  } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import Sidebar from "../components/Sidebar";
@@ -10,19 +10,21 @@ import "../styles/Dashboard.css";
 import "../styles/ViewProfile.css";
 
 function ViewProfile() {
+
   const navigate = useNavigate();
   const location = useLocation();
-  const [searchParams] = useSearchParams();
 
-const emailFromUrl = searchParams.get("email");
   const handleBack = () => {
-  if (location.state?.from === "my-profile") {
-    navigate(-1);
-    return;
-  }
 
-  navigate("/Users");
-};
+    if (location.state?.from === "my-profile") {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/Users");
+
+  };
+
   /*
   =========================================================
   LOGGED-IN USER
@@ -30,10 +32,14 @@ const emailFromUrl = searchParams.get("email");
   */
 
   const loggedInUser =
-    JSON.parse(localStorage.getItem("loggedInUser")) || {};
-   
-    const matchedUsers =
-  JSON.parse(localStorage.getItem("matchedUsers")) || [];
+    JSON.parse(
+      localStorage.getItem("loggedInUser")
+    ) || {};
+
+  const matchedUsers =
+    JSON.parse(
+      localStorage.getItem("matchedUsers")
+    ) || [];
 
   /*
   =========================================================
@@ -42,66 +48,50 @@ const emailFromUrl = searchParams.get("email");
   */
 
   const allProfiles =
-    JSON.parse(localStorage.getItem("allProfiles")) || {};
+    JSON.parse(
+      localStorage.getItem("allProfiles")
+    ) || {};
 
   /*
   =========================================================
   SELECTED USER
   =========================================================
-
-  When coming from Users.jsx:
-
-  navigate("/view-profile", {
-    state: employee
-  });
-
-  selectedUser will contain the selected person's email.
   */
 
-
   const selectedUser =
-    location.state?.profile ||
-    Object.values(allProfiles).find(
-        (user) => user.email === emailFromUrl
-    );
-  
-     
+    location.state?.profile || null;
+
   /*
-  
   =========================================================
   PROFILE EMAIL
   =========================================================
   */
- const allProfileslist =
-      JSON.parse(localStorage.getItem("allProfiles")) || {};
 
- const userslist = Object.entries(allProfileslist)
- console.log("userslist"+userslist);
-console.log(selectedUser);
-  const profileEmail=
-     selectedUser?.email || loggedInUser.email;
-console.log("profileEmail"+profileEmail);
+  const profileEmail =
+    selectedUser?.email ||
+    loggedInUser.email;
 
   /*
   =========================================================
   PROFILE DATA
   =========================================================
-
-  If another user is selected:
-      Show that user's profile.
-
-  Otherwise:
-      Show logged-in user's profile.
   */
-console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
+
+  const profileEntry =
+    Object.entries(allProfiles).find(
+      ([email]) =>
+        email.trim().toLowerCase() ===
+        profileEmail?.trim().toLowerCase()
+    );
+
   const profileData =
-    allProfiles[profileEmail] ||
+    profileEntry?.[1] ||
     selectedUser ||
     {};
 
   /*
   =========================================================
-  CHECK IF OTHER USER
+  CHECK OTHER USER
   =========================================================
   */
 
@@ -109,13 +99,24 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
     profileEmail &&
     profileEmail !== loggedInUser.email;
 
-    const isMatched = matchedUsers.some(
-  (match) =>
-    (match.user1 === loggedInUser.email &&
-      match.user2 === profileEmail) ||
-    (match.user2 === loggedInUser.email &&
-      match.user1 === profileEmail)
-);
+  /*
+  =========================================================
+  CHECK MATCH
+  =========================================================
+  */
+
+  const isMatched =
+    matchedUsers.some(
+      (match) =>
+        (
+          match.user1 === loggedInUser.email &&
+          match.user2 === profileEmail
+        ) ||
+        (
+          match.user2 === loggedInUser.email &&
+          match.user1 === profileEmail
+        )
+    );
 
   /*
   =========================================================
@@ -159,11 +160,12 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
 
   /*
   =========================================================
-  CALCULATE AGE
+  AGE
   =========================================================
   */
 
   const calculateAge = (dob) => {
+
     if (!dob) {
       return "N/A";
     }
@@ -187,13 +189,14 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
       (
         monthDifference === 0 &&
         today.getDate() <
-          birthDate.getDate()
+        birthDate.getDate()
       )
     ) {
       age--;
     }
 
     return `${age} Years`;
+
   };
 
   /*
@@ -218,54 +221,44 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
     profileData.country ||
     "";
 
-  const locationText = [
-    city,
-    state,
-    country
-  ]
-    .filter(Boolean)
-    .join(", ");
+  const locationText =
+    [
+      city,
+      state,
+      country
+    ]
+      .filter(Boolean)
+      .join(", ");
 
   /*
   =========================================================
   PROFILE IMAGE
-
-  IMPORTANT:
-
-  We DO NOT copy this image into wishlist.
-
-  The image remains inside allProfiles.
-
-  Wishlist stores only email and basic information.
   =========================================================
   */
 
   const profileImage =
-    profileData.profileImage ||
     profileData.profilePhoto ||
+    profileData.profileImage ||
     selectedUser?.image ||
     "https://randomuser.me/api/portraits/lego/1.jpg";
 
   /*
   =========================================================
-  LOAD WISHLIST AND INTEREST STATUS
+  LOAD WISHLIST + INTEREST
   =========================================================
   */
 
   useEffect(() => {
+
     if (!isOtherUser) {
       return;
     }
 
-    /*
-    -----------------------------
-    CHECK WISHLIST
-    -----------------------------
-    */
-
     const wishlist =
       JSON.parse(
-        localStorage.getItem(wishlistKey)
+        localStorage.getItem(
+          wishlistKey
+        )
       ) || [];
 
     const alreadyWishlisted =
@@ -278,12 +271,6 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
       alreadyWishlisted
     );
 
-    /*
-    -----------------------------
-    CHECK INTEREST
-    -----------------------------
-    */
-
     const interests =
       JSON.parse(
         localStorage.getItem(
@@ -295,9 +282,9 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
       interests.some(
         (interest) =>
           interest.from ===
-            loggedInUser.email &&
+          loggedInUser.email &&
           interest.to ===
-            profileEmail
+          profileEmail
       );
 
     setInterestSent(
@@ -313,21 +300,12 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
 
   /*
   =========================================================
-  ADD / REMOVE WISHLIST
-  =========================================================
-
-  IMPORTANT:
-
-  We only save lightweight information.
-
-  We DO NOT save profileImage or profilePhoto.
-
-  This prevents localStorage quota errors caused by
-  large Base64 images.
+  WISHLIST
   =========================================================
   */
 
   const handleWishlist = () => {
+
     if (!isOtherUser) {
       return;
     }
@@ -339,13 +317,8 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
         )
       ) || [];
 
-    /*
-    -----------------------------
-    REMOVE FROM WISHLIST
-    -----------------------------
-    */
-
     if (isWishlisted) {
+
       const updatedWishlist =
         wishlist.filter(
           (user) =>
@@ -354,6 +327,7 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
         );
 
       try {
+
         localStorage.setItem(
           wishlistKey,
           JSON.stringify(
@@ -363,31 +337,30 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
 
         setIsWishlisted(false);
 
+        toast.success(
+          "Removed from wishlist."
+        );
+
       } catch (error) {
+
         console.error(
           "Unable to update wishlist:",
           error
         );
+
       }
 
       return;
+
     }
 
-    /*
-    -----------------------------
-    ADD TO WISHLIST
-    -----------------------------
-
-    ONLY SMALL DATA IS STORED.
-
-    NO IMAGE IS STORED HERE.
-    -----------------------------
-    */
-
     const wishlistUser = {
-      email: profileEmail,
 
-      name: displayName,
+      email:
+        profileEmail,
+
+      name:
+        displayName,
 
       gender:
         profileData.gender ||
@@ -402,11 +375,8 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
 
       state:
         state
-    };
 
-    /*
-    Prevent duplicate entries
-    */
+    };
 
     const alreadyExists =
       wishlist.some(
@@ -416,8 +386,10 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
       );
 
     if (alreadyExists) {
+
       setIsWishlisted(true);
       return;
+
     }
 
     const updatedWishlist = [
@@ -426,6 +398,7 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
     ];
 
     try {
+
       localStorage.setItem(
         wishlistKey,
         JSON.stringify(
@@ -435,16 +408,23 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
 
       setIsWishlisted(true);
 
+      toast.success(
+        "Added to your wishlist."
+      );
+
     } catch (error) {
+
       console.error(
         "Unable to save wishlist:",
         error
       );
 
-      alert(
-        "Unable to add this profile to wishlist. Please try again."
+      toast.error(
+        "Unable to add this profile to wishlist."
       );
+
     }
+
   };
 
   /*
@@ -454,11 +434,8 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
   */
 
   const handleSendInterest = () => {
-    if (!isOtherUser) {
-      return;
-    }
 
-    if (interestSent) {
+    if (!isOtherUser || interestSent) {
       return;
     }
 
@@ -469,26 +446,26 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
         )
       ) || [];
 
-    /*
-    Prevent duplicate interest
-    */
-
     const alreadyExists =
       interests.some(
         (interest) =>
           interest.from ===
-            loggedInUser.email &&
+          loggedInUser.email &&
           interest.to ===
-            profileEmail
+          profileEmail
       );
 
     if (alreadyExists) {
+
       setInterestSent(true);
       return;
+
     }
 
     const newInterest = {
-      id: Date.now(),
+
+      id:
+        Date.now(),
 
       from:
         loggedInUser.email,
@@ -509,21 +486,23 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
 
       date:
         new Date().toISOString()
-    };
 
-    const updatedInterests = [
-      ...interests,
-      newInterest
-    ];
+    };
 
     localStorage.setItem(
       "sentInterests",
-      JSON.stringify(
-        updatedInterests
-      )
+      JSON.stringify([
+        ...interests,
+        newInterest
+      ])
     );
 
     setInterestSent(true);
+
+    toast.success(
+      "Interest sent successfully!"
+    );
+
   };
 
   /*
@@ -533,52 +512,93 @@ console.log("ProfileDetails"+ allProfiles['kgayathri2692005@gmail.com'])
   */
 
   const handleMessage = () => {
-    console.log("===== HANDLE MESSAGE CLICKED =====");
-    alert("handleMessage called");
 
-  if (!isOtherUser) {
-    return;
-  }
+    if (!isOtherUser) {
+      return;
+    }
 
-  const matchedUsers =
-    JSON.parse(localStorage.getItem("matchedUsers")) || [];
+    const matched =
+      matchedUsers.some(
+        (match) =>
+          (
+            match.user1 ===
+            loggedInUser.email &&
+            match.user2 ===
+            profileEmail
+          ) ||
+          (
+            match.user2 ===
+            loggedInUser.email &&
+            match.user1 ===
+            profileEmail
+          )
+      );
 
-  const isMatched = matchedUsers.some(
-    (match) =>
-      (match.user1 === loggedInUser.email &&
-        match.user2 === profileEmail) ||
-      (match.user2 === loggedInUser.email &&
-        match.user1 === profileEmail)
-  );
-console.log("Logged In User:", loggedInUser.email);
-console.log("Profile Email:", profileEmail);
-console.log("Matched Users:", matchedUsers);
-console.log("Is Matched:", isMatched);
+    if (!matched) {
 
-  if (!isMatched) {
+      toast.error(
+        "🔒 You can chat only after your interest request is accepted."
+      );
 
-    toast.error(
-      "🔒 You can chat only after your interest request is accepted."
+      return;
+
+    }
+
+    navigate(
+      "/inbox",
+      {
+        state: {
+          selectedUser: {
+
+            ...selectedUser,
+
+            email:
+              profileEmail,
+
+            name:
+              displayName,
+
+            image:
+              profileImage,
+
+            occupation:
+              profileData.occupation ||
+              "",
+
+            city:
+              city,
+
+            stateName:
+              state
+
+          }
+        }
+      }
     );
 
-    return;
-  }
+  };
 
-  navigate("/inbox", {
-    state: {
-      selectedUser: {
-        ...selectedUser,
-        email: profileEmail,
-        name: displayName,
-        image: profileImage,
-        occupation: profileData.occupation || "",
-        city: city,
-        stateName: state
-      }
+  /*
+  =========================================================
+  HELPER
+  =========================================================
+  */
+
+  const displayValue = (value) => {
+
+    if (
+      value === undefined ||
+      value === null ||
+      String(value).trim() === ""
+    ) {
+
+      return "Not provided";
+
     }
-  });
 
-};
+    return value;
+
+  };
 
   /*
   =========================================================
@@ -587,6 +607,7 @@ console.log("Is Matched:", isMatched);
   */
 
   return (
+
     <div className="dashboard">
 
       <Sidebar />
@@ -600,38 +621,64 @@ console.log("Is Matched:", isMatched);
           <div className="view-profile-card">
 
             {/* =================================================
-                PROFILE HEADER
+                PROFILE HERO
             ================================================= */}
 
-            <div className="view-profile-header">
+            <div className="profile-hero">
 
-              <img
-                src={profileImage}
-                alt={displayName}
-                className="view-profile-image"
-              />
+              <div className="profile-hero-image-wrapper">
+
+                <img
+                  src={profileImage}
+                  alt={displayName}
+                  className="view-profile-image"
+                />
+
+                <span className="profile-online-dot"></span>
+
+              </div>
 
               <div className="view-profile-header-info">
+
+                <span className="profile-label">
+                  MATRIMONY PROFILE
+                </span>
 
                 <h1>
                   {displayName}
                 </h1>
 
-                <p>
-                  {calculateAge(
-                    profileData.dob
-                  )}
+                <div className="profile-short-details">
 
-                  {" • "}
+                  <span>
+                    🎂 {calculateAge(profileData.dob)}
+                  </span>
 
-                  {profileData.gender ||
-                    "Gender not added"}
-                </p>
+                  <span className="detail-divider">
+                    •
+                  </span>
 
-                <p>
-                  {locationText ||
-                    "Location not added"}
-                </p>
+                  <span>
+                    👤 {displayValue(profileData.gender)}
+                  </span>
+
+                </div>
+
+                <div className="profile-location">
+
+                  📍 {locationText || "Location not added"}
+
+                </div>
+
+                {profileData.occupation && (
+
+                  <div className="profile-occupation">
+
+                    💼 {profileData.occupation}
+
+                  </div>
+
+                )}
 
               </div>
 
@@ -639,75 +686,61 @@ console.log("Is Matched:", isMatched);
 
             {/* =================================================
                 ACTION BUTTONS
-
-                Only shown when viewing another user.
             ================================================= */}
 
             {isOtherUser && (
 
               <div className="profile-action-buttons">
 
-                {/* SEND INTEREST */}
+                {isMatched ? (
 
-               {isMatched ? (
+                  <button
+                    className="profile-action-btn matched-btn"
+                    disabled
+                  >
+                    💞 Matched
+                  </button>
 
-  <button
-    className="matched-btn"
-    disabled
-  >
-    💞 Matched
-  </button>
+                ) : (
 
-) : (
+                  <button
+                    className={
+                      interestSent
+                        ? "profile-action-btn interest-btn sent"
+                        : "profile-action-btn interest-btn"
+                    }
+                    onClick={handleSendInterest}
+                    disabled={interestSent}
+                  >
 
-  <button
-    className={
-      interestSent
-        ? "interest-btn sent"
-        : "interest-btn"
-    }
-    onClick={handleSendInterest}
-    disabled={interestSent}
-  >
+                    {interestSent
+                      ? "✓ Interest Sent"
+                      : "❤️ Send Interest"
+                    }
 
-    {interestSent
-      ? "❤️ Interest Sent"
-      : "❤️ Send Interest"
-    }
+                  </button>
 
-  </button>
-
-)}
-
-                {/* MESSAGE */}
+                )}
 
                 <button
-                  className="message-btn"
-                  onClick={
-                    handleMessage
-                  }
+                  className="profile-action-btn message-btn"
+                  onClick={handleMessage}
                 >
-
                   💬 Message
-
                 </button>
-
-                {/* WISHLIST */}
 
                 <button
                   className={
                     isWishlisted
-                      ? "wishlist-btn active"
-                      : "wishlist-btn"
+                      ? "profile-action-btn wishlist-btn active"
+                      : "profile-action-btn wishlist-btn"
                   }
-                  onClick={
-                    handleWishlist
-                  }
+                  onClick={handleWishlist}
                 >
 
                   {isWishlisted
-                    ? "⭐ Remove from Wishlist"
-                    : "⭐ Add to Wishlist"
+                    ? "★ Saved"
+                    : "☆ Add to Wishlist"
                   }
 
                 </button>
@@ -717,29 +750,46 @@ console.log("Is Matched:", isMatched);
             )}
 
             {/* =================================================
-    ABOUT ME
-================================================= */}
+                ABOUT ME
+            ================================================= */}
 
-{profileData.aboutMe && (
-  <section className="about-me-view-section">
+            {profileData.aboutMe && (
 
-    <div className="about-me-view-title">
-      <span className="about-me-icon">💗</span>
+              <section className="about-me-view-section">
 
-      <div>
-        <h2>About Me</h2>
-       <h3><p>A little about this person</p></h3>
-      </div>
-    </div>
+                <div className="section-heading">
 
-    <div className="about-me-view-content">
-      <p>
-        {profileData.aboutMe}
-      </p>
-    </div>
+                  <div className="section-icon about-icon">
+                    ♡
+                  </div>
 
-  </section>
-)}
+                  <div>
+                    <h2>
+                      About Me
+                    </h2>
+
+                    <p>
+                      A little more about this person
+                    </p>
+                  </div>
+
+                </div>
+
+                <div className="about-me-view-content">
+
+                  <div className="quote-mark">
+                    
+                  </div>
+
+                  <p>
+                    {profileData.aboutMe}
+                  </p>
+
+                </div>
+
+              </section>
+
+            )}
 
             {/* =================================================
                 BASIC INFORMATION
@@ -747,58 +797,65 @@ console.log("Is Matched:", isMatched);
 
             <section>
 
-              <h2>
-                Basic Information
-              </h2>
+              <div className="section-heading">
+
+                <div className="section-icon blue-icon">
+                  ♢
+                </div>
+
+                <div>
+                  <h2>
+                    Basic Information
+                  </h2>
+
+                  <p>
+                    Personal details and background
+                  </p>
+                </div>
+
+              </div>
 
               <div className="view-info-grid">
 
                 <div>
                   <span>Age</span>
                   <strong>
-                    {calculateAge(
-                      profileData.dob
-                    )}
+                    {calculateAge(profileData.dob)}
                   </strong>
                 </div>
 
                 <div>
                   <span>Gender</span>
                   <strong>
-                    {profileData.gender ||
-                      "N/A"}
+                    {displayValue(profileData.gender)}
                   </strong>
                 </div>
 
                 <div>
                   <span>Marital Status</span>
                   <strong>
-                    {profileData.maritalStatus ||
-                      "N/A"}
+                    {displayValue(profileData.maritalStatus)}
                   </strong>
                 </div>
 
                 <div>
                   <span>Height</span>
                   <strong>
-                    {profileData.height ||
-                      "N/A"}
+                    {displayValue(profileData.height)}
                   </strong>
                 </div>
 
                 <div>
                   <span>Religion</span>
                   <strong>
-                    {profileData.religion ||
-                      "N/A"}
+                    {displayValue(profileData.religion)}
                   </strong>
                 </div>
 
                 <div>
                   <span>Location</span>
                   <strong>
-                    {locationText ||
-                      "N/A"}
+                    {locationText || "Not provided"}
                   </strong>
                 </div>
 
@@ -812,9 +869,23 @@ console.log("Is Matched:", isMatched);
 
             <section>
 
-              <h2>
-                Education & Career
-              </h2>
+              <div className="section-heading">
+
+                <div className="section-icon purple-icon">
+                  🎓
+                </div>
+
+                <div>
+                  <h2>
+                    Education & Career
+                  </h2>
+
+                  <p>
+                    Education, profession and work details
+                  </p>
+                </div>
+
+              </div>
 
               <div className="view-info-grid">
 
@@ -824,9 +895,10 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.qualification ||
-                      profileData.education ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.qualification ||
+                      profileData.education
+                    )}
                   </strong>
                 </div>
 
@@ -836,8 +908,9 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.occupation ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.occupation
+                    )}
                   </strong>
                 </div>
 
@@ -847,8 +920,21 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.workLocation ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.workLocation
+                    )}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>
+                    Annual Income
+                  </span>
+
+                  <strong>
+                    {displayValue(
+                      profileData.income
+                    )}
                   </strong>
                 </div>
 
@@ -862,9 +948,24 @@ console.log("Is Matched:", isMatched);
 
             <section>
 
-              <h2>
-                Family & Lifestyle
-              </h2>
+              <div className="section-heading">
+
+                <div className="section-icon green-icon">
+                  ♧
+                </div>
+
+                <div>
+                  <h2>
+                    Family & Lifestyle
+                  </h2>
+
+                  <p>
+                    Family background and lifestyle choices
+                  </p>
+
+                </div>
+
+              </div>
 
               <div className="view-info-grid">
 
@@ -874,8 +975,9 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.familyType ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.familyType
+                    )}
                   </strong>
                 </div>
 
@@ -885,8 +987,9 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.foodPreference ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.foodPreference
+                    )}
                   </strong>
                 </div>
 
@@ -896,8 +999,9 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.smokingHabit ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.smokingHabit
+                    )}
                   </strong>
                 </div>
 
@@ -907,8 +1011,33 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.drinkingHabit ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.drinkingHabit
+                    )}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>
+                    Father
+                  </span>
+
+                  <strong>
+                    {displayValue(
+                      profileData.fatherName
+                    )}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>
+                    Mother
+                  </span>
+
+                  <strong>
+                    {displayValue(
+                      profileData.motherName
+                    )}
                   </strong>
                 </div>
 
@@ -922,9 +1051,24 @@ console.log("Is Matched:", isMatched);
 
             <section>
 
-              <h2>
-                Partner Preference
-              </h2>
+              <div className="section-heading">
+
+                <div className="section-icon rose-icon">
+                  ♡
+                </div>
+
+                <div>
+                  <h2>
+                    Partner Preference
+                  </h2>
+
+                  <p>
+                    What this person is looking for
+                  </p>
+
+                </div>
+
+              </div>
 
               <div className="view-info-grid">
 
@@ -934,11 +1078,16 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
+
                     {profileData.partnerAgeFrom &&
                     profileData.partnerAgeTo
+
                       ? `${profileData.partnerAgeFrom} - ${profileData.partnerAgeTo}`
-                      : "N/A"}
+
+                      : "Not specified"}
+
                   </strong>
+
                 </div>
 
                 <div>
@@ -947,8 +1096,9 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.partnerEducation ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.partnerEducation
+                    )}
                   </strong>
                 </div>
 
@@ -958,8 +1108,21 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.partnerOccupation ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.partnerOccupation
+                    )}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>
+                    Preferred Religion
+                  </span>
+
+                  <strong>
+                    {displayValue(
+                      profileData.partnerReligion
+                    )}
                   </strong>
                 </div>
 
@@ -969,8 +1132,9 @@ console.log("Is Matched:", isMatched);
                   </span>
 
                   <strong>
-                    {profileData.partnerCountry ||
-                      "N/A"}
+                    {displayValue(
+                      profileData.partnerCountry
+                    )}
                   </strong>
                 </div>
 
@@ -986,8 +1150,8 @@ console.log("Is Matched:", isMatched);
 
               <button
                 className="back-profile-btn"
-                onClick={handleBack}>
-                
+                onClick={handleBack}
+              >
                 ← Back to Profiles
               </button>
 
@@ -998,14 +1162,16 @@ console.log("Is Matched:", isMatched);
         </div>
 
         <PageNavigation
-  previous="/Users"
-  next="/inbox"
-/>
+          previous="/Users"
+          next="/inbox"
+        />
 
       </div>
 
     </div>
+
   );
+
 }
 
 export default ViewProfile;

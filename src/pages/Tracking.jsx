@@ -74,11 +74,14 @@ function Tracking() {
 
         </div>
 
+              <PageNavigation
+          previous="/myprofile"
+          next="/wishlist"
+        />
+
       </div>
-<PageNavigation
-    previous="/myprofile"
-    next="/wishlist"
-/>
+
+    
     </div>
   );
 }

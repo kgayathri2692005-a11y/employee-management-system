@@ -12,8 +12,7 @@ function Wishlist() {
 
   const navigate = useNavigate();
 
-  const [wishlist, setWishlist] =
-    useState([]);
+  const [wishlist, setWishlist] = useState([]);
 
   /*
   =========================================================
@@ -23,10 +22,17 @@ function Wishlist() {
 
   const loggedInUser =
     JSON.parse(
-      localStorage.getItem(
-        "loggedInUser"
-      )
+      localStorage.getItem("loggedInUser")
     ) || {};
+
+  const loggedInEmail =
+    (
+      loggedInUser.email ||
+      ""
+    )
+      .trim()
+      .toLowerCase();
+
 
   /*
   =========================================================
@@ -37,33 +43,18 @@ function Wishlist() {
   const wishlistKey =
     `wishlist_${loggedInUser.email}`;
 
+
   /*
   =========================================================
   LOAD WISHLIST
   =========================================================
-
-  IMPORTANT:
-
-  Wishlist contains only lightweight information.
-
-  Example:
-
-  {
-    email,
-    name,
-    gender,
-    occupation,
-    city,
-    state
-  }
-
-  The image is NOT stored in wishlist.
-
-  We get the image from allProfiles.
-  =========================================================
   */
 
   useEffect(() => {
+
+    /*
+    GET SAVED WISHLIST
+    */
 
     const savedWishlist =
       JSON.parse(
@@ -72,11 +63,9 @@ function Wishlist() {
         )
       ) || [];
 
-    /*
-    Get all profiles.
 
-    This is where the original profile image
-    is stored.
+    /*
+    GET ALL PROFILES
     */
 
     const allProfiles =
@@ -86,76 +75,139 @@ function Wishlist() {
         )
       ) || {};
 
+
     /*
-    Combine wishlist data with
-    original profile data.
+    COMBINE WISHLIST DATA
+    WITH FULL PROFILE DATA
     */
 
     const updatedWishlist =
       savedWishlist.map(
         (wishlistUser) => {
 
+          /*
+          NORMALIZE EMAIL
+          */
+
+          const wishlistEmail =
+            (
+              wishlistUser.email ||
+              ""
+            )
+              .trim()
+              .toLowerCase();
+
+
+          /*
+          FIND EXACT PROFILE
+          */
+
+          const profileEntry =
+            Object.entries(
+              allProfiles
+            ).find(
+              ([email]) =>
+                email
+                  .trim()
+                  .toLowerCase() ===
+                wishlistEmail
+            );
+
+
           const profile =
-            allProfiles[
-              wishlistUser.email
-            ] || {};
+            profileEntry
+              ? profileEntry[1]
+              : {};
+
+
+          /*
+          RETURN WISHLIST USER
+          */
 
           return {
 
-            ...wishlistUser,
-
             /*
-            Get image from allProfiles.
-
-            We are NOT saving this image
-            back into wishlist localStorage.
+            KEEP WISHLIST DATA
             */
 
-            image:
-              profile.profileImage ||
+            ...wishlistUser,
 
-              profile.profilePhoto ||
-
-              "https://randomuser.me/api/portraits/lego/1.jpg",
 
             /*
-            Get latest information
-            from profile if available.
+            ALWAYS KEEP EXACT EMAIL
+            */
+
+            email:
+              wishlistUser.email,
+
+
+            /*
+            GET IMAGE FROM FULL PROFILE
+            */
+
+           image:
+  profile.profilePhoto ||
+
+  profile.profileImage ||
+
+  "https://randomuser.me/api/portraits/lego/1.jpg",
+
+            /*
+            GET LATEST NAME
             */
 
             name:
-              wishlistUser.name ||
 
               `${profile.firstName || ""} ${
                 profile.lastName || ""
               }`.trim() ||
 
+              wishlistUser.name ||
+
               "User",
 
+
+            /*
+            GET LATEST OCCUPATION
+            */
+
             occupation:
-              wishlistUser.occupation ||
 
               profile.occupation ||
 
+              wishlistUser.occupation ||
+
               "",
 
+
+            /*
+            GET LATEST CITY
+            */
+
             city:
-              wishlistUser.city ||
 
               profile.currentCity ||
 
               profile.city ||
 
+              wishlistUser.city ||
+
               "",
 
+
+            /*
+            GET LATEST STATE
+            */
+
             state:
-              wishlistUser.state ||
 
               profile.currentState ||
 
               profile.stateName ||
 
               profile.state ||
+
+              wishlistUser.state ||
 
               ""
 
@@ -164,6 +216,11 @@ function Wishlist() {
         }
       );
 
+
+    /*
+    SET WISHLIST
+    */
+
     setWishlist(
       updatedWishlist
     );
@@ -171,6 +228,7 @@ function Wishlist() {
   }, [
     wishlistKey
   ]);
+
 
   /*
   =========================================================
@@ -182,23 +240,25 @@ function Wishlist() {
     email
   ) => {
 
+    /*
+    REMOVE SELECTED USER
+    */
+
     const updatedWishlist =
       wishlist.filter(
-        (user) =>
-          user.email !==
-          email
+        (user) => {
+
+          return (
+            user.email !==
+            email
+          );
+
+        }
       );
 
+
     /*
-    IMPORTANT:
-
-    Only save lightweight data.
-
-    We remove the image before
-    saving back to localStorage.
-
-    This prevents Base64 images
-    from being duplicated.
+    SAVE ONLY LIGHTWEIGHT DATA
     */
 
     const lightweightWishlist =
@@ -226,6 +286,11 @@ function Wishlist() {
         })
       );
 
+
+    /*
+    UPDATE LOCAL STORAGE
+    */
+
     localStorage.setItem(
 
       wishlistKey,
@@ -236,11 +301,17 @@ function Wishlist() {
 
     );
 
+
+    /*
+    UPDATE SCREEN
+    */
+
     setWishlist(
       updatedWishlist
     );
 
   };
+
 
   /*
   =========================================================
@@ -252,32 +323,125 @@ function Wishlist() {
     user
   ) => {
 
+    /*
+    GET ALL PROFILES
+    */
+
+    const allProfiles =
+      JSON.parse(
+        localStorage.getItem(
+          "allProfiles"
+        )
+      ) || {};
+
+
+    /*
+    NORMALIZE SELECTED USER EMAIL
+    */
+
+    const selectedEmail =
+      (
+        user.email ||
+        ""
+      )
+        .trim()
+        .toLowerCase();
+
+
+    /*
+    FIND EXACT PROFILE BY EMAIL
+    */
+
+    const profileEntry =
+      Object.entries(
+        allProfiles
+      ).find(
+        ([email]) =>
+          email
+            .trim()
+            .toLowerCase() ===
+          selectedEmail
+      );
+
+
+    /*
+    GET FULL PROFILE
+    */
+
+    const selectedProfile =
+      profileEntry
+        ? profileEntry[1]
+        : null;
+
+
+    /*
+    DEBUG LOGS
+    */
+
+    console.log(
+      "Selected Wishlist User Email:",
+      user.email
+    );
+
+    console.log(
+      "Selected Wishlist Full Profile:",
+      selectedProfile
+    );
+
+
+    /*
+    PROFILE NOT FOUND
+    */
+
+    if (!selectedProfile) {
+
+      console.log(
+        "❌ Profile not found:",
+        user.email
+      );
+
+      return;
+
+    }
+
+
+    /*
+    OPEN EXACT USER PROFILE
+    */
+
     navigate(
       "/view-profile",
       {
         state: {
-          email:
-            user.email,
 
-          name:
-            user.name,
+          /*
+          SEND FULL PROFILE
+          */
 
-          image:
-            user.image,
+          profile: {
 
-          occupation:
-            user.occupation,
+            ...selectedProfile,
 
-          city:
-            user.city,
+            email:
+              user.email
 
-          stateName:
-            user.state
+          },
+
+
+          /*
+          TELL VIEW PROFILE
+          WHERE USER CAME FROM
+          */
+
+          from:
+            "/wishlist"
+
         }
       }
     );
 
   };
+
 
   /*
   =========================================================
@@ -297,6 +461,10 @@ function Wishlist() {
 
         <div className="wishlist-container">
 
+          {/* =================================================
+              HEADING
+          ================================================= */}
+
           <div className="wishlist-heading">
 
             <h1>
@@ -309,6 +477,11 @@ function Wishlist() {
             </p>
 
           </div>
+
+
+          {/* =================================================
+              EMPTY WISHLIST
+          ================================================= */}
 
           {wishlist.length === 0 ? (
 
@@ -329,7 +502,9 @@ function Wishlist() {
 
               <button
                 onClick={() =>
-                  navigate("/users")
+                  navigate(
+                    "/users"
+                  )
                 }
               >
                 Browse Profiles
@@ -338,6 +513,10 @@ function Wishlist() {
             </div>
 
           ) : (
+
+            /* =================================================
+               WISHLIST GRID
+            ================================================= */
 
             <div className="wishlist-grid">
 
@@ -351,9 +530,14 @@ function Wishlist() {
                     }
                   >
 
-                    {/* PROFILE IMAGE */}
+                    {/* =================================================
+                        PROFILE IMAGE
+                    ================================================= */}
 
-                    <div className="wishlist-image-wrapper">
+                    <div
+                      className=
+                        "wishlist-image-wrapper"
+                    >
 
                       <img
                         src={
@@ -362,47 +546,79 @@ function Wishlist() {
                         alt={
                           user.name
                         }
-                        className="wishlist-image"
+                        className=
+                          "wishlist-image"
                       />
 
                     </div>
 
-                    {/* PROFILE INFORMATION */}
 
-                    <div className="wishlist-info">
+                    {/* =================================================
+                        PROFILE INFORMATION
+                    ================================================= */}
+
+                    <div
+                      className=
+                        "wishlist-info"
+                    >
 
                       <h3>
-                        {user.name}
+                        {
+                          user.name
+                        }
                       </h3>
 
-                      <p className="wishlist-occupation">
 
-                        {user.occupation ||
-                          "Occupation not added"}
+                      <p
+                        className=
+                          "wishlist-occupation"
+                      >
+
+                        {
+                          user.occupation ||
+                          "Occupation not added"
+                        }
 
                       </p>
 
-                      <p className="wishlist-location">
+
+                      <p
+                        className=
+                          "wishlist-location"
+                      >
 
                         📍{" "}
 
-                        {user.city ||
-                          "Location not added"}
+                        {
+                          user.city ||
+                          "Location not added"
+                        }
 
-                        {user.state
-                          ? `, ${user.state}`
-                          : ""}
+                        {
+                          user.state
+                            ? `, ${user.state}`
+                            : ""
+                        }
 
                       </p>
 
                     </div>
 
-                    {/* ACTIONS */}
 
-                    <div className="wishlist-actions">
+                    {/* =================================================
+                        ACTION BUTTONS
+                    ================================================= */}
+
+                    <div
+                      className=
+                        "wishlist-actions"
+                    >
+
+                      {/* VIEW PROFILE */}
 
                       <button
-                        className="wishlist-view-btn"
+                        className=
+                          "wishlist-view-btn"
                         onClick={() =>
                           handleViewProfile(
                             user
@@ -412,8 +628,12 @@ function Wishlist() {
                         👁 View Profile
                       </button>
 
+
+                      {/* REMOVE */}
+
                       <button
-                        className="remove-wishlist-btn"
+                        className=
+                          "remove-wishlist-btn"
                         onClick={() =>
                           removeFromWishlist(
                             user.email
@@ -432,17 +652,24 @@ function Wishlist() {
 
             </div>
 
-          )}
+                   )}
+
+          {/* =================================================
+              PAGE NAVIGATION
+          ================================================= */}
+
+          <PageNavigation
+            previous="/tracking"
+            next="/inbox"
+          />
 
         </div>
 
       </div>
-<PageNavigation
-    previous="/tracking"
-/>
-    </div>
 
+    </div>
   );
+
 }
 
 export default Wishlist;

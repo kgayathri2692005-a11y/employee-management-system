@@ -3,7 +3,10 @@ import axios from "axios";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageNavigation from "../components/PageNavigation";
-import { useLocation } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate
+} from "react-router-dom";
 
 
 import {
@@ -17,8 +20,12 @@ import "../styles/Inbox.css";
 
 function Inbox() {
 
+  const navigate = useNavigate();
+
   const location = useLocation();
-  const routeUser = location.state?.selectedUser;
+
+  const routeUser =
+    location.state?.selectedUser;
 
   const [showMenu, setShowMenu] = useState(false);
   const [employees, setEmployees] = useState([]);
@@ -102,13 +109,17 @@ console.log("Profile Found:", allProfiles[user.email]);
 
     return {
       id: user.userId,
-      name: user.userName,
+      name:
+  user.userName ||
+  `${profileData?.firstName || ""} ${profileData?.lastName || ""}`.trim() ||
+  "User",
       email: user.email,
       role: "Employee",
       status: "online",
       image:
-        profileData?.profileImage ||
-        "https://randomuser.me/api/portraits/men/1.jpg"
+  profileData?.profilePhoto ||
+  profileData?.profileImage ||
+  "https://randomuser.me/api/portraits/lego/1.jpg"
     };
   });
 
@@ -389,14 +400,59 @@ const sendMessage = () => {
     {showMenu && (
       <div className="menu-dropdown">
 
-        <button
-          onClick={() => {
-            alert(`${selectedUser.name}'s Profile`);
-            setShowMenu(false);
-          }}
-        >
-          👤 View Profile
-        </button>
+       ```javascript
+<button
+  onClick={() => {
+
+    const selectedProfile =
+      allProfiles[selectedUser.email];
+
+    console.log(
+      "Selected Inbox User Email:",
+      selectedUser.email
+    );
+
+    console.log(
+      "Selected Inbox Profile:",
+      selectedProfile
+    );
+
+    if (!selectedProfile) {
+
+      console.log(
+        "❌ Profile not found:",
+        selectedUser.email
+      );
+
+      return;
+
+    }
+
+    navigate(
+      "/view-profile",
+      {
+        state: {
+
+          profile: {
+            ...selectedProfile,
+            email:
+              selectedUser.email
+          },
+
+          from:
+            "/inbox"
+
+        }
+      }
+    );
+
+    setShowMenu(false);
+
+  }}
+>
+  👤 View Profile
+</button>
+```
 
         <button
           onClick={() => {
@@ -485,11 +541,14 @@ const sendMessage = () => {
 
         </div>
 
+      
+        <PageNavigation
+          previous="/users"
+          next="/myprofile"
+        />
+
       </div>
-<PageNavigation
-    previous="/users"
-    next="/myprofile"
-/>
+
     </div>
   );
 }

@@ -497,11 +497,14 @@ const handleEditProfile = (step) => {
 
         </div>
 
+              <PageNavigation
+          previous="/inbox"
+          next="/tracking"
+        />
+
       </div>
-<PageNavigation
-    previous="/inbox"
-    next="/tracking"
-/>
+
+    
     </div>
   );
 }

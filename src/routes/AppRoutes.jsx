@@ -16,6 +16,7 @@ import ViewProfile from "../pages/ViewProfile";
 import Wishlist from "../pages/Wishlist";
 import Notifications from "../pages/Notifications";
 import IgnoredProfiles from "../pages/IgnoredProfiles";
+import DashboardUserDetails from "../pages/DashboardUserDetails";
 
 function AppRoutes() {
   return (
@@ -37,6 +38,7 @@ function AppRoutes() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/ignored-profiles" element={<IgnoredProfiles />} />
+        <Route path="/dashboard-users"  element={<DashboardUserDetails />}/>
 
       </Routes>
 
