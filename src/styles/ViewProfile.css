@@ -1,819 +1,724 @@
 /* =========================================================
-   VIEW PROFILE
-   PROFESSIONAL MATRIMONY DESIGN
-========================================================= */
+   NIYATI MATRIMONY - VIEW PROFILE
+   ========================================================= */
 
 .view-profile-container {
-  width: 100%;
-  max-width: 1180px;
-
-  margin: 0 auto;
-
-  padding: 30px 28px 55px;
-
-  box-sizing: border-box;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 30px 28px 55px;
+    box-sizing: border-box;
 }
-
 
 /* =========================================================
    MAIN CARD
-========================================================= */
+   ========================================================= */
 
 .view-profile-card {
-  position: relative;
+    position: relative;
 
-  background: #ffffff;
+    background: #ffffff;
 
-  border: 1px solid #e8eaf0;
+    border: 1px solid #f0ddd0;
+    border-radius: 22px;
 
-  border-radius: 24px;
+    padding: 32px;
 
-  padding: 34px;
+    box-shadow:
+        0 10px 35px rgba(112, 50, 20, 0.08);
 
-  box-shadow:
-    0 10px 35px rgba(30, 42, 70, 0.07);
-
-  overflow: hidden;
+    overflow: hidden;
 }
 
-
-/* =========================================================
-   TOP ACCENT
-========================================================= */
+/* Niyati orange top line */
 
 .view-profile-card::before {
-  content: "";
+    content: "";
 
-  position: absolute;
+    position: absolute;
 
-  top: 0;
-  left: 0;
-  right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
 
-  height: 4px;
+    height: 4px;
 
-  background:
-    linear-gradient(
-      90deg,
-      #e83e72,
-      #9b5de5,
-      #4f7cff
+    background: linear-gradient(
+        90deg,
+        #8b0000,
+        #f58220,
+        #f58220,
+        #8b0000
     );
 }
-
 
 /* =========================================================
    PROFILE HERO
-========================================================= */
+   ========================================================= */
 
 .profile-hero {
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  gap: 30px;
+    gap: 28px;
 
-  padding: 10px 5px 32px;
+    padding: 8px 5px 30px;
 
-  border-bottom:
-    1px solid #edf0f4;
+    border-bottom: 1px solid #f1e5dc;
 }
 
-
 /* =========================================================
-   IMAGE
-========================================================= */
+   PROFILE IMAGE
+   ========================================================= */
 
 .profile-hero-image-wrapper {
-  position: relative;
-
-  flex-shrink: 0;
+    position: relative;
+    flex-shrink: 0;
 }
 
 .view-profile-image {
-  width: 145px;
-  height: 145px;
+    width: 145px;
+    height: 145px;
 
-  object-fit: cover;
+    object-fit: cover;
 
-  display: block;
+    display: block;
 
-  border-radius: 50%;
+    border-radius: 50%;
 
-  border: 6px solid #ffffff;
+    border: 5px solid #fff;
 
-  outline: 2px solid #e8dff2;
+    outline: 2px solid #f6cda8;
 
-  box-shadow:
-    0 8px 25px rgba(34, 42, 65, 0.16);
+    box-shadow:
+        0 8px 25px rgba(139, 0, 0, 0.12);
 }
-
 
 /* =========================================================
    ONLINE DOT
-========================================================= */
+   ========================================================= */
 
 .profile-online-dot {
-  position: absolute;
+    position: absolute;
 
-  right: 9px;
-  bottom: 13px;
+    right: 8px;
+    bottom: 10px;
 
-  width: 16px;
-  height: 16px;
+    width: 15px;
+    height: 15px;
 
-  border-radius: 50%;
+    border-radius: 50%;
 
-  background: #36b86c;
+    background: #2eaa62;
 
-  border: 3px solid #ffffff;
-
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.12);
+    border: 3px solid white;
 }
 
-
 /* =========================================================
-   HERO INFORMATION
-========================================================= */
+   HEADER INFORMATION
+   ========================================================= */
 
 .view-profile-header-info {
-  min-width: 0;
+    min-width: 0;
 }
 
 .profile-label {
-  display: inline-block;
+    display: inline-block;
 
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 
-  font-size: 10px;
+    font-size: 10px;
+    font-weight: 700;
 
-  font-weight: 700;
+    letter-spacing: 1.5px;
 
-  letter-spacing: 1.5px;
+    color: #f58220;
 
-  color: #a05abf;
+    background: #fff3e8;
 
-  background: #faf2fd;
+    padding: 6px 11px;
 
-  padding: 6px 10px;
-
-  border-radius: 20px;
+    border-radius: 20px;
 }
-
 
 .view-profile-header-info h1 {
-  margin: 0 0 10px;
+    margin: 0 0 10px;
 
-  font-size: 31px;
+    font-size: 31px;
 
-  line-height: 1.2;
+    line-height: 1.2;
 
-  font-weight: 750;
+    font-weight: 700;
 
-  color: #19294d;
+    color: #8b0000;
 }
-
 
 .profile-short-details {
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  gap: 9px;
+    gap: 9px;
 
-  margin-bottom: 9px;
+    margin-bottom: 9px;
 
-  color: #5f6879;
+    color: #5f5a57;
 
-  font-size: 14px;
+    font-size: 14px;
 
-  font-weight: 500;
+    font-weight: 500;
 }
-
 
 .detail-divider {
-  color: #b9bec8;
+    color: #d7b8a4;
 }
-
 
 .profile-location,
 .profile-occupation {
-  margin-top: 7px;
+    margin-top: 7px;
 
-  color: #737b8b;
+    color: #746c68;
 
-  font-size: 13px;
+    font-size: 13px;
 }
-
 
 /* =========================================================
    ACTION BUTTONS
-========================================================= */
+   ========================================================= */
 
 .profile-action-buttons {
-  display: flex;
+    display: flex;
 
-  justify-content: center;
+    justify-content: center;
 
-  align-items: center;
+    align-items: center;
 
-  gap: 12px;
+    gap: 12px;
 
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 
-  margin: 25px 0 28px;
+    margin: 25px 0 28px;
 
-  padding: 17px;
+    padding: 17px;
 
-  background: #f9fafc;
+    background: #fffaf6;
 
-  border: 1px solid #e9ebf0;
+    border: 1px solid #f2dfd1;
 
-  border-radius: 16px;
+    border-radius: 15px;
 }
-
 
 .profile-action-btn {
-  min-width: 170px;
+    min-width: 170px;
 
-  height: 45px;
+    height: 45px;
 
-  padding: 0 20px;
+    padding: 0 20px;
 
-  border-radius: 10px;
+    border-radius: 9px;
 
-  border: 1px solid transparent;
+    border: 1px solid transparent;
 
-  font-size: 13px;
+    font-size: 13px;
 
-  font-weight: 650;
+    font-weight: 600;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  display: inline-flex;
+    display: inline-flex;
 
-  align-items: center;
+    align-items: center;
 
-  justify-content: center;
+    justify-content: center;
 
-  gap: 7px;
+    gap: 7px;
 
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
-
 
 .profile-action-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
+    transform: translateY(-2px);
 }
-
 
 /* =========================================================
-   INTEREST
-========================================================= */
+   SEND INTEREST
+   ========================================================= */
 
 .interest-btn {
-  background:
-    linear-gradient(
-      135deg,
-      #e94d76,
-      #d93668
+    background: linear-gradient(
+        135deg,
+        #f58220,
+        #e96d08
     );
 
-  color: #ffffff;
+    color: white;
 
-  box-shadow:
-    0 5px 14px rgba(217, 54, 104, 0.2);
+    box-shadow:
+        0 5px 14px rgba(245, 130, 32, 0.22);
 }
-
 
 .interest-btn:hover:not(:disabled) {
-  box-shadow:
-    0 8px 18px rgba(217, 54, 104, 0.28);
+    box-shadow:
+        0 8px 18px rgba(245, 130, 32, 0.30);
 }
-
 
 .interest-btn.sent {
-  background: #edf9f1;
+    background: #edf8f1;
 
-  color: #23804a;
+    color: #27824d;
 
-  border-color: #c9ead5;
+    border-color: #c9e8d5;
 
-  box-shadow: none;
+    box-shadow: none;
 
-  cursor: default;
+    cursor: default;
 }
-
 
 /* =========================================================
    MESSAGE
-========================================================= */
+   ========================================================= */
 
 .message-btn {
-  background:
-    linear-gradient(
-      135deg,
-      #386ee8,
-      #2856c9
-    );
+    background: #8b0000;
 
-  color: #ffffff;
+    color: white;
 
-  box-shadow:
-    0 5px 14px rgba(40, 86, 201, 0.18);
+    box-shadow:
+        0 5px 14px rgba(139, 0, 0, 0.18);
 }
-
 
 .message-btn:hover {
-  box-shadow:
-    0 8px 18px rgba(40, 86, 201, 0.26);
-}
+    background: #720000;
 
+    box-shadow:
+        0 8px 18px rgba(139, 0, 0, 0.25);
+}
 
 /* =========================================================
    WISHLIST
-========================================================= */
+   ========================================================= */
 
 .wishlist-btn {
-  background: #fffaf0;
+    background: #fffaf0;
 
-  color: #a87312;
+    color: #a87312;
 
-  border-color: #f1d99c;
-
-  box-shadow: none;
+    border-color: #efd89e;
 }
-
 
 .wishlist-btn:hover {
-  background: #fff5dc;
+    background: #fff3d7;
 }
-
 
 .wishlist-btn.active {
-  background: #fff3d5;
+    background: #fff0cf;
 
-  color: #996400;
+    color: #996400;
 
-  border-color: #eacb82;
+    border-color: #e7c77d;
 }
-
 
 /* =========================================================
    MATCHED
-========================================================= */
+   ========================================================= */
 
 .matched-btn {
-  background: #edf8f1;
+    background: #edf8f1;
 
-  color: #27824d;
+    color: #27824d;
 
-  border-color: #c9e8d5;
+    border-color: #c9e8d5;
 
-  cursor: default;
-
-  box-shadow: none;
+    cursor: default;
 }
-
 
 /* =========================================================
    PROFILE SECTIONS
-========================================================= */
+   ========================================================= */
 
 .view-profile-card section {
-  margin-top: 20px;
+    margin-top: 20px;
 
-  padding: 25px;
+    padding: 24px;
 
-  background: #ffffff;
+    background: #ffffff;
 
-  border: 1px solid #e8ebf0;
+    border: 1px solid #eee2d9;
 
-  border-radius: 17px;
+    border-radius: 16px;
 
-  box-shadow:
-    0 3px 12px rgba(35, 45, 70, 0.025);
+    box-shadow:
+        0 3px 12px rgba(112, 50, 20, 0.025);
 }
-
 
 .view-profile-card section:hover {
-  border-color: #e0e3ea;
+    border-color: #ead2c0;
 }
-
 
 /* =========================================================
    SECTION HEADING
-========================================================= */
+   ========================================================= */
 
 .section-heading {
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  gap: 13px;
+    gap: 13px;
 
-  margin-bottom: 22px;
+    margin-bottom: 21px;
 
-  padding-bottom: 16px;
+    padding-bottom: 15px;
 
-  border-bottom:
-    1px solid #edf0f4;
+    border-bottom: 1px solid #f1e7df;
 }
-
 
 .section-icon {
-  width: 38px;
-  height: 38px;
+    width: 38px;
+    height: 38px;
 
-  flex-shrink: 0;
+    flex-shrink: 0;
 
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
+    justify-content: center;
 
-  justify-content: center;
+    border-radius: 10px;
 
-  border-radius: 11px;
-
-  font-size: 19px;
+    font-size: 18px;
 }
-
 
 .section-heading h2 {
-  margin: 0;
+    margin: 0;
 
-  font-size: 18px;
+    font-size: 18px;
 
-  font-weight: 700;
+    font-weight: 700;
 
-  color: #1d2c4b;
+    color: #731000;
 }
-
 
 .section-heading p {
-  margin: 4px 0 0;
+    margin: 4px 0 0;
 
-  color: #8a919e;
+    color: #8b817b;
 
-  font-size: 11px;
-
-  font-weight: 500;
+    font-size: 11px;
 }
 
-
 /* =========================================================
-   SECTION ICON COLORS
-========================================================= */
+   SECTION ICONS - NIYATI COLORS
+   ========================================================= */
 
 .about-icon {
-  background: #fff0f5;
-  color: #db4775;
+    background: #fff0e4;
+    color: #f58220;
 }
 
 .blue-icon {
-  background: #eef4ff;
-  color: #4675df;
+    background: #fff1e5;
+    color: #e66e13;
 }
 
 .purple-icon {
-  background: #f4efff;
-  color: #8155d8;
+    background: #fdf0e8;
+    color: #8b0000;
 }
 
 .green-icon {
-  background: #edf9f2;
-  color: #3c9b68;
+    background: #fff1e6;
+    color: #c75c14;
 }
 
 .rose-icon {
-  background: #fff1f3;
-  color: #d94e6f;
+    background: #fff0e8;
+    color: #8b0000;
 }
-
 
 /* =========================================================
    ABOUT ME
-========================================================= */
+   ========================================================= */
 
 .about-me-view-section {
-  background:
-    linear-gradient(
-      135deg,
-      #fffafd,
-      #ffffff
-    ) !important;
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf6,
+            #ffffff
+        ) !important;
 
-  border-color: #f0e3ee !important;
+    border-color: #f0ddd0 !important;
 }
-
 
 .about-me-view-content {
-  position: relative;
+    padding: 20px 23px;
 
-  padding: 20px 23px;
+    background: #fffaf6;
 
-  background: #fdf9fc;
+    border-radius: 12px;
 
-  border-radius: 13px;
-
-  border: 1px solid #f1e6ef;
+    border: 1px solid #f3e4d9;
 }
-
 
 .about-me-view-content p {
-  margin: 0;
+    margin: 0;
 
-  color: #4d5666;
+    color: #514943;
 
-  font-size: 14px;
+    font-size: 14px;
 
-  line-height: 1.85;
+    line-height: 1.85;
 
-  font-weight: 400;
-
-  white-space: pre-line;
+    white-space: pre-line;
 }
-
-
 
 /* =========================================================
    INFORMATION GRID
-========================================================= */
+   ========================================================= */
 
 .view-info-grid {
-  display: grid;
+    display: grid;
 
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-  gap: 12px;
+    gap: 12px;
 }
-
 
 .view-info-grid > div {
-  min-width: 0;
+    min-width: 0;
 
-  padding: 15px 16px;
+    padding: 15px 16px;
 
-  background: #fafbfd;
+    background: #fffaf7;
 
-  border: 1px solid #edf0f4;
+    border: 1px solid #f0e6de;
 
-  border-radius: 11px;
+    border-radius: 10px;
 
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
-
 
 .view-info-grid > div:hover {
-  background: #f8faff;
+    background: #fff6ef;
 
-  border-color: #e0e5ee;
+    border-color: #e8cfbc;
 
-  transform: translateY(-1px);
+    transform: translateY(-1px);
 }
-
 
 .view-info-grid span {
-  display: block;
+    display: block;
 
-  margin-bottom: 6px;
+    margin-bottom: 6px;
 
-  color: #89919f;
+    color: #91867f;
 
-  font-size: 11px;
+    font-size: 10px;
 
-  font-weight: 500;
+    font-weight: 600;
 
-  text-transform: uppercase;
+    text-transform: uppercase;
 
-  letter-spacing: 0.35px;
+    letter-spacing: 0.4px;
 }
-
 
 .view-info-grid strong {
-  display: block;
+    display: block;
 
-  color: #28344d;
+    color: #4d2118;
 
-  font-size: 14px;
+    font-size: 14px;
 
-  line-height: 1.45;
+    line-height: 1.45;
 
-  font-weight: 650;
+    font-weight: 600;
 
-  word-break: break-word;
+    word-break: break-word;
 }
-
 
 /* =========================================================
    BACK BUTTON
-========================================================= */
+   ========================================================= */
 
 .view-profile-actions {
-  display: flex;
+    display: flex;
 
-  justify-content: center;
+    justify-content: center;
 
-  margin-top: 28px;
+    margin-top: 28px;
 
-  padding-top: 24px;
+    padding-top: 24px;
 
-  border-top:
-    1px solid #edf0f4;
+    border-top: 1px solid #eee4dc;
 }
-
 
 .back-profile-btn {
-  padding: 11px 24px;
+    padding: 11px 25px;
 
-  border: 1px solid #dfe3e9;
+    border: 1px solid #e7cdbb;
 
-  border-radius: 9px;
+    border-radius: 9px;
 
-  background: #ffffff;
+    background: white;
 
-  color: #566072;
+    color: #8b0000;
 
-  font-size: 13px;
+    font-size: 13px;
 
-  font-weight: 600;
+    font-weight: 600;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
-
 
 .back-profile-btn:hover {
-  background: #f7f8fa;
+    background: #fff6ef;
 
-  border-color: #cfd4dc;
+    border-color: #f58220;
 
-  transform: translateY(-1px);
+    transform: translateY(-1px);
 }
-
 
 /* =========================================================
    TABLET
-========================================================= */
+   ========================================================= */
 
 @media (max-width: 900px) {
 
-  .view-profile-container {
-    padding:
-      25px 20px 45px;
-  }
+    .view-profile-container {
+        padding: 25px 20px 45px;
+    }
 
-  .view-profile-card {
-    padding: 26px;
-  }
+    .view-profile-card {
+        padding: 26px;
+    }
 
-  .profile-hero {
-    gap: 23px;
-  }
+    .profile-hero {
+        gap: 23px;
+    }
 
-  .view-profile-image {
-    width: 125px;
-    height: 125px;
-  }
+    .view-profile-image {
+        width: 125px;
+        height: 125px;
+    }
 
-  .view-profile-header-info h1 {
-    font-size: 27px;
-  }
-
+    .view-profile-header-info h1 {
+        font-size: 27px;
+    }
 }
-
 
 /* =========================================================
    MOBILE
-========================================================= */
+   ========================================================= */
 
 @media (max-width: 700px) {
 
-  .view-profile-container {
-    padding:
-      18px 12px 35px;
-  }
+    .view-profile-container {
+        padding: 18px 12px 35px;
+    }
 
-  .view-profile-card {
-    padding: 20px;
+    .view-profile-card {
+        padding: 20px;
+        border-radius: 18px;
+    }
 
-    border-radius: 18px;
-  }
+    .profile-hero {
+        flex-direction: column;
 
-  .profile-hero {
-    flex-direction: column;
+        text-align: center;
 
-    text-align: center;
+        padding-bottom: 25px;
+    }
 
-    padding-bottom: 25px;
-  }
+    .view-profile-image {
+        width: 125px;
+        height: 125px;
+    }
 
-  .view-profile-image {
-    width: 125px;
-    height: 125px;
-  }
+    .profile-short-details {
+        justify-content: center;
+    }
 
-  .profile-short-details {
-    justify-content: center;
-  }
+    .profile-location,
+    .profile-occupation {
+        text-align: center;
+    }
 
-  .profile-location,
-  .profile-occupation {
-    text-align: center;
-  }
+    .profile-action-buttons {
+        flex-direction: column;
+        padding: 15px;
+    }
 
-  .profile-action-buttons {
-    flex-direction: column;
+    .profile-action-btn {
+        width: 100%;
+        min-width: 0;
+    }
 
-    padding: 15px;
-  }
+    .view-profile-card section {
+        padding: 20px;
+    }
 
-  .profile-action-btn {
-    width: 100%;
-
-    min-width: 0;
-  }
-
-  .view-profile-card section {
-    padding: 20px;
-  }
-
-  .view-info-grid {
-    grid-template-columns: 1fr;
-  }
-
+    .view-info-grid {
+        grid-template-columns: 1fr;
+    }
 }
-
 
 /* =========================================================
    SMALL MOBILE
-========================================================= */
+   ========================================================= */
 
 @media (max-width: 450px) {
 
-  .view-profile-container {
-    padding:
-      12px 8px 30px;
-  }
+    .view-profile-container {
+        padding: 12px 8px 30px;
+    }
 
-  .view-profile-card {
-    padding: 16px;
+    .view-profile-card {
+        padding: 16px;
+        border-radius: 16px;
+    }
 
-    border-radius: 16px;
-  }
+    .view-profile-header-info h1 {
+        font-size: 24px;
+    }
 
-  .view-profile-header-info h1 {
-    font-size: 24px;
-  }
+    .view-profile-card section {
+        padding: 17px;
+    }
 
-  .profile-label {
-    font-size: 9px;
-  }
+    .section-heading {
+        gap: 10px;
+    }
 
-  .view-profile-card section {
-    padding: 17px;
-  }
+    .section-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 17px;
+    }
 
-  .section-heading {
-    gap: 10px;
-  }
+    .section-heading h2 {
+        font-size: 16px;
+    }
 
-  .section-icon {
-    width: 34px;
-    height: 34px;
+    .about-me-view-content {
+        padding: 18px 17px;
+    }
 
-    font-size: 17px;
-  }
-
-  .section-heading h2 {
-    font-size: 16px;
-  }
-
-  .section-heading p {
-    font-size: 10px;
-  }
-
-  .about-me-view-content {
-    padding:
-      18px 17px;
+    .about-me-view-content p {
+        font-size: 13px;
+        line-height: 1.75;
+    }
 }
-
-  .about-me-view-content p {
-    font-size: 13px;
-
-    line-height: 1.75;
-  }
-
- }

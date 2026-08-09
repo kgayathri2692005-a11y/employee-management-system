@@ -1,551 +1,754 @@
 import React, {
-  useEffect,
-  useState
+    useEffect,
+    useState
 } from "react";
 
 import {
-  useNavigate
+    useNavigate
 } from "react-router-dom";
 
 import "../styles/Navbar.css";
+import { useRef } from "react";
 
 
 function Navbar() {
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-
-  /*
-  =========================================================
-  NOTIFICATION COUNT
-  =========================================================
-  */
-
-  const [
-    notificationCount,
-    setNotificationCount
-  ] = useState(0);
-
-
-  /*
-  =========================================================
-  PROFILE DATA
-  =========================================================
-  */
-
-  const [
-    profileData,
-    setProfileData
-  ] = useState({});
-
-
-  /*
-  =========================================================
-  LOAD USER PROFILE
-  =========================================================
-  */
-
-  useEffect(() => {
-
-    const loadProfile = () => {
-
-      /*
-      =====================================================
-      GET CURRENT LOGGED-IN USER
-      =====================================================
-      */
-
-      const currentUser =
-        JSON.parse(
-          localStorage.getItem(
-            "loggedInUser"
-          )
-        ) || {};
-
-
-      /*
-      =====================================================
-      GET ALL PROFILES
-      =====================================================
-      */
-
-      const allProfiles =
-        JSON.parse(
-          localStorage.getItem(
-            "allProfiles"
-          )
-        ) || {};
-
-
-      /*
-      =====================================================
-      GET CURRENT USER PROFILE
-      =====================================================
-      */
-
-      const currentProfile =
-        allProfiles[currentUser.email] ||
-        allProfiles[currentUser.email?.trim()] ||
-        {};
-
-
-      /*
-      =====================================================
-      DEBUG LOGS
-      =====================================================
-      */
-
-      console.log(
-        "Navbar Current Email:",
-        currentUser.email
-      );
-
-      console.log(
-        "Navbar Found Profile:",
-        allProfiles[currentUser.email]
-      );
-
-      console.log(
-        "Navbar Profile Image:",
-        currentProfile.profileImage
-      );
-
-      console.log(
-        "Navbar Profile Photo:",
-        currentProfile.profilePhoto
-      );
-
-      console.log(
-        "Navbar Logged In User:",
-        currentUser
-      );
-
-      console.log(
-        "Navbar Profile:",
-        currentProfile
-      );
-
-
-      /*
-      =====================================================
-      SAVE PROFILE TO STATE
-      =====================================================
-      */
-
-      setProfileData(
-        currentProfile
-      );
-
-    };
+    const profileMenuRef = useRef(null);
 
 
     /*
-    =========================================================
-    LOAD PROFILE WHEN NAVBAR LOADS
-    =========================================================
+    =====================================================
+    NOTIFICATION COUNT
+    =====================================================
     */
 
-    loadProfile();
+    const [
+        notificationCount,
+        setNotificationCount
+    ] = useState(0);
+
 
 
     /*
-    =========================================================
-    LISTEN FOR PROFILE UPDATES
-    =========================================================
+    =====================================================
+    PROFILE DATA
+    =====================================================
     */
 
-    window.addEventListener(
-      "profileUpdated",
-      loadProfile
-    );
+    const [
+        profileData,
+        setProfileData
+    ] = useState({});
+
+
+    const [
+        showProfileMenu,
+        setShowProfileMenu
+    ] = useState(false);
+
 
 
     /*
-    =========================================================
-    CLEANUP
-    =========================================================
+    =====================================================
+    LOAD USER PROFILE
+    =====================================================
     */
 
-    return () => {
-
-      window.removeEventListener(
-        "profileUpdated",
-        loadProfile
-      );
-
-    };
-
-  }, []);
+    useEffect(() => {
 
 
-  /*
-  =========================================================
-  UPDATE NOTIFICATION COUNT
-  =========================================================
-  */
-
-  useEffect(() => {
-
-    const updateNotificationCount = () => {
-
-      /*
-      =====================================================
-      GET CURRENT LOGGED-IN USER
-      =====================================================
-      */
-
-      const currentUser =
-        JSON.parse(
-          localStorage.getItem(
-            "loggedInUser"
-          )
-        ) || {};
+        const loadProfile = () => {
 
 
-      /*
-      =====================================================
-      GET INTEREST REQUESTS
-      =====================================================
-      */
-
-      const interestRequests =
-        JSON.parse(
-          localStorage.getItem(
-            "interestRequests"
-          )
-        ) || [];
+            const currentUser =
+                JSON.parse(
+                    localStorage.getItem(
+                        "loggedInUser"
+                    )
+                ) || {};
 
 
-      /*
-      =====================================================
-      COUNT PENDING INTEREST REQUESTS
-      =====================================================
-      */
 
-      const pendingRequests =
-        interestRequests.filter(
-          (request) =>
+            const allProfiles =
+                JSON.parse(
+                    localStorage.getItem(
+                        "allProfiles"
+                    )
+                ) || {};
 
-            request.to ===
-              currentUser.email &&
 
-            request.status ===
-              "Pending"
+
+            const currentProfile =
+                allProfiles[currentUser.email] ||
+                allProfiles[currentUser.email?.trim()] ||
+                {};
+
+
+
+            console.log(
+                "Navbar Current Email:",
+                currentUser.email
+            );
+
+
+            console.log(
+                "Navbar Found Profile:",
+                currentProfile
+            );
+
+
+
+            setProfileData(
+                currentProfile
+            );
+
+
+        };
+
+
+
+        loadProfile();
+
+
+
+        window.addEventListener(
+            "profileUpdated",
+            loadProfile
         );
 
 
-      /*
-      =====================================================
-      GET USER NOTIFICATIONS
-      =====================================================
-      */
 
-      const userNotifications =
-        JSON.parse(
-          localStorage.getItem(
-            "userNotifications"
-          )
-        ) || [];
+        return () => {
 
 
-      /*
-      =====================================================
-      COUNT UNREAD REJECTION NOTIFICATIONS
-      =====================================================
-      */
+            window.removeEventListener(
+                "profileUpdated",
+                loadProfile
+            );
 
-      const unreadRejectionNotifications =
-        userNotifications.filter(
-          (notification) =>
 
-            notification.to ===
-              currentUser.email &&
+        };
 
-            notification.type ===
-              "rejection" &&
 
-            notification.read ===
-              false
+    }, []);
+
+
+
+
+
+    /*
+    =====================================================
+    UPDATE NOTIFICATION COUNT
+    =====================================================
+    */
+
+    useEffect(() => {
+
+
+        const updateNotificationCount = () => {
+
+
+            const currentUser =
+                JSON.parse(
+                    localStorage.getItem(
+                        "loggedInUser"
+                    )
+                ) || {};
+
+
+
+            const interestRequests =
+                JSON.parse(
+                    localStorage.getItem(
+                        "interestRequests"
+                    )
+                ) || [];
+
+
+
+            const pendingRequests =
+                interestRequests.filter(
+                    (request) =>
+
+                        request.to === currentUser.email &&
+
+                        request.status === "Pending"
+                );
+
+
+
+            const userNotifications =
+                JSON.parse(
+                    localStorage.getItem(
+                        "userNotifications"
+                    )
+                ) || [];
+
+
+
+            const unreadRejectionNotifications =
+                userNotifications.filter(
+                    (notification) =>
+
+                        notification.to === currentUser.email &&
+
+                        notification.type === "rejection" &&
+
+                        notification.read === false
+                );
+
+
+
+            const totalCount =
+
+                pendingRequests.length +
+
+                unreadRejectionNotifications.length;
+
+
+
+            setNotificationCount(
+                totalCount
+            );
+
+
+        };
+
+
+
+        updateNotificationCount();
+
+
+
+        window.addEventListener(
+            "notificationsUpdated",
+            updateNotificationCount
         );
 
 
-      /*
-      =====================================================
-      TOTAL NOTIFICATION COUNT
-      =====================================================
-      */
 
-      const totalCount =
-
-        pendingRequests.length +
-
-        unreadRejectionNotifications.length;
+        return () => {
 
 
-      /*
-      =====================================================
-      UPDATE BADGE
-      =====================================================
-      */
+            window.removeEventListener(
+                "notificationsUpdated",
+                updateNotificationCount
+            );
 
-      setNotificationCount(
-        totalCount
-      );
 
-    };
+        };
+
+
+    }, []);
+
+
+
 
 
     /*
-    =========================================================
-    RUN WHEN NAVBAR LOADS
-    =========================================================
+    =====================================================
+    LOGGED USER
+    =====================================================
     */
 
-    updateNotificationCount();
 
-
-    /*
-    =========================================================
-    LISTEN FOR NOTIFICATION UPDATES
-    =========================================================
-    */
-
-    window.addEventListener(
-      "notificationsUpdated",
-      updateNotificationCount
-    );
-
-
-    /*
-    =========================================================
-    CLEANUP
-    =========================================================
-    */
-
-    return () => {
-
-      window.removeEventListener(
-        "notificationsUpdated",
-        updateNotificationCount
-      );
-
-    };
-
-  }, []);
-
-
-  /*
-  =========================================================
-  GET LOGGED-IN USER FOR DISPLAY
-  =========================================================
-  */
-
-  const loggedInUser =
-    JSON.parse(
-      localStorage.getItem(
-        "loggedInUser"
-      )
-    ) || {};
-
-
-  /*
-  =========================================================
-  CREATE FULL NAME
-  =========================================================
-  */
-
-  const fullName = [
-
-    profileData?.firstName,
-
-    profileData?.lastName
-
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .trim();
-
-
-  /*
-  =========================================================
-  LOGOUT
-  =========================================================
-  */
-
-  const handleLogout = () => {
-
-    localStorage.removeItem(
-      "token"
-    );
-
-    localStorage.removeItem(
-      "loggedInUser"
-    );
-
-    navigate(
-      "/login"
-    );
-
-  };
-
-
-  /*
-  =========================================================
-  NAVBAR
-  =========================================================
-  */
-
-  return (
-
-    <div className="navbar">
-
-
-      {/* =================================================
-          LEFT SIDE
-      ================================================= */}
-
-      <div className="navbar-left">
-
-        <img
-          src="/logo.jpeg"
-          alt="EMS Logo"
-          className="navbar-logo"
-        />
-
-        <h2>
-          EMS Portal
-        </h2>
-
-      </div>
-
-
-      {/* =================================================
-          RIGHT SIDE
-      ================================================= */}
-
-      <div className="navbar-right">
-
-
-        {/* =================================================
-            NOTIFICATIONS
-        ================================================= */}
-
-        <span
-          className="navbar-notification"
-          onClick={() =>
-            navigate(
-              "/notifications"
+    const loggedInUser =
+        JSON.parse(
+            localStorage.getItem(
+                "loggedInUser"
             )
-          }
-          style={{
-            cursor: "pointer",
-            position: "relative"
-          }}
-        >
-
-          🔔 Notifications
+        ) || {};
 
 
-          {/* =================================================
-              RED NOTIFICATION BADGE
-          ================================================= */}
 
-          {notificationCount > 0 && (
+    const fullName = [
 
-            <span
-              className="notification-badge"
-            >
+        profileData?.firstName,
 
-              {notificationCount}
+        profileData?.lastName
 
-            </span>
-
-          )}
-
-        </span>
+    ]
+        .filter(Boolean)
+        .join(" ")
+        .trim();
 
 
-        {/* =================================================
-            PROFILE
-        ================================================= */}
-
-        <div
-          className="navbar-profile-container"
-        >
 
 
-          {/* =================================================
-              PROFILE IMAGE
-          ================================================= */}
 
-          <img
-            src={
-
-              profileData?.profilePhoto ||
-
-              profileData?.profileImage ||
-
-              "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces"
-
-            }
-            alt="Profile"
-            className="navbar-profile-img"
-          />
+    /*
+    =====================================================
+    LOGOUT
+    =====================================================
+    */
 
 
-          {/* =================================================
-              USER NAME
-          ================================================= */}
+    const handleLogout = () => {
 
-          <span
-            className="navbar-profile-name"
-          >
 
-            {
+        localStorage.removeItem(
+            "token"
+        );
 
-              fullName ||
 
-              profileData?.userName ||
+        localStorage.removeItem(
+            "loggedInUser"
+        );
 
-              loggedInUser?.userName ||
 
-              loggedInUser?.name ||
+        navigate(
+            "/login"
+        );
 
-              loggedInUser?.fullName ||
 
-              "User"
+    };
+
+
+
+
+
+    /*
+    =====================================================
+    CLOSE DROPDOWN OUTSIDE CLICK
+    =====================================================
+    */
+
+
+    useEffect(() => {
+
+
+        function handleClickOutside(event) {
+
+
+            if (
+
+                profileMenuRef.current &&
+
+                !profileMenuRef.current.contains(
+                    event.target
+                )
+
+            ) {
+
+                setShowProfileMenu(false);
 
             }
 
-          </span>
+
+        }
+
+
+
+        document.addEventListener(
+            "mousedown",
+            handleClickOutside
+        );
+
+
+
+        return () => {
+
+
+            document.removeEventListener(
+                "mousedown",
+                handleClickOutside
+            );
+
+
+        };
+
+
+    }, []);
+
+
+
+
+
+
+
+    /*
+    =====================================================
+    NAVBAR
+    =====================================================
+    */
+
+
+    return (
+
+
+        <div className="navbar">
+
+
+
+            {/* LEFT SIDE */}
+
+
+            <div className="navbar-left">
+
+
+                <img
+
+                    src="/logo.jpeg"
+
+                    alt="Niyati Matrimony"
+
+                    className="navbar-logo"
+
+                />
+
+
+
+                <div className="navbar-brand">
+
+
+                    <h2>
+                        Niyati Matrimony
+                    </h2>
+
+
+                    <span>
+                        Find Your Perfect Match
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+            {/* RIGHT SIDE */}
+
+
+
+            <div className="navbar-right">
+
+
+
+
+
+                {/* Notification */}
+
+
+
+                <div
+
+                    className="navbar-notification"
+
+                    onClick={() => navigate("/notifications")}
+
+                >
+
+
+                    <span className="notification-icon">
+
+                        🔔
+
+                    </span>
+
+
+
+                    {
+                        notificationCount > 0 && (
+
+                            <span className="notification-badge">
+
+                                {notificationCount}
+
+                            </span>
+
+                        )
+                    }
+
+
+                </div>
+
+
+
+
+
+
+
+
+                {/* PROFILE */}
+
+
+
+                <div
+
+
+                    className="navbar-profile-container"
+
+
+                    ref={profileMenuRef}
+
+
+                    onClick={() =>
+                        setShowProfileMenu(
+                            prev => !prev
+                        )
+                    }
+
+
+                >
+
+
+
+
+                    <img
+
+
+                        src={
+
+                            profileData?.profilePhoto ||
+
+                            profileData?.profileImage ||
+
+                            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces"
+
+                        }
+
+
+                        alt="Profile"
+
+
+                        className="navbar-profile-img"
+
+
+                    />
+
+
+
+
+
+                    <span className="navbar-profile-name">
+
+
+                        {
+
+                            fullName ||
+
+                            profileData?.userName ||
+
+                            loggedInUser?.userName ||
+
+                            loggedInUser?.name ||
+
+                            loggedInUser?.fullName ||
+
+                            "User"
+
+                        }
+
+
+                    </span>
+
+
+
+
+
+                    <span className="profile-dropdown-icon">
+
+                        ▼
+
+                    </span>
+
+
+
+
+
+
+
+
+
+                    {
+                        showProfileMenu && (
+
+
+                            <div
+
+
+                                className="profile-dropdown"
+
+
+                                onClick={(e)=>e.stopPropagation()}
+
+
+                            >
+
+
+
+
+
+                                <button
+
+
+                                    onClick={(e)=>{
+
+
+                                        e.stopPropagation();
+
+
+                                        navigate("/view-profile");
+
+
+                                        setShowProfileMenu(false);
+
+
+                                    }}
+
+
+                                >
+
+                                    👤 My Profile
+
+
+                                </button>
+
+
+
+
+
+
+
+                                <button
+
+
+                                    onClick={(e)=>{
+
+
+                                        e.stopPropagation();
+
+
+                                        alert(
+                                            "Settings page coming soon."
+                                        );
+
+
+                                        setShowProfileMenu(false);
+
+
+                                    }}
+
+
+                                >
+
+                                    ⚙ Settings
+
+
+                                </button>
+
+
+
+
+
+
+
+                                <button
+
+
+                                    onClick={(e)=>{
+
+
+                                        e.stopPropagation();
+
+
+                                        alert(
+                                            "Help & Support coming soon."
+                                        );
+
+
+                                        setShowProfileMenu(false);
+
+
+                                    }}
+
+
+                                >
+
+                                    ❓ Help
+
+
+                                </button>
+
+
+
+
+
+
+                                <div className="dropdown-divider"></div>
+
+
+
+
+
+
+
+                                <button
+
+
+                                    className="logout-item"
+
+
+                                    onClick={(e)=>{
+
+
+                                        e.stopPropagation();
+
+
+                                        handleLogout();
+
+
+                                    }}
+
+
+                                >
+
+                                    🚪 Logout
+
+
+                                </button>
+
+
+
+
+
+                            </div>
+
+
+                        )
+                    }
+
+
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+
 
 
         </div>
 
 
-        {/* =================================================
-            LOGOUT
-        ================================================= */}
+    );
 
-        <button
-          className="navbar-logout-btn"
-          onClick={
-            handleLogout
-          }
-        >
-
-          Logout
-
-        </button>
-
-
-      </div>
-
-    </div>
-
-  );
 
 }
+
 
 
 export default Navbar;

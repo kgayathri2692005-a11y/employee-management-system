@@ -14,16 +14,14 @@ function ViewProfile() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleBack = () => {
+ const handleBack = () => {
+  if (location.state?.from) {
+    navigate(location.state.from);
+    return;
+  }
 
-    if (location.state?.from === "my-profile") {
-      navigate(-1);
-      return;
-    }
-
-    navigate("/Users");
-
-  };
+  navigate("/Users");
+};
 
   /*
   =========================================================
@@ -1161,10 +1159,10 @@ function ViewProfile() {
 
         </div>
 
-        <PageNavigation
-          previous="/Users"
-          next="/inbox"
-        />
+       <PageNavigation
+  previous={location.state?.from || "/Users"}
+  next="/inbox"
+/>
 
       </div>
 

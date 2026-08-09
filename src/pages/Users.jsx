@@ -1147,27 +1147,14 @@ function Users() {
   =========================================================
   */
 
-  const viewProfile = (
-    employee
-  ) => {
-
-    navigate(
-      "/view-profile",
-
-      {
-        state: {
-
-          profile:
-            employee,
-
-          from:
-            "/users"
-
-        }
-      }
-    );
-
-  };
+  const viewProfile = (employee) => {
+  navigate("/view-profile", {
+    state: {
+      profile: employee,
+      from: "/Users"
+    }
+  });
+};
 
 
   /*
