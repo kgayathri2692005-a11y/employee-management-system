@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageNavigation from "../components/PageNavigation";
 import { toast } from "react-toastify";
@@ -1406,8 +1404,6 @@ function Users() {
   return (
 
     <div className="dashboard">
-
-      <Sidebar />
 
       <div className="main-content">
 

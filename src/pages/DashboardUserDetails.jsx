@@ -1,1261 +1,715 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 
-import "../styles/Dashboard.css";
 import "../styles/DashboardUserDetails.css";
 
 function DashboardUserDetails() {
-
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const [users, setUsers] = useState([]);
   const [pairs, setPairs] = useState([]);
 
-  const type =
-    location.state?.type || "totalUsers";
-
-
   /*
-  =========================================================
-  GET USER STATUS
-  =========================================================
-  */
-
-  const getUserStatus = (profile) => {
-
-    if (profile?.isActive === true) {
-      return "Active";
-    }
-
-    if (profile?.isActive === false) {
-      return "Inactive";
-    }
-
-    if (
-      typeof profile?.status === "string" &&
-      profile.status.trim() !== ""
-    ) {
-
-      const status =
-        profile.status
-          .trim()
-          .toLowerCase();
-
-      if (status === "active") {
-        return "Active";
-      }
-
-      if (status === "inactive") {
-        return "Inactive";
-      }
-
-    }
-
-    return "Active";
-  };
-
-
-  /*
-  =========================================================
+  =====================================================
   GET PROFILE IMAGE
-  =========================================================
+  =====================================================
   */
 
   const getProfileImage = (profile) => {
-
     if (!profile) {
-      return "";
+      return "https://randomuser.me/api/portraits/lego/1.jpg";
     }
-
-    /*
-    1. Uploaded profile photo
-    */
 
     if (
       typeof profile.profilePhoto === "string" &&
       profile.profilePhoto.trim() !== ""
     ) {
-
       return profile.profilePhoto;
-
     }
-
-
-    /*
-    2. Additional photo
-    */
 
     if (
       Array.isArray(profile.additionalPhotos) &&
       profile.additionalPhotos.length > 0
     ) {
-
-      const photo =
-        profile.additionalPhotos.find(
-          (item) =>
-            typeof item === "string" &&
-            item.trim() !== ""
-        );
+      const photo = profile.additionalPhotos.find(
+        (item) =>
+          typeof item === "string" &&
+          item.trim() !== ""
+      );
 
       if (photo) {
         return photo;
       }
-
     }
-
-
-    /*
-    3. Profile image
-    */
 
     if (
       typeof profile.profileImage === "string" &&
       profile.profileImage.trim() !== ""
     ) {
-
       return profile.profileImage;
-
     }
 
-
-    /*
-    4. Fallback
-    */
-
     return "https://randomuser.me/api/portraits/lego/1.jpg";
-
   };
 
-
   /*
-  =========================================================
+  =====================================================
   GET PROFILE NAME
-  =========================================================
+  =====================================================
   */
 
-  const getProfileName = (
-    profile,
-    email
-  ) => {
-
-    const fullName =
-      `${profile?.firstName || ""} ${
-        profile?.lastName || ""
-      }`.trim();
+  const getProfileName = (profile, email) => {
+    const fullName = `${profile?.firstName || ""} ${
+      profile?.lastName || ""
+    }`
+      .trim()
+      .replace(/\s+/g, " ");
 
     return (
       fullName ||
       profile?.userName ||
       profile?.fullName ||
       email ||
-      "Unknown User"
+      "Niyati Member"
     );
-
   };
 
-
   /*
-  =========================================================
-  GET PHONE
-  =========================================================
+  =====================================================
+  GET VALUE
+  =====================================================
   */
 
-  const getPhone = (profile) => {
+  const getValue = (profile, keys) => {
+    for (const key of keys) {
+      if (
+        profile?.[key] !== undefined &&
+        profile?.[key] !== null &&
+        String(profile[key]).trim() !== ""
+      ) {
+        return String(profile[key]).trim();
+      }
+    }
 
-    return (
-      profile?.phone ||
-      profile?.phoneNumber ||
-      profile?.mobile ||
-      profile?.mobileNumber ||
-      "Phone number not added"
-    );
-
+    return "";
   };
 
-
   /*
-  =========================================================
-  GET OCCUPATION
-  =========================================================
+  =====================================================
+  CREATE COMPATIBILITY STORY
+  =====================================================
   */
 
-  const getOccupation = (profile) => {
+  const getCompatibilityStory = (profile1, profile2) => {
+    const values1 = [
+      getValue(profile1, ["religion"]),
+      getValue(profile1, ["community"]),
+      getValue(profile1, ["education"]),
+      getValue(profile1, ["occupation"]),
+      getValue(profile1, ["city", "currentCity"]),
+    ].filter(Boolean);
 
-    return (
-      profile?.occupation ||
-      "Occupation not added"
-    );
+    const values2 = [
+      getValue(profile2, ["religion"]),
+      getValue(profile2, ["community"]),
+      getValue(profile2, ["education"]),
+      getValue(profile2, ["occupation"]),
+      getValue(profile2, ["city", "currentCity"]),
+    ].filter(Boolean);
 
+    const commonValues = [];
+
+    values1.forEach((value) => {
+      if (
+        values2.some(
+          (otherValue) =>
+            otherValue.toLowerCase() === value.toLowerCase()
+        )
+      ) {
+        commonValues.push(value);
+      }
+    });
+
+    /*
+    -----------------------------------------------
+    SAME COMMUNITY / RELIGION
+    -----------------------------------------------
+    */
+
+    const religion1 = getValue(profile1, ["religion"]);
+    const religion2 = getValue(profile2, ["religion"]);
+
+    const community1 = getValue(profile1, ["community"]);
+    const community2 = getValue(profile2, ["community"]);
+
+    if (
+      religion1 &&
+      religion2 &&
+      religion1.toLowerCase() === religion2.toLowerCase()
+    ) {
+      if (
+        community1 &&
+        community2 &&
+        community1.toLowerCase() === community2.toLowerCase()
+      ) {
+        return "They found a beautiful connection through shared values, traditions and a strong sense of understanding.";
+      }
+
+      return "They connected through shared values, traditions and a natural understanding of each other.";
+    }
+
+    /*
+    -----------------------------------------------
+    SAME CITY
+    -----------------------------------------------
+    */
+
+    const city1 = getValue(profile1, [
+      "city",
+      "currentCity",
+    ]);
+
+    const city2 = getValue(profile2, [
+      "city",
+      "currentCity",
+    ]);
+
+    if (
+      city1 &&
+      city2 &&
+      city1.toLowerCase() === city2.toLowerCase()
+    ) {
+      return "Being from the same city brought them closer, creating a comfortable beginning for a beautiful relationship.";
+    }
+
+    /*
+    -----------------------------------------------
+    SAME EDUCATION
+    -----------------------------------------------
+    */
+
+    const education1 = getValue(profile1, [
+      "education",
+      "highestEducation",
+    ]);
+
+    const education2 = getValue(profile2, [
+      "education",
+      "highestEducation",
+    ]);
+
+    if (
+      education1 &&
+      education2 &&
+      education1.toLowerCase() === education2.toLowerCase()
+    ) {
+      return "Their similar educational journey helped create meaningful conversations and a strong connection.";
+    }
+
+    /*
+    -----------------------------------------------
+    SAME OCCUPATION
+    -----------------------------------------------
+    */
+
+    const occupation1 = getValue(profile1, [
+      "occupation",
+      "profession",
+      "job",
+    ]);
+
+    const occupation2 = getValue(profile2, [
+      "occupation",
+      "profession",
+      "job",
+    ]);
+
+    if (
+      occupation1 &&
+      occupation2 &&
+      occupation1.toLowerCase() === occupation2.toLowerCase()
+    ) {
+      return "Their shared professional journey gave them common ground and helped their understanding grow naturally.";
+    }
+
+    /*
+    -----------------------------------------------
+    COMMON DATA
+    -----------------------------------------------
+    */
+
+    if (commonValues.length > 0) {
+      return "They discovered common ground, mutual understanding and the kind of connection that makes two people feel meant to meet.";
+    }
+
+    /*
+    -----------------------------------------------
+    DEFAULT
+    -----------------------------------------------
+    */
+
+    return "They connected through understanding, shared values and a beautiful bond that brought their journeys together.";
   };
 
-
   /*
-  =========================================================
-  GET CITY
-  =========================================================
-  */
-
-  const getCity = (profile) => {
-
-    return (
-      profile?.currentCity ||
-      profile?.city ||
-      ""
-    );
-
-  };
-
-
-  /*
-  =========================================================
-  GET STATE
-  =========================================================
-  */
-
-  const getState = (profile) => {
-
-    return (
-      profile?.currentState ||
-      profile?.stateName ||
-      profile?.state ||
-      ""
-    );
-
-  };
-
-
-  /*
-  =========================================================
-  LOAD DATA
-  =========================================================
+  =====================================================
+  LOAD MATCHED PAIRS
+  =====================================================
   */
 
   useEffect(() => {
+    const loadMatchedPairs = () => {
+      const allProfiles =
+        JSON.parse(
+          localStorage.getItem("allProfiles")
+        ) || {};
 
-    const allProfiles =
-      JSON.parse(
-        localStorage.getItem("allProfiles")
-      ) || {};
+      const matchedUsers =
+        JSON.parse(
+          localStorage.getItem("matchedUsers")
+        ) || [];
 
-    const matchedUsers =
-      JSON.parse(
-        localStorage.getItem("matchedUsers")
-      ) || [];
+      if (!Array.isArray(matchedUsers)) {
+        setPairs([]);
+        return;
+      }
 
-    const profilesArray =
-      Object.entries(allProfiles);
+      const formattedPairs = matchedUsers
+        .map((match) => {
+          const user1 =
+            allProfiles[match.user1] || {};
 
-
-    /*
-    =========================================================
-    FILTER USERS
-    =========================================================
-    */
-
-    let filteredUsers = profilesArray;
-
-    if (type === "activeUsers") {
-
-      filteredUsers =
-        profilesArray.filter(
-          ([, profile]) =>
-            getUserStatus(profile) === "Active"
-        );
-
-    }
-
-
-    if (type === "inactiveUsers") {
-
-      filteredUsers =
-        profilesArray.filter(
-          ([, profile]) =>
-            getUserStatus(profile) === "Inactive"
-        );
-
-    }
-
-
-    /*
-    =========================================================
-    FORMAT USERS
-    =========================================================
-    */
-
-    const formattedUsers =
-      filteredUsers.map(
-        ([email, profile]) => {
+          const user2 =
+            allProfiles[match.user2] || {};
 
           return {
+            user1Email: match.user1,
+            user2Email: match.user2,
 
-            email,
-
-            name:
+            user1Name:
               getProfileName(
-                profile,
-                email
+                user1,
+                match.user1
               ),
 
-            image:
-              getProfileImage(
-                profile
+            user2Name:
+              getProfileName(
+                user2,
+                match.user2
               ),
 
-            phone:
-              getPhone(
-                profile
-              ),
+            user1Image:
+              getProfileImage(user1),
 
-            occupation:
-              getOccupation(
-                profile
-              ),
+            user2Image:
+              getProfileImage(user2),
 
-            city:
-              getCity(
-                profile
-              ),
+            user1Profile: user1,
+            user2Profile: user2,
 
-            state:
-              getState(
-                profile
-              ),
-
-            gender:
-              profile?.gender ||
+            matchedDate:
+              match.matchedDate ||
+              match.date ||
+              match.createdAt ||
               "",
-
-            age:
-              profile?.age ||
-              "",
-
-            status:
-              getUserStatus(
-                profile
-              )
-
           };
+        })
+        .filter(
+          (pair) =>
+            pair.user1Email &&
+            pair.user2Email
+        );
 
-        }
-      );
-
-
-    setUsers(
-      formattedUsers
-    );
-
-
-    /*
-    =========================================================
-    FORMAT MATCHED PAIRS
-    =========================================================
-    */
-
-    const formattedPairs =
-      Array.isArray(matchedUsers)
-        ? matchedUsers.map(
-            (match) => {
-
-              const user1 =
-                allProfiles[
-                  match.user1
-                ] || {};
-
-              const user2 =
-                allProfiles[
-                  match.user2
-                ] || {};
-
-
-              return {
-
-                user1Email:
-                  match.user1,
-
-                user2Email:
-                  match.user2,
-
-                user1Name:
-                  getProfileName(
-                    user1,
-                    match.user1
-                  ),
-
-                user2Name:
-                  getProfileName(
-                    user2,
-                    match.user2
-                  ),
-
-                user1Image:
-                  getProfileImage(
-                    user1
-                  ),
-
-                user2Image:
-                  getProfileImage(
-                    user2
-                  )
-
-              };
-
-            }
-          )
-        : [];
-
-
-    setPairs(
-      formattedPairs
-    );
-
-  }, [type]);
-
-
-  /*
-  =========================================================
-  PAGE INFORMATION
-  =========================================================
-  */
-
-  const getPageInfo = () => {
-
-    if (type === "activeUsers") {
-
-      return {
-        eyebrow: "LIVE COMMUNITY",
-        title: "Active Members",
-        description:
-          "Members who are currently active on your matrimony platform.",
-        icon: "🟢",
-        count: users.length
-      };
-
-    }
-
-
-    if (type === "inactiveUsers") {
-
-      return {
-        eyebrow: "MEMBER MANAGEMENT",
-        title: "Inactive Members",
-        description:
-          "Profiles that are currently inactive and may need attention.",
-        icon: "⚪",
-        count: users.length
-      };
-
-    }
-
-
-    if (type === "totalPairs") {
-
-      return {
-        eyebrow: "SUCCESSFUL CONNECTIONS",
-        title: "Matched Pairs",
-        description:
-          "Couples who have successfully matched through the platform.",
-        icon: "💕",
-        count: pairs.length
-      };
-
-    }
-
-
-    return {
-      eyebrow: "MATRIMONY COMMUNITY",
-      title: "All Members",
-      description:
-        "Browse all registered members and explore their profiles.",
-      icon: "👥",
-      count: users.length
+      setPairs(formattedPairs);
     };
 
-  };
+    loadMatchedPairs();
 
+    window.addEventListener(
+      "matchesUpdated",
+      loadMatchedPairs
+    );
 
-  const pageInfo = getPageInfo();
+    window.addEventListener(
+      "storage",
+      loadMatchedPairs
+    );
 
-
-  /*
-  =========================================================
-  OPEN PROFILE
-  =========================================================
-  */
-
-  const openProfile = (email) => {
-
-    const allProfiles =
-      JSON.parse(
-        localStorage.getItem("allProfiles")
-      ) || {};
-
-    const profile =
-      allProfiles[email];
-
-    if (!profile) {
-
-      console.error(
-        "Profile not found:",
-        email
+    return () => {
+      window.removeEventListener(
+        "matchesUpdated",
+        loadMatchedPairs
       );
 
-      return;
+      window.removeEventListener(
+        "storage",
+        loadMatchedPairs
+      );
+    };
+  }, []);
 
+  /*
+  =====================================================
+  FORMAT MATCH DATE
+  =====================================================
+  */
+
+  const formatMatchDate = (date) => {
+    if (!date) {
+      return "";
     }
 
+    const parsedDate = new Date(date);
 
-    navigate(
-      "/view-profile",
+    if (Number.isNaN(parsedDate.getTime())) {
+      return date;
+    }
+
+    return parsedDate.toLocaleDateString(
+      "en-IN",
       {
-        state: {
-
-          profile: {
-            ...profile,
-            email
-          },
-
-          from:
-            "/dashboard"
-
-        }
+        day: "numeric",
+        month: "long",
+        year: "numeric",
       }
     );
-
   };
 
-
   /*
-  =========================================================
-  USER PROFILE BUTTON
-  =========================================================
-  */
-
-  const ProfileButton = ({
-    email,
-    active = false
-  }) => {
-
-    return (
-
-      <button
-        type="button"
-        className={
-          active
-            ? "dashboard-profile-btn active-btn"
-            : "dashboard-profile-btn"
-        }
-        onClick={() =>
-          openProfile(email)
-        }
-      >
-
-        👁 View Profile
-
-      </button>
-
-    );
-
-  };
-
-
-  /*
-  =========================================================
-  TOTAL USERS DESIGN
-  =========================================================
-  */
-
-  const renderTotalUsers = () => {
-
-    if (users.length === 0) {
-
-      return renderEmpty(
-        "👥",
-        "No members found",
-        "There are currently no registered profiles."
-      );
-
-    }
-
-
-    return (
-
-      <div className="members-directory">
-
-        {users.map(
-          (user) => (
-
-            <div
-              className="member-directory-card"
-              key={user.email}
-            >
-
-              <div className="member-photo-area">
-
-                <img
-                  src={
-                    user.image ||
-                    "https://randomuser.me/api/portraits/lego/1.jpg"
-                  }
-                  alt={user.name}
-                  onError={(e) => {
-
-                    e.currentTarget.onerror =
-                      null;
-
-                    e.currentTarget.src =
-                      "https://randomuser.me/api/portraits/lego/1.jpg";
-
-                  }}
-                />
-
-                <span className="member-status-dot">
-                </span>
-
-              </div>
-
-
-              <div className="member-directory-info">
-
-                <span className="member-category">
-                  MEMBER
-                </span>
-
-                <h3>
-                  {user.name}
-                </h3>
-
-                <p className="member-main-detail">
-                  {user.occupation}
-                </p>
-
-                <p>
-                  📍{" "}
-                  {user.city ||
-                    "Location not added"}
-
-                  {user.state
-                    ? `, ${user.state}`
-                    : ""}
-                </p>
-
-                <div className="member-mini-details">
-
-                  {user.age && (
-                    <span>
-                      🎂 {user.age}
-                    </span>
-                  )}
-
-                  {user.gender && (
-                    <span>
-                      👤 {user.gender}
-                    </span>
-                  )}
-
-                </div>
-
-              </div>
-
-
-              <div className="member-directory-action">
-
-                <ProfileButton
-                  email={user.email}
-                />
-
-              </div>
-
-            </div>
-
-          )
-        )}
-
-      </div>
-
-    );
-
-  };
-
-
-  /*
-  =========================================================
-  ACTIVE USERS DESIGN
-  =========================================================
-  */
-
-  const renderActiveUsers = () => {
-
-    if (users.length === 0) {
-
-      return renderEmpty(
-        "🟢",
-        "No active members",
-        "There are currently no active members."
-      );
-
-    }
-
-
-    return (
-
-      <div className="active-members-list">
-
-        {users.map(
-          (user, index) => (
-
-            <div
-              className="active-member-row"
-              key={user.email}
-            >
-
-              <div className="active-rank">
-                {String(index + 1).padStart(2, "0")}
-              </div>
-
-
-              <div className="active-photo-wrapper">
-
-                <img
-                  src={
-                    user.image ||
-                    "https://randomuser.me/api/portraits/lego/1.jpg"
-                  }
-                  alt={user.name}
-                  onError={(e) => {
-
-                    e.currentTarget.onerror =
-                      null;
-
-                    e.currentTarget.src =
-                      "https://randomuser.me/api/portraits/lego/1.jpg";
-
-                  }}
-                />
-
-                <span className="online-indicator">
-                </span>
-
-              </div>
-
-
-              <div className="active-member-info">
-
-                <div className="active-name-row">
-
-                  <h3>
-                    {user.name}
-                  </h3>
-
-                  <span className="online-badge">
-                    ● Active now
-                  </span>
-
-                </div>
-
-                <p>
-                  💼 {user.occupation}
-                </p>
-
-                <p>
-                  📍{" "}
-                  {user.city ||
-                    "Location not added"}
-
-                  {user.state
-                    ? `, ${user.state}`
-                    : ""}
-                </p>
-
-              </div>
-
-
-              <div className="active-member-meta">
-
-                {user.age && (
-                  <span>
-                    {user.age} yrs
-                  </span>
-                )}
-
-                {user.gender && (
-                  <span>
-                    {user.gender}
-                  </span>
-                )}
-
-              </div>
-
-
-              <ProfileButton
-                email={user.email}
-                active={true}
-              />
-
-            </div>
-
-          )
-        )}
-
-      </div>
-
-    );
-
-  };
-
-
-  /*
-  =========================================================
-  INACTIVE USERS DESIGN
-  =========================================================
-  */
-
-  const renderInactiveUsers = () => {
-
-    if (users.length === 0) {
-
-      return renderEmpty(
-        "⚪",
-        "No inactive members",
-        "Great! There are currently no inactive profiles."
-      );
-
-    }
-
-
-    return (
-
-      <div className="inactive-members-grid">
-
-        {users.map(
-          (user) => (
-
-            <div
-              className="inactive-member-card"
-              key={user.email}
-            >
-
-              <div className="inactive-card-header">
-
-                <span>
-                  INACTIVE
-                </span>
-
-                <span className="inactive-circle">
-                  ○
-                </span>
-
-              </div>
-
-
-              <div className="inactive-profile">
-
-                <img
-                  src={
-                    user.image ||
-                    "https://randomuser.me/api/portraits/lego/1.jpg"
-                  }
-                  alt={user.name}
-                  onError={(e) => {
-
-                    e.currentTarget.onerror =
-                      null;
-
-                    e.currentTarget.src =
-                      "https://randomuser.me/api/portraits/lego/1.jpg";
-
-                  }}
-                />
-
-                <h3>
-                  {user.name}
-                </h3>
-
-                <p className="inactive-occupation">
-                  {user.occupation}
-                </p>
-
-              </div>
-
-
-              <div className="inactive-info">
-
-                <div>
-                  <span>
-                    LOCATION
-                  </span>
-
-                  <strong>
-                    {user.city ||
-                      "Not added"}
-
-                    {user.state
-                      ? `, ${user.state}`
-                      : ""}
-                  </strong>
-                </div>
-
-
-                <div>
-                  <span>
-                    CONTACT
-                  </span>
-
-                  <strong>
-                    {user.phone}
-                  </strong>
-                </div>
-
-              </div>
-
-
-              <div className="inactive-card-footer">
-
-                <span>
-                  Profile inactive
-                </span>
-
-                <ProfileButton
-                  email={user.email}
-                />
-
-              </div>
-
-            </div>
-
-          )
-        )}
-
-      </div>
-
-    );
-
-  };
-
-
-  /*
-  =========================================================
-  MATCHED PAIRS DESIGN
-  =========================================================
-  */
-
-  const renderPairs = () => {
-
-    if (pairs.length === 0) {
-
-      return renderEmpty(
-        "💕",
-        "No matched pairs yet",
-        "Successful matches will appear here."
-      );
-
-    }
-
-
-    return (
-
-      <div className="matches-showcase">
-
-        {pairs.map(
-          (pair, index) => (
-
-            <div
-              className="match-showcase-card"
-              key={index}
-            >
-
-              <div className="match-number">
-                MATCH #{String(index + 1).padStart(2, "0")}
-              </div>
-
-
-              <div className="match-users">
-
-                {/* USER 1 */}
-
-                <div
-                  className="match-person"
-                  onClick={() =>
-                    openProfile(
-                      pair.user1Email
-                    )
-                  }
-                >
-
-                  <div className="match-photo-ring">
-
-                    <img
-                      src={
-                        pair.user1Image ||
-                        "https://randomuser.me/api/portraits/lego/1.jpg"
-                      }
-                      alt={pair.user1Name}
-                      onError={(e) => {
-
-                        e.currentTarget.onerror =
-                          null;
-
-                        e.currentTarget.src =
-                          "https://randomuser.me/api/portraits/lego/1.jpg";
-
-                      }}
-                    />
-
-                  </div>
-
-                  <span>
-                    MEMBER 01
-                  </span>
-
-                  <h3>
-                    {pair.user1Name}
-                  </h3>
-
-                  <button
-                    type="button"
-                    onClick={(e) => {
-
-                      e.stopPropagation();
-
-                      openProfile(
-                        pair.user1Email
-                      );
-
-                    }}
-                  >
-                    View Profile
-                  </button>
-
-                </div>
-
-
-                {/* CONNECTION */}
-
-                <div className="match-connection">
-
-                  <div className="connection-line">
-                  </div>
-
-                  <div className="match-heart">
-                    ❤️
-                  </div>
-
-                  <span>
-                    MATCHED
-                  </span>
-
-                </div>
-
-
-                {/* USER 2 */}
-
-                <div
-                  className="match-person"
-                  onClick={() =>
-                    openProfile(
-                      pair.user2Email
-                    )
-                  }
-                >
-
-                  <div className="match-photo-ring">
-
-                    <img
-                      src={
-                        pair.user2Image ||
-                        "https://randomuser.me/api/portraits/lego/1.jpg"
-                      }
-                      alt={pair.user2Name}
-                      onError={(e) => {
-
-                        e.currentTarget.onerror =
-                          null;
-
-                        e.currentTarget.src =
-                          "https://randomuser.me/api/portraits/lego/1.jpg";
-
-                      }}
-                    />
-
-                  </div>
-
-                  <span>
-                    MEMBER 02
-                  </span>
-
-                  <h3>
-                    {pair.user2Name}
-                  </h3>
-
-                  <button
-                    type="button"
-                    onClick={(e) => {
-
-                      e.stopPropagation();
-
-                      openProfile(
-                        pair.user2Email
-                      );
-
-                    }}
-                  >
-                    View Profile
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          )
-        )}
-
-      </div>
-
-    );
-
-  };
-
-
-  /*
-  =========================================================
+  =====================================================
   EMPTY STATE
-  =========================================================
+  =====================================================
   */
 
-  const renderEmpty = (
-    icon,
-    title,
-    description
-  ) => {
-
+  const renderEmptyState = () => {
     return (
-
-      <div className="dashboard-special-empty">
-
-        <div className="empty-icon">
-          {icon}
+      <div className="success-empty-state">
+        <div className="success-empty-icon">
+          ♡
         </div>
 
-        <h3>
-          {title}
-        </h3>
+        <div className="success-empty-decoration">
+          ✦
+        </div>
+
+        <h2>
+          Beautiful stories begin here
+        </h2>
 
         <p>
-          {description}
+          Successful matches will appear here
+          as beautiful Niyati success stories.
         </p>
 
+        <button
+          type="button"
+          onClick={() =>
+            navigate("/dashboard")
+          }
+        >
+          ← Back to Dashboard
+        </button>
       </div>
-
     );
-
   };
 
+  /*
+  =====================================================
+  SUCCESS STORY CARD
+  =====================================================
+  */
+
+  const renderSuccessStory = (
+    pair,
+    index
+  ) => {
+    const story =
+      getCompatibilityStory(
+        pair.user1Profile,
+        pair.user2Profile
+      );
+
+    const formattedDate =
+      formatMatchDate(
+        pair.matchedDate
+      );
+
+    return (
+      <article
+        className="success-story-card"
+        key={`${pair.user1Email}-${pair.user2Email}-${index}`}
+      >
+        {/* Decorative corners */}
+
+        <div className="story-corner story-corner-top-left">
+          ❧
+        </div>
+
+        <div className="story-corner story-corner-top-right">
+          ❧
+        </div>
+
+        <div className="story-corner story-corner-bottom-left">
+          ❧
+        </div>
+
+        <div className="story-corner story-corner-bottom-right">
+          ❧
+        </div>
+
+        {/* Header */}
+
+        <div className="success-story-header">
+          <span className="story-line"></span>
+
+          <span className="story-star">
+            ✦
+          </span>
+
+          <span className="story-label">
+            SUCCESS STORY
+          </span>
+
+          <span className="story-star">
+            ✦
+          </span>
+
+          <span className="story-line"></span>
+        </div>
+
+        {/* Couple */}
+
+        <div className="success-couple">
+          {/* Person 1 */}
+
+          <div className="success-person">
+            <div className="success-photo-wrapper">
+              <div className="photo-outer-ring">
+                <div className="photo-inner-ring">
+                  <img
+                    src={
+                      pair.user1Image
+                    }
+                    alt={pair.user1Name}
+                    onError={(e) => {
+                      e.currentTarget.onerror =
+                        null;
+
+                      e.currentTarget.src =
+                        "https://randomuser.me/api/portraits/lego/1.jpg";
+                    }}
+                  />
+                </div>
+              </div>
+
+              <span className="photo-heart">
+                ♥
+              </span>
+            </div>
+
+            <h3>
+              {pair.user1Name}
+            </h3>
+
+            <span className="person-caption">
+              Niyati Member
+            </span>
+          </div>
+
+          {/* Heart */}
+
+          <div className="couple-connection">
+            <div className="connection-line"></div>
+
+            <div className="connection-heart">
+              <span>♥</span>
+            </div>
+
+            <span className="connection-label">
+              MATCHED
+            </span>
+          </div>
+
+          {/* Person 2 */}
+
+          <div className="success-person">
+            <div className="success-photo-wrapper">
+              <div className="photo-outer-ring">
+                <div className="photo-inner-ring">
+                  <img
+                    src={
+                      pair.user2Image
+                    }
+                    alt={pair.user2Name}
+                    onError={(e) => {
+                      e.currentTarget.onerror =
+                        null;
+
+                      e.currentTarget.src =
+                        "https://randomuser.me/api/portraits/lego/1.jpg";
+                    }}
+                  />
+                </div>
+              </div>
+
+              <span className="photo-heart">
+                ♥
+              </span>
+            </div>
+
+            <h3>
+              {pair.user2Name}
+            </h3>
+
+            <span className="person-caption">
+              Niyati Member
+            </span>
+          </div>
+        </div>
+
+        {/* Story */}
+
+        <div className="story-content">
+          <div className="story-title">
+            <span>♡</span>
+
+            <h2>
+              A Beautiful Connection
+            </h2>
+
+            <span>♡</span>
+          </div>
+
+          <p className="story-description">
+            “{story}”
+          </p>
+        </div>
+
+        {/* Footer */}
+
+        <div className="story-footer">
+          <div className="footer-decoration">
+            <span></span>
+            <i>♥</i>
+            <span></span>
+          </div>
+
+          <div className="matched-text">
+            <strong>
+              ♥ Matched on Niyati
+            </strong>
+
+            {formattedDate && (
+              <span>
+                {formattedDate}
+              </span>
+            )}
+          </div>
+
+          <div className="footer-decoration">
+            <span></span>
+            <i>♥</i>
+            <span></span>
+          </div>
+        </div>
+
+        {/* Privacy note */}
+
+        <div className="story-privacy">
+          <span>♡</span>
+          Shared with love, respecting
+          member privacy
+          <span>♡</span>
+        </div>
+      </article>
+    );
+  };
 
   /*
-  =========================================================
+  =====================================================
   MAIN RENDER
-  =========================================================
+  =====================================================
   */
 
   return (
+    <div className="success-stories-page">
+      <Navbar />
 
-    <div className="dashboard">
+      <main className="success-stories-container">
+        {/* Page Heading */}
 
-      <Sidebar />
-
-      <div className="main-content">
-
-        <Navbar />
-
-
-        <div
-  className={`dashboard-details-page ${
-    type === "activeUsers"
-      ? "active-users-page"
-      : ""
-  }`}
->
-          {/* =================================================
-              PAGE HEADER
-          ================================================= */}
-
-          <div className="details-page-header">
-
-            <div className="details-heading">
-
-              <div className="details-eyebrow">
-                {pageInfo.icon}{" "}
-                {pageInfo.eyebrow}
-              </div>
-
-              <h1>
-                {pageInfo.title}
-              </h1>
-
-              <p>
-                {pageInfo.description}
-              </p>
-
-            </div>
-
-
-            <div className="details-header-right">
-
-              <div className="details-count">
-
-                <strong>
-                  {pageInfo.count}
-                </strong>
-
-                <span>
-                  {type === "totalPairs"
-                    ? "MATCHES"
-                    : "PROFILES"}
-                </span>
-
-              </div>
-
-
-              <button
-                type="button"
-                className="details-back-btn"
-                onClick={() =>
-                  navigate("/dashboard")
-                }
-              >
-                ← Dashboard
-              </button>
-
-            </div>
-
+        <section className="success-page-heading">
+          <div className="heading-decoration">
+            <span></span>
+            <i>✦</i>
+            <span></span>
           </div>
 
+          <p className="heading-eyebrow">
+            NIYATI MATRIMONY
+          </p>
 
-          {/* =================================================
-              PAGE CONTENT
-          ================================================= */}
+          <h1>
+            Success Stories
+          </h1>
 
-          {type === "totalPairs"
-            ? renderPairs()
-            : type === "activeUsers"
-            ? renderActiveUsers()
-            : type === "inactiveUsers"
-            ? renderInactiveUsers()
-            : renderTotalUsers()}
+          <p className="heading-description">
+            Every match is the beginning of a
+            beautiful journey together.
+          </p>
 
+          <div className="heading-heart">
+            ♥
+          </div>
+        </section>
+
+        {/* Count */}
+
+        {pairs.length > 0 && (
+          <div className="success-count">
+            <span className="count-heart">
+              ♥
+            </span>
+
+            <strong>
+              {pairs.length}
+            </strong>
+
+            <span>
+              {pairs.length === 1
+                ? "SUCCESSFUL MATCH"
+                : "SUCCESSFUL MATCHES"}
+            </span>
+
+            <span className="count-heart">
+              ♥
+            </span>
+          </div>
+        )}
+
+        {/* Stories */}
+
+        {pairs.length === 0 ? (
+          renderEmptyState()
+        ) : (
+          <section className="success-stories-grid">
+            {pairs.map(
+              renderSuccessStory
+            )}
+          </section>
+        )}
+
+        {/* Bottom decoration */}
+
+        <div className="success-bottom-decoration">
+          <span></span>
+          <span>✦</span>
+          <span></span>
         </div>
-
-      </div>
-
+      </main>
     </div>
-
   );
-
 }
 
 export default DashboardUserDetails;

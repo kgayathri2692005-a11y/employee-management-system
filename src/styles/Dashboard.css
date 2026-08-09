@@ -643,34 +643,30 @@
    ========================================================= */
 
 .success-card {
-  width: 100%;
+    overflow: hidden;
 
-  overflow: hidden;
+    background: #fff;
 
-  background: #fff;
+    border: 1px solid rgba(104, 25, 35, 0.09);
+    border-radius: 10px;
 
-  border:
-    1px solid
-    rgba(104, 25, 35, 0.09);
+    box-shadow: 0 7px 22px rgba(65, 34, 34, 0.07);
 
-  border-radius: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
-  box-shadow:
-    0 7px 22px
-    rgba(65, 34, 34, 0.07);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .success-card:hover {
-  transform:
-    translateY(-4px);
+    transform: translateY(-4px);
 
-  box-shadow:
-    0 14px 30px
-    rgba(65, 34, 34, 0.12);
+    box-shadow:
+        0 14px 30px
+        rgba(65, 34, 34, 0.12);
 }
 
 /* =========================================================
@@ -737,57 +733,77 @@
    COUPLE IMAGES
    ========================================================= */
 
+/* =========================================================
+   COUPLE IMAGES — CURVED CORNERS
+   ========================================================= */
+
 .couple-images {
-  height: 185px;
+    height: 185px;
 
-  display: grid;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
-  grid-template-columns:
-    1fr
-    1fr;
+    gap: 2px;
 
-  gap: 2px;
+    background: #f1e7dc;
 
-  background:
-    #f1e7dc;
+    /* Curved outer corners */
+    border-radius: 10px 10px 0 0;
+
+    /* Important: clips the images to the curve */
+    overflow: hidden;
 }
 
 .story-person {
-  overflow: hidden;
-
-  background:
-    #f7f1ea;
+    overflow: hidden;
+    background: #f7f1ea;
 }
 
 .story-person img {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 
-  display: block;
+    display: block;
 
-  object-fit: cover;
+    object-fit: cover;
 
-  transition:
-    transform 0.45s ease;
+    transition: transform 0.45s ease;
 }
 
-.success-card:hover
-.story-person img {
-  transform:
-    scale(1.035);
+.success-card:hover .story-person img {
+    transform: scale(1.035);
 }
 
 /* =========================================================
    SUCCESS CARD CONTENT
    ========================================================= */
+.success-card {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(104, 25, 35, 0.09);
+    border-radius: 12px;
+    box-shadow: 0 7px 22px rgba(65, 34, 34, 0.07);
+}
 
+.couple-images {
+    height: 185px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  
+    overflow: hidden;
+    background: transparent;
+}
 .success-card-content {
-  padding:
-    14px
-    15px
-    16px;
+    padding: 14px 15px 16px;
 
-  text-align: center;
+    text-align: center;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .success-card-content h3 {
@@ -836,6 +852,26 @@
   color: #8a7779;
 
   font-size: 10px;
+}
+
+.success-grid {
+    position: relative;
+
+    flex: 1;
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+
+    overflow: hidden;
+
+    padding: 5px;
+
+    align-items: stretch;
 }
 
 .heart-small {
@@ -1472,9 +1508,19 @@
       12px;
   }
 
-  .couple-images {
-    height: 205px;
-  }
+.couple-images {
+    height: 185px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 0;
+
+    background: transparent;
+
+    overflow: hidden;
+}
 
   .success-card-content h3 {
     font-size: 21px;
@@ -1706,5 +1752,351 @@ VERY SMALL PHONES
     .niyati-dashboard .section-subtitle {
         font-size: 12px !important;
         margin-bottom: 18px !important;
+    }
+}
+/* =========================================================
+   NIYATI LOGO — SUBTLE FLORAL ELEGANT BORDER
+   Designed for the CURRENT NIYATI logo
+   Dashboard colors: Maroon + Orange + Gold
+========================================================= */
+
+.hero-logo-area {
+    position: relative;
+
+    min-height: 330px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   SOFT GOLDEN GLOW
+========================================================= */
+
+.hero-logo-glow {
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(216, 177, 122, 0.16) 0%,
+            rgba(216, 177, 122, 0.07) 42%,
+            transparent 70%
+        );
+
+    filter: blur(4px);
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   OUTER GOLD RING
+   Very subtle — does not overpower the logo
+========================================================= */
+
+.hero-logo-area::before {
+    content: "";
+
+    position: absolute;
+
+    width: 315px;
+    height: 315px;
+
+    border-radius: 50%;
+
+    border:
+        1.5px solid
+        rgba(184, 138, 85, 0.65);
+
+    box-shadow:
+        0 0 0 4px rgba(255, 253, 249, 0.85),
+        0 0 0 5px rgba(184, 138, 85, 0.20),
+        0 8px 22px rgba(104, 25, 35, 0.08);
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   INNER DELICATE GOLD RING
+========================================================= */
+
+.hero-logo-area::after {
+    content: "";
+
+    position: absolute;
+
+    width: 295px;
+    height: 295px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(184, 138, 85, 0.48);
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(216, 177, 122, 0.18);
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CURRENT LOGO
+========================================================= */
+
+.hero-logo {
+    position: relative;
+
+    z-index: 3;
+
+    width: 285px;
+    height: 285px;
+
+    max-width: 285px;
+    max-height: 285px;
+
+    object-fit: contain;
+
+    display: block;
+
+    background: transparent;
+
+    border: none;
+
+    border-radius: 50%;
+
+    filter:
+        drop-shadow(
+            0 10px 15px
+            rgba(104, 25, 35, 0.11)
+        );
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+/* =========================================================
+   SMALL GOLD DECORATIVE POINTS
+   Gives a little "matrimony premium" detail
+   without making a huge floral frame
+========================================================= */
+
+.hero-logo-area {
+    background-image:
+
+        /* Top */
+        radial-gradient(
+            circle,
+            rgba(184, 138, 85, 0.75) 0 2px,
+            transparent 2.5px
+        ),
+
+        /* Bottom */
+        radial-gradient(
+            circle,
+            rgba(184, 138, 85, 0.75) 0 2px,
+            transparent 2.5px
+        ),
+
+        /* Left */
+        radial-gradient(
+            circle,
+            rgba(184, 138, 85, 0.65) 0 1.5px,
+            transparent 2px
+        ),
+
+        /* Right */
+        radial-gradient(
+            circle,
+            rgba(184, 138, 85, 0.65) 0 1.5px,
+            transparent 2px
+        );
+
+    background-position:
+        50% 7px,
+        50% calc(100% - 7px),
+        7px 50%,
+        calc(100% - 7px) 50%;
+
+    background-size:
+        6px 6px,
+        6px 6px,
+        5px 5px,
+        5px 5px;
+
+    background-repeat: no-repeat;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.hero-logo:hover {
+    transform: translateY(-3px);
+
+    filter:
+        drop-shadow(
+            0 15px 21px
+            rgba(104, 25, 35, 0.16)
+        );
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .hero-logo-area {
+        min-height: 300px;
+    }
+
+    .hero-logo-area::before {
+        width: 290px;
+        height: 290px;
+    }
+
+    .hero-logo-area::after {
+        width: 272px;
+        height: 272px;
+    }
+
+    .hero-logo {
+        width: 260px;
+        height: 260px;
+
+        max-width: 260px;
+        max-height: 260px;
+    }
+
+    .hero-logo-glow {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .hero-logo-area {
+        min-height: 310px;
+    }
+
+    .hero-logo-area::before {
+        width: 285px;
+        height: 285px;
+    }
+
+    .hero-logo-area::after {
+        width: 265px;
+        height: 265px;
+    }
+
+    .hero-logo {
+        width: 250px;
+        height: 250px;
+
+        max-width: 250px;
+        max-height: 250px;
+    }
+
+    .hero-logo-glow {
+        width: 295px;
+        height: 295px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .hero-logo-area {
+        min-height: 275px;
+    }
+
+    .hero-logo-area::before {
+        width: 250px;
+        height: 250px;
+    }
+
+    .hero-logo-area::after {
+        width: 232px;
+        height: 232px;
+    }
+
+    .hero-logo {
+        width: 220px;
+        height: 220px;
+
+        max-width: 220px;
+        max-height: 220px;
+    }
+
+    .hero-logo-glow {
+        width: 260px;
+        height: 260px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .hero-logo-area {
+        min-height: 240px;
+    }
+
+    .hero-logo-area::before {
+        width: 220px;
+        height: 220px;
+    }
+
+    .hero-logo-area::after {
+        width: 204px;
+        height: 204px;
+    }
+
+    .hero-logo {
+        width: 195px;
+        height: 195px;
+
+        max-width: 195px;
+        max-height: 195px;
+    }
+
+    .hero-logo-glow {
+        width: 230px;
+        height: 230px;
     }
 }

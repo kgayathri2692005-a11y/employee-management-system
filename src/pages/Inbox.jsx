@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageNavigation from "../components/PageNavigation";
 import {
@@ -265,8 +264,6 @@ const sendMessage = () => {
 
   return (
     <div className="dashboard">
-
-      <Sidebar />
 
       <div className="main-content">
 

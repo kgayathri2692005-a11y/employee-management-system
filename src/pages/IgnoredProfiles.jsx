@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageNavigation from "../components/PageNavigation";
 
@@ -557,8 +556,6 @@ window.dispatchEvent(
   return (
 
     <div className="dashboard">
-
-      <Sidebar />
 
       <div className="main-content">
 

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
-import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import PageNavigation from "../components/PageNavigation";
 
@@ -607,8 +605,6 @@ function ViewProfile() {
   return (
 
     <div className="dashboard">
-
-      <Sidebar />
 
       <div className="main-content">
 

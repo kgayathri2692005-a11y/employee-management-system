@@ -10,9 +10,18 @@ function Search() {
     const [profiles, setProfiles] = useState([]);
     const [filteredProfiles, setFilteredProfiles] = useState([]);
 
+    // =========================================================
+    // FILTER STATES
+    // =========================================================
+
     const [searchName, setSearchName] = useState("");
     const [selectedCity, setSelectedCity] = useState("");
     const [selectedOccupation, setSelectedOccupation] = useState("");
+    const [selectedReligion, setSelectedReligion] = useState("");
+    const [selectedEducation, setSelectedEducation] = useState("");
+
+    const [minAge, setMinAge] = useState("");
+    const [maxAge, setMaxAge] = useState("");
 
     // =========================================================
     // GET PROFILE NAME
@@ -73,7 +82,7 @@ function Search() {
 
     const getAge = (profile) => {
         if (profile?.age) {
-            return profile.age;
+            return Number(profile.age);
         }
 
         if (profile?.dob) {
@@ -112,6 +121,7 @@ function Search() {
         return (
             profile?.currentCity ||
             profile?.city ||
+            profile?.location ||
             "Location not added"
         );
     };
@@ -130,11 +140,49 @@ function Search() {
     };
 
     // =========================================================
+    // GET RELIGION
+    // =========================================================
+
+    const getReligion = (profile) => {
+        return (
+            profile?.religion ||
+            profile?.religiousPreference ||
+            profile?.religionName ||
+            ""
+        );
+    };
+
+    // =========================================================
+    // GET EDUCATION
+    // =========================================================
+
+    const getEducation = (profile) => {
+        return (
+            profile?.education ||
+            profile?.highestEducation ||
+            profile?.qualification ||
+            ""
+        );
+    };
+
+    // =========================================================
     // LOAD PROFILES
     // =========================================================
 
     useEffect(() => {
         loadProfiles();
+
+        window.addEventListener(
+            "profileUpdated",
+            loadProfiles
+        );
+
+        return () => {
+            window.removeEventListener(
+                "profileUpdated",
+                loadProfiles
+            );
+        };
     }, []);
 
     const loadProfiles = () => {
@@ -163,9 +211,9 @@ function Search() {
                 .trim()
                 .toLowerCase();
 
-        // ---------------------------------------------------------
+        // =====================================================
         // FIND CURRENT USER PROFILE
-        // ---------------------------------------------------------
+        // =====================================================
 
         let currentProfile =
             allProfiles[currentEmail];
@@ -190,9 +238,9 @@ function Search() {
             return;
         }
 
-        // ---------------------------------------------------------
+        // =====================================================
         // CURRENT USER GENDER
-        // ---------------------------------------------------------
+        // =====================================================
 
         const currentGender =
             (
@@ -203,9 +251,9 @@ function Search() {
                 .trim()
                 .toLowerCase();
 
-        // ---------------------------------------------------------
+        // =====================================================
         // OPPOSITE GENDER
-        // ---------------------------------------------------------
+        // =====================================================
 
         let oppositeGender = "";
 
@@ -223,24 +271,24 @@ function Search() {
             oppositeGender = "male";
         }
 
-        // ---------------------------------------------------------
-        // GET ALL PROFILES
-        // ---------------------------------------------------------
+        // =====================================================
+        // ALL USERS
+        // =====================================================
 
         const allUsers =
-            Object.entries(allProfiles)
-                .map(([email, profile]) => ({
+            Object.entries(allProfiles).map(
+                ([email, profile]) => ({
                     ...profile,
                     email
-                }));
+                })
+            );
 
-        // ---------------------------------------------------------
-        // SHOW OPPOSITE GENDER
-        // ---------------------------------------------------------
+        // =====================================================
+        // OPPOSITE GENDER ONLY
+        // =====================================================
 
         const oppositeGenderProfiles =
             allUsers.filter((profile) => {
-
                 const profileEmail =
                     (profile.email || "")
                         .trim()
@@ -251,15 +299,13 @@ function Search() {
                         .trim()
                         .toLowerCase();
 
-                // Don't show yourself
+                // Never show yourself
                 if (
                     profileEmail === currentEmail
                 ) {
                     return false;
                 }
 
-                // If gender is available,
-                // show opposite gender only.
                 if (oppositeGender) {
                     return (
                         profileGender ===
@@ -275,87 +321,119 @@ function Search() {
     };
 
     // =========================================================
-    // FILTER PROFILES
+    // APPLY FILTERS
     // =========================================================
 
     useEffect(() => {
+        applyFilters();
+    }, [
+        searchName,
+        selectedCity,
+        selectedOccupation,
+        selectedReligion,
+        selectedEducation,
+        minAge,
+        maxAge,
+        profiles
+    ]);
 
+    const applyFilters = () => {
         let result = [...profiles];
 
-        // NAME SEARCH
+        // NAME
         if (searchName.trim() !== "") {
-
             const search =
                 searchName
                     .trim()
                     .toLowerCase();
 
-            result = result.filter((profile) => {
-
-                const name =
-                    getProfileName(profile)
-                        .toLowerCase();
-
-                return name.includes(search);
-            });
+            result = result.filter((profile) =>
+                getProfileName(profile)
+                    .toLowerCase()
+                    .includes(search)
+            );
         }
 
-        // CITY FILTER
+        // CITY
         if (selectedCity !== "") {
+            result = result.filter((profile) =>
+                getCity(profile)
+                    .toLowerCase() ===
+                selectedCity.toLowerCase()
+            );
+        }
 
+        // OCCUPATION
+        if (selectedOccupation !== "") {
+            result = result.filter((profile) =>
+                getOccupation(profile)
+                    .toLowerCase() ===
+                selectedOccupation.toLowerCase()
+            );
+        }
+
+        // RELIGION
+        if (selectedReligion !== "") {
+            result = result.filter((profile) =>
+                getReligion(profile)
+                    .toLowerCase() ===
+                selectedReligion.toLowerCase()
+            );
+        }
+
+        // EDUCATION
+        if (selectedEducation !== "") {
+            result = result.filter((profile) =>
+                getEducation(profile)
+                    .toLowerCase() ===
+                selectedEducation.toLowerCase()
+            );
+        }
+
+        // MIN AGE
+        if (minAge !== "") {
             result = result.filter((profile) => {
-
-                const city =
-                    getCity(profile)
-                        .toLowerCase();
+                const age = getAge(profile);
 
                 return (
-                    city ===
-                    selectedCity.toLowerCase()
+                    age !== "" &&
+                    age >= Number(minAge)
                 );
             });
         }
 
-        // OCCUPATION FILTER
-        if (selectedOccupation !== "") {
-
+        // MAX AGE
+        if (maxAge !== "") {
             result = result.filter((profile) => {
-
-                const occupation =
-                    getOccupation(profile)
-                        .toLowerCase();
+                const age = getAge(profile);
 
                 return (
-                    occupation ===
-                    selectedOccupation.toLowerCase()
+                    age !== "" &&
+                    age <= Number(maxAge)
                 );
             });
         }
 
         setFilteredProfiles(result);
-
-    }, [
-        searchName,
-        selectedCity,
-        selectedOccupation,
-        profiles
-    ]);
+    };
 
     // =========================================================
-    // GET FILTER OPTIONS
+    // FILTER OPTIONS
     // =========================================================
 
     const cities = [
         ...new Set(
             profiles
-                .map((profile) => getCity(profile))
+                .map((profile) =>
+                    getCity(profile)
+                )
                 .filter(
                     (city) =>
                         city &&
                         city !== "Location not added"
                 )
         )
-    ];
+    ].sort();
 
     const occupations = [
         ...new Set(
@@ -369,7 +447,27 @@ function Search() {
                         occupation !== "Professional"
                 )
         )
-    ];
+    ].sort();
+
+    const religions = [
+        ...new Set(
+            profiles
+                .map((profile) =>
+                    getReligion(profile)
+                )
+                .filter(Boolean)
+        )
+    ].sort();
+
+    const educations = [
+        ...new Set(
+            profiles
+                .map((profile) =>
+                    getEducation(profile)
+                )
+                .filter(Boolean)
+        )
+    ].sort();
 
     // =========================================================
     // CLEAR FILTERS
@@ -379,6 +477,10 @@ function Search() {
         setSearchName("");
         setSelectedCity("");
         setSelectedOccupation("");
+        setSelectedReligion("");
+        setSelectedEducation("");
+        setMinAge("");
+        setMaxAge("");
     };
 
     // =========================================================
@@ -386,7 +488,6 @@ function Search() {
     // =========================================================
 
     const viewProfile = (profile) => {
-
         navigate(
             "/view-profile",
             {
@@ -406,11 +507,14 @@ function Search() {
     // =========================================================
 
     const ProfileCard = ({ profile }) => {
+        const age = getAge(profile);
+        const religion = getReligion(profile);
+        const education = getEducation(profile);
 
         return (
-            <div className="search-profile-card">
+            <article className="search-profile-card">
 
-                {/* PHOTO */}
+                {/* IMAGE */}
 
                 <div className="search-profile-photo">
 
@@ -425,13 +529,31 @@ function Search() {
                         }}
                     />
 
-                    <span className="search-verified">
-                        ✓ Verified
+                    {/* IMAGE OVERLAY */}
+
+                    <div className="search-photo-overlay">
+                        <span>
+                            ✦ NIYATI MEMBER
+                        </span>
+                    </div>
+
+                    {/* HEART */}
+
+                    <span className="search-heart">
+                        ♡
                     </span>
+
+                    {/* AGE OVER IMAGE */}
+
+                    {age && (
+                        <div className="search-photo-age">
+                            {age} yrs
+                        </div>
+                    )}
 
                 </div>
 
-                {/* INFORMATION */}
+                {/* CONTENT */}
 
                 <div className="search-profile-content">
 
@@ -448,14 +570,20 @@ function Search() {
                     </p>
 
                     <p className="search-location">
-                        📍 {getCity(profile)}
+                        <span className="location-icon">
+                            ●
+                        </span>
+
+                        {getCity(profile)}
                     </p>
+
+                    {/* BASIC DETAILS */}
 
                     <div className="search-profile-meta">
 
-                        {getAge(profile) && (
+                        {age && (
                             <span>
-                                {getAge(profile)} yrs
+                                {age} yrs
                             </span>
                         )}
 
@@ -473,18 +601,64 @@ function Search() {
 
                     </div>
 
-                    <button
-                        className="search-view-btn"
-                        onClick={() =>
-                            viewProfile(profile)
-                        }
-                    >
-                        View Profile
-                    </button>
+                    {/* EXTRA DETAILS */}
+
+                    {(religion || education) && (
+                        <div className="search-extra-details">
+
+                            {religion && (
+                                <div>
+                                    <small>
+                                        Religion
+                                    </small>
+
+                                    <strong>
+                                        {religion}
+                                    </strong>
+                                </div>
+                            )}
+
+                            {education && (
+                                <div>
+                                    <small>
+                                        Education
+                                    </small>
+
+                                    <strong>
+                                        {education}
+                                    </strong>
+                                </div>
+                            )}
+
+                        </div>
+                    )}
+
+                    {/* BOTTOM */}
+
+                    <div className="search-card-bottom">
+
+                        <span className="search-match">
+                            ● Profile available
+                        </span>
+
+                        {/* VIEW PROFILE REMAINS */}
+
+                        <button
+                            type="button"
+                            className="search-view-btn"
+                            onClick={() =>
+                                viewProfile(profile)
+                            }
+                        >
+                            View Profile
+                            <span>→</span>
+                        </button>
+
+                    </div>
 
                 </div>
 
-            </div>
+            </article>
         );
     };
 
@@ -493,71 +667,186 @@ function Search() {
     // =========================================================
 
     return (
-
         <div className="search-page">
 
             <Navbar />
 
             {/* =================================================
-                PAGE HEADER
+                INTRO
             ================================================= */}
 
-            <section className="search-header">
+            <section className="search-intro">
 
-                <div>
+                <div className="search-intro-content">
 
-                    <span className="search-small-title">
-                        FIND YOUR DESTINED PARTNER
+                    <span className="search-eyebrow">
+                        ✦ FIND YOUR DESTINED PARTNER ✦
                     </span>
 
                     <h1>
-                        Browse Profiles
+                        Discover Your
+                        <span> Perfect Match</span>
                     </h1>
 
                     <p>
-                        Discover meaningful connections
-                        from the Niyati community.
+                        Explore meaningful profiles
+                        and discover a connection that
+                        feels right for you.
                     </p>
 
+                </div>
+
+                <div className="search-intro-decoration">
+                    <div className="intro-person maroon">
+                        ●
+                    </div>
+
+                    <div className="intro-heart">
+                        ♥
+                    </div>
+
+                    <div className="intro-person orange">
+                        ●
+                    </div>
                 </div>
 
             </section>
 
             {/* =================================================
-                FILTER BAR
+                MAIN
             ================================================= */}
 
-            <section className="search-filter-section">
+            <main className="search-main">
 
-                <div className="search-filter-box">
+                {/* =================================================
+                    FILTER PANEL
+                ================================================= */}
+
+                <aside className="search-filter-panel">
+
+                    <div className="filter-panel-heading">
+
+                        <div className="filter-icon">
+                            ⚙
+                        </div>
+
+                        <div>
+                            <span>
+                                REFINE SEARCH
+                            </span>
+
+                            <h2>
+                                Find Your Match
+                            </h2>
+                        </div>
+
+                    </div>
+
+                    <div className="filter-divider"></div>
 
                     {/* NAME */}
 
                     <div className="search-field">
 
                         <label>
-                            Search
+                            Search by Name
                         </label>
 
-                        <input
-                            type="text"
-                            placeholder="Search by name..."
-                            value={searchName}
-                            onChange={(e) =>
-                                setSearchName(
-                                    e.target.value
-                                )
-                            }
-                        />
+                        <div className="input-wrapper">
+
+                            <span>
+                                🔍
+                            </span>
+
+                            <input
+                                type="text"
+                                placeholder="Enter name..."
+                                value={searchName}
+                                onChange={(e) =>
+                                    setSearchName(
+                                        e.target.value
+                                    )
+                                }
+                            />
+
+                        </div>
 
                     </div>
 
-                    {/* CITY */}
+                    {/* AGE */}
 
                     <div className="search-field">
 
                         <label>
-                            City
+                            Age
+                        </label>
+
+                        <div className="age-filter-row">
+
+                            <select
+                                value={minAge}
+                                onChange={(e) =>
+                                    setMinAge(
+                                        e.target.value
+                                    )
+                                }
+                            >
+                                <option value="">
+                                    Min
+                                </option>
+
+                                {Array.from(
+                                    { length: 33 },
+                                    (_, i) => i + 18
+                                ).map((age) => (
+                                    <option
+                                        key={age}
+                                        value={age}
+                                    >
+                                        {age}
+                                    </option>
+                                ))}
+                            </select>
+
+                            <span>
+                                to
+                            </span>
+
+                            <select
+                                value={maxAge}
+                                onChange={(e) =>
+                                    setMaxAge(
+                                        e.target.value
+                                    )
+                                }
+                            >
+                                <option value="">
+                                    Max
+                                </option>
+
+                                {Array.from(
+                                    { length: 33 },
+                                    (_, i) => i + 18
+                                ).map((age) => (
+                                    <option
+                                        key={age}
+                                        value={age}
+                                    >
+                                        {age}
+                                    </option>
+                                ))}
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    {/* LOCATION */}
+
+                    <div className="search-field">
+
+                        <label>
+                            Location
                         </label>
 
                         <select
@@ -570,16 +859,50 @@ function Search() {
                         >
 
                             <option value="">
-                                All Cities
+                                All Locations
                             </option>
 
-                            {cities.map(
-                                (city) => (
+                            {cities.map((city) => (
+                                <option
+                                    key={city}
+                                    value={city}
+                                >
+                                    {city}
+                                </option>
+                            ))}
+
+                        </select>
+
+                    </div>
+
+                    {/* RELIGION */}
+
+                    <div className="search-field">
+
+                        <label>
+                            Religion
+                        </label>
+
+                        <select
+                            value={selectedReligion}
+                            onChange={(e) =>
+                                setSelectedReligion(
+                                    e.target.value
+                                )
+                            }
+                        >
+
+                            <option value="">
+                                All Religions
+                            </option>
+
+                            {religions.map(
+                                (religion) => (
                                     <option
-                                        key={city}
-                                        value={city}
+                                        key={religion}
+                                        value={religion}
                                     >
-                                        {city}
+                                        {religion}
                                     </option>
                                 )
                             )}
@@ -588,18 +911,52 @@ function Search() {
 
                     </div>
 
-                    {/* OCCUPATION */}
+                    {/* EDUCATION */}
 
                     <div className="search-field">
 
                         <label>
-                            Occupation
+                            Education
                         </label>
 
                         <select
-                            value={
-                                selectedOccupation
+                            value={selectedEducation}
+                            onChange={(e) =>
+                                setSelectedEducation(
+                                    e.target.value
+                                )
                             }
+                        >
+
+                            <option value="">
+                                All Education
+                            </option>
+
+                            {educations.map(
+                                (education) => (
+                                    <option
+                                        key={education}
+                                        value={education}
+                                    >
+                                        {education}
+                                    </option>
+                                )
+                            )}
+
+                        </select>
+
+                    </div>
+
+                    {/* PROFESSION */}
+
+                    <div className="search-field">
+
+                        <label>
+                            Profession
+                        </label>
+
+                        <select
+                            value={selectedOccupation}
                             onChange={(e) =>
                                 setSelectedOccupation(
                                     e.target.value
@@ -608,7 +965,7 @@ function Search() {
                         >
 
                             <option value="">
-                                All Occupations
+                                All Professions
                             </option>
 
                             {occupations.map(
@@ -626,90 +983,134 @@ function Search() {
 
                     </div>
 
-                    {/* CLEAR */}
+                    {/* SEARCH */}
 
                     <button
-                        className="search-clear-btn"
-                        onClick={clearFilters}
+                        type="button"
+                        className="search-apply-btn"
+                        onClick={applyFilters}
                     >
-                        Clear
+                        Search Profiles
+                        <span>→</span>
                     </button>
 
-                </div>
+                    {/* RESET */}
 
-            </section>
+                    <button
+                        type="button"
+                        className="search-reset-btn"
+                        onClick={clearFilters}
+                    >
+                        Reset Filters
+                    </button>
 
-            {/* =================================================
-                RESULTS
-            ================================================= */}
-
-            <section className="search-results-section">
-
-                <div className="search-results-heading">
-
-                    <div>
+                    <div className="filter-note">
 
                         <span>
-                            NIYATI MATRIMONY
+                            ♥
                         </span>
 
-                        <h2>
-                            Profiles You May Like
-                        </h2>
-
-                    </div>
-
-                    <strong>
-                        {filteredProfiles.length} Profiles
-                    </strong>
-
-                </div>
-
-                {filteredProfiles.length > 0 ? (
-
-                    <div className="search-profile-grid">
-
-                        {filteredProfiles.map(
-                            (profile) => (
-
-                                <ProfileCard
-                                    key={profile.email}
-                                    profile={profile}
-                                />
-
-                            )
-                        )}
-
-                    </div>
-
-                ) : (
-
-                    <div className="search-empty">
-
-                        <div className="search-empty-icon">
-                            ♡
-                        </div>
-
-                        <h3>
-                            No profiles found
-                        </h3>
-
                         <p>
-                            Try changing your search
-                            or filters.
+                            Every connection begins
+                            with understanding.
                         </p>
 
-                        <button
-                            onClick={clearFilters}
-                        >
-                            Clear Filters
-                        </button>
+                    </div>
+
+                </aside>
+
+                {/* =================================================
+                    RESULTS
+                ================================================= */}
+
+                <section className="search-results">
+
+                    <div className="search-results-top">
+
+                        <div>
+
+                            <span className="results-eyebrow">
+                                NIYATI MATRIMONY
+                            </span>
+
+                            <h2>
+                                Profiles You May Like
+                            </h2>
+
+                            <p>
+                                Discover profiles based
+                                on your preferences.
+                            </p>
+
+                        </div>
+
+                        <div className="results-count">
+
+                            <strong>
+                                {filteredProfiles.length}
+                            </strong>
+
+                            <span>
+                                PROFILES
+                            </span>
+
+                        </div>
 
                     </div>
 
-                )}
+                    {/* PROFILE GRID */}
 
-            </section>
+                    {filteredProfiles.length > 0 ? (
+
+                        <div className="search-profile-grid">
+
+                            {filteredProfiles.map(
+                                (profile) => (
+                                    <ProfileCard
+                                        key={profile.email}
+                                        profile={profile}
+                                    />
+                                )
+                            )}
+
+                        </div>
+
+                    ) : (
+
+                        <div className="search-empty">
+
+                            <div className="search-empty-heart">
+                                ♡
+                            </div>
+
+                            <span>
+                                NIYATI MATRIMONY
+                            </span>
+
+                            <h3>
+                                No profiles found
+                            </h3>
+
+                            <p>
+                                We couldn't find profiles
+                                matching your current
+                                preferences.
+                            </p>
+
+                            <button
+                                type="button"
+                                onClick={clearFilters}
+                            >
+                                Clear Filters
+                            </button>
+
+                        </div>
+
+                    )}
+
+                </section>
+
+            </main>
 
         </div>
     );
