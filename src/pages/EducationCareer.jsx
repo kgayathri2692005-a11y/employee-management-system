@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from "react";
+import {
+    FaGraduationCap,
+    FaUniversity,
+    FaBriefcase,
+    FaBuilding,
+    FaMoneyBillWave,
+    FaMapMarkerAlt
+} from "react-icons/fa";
 import "../styles/CompleteProfile.css";
 
 function EducationCareer({ onNext, onPrevious }) {
@@ -284,7 +292,9 @@ function EducationCareer({ onNext, onPrevious }) {
 
                         </label>
 
+<div className="input-with-icon">
 
+    <FaGraduationCap className="input-icon" />
                         <select
 
                             value={qualification}
@@ -422,6 +432,7 @@ function EducationCareer({ onNext, onPrevious }) {
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.qualification && (
@@ -452,7 +463,9 @@ function EducationCareer({ onNext, onPrevious }) {
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaUniversity className="input-icon" />
 
                         <input
 
@@ -483,6 +496,7 @@ function EducationCareer({ onNext, onPrevious }) {
                             }
 
                         />
+                        </div>
 
 
                         {errors.college && (
@@ -522,7 +536,9 @@ function EducationCareer({ onNext, onPrevious }) {
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaBriefcase className="input-icon" />
 
                         <select
 
@@ -685,6 +701,7 @@ function EducationCareer({ onNext, onPrevious }) {
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.occupation && (
@@ -709,7 +726,9 @@ function EducationCareer({ onNext, onPrevious }) {
                             Company Name
 
                         </label>
+<div className="input-with-icon">
 
+    <FaBuilding className="input-icon" />
 
                         <input
 
@@ -726,6 +745,7 @@ function EducationCareer({ onNext, onPrevious }) {
                             }}
 
                         />
+                        </div>
 
                     </div>
 
@@ -755,7 +775,9 @@ function EducationCareer({ onNext, onPrevious }) {
 
                         </label>
 
+<div className="input-with-icon">
 
+    <FaMoneyBillWave className="input-icon" />
                         <input
 
                             type="text"
@@ -794,6 +816,7 @@ function EducationCareer({ onNext, onPrevious }) {
                             }
 
                         />
+                        </div>
 
 
                         {errors.income && (
@@ -819,7 +842,9 @@ function EducationCareer({ onNext, onPrevious }) {
 
                         </label>
 
+<div className="input-with-icon">
 
+    <FaMapMarkerAlt className="input-icon" />
                         <input
 
                             type="text"
@@ -840,6 +865,7 @@ function EducationCareer({ onNext, onPrevious }) {
                             }}
 
                         />
+                        </div>
 
                     </div>
 

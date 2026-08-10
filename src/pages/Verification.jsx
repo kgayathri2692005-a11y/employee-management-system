@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+    FaShieldAlt,
+    FaMobileAlt,
+    FaEnvelope,
+    FaIdCard,
+    FaAward,
+    FaCalendarAlt,
+    FaCheckCircle,
+    FaArrowLeft,
+    FaCheck
+} from "react-icons/fa";
 import "../styles/CompleteProfile.css";
 
 function Verification({
@@ -752,11 +763,22 @@ setTimeout(() => {
                 </p>
 
 
-                <h2>
+               <div className="section-heading">
+<div className="section-heading-icon">
+    <FaShieldAlt />
+</div>
 
-                    Verification
+    <div>
+        <h2>
+            Verification
+        </h2>
 
-                </h2>
+        <p>
+            Verify your contact details and identity to complete your profile.
+        </p>
+    </div>
+
+</div>
 
 
                 {/* =================================================
@@ -768,11 +790,10 @@ setTimeout(() => {
 
                     <div className="form-group">
 
-                        <label>
-
-                            Mobile Number
-
-                        </label>
+                     <label>
+    <FaMobileAlt className="field-icon" />
+    Mobile Number
+</label>
 
 
                         <input
@@ -848,7 +869,8 @@ setTimeout(() => {
 
                             >
 
-                                ✓ Mobile Verified
+                               <FaCheckCircle />
+Mobile Verified
 
                             </button>
 
@@ -882,11 +904,10 @@ setTimeout(() => {
 
                         <div className="form-group">
 
-                            <label>
-
-                                Enter Mobile OTP
-
-                            </label>
+                          <label>
+    <FaShieldAlt className="field-icon" />
+    Enter Mobile OTP
+</label>
 
 
                             <input
@@ -985,11 +1006,10 @@ setTimeout(() => {
 
                     <div className="form-group">
 
-                        <label>
-
-                            Email
-
-                        </label>
+                      <label>
+    <FaEnvelope className="field-icon" />
+    Email
+</label>
 
 
                         <input
@@ -1064,7 +1084,8 @@ setTimeout(() => {
 
                             >
 
-                                ✓ Email Verified
+                               <FaCheckCircle />
+Email Verified
 
                             </button>
 
@@ -1097,14 +1118,10 @@ setTimeout(() => {
                     <div className="form-row">
 
                         <div className="form-group">
-
-                            <label>
-
-                                Enter Email OTP
-
-                            </label>
-
-
+<label>
+    <FaShieldAlt className="field-icon" />
+    Enter Email OTP
+</label>
                             <input
 
                                 type="text"
@@ -1201,17 +1218,17 @@ setTimeout(() => {
 
                     <div className="form-group">
 
-                        <label>
+                    <label>
 
-                            ID Proof
+    <FaIdCard className="field-icon" />
 
-                            <span className="required-star">
+    ID Proof
 
-                                *
+    <span className="required-star">
+        *
+    </span>
 
-                            </span>
-
-                        </label>
+</label>
 
 
                         <input
@@ -1263,12 +1280,10 @@ setTimeout(() => {
 
                     <div className="form-group">
 
-                        <label>
-
-                            Verification Badge
-
-                        </label>
-
+                     <label>
+    <FaAward className="field-icon" />
+    Verification Badge
+</label>
 
                         <input
 
@@ -1293,11 +1308,10 @@ setTimeout(() => {
 
                     <div className="form-group">
 
-                        <label>
-
-                            Verified Date
-
-                        </label>
+                    <label>
+    <FaCalendarAlt className="field-icon" />
+    Verified Date
+</label>
 
 
                         <input
@@ -1333,34 +1347,23 @@ setTimeout(() => {
                 <div className="button-group-between">
 
 
-                    <button
+                   <button
+    className="previous-btn"
+    type="button"
+    onClick={onPrevious}
+>
+    <FaArrowLeft />
+    Previous
+</button>
 
-                        className="previous-btn"
-
-                        onClick={
-                            onPrevious
-                        }
-
-                    >
-
-                        ← Previous
-
-                    </button>
-
-
-                    <button
-
-                        className="save-btn"
-
-                        onClick={
-                            handleFinish
-                        }
-
-                    >
-
-                        Finish
-
-                    </button>
+                   <button
+    className="save-btn"
+    type="button"
+    onClick={handleFinish}
+>
+    Finish
+    <FaCheck />
+</button>
 
 
                 </div>

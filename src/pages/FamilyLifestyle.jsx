@@ -1,4 +1,14 @@
 import React, { useEffect, useState } from "react";
+import {
+    FaUserTie,
+    FaUser,
+    FaUsers,
+    FaHome,
+    FaUtensils,
+    FaSmoking,
+    FaWineGlass,
+    FaPalette
+} from "react-icons/fa";
 import "../styles/CompleteProfile.css";
 
 function FamilyLifestyle({ onNext, onPrevious }) {
@@ -324,7 +334,9 @@ function FamilyLifestyle({ onNext, onPrevious }) {
 
                         </label>
 
+<div className="input-with-icon">
 
+    <FaUserTie className="input-icon" />
                         <input
 
                             type="text"
@@ -359,6 +371,7 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             }
 
                         />
+                        </div>
 
 
                         {errors.fatherName && (
@@ -390,7 +403,9 @@ function FamilyLifestyle({ onNext, onPrevious }) {
 
                         </label>
 
+<div className="input-with-icon">
 
+    <FaUser className="input-icon" />
                         <input
 
                             type="text"
@@ -425,6 +440,7 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             }
 
                         />
+                        </div>
 
 
                         {errors.motherName && (
@@ -464,7 +480,9 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaUsers className="input-icon" />
 
                         <input
 
@@ -502,6 +520,7 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             }
 
                         />
+                        </div>
 
 
                         {errors.siblings && (
@@ -532,7 +551,9 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaHome className="input-icon" />
 
                         <select
 
@@ -587,6 +608,7 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.familyType && (
@@ -626,7 +648,9 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaUtensils className="input-icon" />
 
                         <select
 
@@ -687,6 +711,7 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.foodPreference && (
@@ -717,6 +742,9 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             </span>
 
                         </label>
+                        <div className="input-with-icon">
+
+    <FaSmoking className="input-icon" />
 
 
                         <select
@@ -772,6 +800,7 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.smokingHabit && (
@@ -811,6 +840,9 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             </span>
 
                         </label>
+                        <div className="input-with-icon">
+
+    <FaWineGlass className="input-icon" />
 
 
                         <select
@@ -866,6 +898,7 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.drinkingHabit && (
@@ -890,6 +923,9 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             Hobbies & Interests
 
                         </label>
+                        <div className="input-with-icon textarea-with-icon">
+
+    <FaPalette className="input-icon" />
 
 
                         <textarea
@@ -907,6 +943,7 @@ function FamilyLifestyle({ onNext, onPrevious }) {
                             }}
 
                         ></textarea>
+                        </div>
 
                     </div>
 

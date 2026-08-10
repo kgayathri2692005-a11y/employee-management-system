@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../styles/ForgotPassword.css";
 
@@ -65,7 +66,13 @@ function ForgotPassword() {
 
         <div className="forgot-header">
 
-          <h1>Forgot Password</h1>
+  <img
+    src="/niyati-logo.jpeg"
+    alt="Niyati Matrimony Logo"
+    className="forgot-logo"
+  />
+
+  <h1>Forgot Password</h1>
 
           <p>
             Enter your registered Email
@@ -80,26 +87,29 @@ function ForgotPassword() {
           <div className="input-group">
 
             <label>
-              Email / Phone Number
+             <span>Email / Phone Number</span>
             </label>
 
-            <input
-              type="text"
-              placeholder="Enter Email or Phone Number"
-              value={contact}
-              onChange={(e) => {
-                setContact(
-                  e.target.value
-                );
-                setContactError("");
-              }}
-              className={
-                contactError
-                  ? "input-error"
-                  : ""
-              }
-            />
+           <div className="input-with-icon">
+  <FaUser className="input-icon" />
 
+  <input
+    type="text"
+    placeholder="Enter Email or Phone Number"
+    value={contact}
+    onChange={(e) => {
+      setContact(
+        e.target.value
+      );
+      setContactError("");
+    }}
+    className={
+      contactError
+        ? "input-error"
+        : ""
+    }
+  />
+</div>
             {contactError && (
               <p className="error-text">
                 {contactError}
@@ -119,7 +129,7 @@ function ForgotPassword() {
             className="back-login"
             onClick={() => navigate("/")}
           >
-            Back to Login
+            Back to <span>Login</span> 
           </div>
 
         </form>

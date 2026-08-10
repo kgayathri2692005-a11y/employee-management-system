@@ -1,4 +1,8 @@
 import { useState } from "react";
+import {
+  FaUser,
+  FaLock
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
@@ -131,14 +135,19 @@ axios
 
       <div className="login-card">
 
+        <img
+  src="/niyati-logo.jpeg"
+  alt="Niyati Matrimony Logo"
+  className="login-logo"
+/>
+
         <div className="login-header">
-          <h1>
-            Employee Management System
-          </h1>
+         <h1>
+  Niyati Matrimony
+</h1>
 
           <p>
-            Welcome back! Please sign in
-            to continue
+           Welcome back! Please sign in to continue your journey
           </p>
         </div>
 
@@ -146,27 +155,26 @@ axios
 
           <div className="input-group">
 
-            <label>
-              Email / Phone Number
-            </label>
+           <div className="input-with-icon">
+  <FaUser className="input-icon" />
 
-            <input
-              type="text"
-              placeholder="Enter Email or Phone Number"
-              autoComplete="username"
-              value={username}
-              onChange={(e) => {
-                setUsername(e.target.value);
-                setUsernameError("");
-              }}
-              className={
-                usernameError
-                  ? "input-error"
-                  : ""
-              }
-              required
-            />
-
+  <input
+    type="text"
+    placeholder="Enter Email or Phone Number"
+    autoComplete="username"
+    value={username}
+    onChange={(e) => {
+      setUsername(e.target.value);
+      setUsernameError("");
+    }}
+    className={
+      usernameError
+        ? "input-error"
+        : ""
+    }
+    required
+  />
+</div>
             {usernameError && (
               <p className="error-text">
                 {usernameError}
@@ -179,44 +187,45 @@ axios
 
             <label>Password</label>
 
-            <div className="password-wrapper">
+           <div className="password-wrapper">
 
-              <input
-                type={
-                  showPassword
-                    ? "text"
-                    : "password"
-                }
-                placeholder="Enter Password"
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setPasswordError("");
-                }}
-                className={
-                  passwordError
-                    ? "input-error"
-                    : ""
-                }
-                required
-              />
+  <FaLock className="password-icon" />
 
-              <span
-                className="toggle-password"
-                onClick={() =>
-                  setShowPassword(
-                    !showPassword
-                  )
-                }
-              >
-                {showPassword
-                  ? "Hide"
-                  : "Show"}
-              </span>
+  <input
+    type={
+      showPassword
+        ? "text"
+        : "password"
+    }
+    placeholder="Enter Password"
+    autoComplete="current-password"
+    value={password}
+    onChange={(e) => {
+      setPassword(e.target.value);
+      setPasswordError("");
+    }}
+    className={
+      passwordError
+        ? "input-error"
+        : ""
+    }
+    required
+  />
 
-            </div>
+  <span
+    className="toggle-password"
+    onClick={() =>
+      setShowPassword(
+        !showPassword
+      )
+    }
+  >
+    {showPassword
+      ? "Hide"
+      : "Show"}
+  </span>
 
+</div>
             {passwordError && (
               <p className="error-text">
                 {passwordError}
@@ -226,16 +235,14 @@ axios
           </div>
 
           <div className="remember-row">
-
-            <label className="remember-label">
-
-              <input type="checkbox" />
-
-              Remember Me
-
-            </label>
-
-          </div>
+  <label className="remember-label">
+    <input
+      type="checkbox"
+      className="remember-checkbox"
+    />
+    <span>Remember Me</span>
+  </label>
+</div>
 
           <button
             type="submit"

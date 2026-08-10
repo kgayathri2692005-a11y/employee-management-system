@@ -1,4 +1,15 @@
 import React, { useEffect, useState } from "react";
+import {
+    FaPrayingHands,
+    FaUsers,
+    FaLanguage,
+    FaFlag,
+    FaMapMarkerAlt,
+    FaCity,
+    FaMap,
+    FaGlobe
+} from "react-icons/fa";
+
 import "../styles/CompleteProfile.css";
 
 function ReligionIdentity({
@@ -552,7 +563,9 @@ function ReligionIdentity({
 
                         </label>
 
+<div className="input-with-icon">
 
+    <FaPrayingHands className="input-icon" />
                         <select
 
                             value={religion}
@@ -613,6 +626,7 @@ function ReligionIdentity({
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.religion && (
@@ -641,7 +655,9 @@ function ReligionIdentity({
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaUsers className="input-icon" />
 
                         <input
 
@@ -669,6 +685,7 @@ function ReligionIdentity({
                             }
 
                         />
+                        </div>
 
 
                         {errors.caste && (
@@ -706,7 +723,9 @@ function ReligionIdentity({
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaLanguage className="input-icon" />
 
                         <select
 
@@ -776,6 +795,7 @@ function ReligionIdentity({
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.motherTongue && (
@@ -804,7 +824,9 @@ function ReligionIdentity({
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaFlag className="input-icon" />
 
                         <select
 
@@ -846,7 +868,7 @@ function ReligionIdentity({
                             </option>
 
                         </select>
-
+                        </div>
 
                         {errors.nationality && (
 
@@ -890,7 +912,9 @@ function ReligionIdentity({
                             </span>
 
                         </label>
+<div className="input-with-icon textarea-with-icon">
 
+    <FaMapMarkerAlt className="input-icon" />
 
                         <textarea
 
@@ -936,6 +960,7 @@ function ReligionIdentity({
                             }
 
                         ></textarea>
+                        </div>
 
 
                         {errors.currentAddress && (
@@ -972,7 +997,9 @@ function ReligionIdentity({
 
                         </label>
 
+<div className="input-with-icon">
 
+    <FaCity className="input-icon" />
                         <select
 
                             value={currentCity}
@@ -1058,6 +1085,7 @@ function ReligionIdentity({
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.currentCity && (
@@ -1087,7 +1115,9 @@ function ReligionIdentity({
 
                         </label>
 
+<div className="input-with-icon">
 
+    <FaMap className="input-icon" />
                         <select
 
                             value={currentState}
@@ -1165,6 +1195,7 @@ function ReligionIdentity({
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.currentState && (
@@ -1198,7 +1229,9 @@ function ReligionIdentity({
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaGlobe className="input-icon" />
 
                         <select
 
@@ -1253,6 +1286,7 @@ function ReligionIdentity({
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.currentCountry && (
@@ -1313,7 +1347,9 @@ function ReligionIdentity({
                             </span>
 
                         </label>
+<div className="input-with-icon textarea-with-icon">
 
+    <FaMapMarkerAlt className="input-icon" />
 
                         <textarea
 
@@ -1343,7 +1379,7 @@ function ReligionIdentity({
                             }
 
                         ></textarea>
-
+                         </div>
 
                         {errors.permanentAddress && (
 
@@ -1379,7 +1415,9 @@ function ReligionIdentity({
 
                         </label>
 
+<div className="input-with-icon">
 
+    <FaCity className="input-icon" />
                         <select
 
                             value={permanentCity}
@@ -1454,6 +1492,7 @@ function ReligionIdentity({
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.permanentCity && (
@@ -1482,7 +1521,9 @@ function ReligionIdentity({
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaMap className="input-icon" />
 
                         <select
 
@@ -1550,7 +1591,7 @@ function ReligionIdentity({
                             </option>
 
                         </select>
-
+</div>
 
                         {errors.permanentState && (
 
@@ -1583,7 +1624,9 @@ function ReligionIdentity({
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaGlobe className="input-icon" />
 
                         <select
 
@@ -1627,7 +1670,7 @@ function ReligionIdentity({
                             </option>
 
                         </select>
-
+</div>
 
                         {errors.permanentCountry && (
 

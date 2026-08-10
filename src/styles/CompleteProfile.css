@@ -2,14 +2,12 @@
    COMPLETE PROFILE PAGE
 ========================================================= */
 
+
+
 .profile-page {
     min-height: 100vh;
     padding: 40px 20px;
-    background: linear-gradient(
-        135deg,
-        #fff5f7,
-        #f8f5ff
-    );
+    background: #FCE8D5;
     box-sizing: border-box;
     font-family: "Segoe UI", Arial, sans-serif;
 }
@@ -57,12 +55,7 @@
 /* ACTIVE STEP */
 
 .progress-step.active {
-    background: linear-gradient(
-        135deg,
-        #e91e63,
-        #9c27b0
-    );
-
+     background: #E87512;
     color: white;
 
     box-shadow:
@@ -92,11 +85,7 @@
 /* ACTIVE LINE */
 
 .progress-line.active {
-    background: linear-gradient(
-        90deg,
-        #e91e63,
-        #9c27b0
-    );
+    background:#E87512;
 }
 
 
@@ -141,7 +130,7 @@
     font-size: 32px;
     font-weight: 700;
 
-    color: #9c27b0;
+    color: #6B1F1F;
 }
 
 
@@ -155,7 +144,7 @@
 
     text-align: center;
 
-    color: #777;
+    color: #8B4A3A;
 
     font-size: 15px;
 }
@@ -168,13 +157,9 @@
 .profile-card h2 {
     margin-top: 25px;
     margin-bottom: 25px;
-
-    color: #333;
-
+    color: #6B1F1F;
     font-size: 24px;
-
-    border-left: 5px solid #e91e63;
-
+    border-left: 5px solid #E87512;
     padding-left: 12px;
 }
 
@@ -215,7 +200,7 @@
 
     font-weight: 600;
 
-    color: #444;
+    color: #6B1F1F;
 }
 
 
@@ -224,7 +209,7 @@
 ========================================================= */
 
 .required-star {
-    color: #e91e63;
+    color: #E87512;
 
     margin-left: 4px;
 
@@ -246,13 +231,13 @@
 
     box-sizing: border-box;
 
-    border: 1px solid #ddd;
+    border: 1px solid #E5C7B5;
 
     border-radius: 10px;
 
     background: #fff;
 
-    color: #333;
+    color: #6B1F1F;
 
     font-size: 14px;
 
@@ -271,13 +256,11 @@
 
 .form-group input:focus,
 .form-group select:focus {
-
-    border-color: #e91e63;
+    border-color: #E87512;
 
     box-shadow:
         0 0 0 3px
-        rgba(233, 30, 99, 0.1);
-
+        rgba(232, 117, 18, 0.12);
 }
 
 
@@ -317,7 +300,7 @@
 
 .form-group input[type="file"]:hover {
 
-    border-color: #e91e63;
+    border-color:  #E87512;
 
 }
 
@@ -369,17 +352,11 @@
 ========================================================= */
 
 .gender-radio-group input[type="radio"] {
-
     width: 18px;
-
     height: 18px;
-
     min-height: auto;
-
-    accent-color: #e91e63;
-
+    accent-color: #E87512;
     cursor: pointer;
-
 }
 
 
@@ -474,41 +451,33 @@
 ========================================================= */
 
 .next-btn {
-
     border: none;
-
     border-radius: 10px;
-
     padding: 13px 28px;
 
-    background: linear-gradient(
-        135deg,
-        #e91e63,
-        #9c27b0
-    );
+    background: #E87512;
 
     color: white;
 
     font-size: 14px;
-
     font-weight: 600;
 
     cursor: pointer;
 
     transition:
         transform 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
 
-
 .next-btn:hover {
+    background: #B84D0B;
 
     transform: translateY(-2px);
 
     box-shadow:
         0 8px 20px
-        rgba(233, 30, 99, 0.3);
-
+        rgba(184, 77, 11, 0.25);
 }
 
 
@@ -517,8 +486,7 @@
 ========================================================= */
 
 .previous-btn {
-
-    border: 1px solid #ddd;
+    border: 1px solid #6B1F1F;
 
     border-radius: 10px;
 
@@ -526,26 +494,23 @@
 
     background: white;
 
-    color: #555;
+    color: #6B1F1F;
 
     font-size: 14px;
-
     font-weight: 600;
 
     cursor: pointer;
 
     transition: all 0.2s ease;
 }
-
-
 .previous-btn:hover {
+    background: #6B1F1F;
 
-    border-color: #e91e63;
+    border-color: #6B1F1F;
 
-    color: #e91e63;
+    color: white;
 
     transform: translateY(-2px);
-
 }
 
 
@@ -833,31 +798,24 @@
 ========================================================= */
 
 .age-popup-close-btn {
-
     width: 100%;
-
     padding: 12px;
-
     border: none;
-
     border-radius: 10px;
 
-    background: linear-gradient(
-        135deg,
-        #e91e63,
-        #9c27b0
-    );
+    background: #E87512;
 
     color: white;
-
     font-size: 14px;
-
     font-weight: 600;
-
     cursor: pointer;
 
+    transition: background 0.2s ease, transform 0.2s ease;
 }
-
+.age-popup-close-btn:hover {
+    background: #B84D0B;
+    transform: translateY(-1px);
+}
 
 /* =========================================================
    POPUP ANIMATION
@@ -1093,9 +1051,9 @@
 
     box-sizing: border-box;
 
-    background: #fffafd;
+    background: #FFF9F4;
 
-    border: 1px solid #f0d9f4;
+    border: 1px solid #F3D2B8;
 
     border-radius: 16px;
 }
@@ -1106,20 +1064,13 @@
 .photo-section h3,
 .about-me-section h3 {
     margin-top: 0;
-
     margin-bottom: 8px;
-
     font-size: 19px;
-
     font-weight: 700;
-
-    color: #333;
-
-    border-left: 4px solid #e91e63;
-
+    color: #6B1F1F;
+    border-left: 4px solid #E87512;
     padding-left: 10px;
 }
-
 
 /* =========================================================
    PROFILE PHOTO
@@ -1135,12 +1086,12 @@
 
     overflow: hidden;
 
-    border: 4px solid #f2d8f6;
+    border: 4px solid #E87512;
 
     background: #f7f7f7;
 
     box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.12);
+        0 8px 25px rgba(107, 31, 31, 0.12);
 }
 
 
@@ -1159,7 +1110,7 @@
 ========================================================= */
 
 .photo-info {
-    color: #777;
+    color:  #8B4A3A;
 
     font-size: 13px;
 
@@ -1176,16 +1127,16 @@
 .additional-photo-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
     gap: 18px;
 
     width: 100%;
 
     margin-top: 20px;
-}
 
+    align-items: start;
+}
 
 /* =========================================================
    EACH PHOTO
@@ -1204,7 +1155,7 @@
 
     background: #f5f5f5;
 
-    border: 1px solid #eeeeee;
+    border: 1px solid #E5C7B5;
 
     box-shadow:
         0 5px 15px rgba(0, 0, 0, 0.10);
@@ -1240,7 +1191,7 @@
 
     border-radius: 50%;
 
-    background: rgba(220, 20, 60, 0.95);
+    background: #9B2C2C;
 
     color: white;
 
@@ -1261,7 +1212,7 @@
 
 
 .remove-photo-btn:hover {
-    background: #c4002f;
+    background:#7F1D1D;
 
     transform: scale(1.1);
 }
@@ -1273,40 +1224,36 @@
 
 .add-photo-box {
     width: 100%;
-
+    min-height: 180px;
     aspect-ratio: 1 / 1;
 
     border-radius: 14px;
 
-    border: 2px dashed #d8a9e2;
+    border: 2px dashed #E87512;
 
-    background: #fff8ff;
+    background: #FFF9F4;
 
     cursor: pointer;
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
 
     box-sizing: border-box;
 
     transition: all 0.25s ease;
+
+    position: relative;
 }
 
-
 .add-photo-box:hover {
-    background: #fdf0ff;
-
-    border-color: #b026d3;
-
+    background: #FCE8D5;
+    border-color: #B84D0B;
     transform: translateY(-3px);
 
     box-shadow:
-        0 8px 20px rgba(176, 38, 211, 0.15);
+        0 8px 20px rgba(184, 77, 11, 0.15);
 }
 
 
@@ -1315,38 +1262,32 @@
     height: 45px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     border-radius: 50%;
 
-    background:
-        linear-gradient(
-            135deg,
-            #e91e63,
-            #b026d3
-        );
+    background: #E87512;
 
     color: white;
 
     font-size: 28px;
-
     font-weight: 400;
+
+    line-height: 1;
 }
 
 
 .add-photo-box p {
     margin-top: 10px;
-
     margin-bottom: 0;
 
-    color: #8d2ca3;
+    color: #6B1F1F;
 
     font-size: 14px;
-
     font-weight: 600;
+
+    text-align: center;
 }
 
 
@@ -1357,7 +1298,7 @@
 .photo-count {
     margin-top: 15px;
 
-    color: #777;
+    color: #6B1F1F;
 
     font-size: 13px;
 
@@ -1378,13 +1319,12 @@
 
     box-sizing: border-box;
 
-    background: #fffafd;
+    background: #FFF9F4;
 
-    border: 1px solid #f0d9f4;
+    border: 1px solid #F3D2B8;
 
     border-radius: 16px;
 }
-
 
 .about-me-section textarea {
     width: 100%;
@@ -1397,13 +1337,13 @@
 
     box-sizing: border-box;
 
-    border: 1px solid #d9d9d9;
+    border: 1px solid #E5C7B5;
 
     border-radius: 12px;
 
     background: white;
 
-    color: #333;
+    color: #6B1F1F;
 
     font-family: inherit;
 
@@ -1420,11 +1360,11 @@
 
 
 .about-me-section textarea:focus {
-    border-color: #b026d3;
+    border-color: #E87512;
 
     box-shadow:
         0 0 0 3px
-        rgba(176, 38, 211, 0.10);
+        rgba(232, 117, 18, 0.12);
 }
 
 
@@ -1486,25 +1426,22 @@
 
     color: white;
 
-    background:
-        linear-gradient(
-            135deg,
-            #e91e63,
-            #b026d3
-        );
+    background: #E87512;
 
     box-shadow:
         0 5px 15px
-        rgba(176, 38, 211, 0.25);
+        rgba(232, 117, 18, 0.20);
 }
 
 
 .next-btn:hover {
+    background: #B84D0B;
+
     transform: translateY(-2px);
 
     box-shadow:
         0 8px 20px
-        rgba(176, 38, 211, 0.35);
+        rgba(184, 77, 11, 0.25);
 }
 
 
@@ -1627,7 +1564,7 @@
     min-height: auto;
     margin: 0;
     padding: 0;
-    accent-color: #e91e63;
+    accent-color: #E87512;
     cursor: pointer;
 }
 
@@ -1664,4 +1601,313 @@ h3.address-heading {
     background: #f3f3f3;
     border-radius: 12px;
     vertical-align: middle;
+}
+/* Complete Profile theme override */
+.next-btn {
+    background: #E87512 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.next-btn:hover {
+    background: #B84D0B !important;
+    color: #ffffff !important;
+}
+.previous-btn {
+    background: #ffffff !important;
+    color: #6B1F1F !important;
+    border: 1px solid #6B1F1F !important;
+}
+
+.previous-btn:hover {
+    background: #6B1F1F !important;
+    color: #ffffff !important;
+    border-color: #6B1F1F !important;
+}
+
+.finish-btn {
+    background: #E87512 !important;
+    color: white !important;
+    border: none !important;
+    min-width: 120px;
+    padding: 12px 25px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.finish-btn:hover {
+    background: #B84D0B !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(184, 77, 11, 0.25);
+}
+/* Finish button - theme */
+.save-btn {
+    min-width: 120px;
+    padding: 12px 25px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #E87512 !important;
+    color: #ffffff !important;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow:
+        0 5px 15px
+        rgba(232, 117, 18, 0.20);
+}
+
+.save-btn:hover {
+    background: #B84D0B !important;
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(184, 77, 11, 0.25);
+}
+.profile-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.profile-logo img {
+    width: 85px;
+    height: 85px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 6px 18px
+        rgba(107, 31, 31, 0.12);
+}
+
+.input-with-icon {
+    position: relative;
+    width: 100%;
+}
+
+.input-with-icon .input-icon {
+    position: absolute;
+
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #E87512;
+
+    font-size: 16px;
+
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+.input-with-icon input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding-left: 42px !important;
+}
+.input-with-icon select {
+    width: 100%;
+    padding-left: 42px;
+}
+.gender-icon {
+    color: #E87512;
+    font-size: 18px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* =================================================
+   MARITAL STATUS ICON
+================================================= */
+
+.marital-select {
+    position: relative;
+    width: 100%;
+}
+
+.marital-select .input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #E87512;
+    font-size: 16px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.marital-select select {
+    width: 100% !important;
+    padding-left: 45px !important;
+    box-sizing: border-box;
+}
+/* =================================================
+   TEXTAREA ICON
+================================================= */
+
+.textarea-with-icon .input-icon {
+    top: 16px;
+    transform: none;
+}
+
+.textarea-with-icon textarea {
+    width: 100%;
+    padding-left: 42px !important;
+    box-sizing: border-box;
+}
+/* =========================================================
+   VERIFICATION PAGE ICONS
+========================================================= */
+
+.verification-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 10px 0 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.verification-heading-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 10px;
+    background: #fff3e6;
+    color: #f28a24;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.verification-heading h2 {
+    margin: 0;
+}
+
+.verification-heading p {
+    margin: 4px 0 0;
+    color: #777;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FIELD ICONS
+========================================================= */
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.field-icon {
+    color: #e97816;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   VERIFIED BUTTON ICONS
+========================================================= */
+
+.save-btn svg,
+.next-btn svg,
+.previous-btn svg {
+    vertical-align: middle;
+}
+
+.save-btn,
+.next-btn,
+.previous-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+
+/* =========================================================
+   VERIFIED STATUS
+========================================================= */
+
+.form-group p strong {
+    color: #218838;
+}
+/* =========================================================
+   VERIFICATION ICONS
+========================================================= */
+
+.section-heading-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f28a24;
+}
+
+.section-heading-icon svg {
+    font-size: 24px;
+}
+
+
+.field-icon {
+    color: #e97816;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   LABEL ICON ALIGNMENT
+========================================================= */
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+
+/* =========================================================
+   BUTTON ICONS
+========================================================= */
+
+.next-btn,
+.save-btn,
+.previous-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.next-btn svg,
+.save-btn svg,
+.previous-btn svg {
+    font-size: 14px;
 }

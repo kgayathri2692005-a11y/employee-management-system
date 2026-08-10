@@ -1,4 +1,11 @@
 import React, { useEffect, useState } from "react";
+import {
+    FaBirthdayCake,
+    FaGraduationCap,
+    FaBriefcase,
+    FaMapMarkerAlt,
+    FaHeart
+} from "react-icons/fa";
 import "../styles/CompleteProfile.css";
 
 function PartnerPreference({
@@ -356,7 +363,9 @@ function PartnerPreference({
                             </span>
 
                         </label>
+<div className="input-with-icon">
 
+    <FaBirthdayCake className="input-icon" />
 
                         <select
 
@@ -417,6 +426,7 @@ function PartnerPreference({
                             )}
 
                         </select>
+                        </div>
 
 
                         {errors.ageFrom && (
@@ -447,6 +457,10 @@ function PartnerPreference({
                             </span>
 
                         </label>
+                        <div className="input-with-icon">
+
+    <FaBirthdayCake className="input-icon" />
+
 
 
                         <select
@@ -508,6 +522,7 @@ function PartnerPreference({
                             )}
 
                         </select>
+                        </div>
 
 
                         {errors.ageTo && (
@@ -547,6 +562,10 @@ function PartnerPreference({
                             </span>
 
                         </label>
+                        <div className="input-with-icon">
+
+    <FaGraduationCap className="input-icon" />
+
 
 
                         <select
@@ -686,6 +705,7 @@ function PartnerPreference({
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.education && (
@@ -716,6 +736,9 @@ function PartnerPreference({
                             </span>
 
                         </label>
+                        <div className="input-with-icon">
+
+    <FaBriefcase className="input-icon" />
 
 
                         <select
@@ -831,6 +854,7 @@ function PartnerPreference({
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.occupation && (
@@ -870,6 +894,9 @@ function PartnerPreference({
                             </span>
 
                         </label>
+                        <div className="input-with-icon">
+
+    <FaMapMarkerAlt className="input-icon" />
 
 
                         <input
@@ -903,6 +930,7 @@ function PartnerPreference({
                             }
 
                         />
+                        </div>
 
 
                         {errors.country && (
@@ -933,6 +961,9 @@ function PartnerPreference({
                             </span>
 
                         </label>
+                        <div className="input-with-icon">
+
+    <FaHeart className="input-icon" />
 
 
                         <select
@@ -1018,6 +1049,7 @@ function PartnerPreference({
                             </option>
 
                         </select>
+                        </div>
 
 
                         {errors.religion && (

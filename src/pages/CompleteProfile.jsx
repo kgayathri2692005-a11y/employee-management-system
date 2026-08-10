@@ -283,6 +283,10 @@ const [currentStep, setCurrentStep] =
     return (
 
         <div className="profile-page">
+            <div className="profile-logo">
+    <img src="/niyati-logo.jpeg" alt="Niyati Matrimony" />
+</div>
+
 
 
             {/* =================================================

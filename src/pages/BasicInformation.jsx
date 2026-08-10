@@ -1,4 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { 
+    FaUser,
+    FaVenusMars,
+    FaCalendarAlt,
+    FaPhone,
+    FaEnvelope,
+    FaHeart,
+    FaRulerVertical,
+    FaWeight,
+    FaCamera,
+    FaBirthdayCake
+} from "react-icons/fa";
+
 import "../styles/CompleteProfile.css";
 
 function BasicInformation({
@@ -653,37 +666,41 @@ function BasicInformation({
 
                         </label>
 
+<div className="input-with-icon">
 
-                        <input
+    <FaUser className="input-icon" />
 
-                            type="text"
+    <input
 
-                            value={firstName}
+        type="text"
 
-                            onChange={(e) => {
+        value={firstName}
 
-                                setFirstName(
-                                    e.target.value.replace(
-                                        /[^a-zA-Z\s]/g,
-                                        ""
-                                    )
-                                );
+        onChange={(e) => {
 
-                                setErrors({
-                                    ...errors,
-                                    firstName: ""
-                                });
+            setFirstName(
+                e.target.value.replace(
+                    /[^a-zA-Z\s]/g,
+                    ""
+                )
+            );
 
-                            }}
+            setErrors({
+                ...errors,
+                firstName: ""
+            });
 
-                            className={
-                                errors.firstName
-                                    ? "input-error"
-                                    : ""
-                            }
+        }}
 
-                        />
+        className={
+            errors.firstName
+                ? "input-error"
+                : ""
+        }
 
+    />
+
+</div>
 
                         {errors.firstName && (
 
@@ -709,39 +726,44 @@ function BasicInformation({
 
                         </label>
 
+<div className="input-with-icon">
 
-                        <input
+    <FaUser className="input-icon" />
 
-                            type="text"
+    <input
 
-                            value={lastName}
+        type="text"
 
-                            onChange={(e) => {
+        value={lastName}
 
-                                setLastName(
-                                    e.target.value.replace(
-                                        /[^a-zA-Z\s]/g,
-                                        ""
-                                    )
-                                );
+        onChange={(e) => {
 
-                                setErrors({
-                                    ...errors,
-                                    lastName: ""
-                                });
+            setLastName(
+                e.target.value.replace(
+                    /[^a-zA-Z\s]/g,
+                    ""
+                )
+            );
 
-                            }}
+            setErrors({
+                ...errors,
+                lastName: ""
+            });
 
-                            className={
-                                errors.lastName
-                                    ? "input-error"
-                                    : ""
-                            }
+        }}
 
-                        />
+        className={
+            errors.lastName
+                ? "input-error"
+                : ""
+        }
+
+    />
+
+</div>
 
 
-                        {errors.lastName && (
+{errors.lastName && (
 
                             <p className="error-text">
 
@@ -776,6 +798,7 @@ function BasicInformation({
 
 
                         <div className="gender-radio-group">
+                             <FaVenusMars className="gender-icon" />
 
 
                             <label>
@@ -874,23 +897,29 @@ function BasicInformation({
                         </label>
 
 
-                        <input
+                        <div className="input-with-icon">
 
-                            type="date"
+    <FaCalendarAlt className="input-icon" />
 
-                            value={dob}
+    <input
 
-                            onChange={
-                                handleDobChange
-                            }
+        type="date"
 
-                            className={
-                                errors.dob
-                                    ? "input-error"
-                                    : ""
-                            }
+        value={dob}
 
-                        />
+        onChange={
+            handleDobChange
+        }
+
+        className={
+            errors.dob
+                ? "input-error"
+                : ""
+        }
+
+    />
+
+</div>
 
 
                         {errors.dob && (
@@ -922,21 +951,28 @@ function BasicInformation({
                             Age
 
                         </label>
+                        
 
 
-                        <input
+                       <div className="input-with-icon">
 
-                            type="text"
+    <FaBirthdayCake className="input-icon" />
 
-                            value={
-                                age
-                                    ? `${age} Years`
-                                    : ""
-                            }
+    <input
 
-                            readOnly
+        type="text"
 
-                        />
+        value={
+            age
+                ? `${age} Years`
+                : ""
+        }
+
+        readOnly
+
+    />
+
+</div>
 
 
                         {errors.age && (
@@ -963,39 +999,43 @@ function BasicInformation({
 
                         </label>
 
+<div className="input-with-icon">
 
-                        <input
+    <FaPhone className="input-icon" />
 
-                            type="text"
+    <input
 
-                            maxLength={10}
+        type="text"
 
-                            value={mobileNumber}
+        maxLength={10}
 
-                            onChange={(e) => {
+        value={mobileNumber}
 
-                                setMobileNumber(
-                                    e.target.value.replace(
-                                        /[^0-9]/g,
-                                        ""
-                                    )
-                                );
+        onChange={(e) => {
 
-                                setErrors({
-                                    ...errors,
-                                    mobileNumber: ""
-                                });
+            setMobileNumber(
+                e.target.value.replace(
+                    /[^0-9]/g,
+                    ""
+                )
+            );
 
-                            }}
+            setErrors({
+                ...errors,
+                mobileNumber: ""
+            });
 
-                            className={
-                                errors.mobileNumber
-                                    ? "input-error"
-                                    : ""
-                            }
+        }}
 
-                        />
+        className={
+            errors.mobileNumber
+                ? "input-error"
+                : ""
+        }
 
+    />
+
+</div>
 
                         {errors.mobileNumber && (
 
@@ -1031,33 +1071,38 @@ function BasicInformation({
                         </label>
 
 
-                        <input
+                       <div className="input-with-icon">
 
-                            type="email"
+    <FaEnvelope className="input-icon" />
 
-                            value={email}
+    <input
 
-                            onChange={(e) => {
+        type="email"
 
-                                setEmail(
-                                    e.target.value
-                                );
+        value={email}
 
-                                setErrors({
-                                    ...errors,
-                                    email: ""
-                                });
+        onChange={(e) => {
 
-                            }}
+            setEmail(
+                e.target.value
+            );
 
-                            className={
-                                errors.email
-                                    ? "input-error"
-                                    : ""
-                            }
+            setErrors({
+                ...errors,
+                email: ""
+            });
 
-                        />
+        }}
 
+        className={
+            errors.email
+                ? "input-error"
+                : ""
+        }
+
+    />
+
+</div>
 
                         {errors.email && (
 
@@ -1084,31 +1129,34 @@ function BasicInformation({
                         </label>
 
 
-                        <select
+                       <div className="input-with-icon marital-select">
 
-                            value={maritalStatus}
+    <FaHeart className="input-icon" />
 
-                            onChange={(e) => {
+    <select
 
-                                setMaritalStatus(
-                                    e.target.value
-                                );
+        value={maritalStatus}
 
-                                setErrors({
-                                    ...errors,
-                                    maritalStatus: ""
-                                });
+        onChange={(e) => {
 
-                            }}
+            setMaritalStatus(
+                e.target.value
+            );
 
-                            className={
-                                errors.maritalStatus
-                                    ? "input-error"
-                                    : ""
-                            }
+            setErrors({
+                ...errors,
+                maritalStatus: ""
+            });
 
-                        >
+        }}
 
+        className={
+            errors.maritalStatus
+                ? "input-error"
+                : ""
+        }
+
+    >
                             <option value="">
 
                                 Select
@@ -1134,7 +1182,7 @@ function BasicInformation({
                             </option>
 
                         </select>
-
+</div>
 
                         {errors.maritalStatus && (
 
@@ -1159,45 +1207,50 @@ function BasicInformation({
 
 
                     <div className="form-group">
+<label>
 
-                        <label>
+    Height
+    <span className="required-star">
+        *
+    </span>
 
-                            Height
-                            <span className="required-star">
-                                *
-                            </span>
-
-                        </label>
+</label>
 
 
-                        <input
+<div className="input-with-icon">
 
-                            type="text"
+    <FaRulerVertical className="input-icon" />
 
-                            placeholder="Example: 165 cm"
+    <input
 
-                            value={height}
+        type="text"
 
-                            onChange={(e) => {
+        placeholder="Example: 165 cm"
 
-                                setHeight(
-                                    e.target.value
-                                );
+        value={height}
 
-                                setErrors({
-                                    ...errors,
-                                    height: ""
-                                });
+        onChange={(e) => {
 
-                            }}
+            setHeight(
+                e.target.value
+            );
 
-                            className={
-                                errors.height
-                                    ? "input-error"
-                                    : ""
-                            }
+            setErrors({
+                ...errors,
+                height: ""
+            });
 
-                        />
+        }}
+
+        className={
+            errors.height
+                ? "input-error"
+                : ""
+        }
+
+    />
+
+</div>
 
 
                         {errors.height && (
@@ -1224,35 +1277,40 @@ function BasicInformation({
 
                         </label>
 
+<div className="input-with-icon">
 
-                        <input
+    <FaWeight className="input-icon" />
 
-                            type="text"
+    <input
 
-                            placeholder="Example: 60 kg"
+        type="text"
 
-                            value={weight}
+        placeholder="Example: 60 kg"
 
-                            onChange={(e) => {
+        value={weight}
 
-                                setWeight(
-                                    e.target.value
-                                );
+        onChange={(e) => {
 
-                                setErrors({
-                                    ...errors,
-                                    weight: ""
-                                });
+            setWeight(
+                e.target.value
+            );
 
-                            }}
+            setErrors({
+                ...errors,
+                weight: ""
+            });
 
-                            className={
-                                errors.weight
-                                    ? "input-error"
-                                    : ""
-                            }
+        }}
 
-                        />
+        className={
+            errors.weight
+                ? "input-error"
+                : ""
+        }
+
+    />
+
+</div>
 
 
                         {errors.weight && (
@@ -1288,24 +1346,29 @@ function BasicInformation({
 
                         </label>
 
+<div className="input-with-icon">
 
-                        <input
+    <FaCamera className="input-icon" />
 
-                            type="file"
+    <input
 
-                            accept=".jpg,.jpeg,.png"
+        type="file"
 
-                            onChange={
-                                handleProfilePhoto
-                            }
+        accept=".jpg,.jpeg,.png"
 
-                            className={
-                                errors.profilePhoto
-                                    ? "input-error"
-                                    : ""
-                            }
+        onChange={
+            handleProfilePhoto
+        }
 
-                        />
+        className={
+            errors.profilePhoto
+                ? "input-error"
+                : ""
+        }
+
+    />
+
+</div>
 
 
                         {profilePhoto && (
