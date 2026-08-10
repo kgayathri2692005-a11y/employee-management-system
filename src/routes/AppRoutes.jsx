@@ -14,6 +14,7 @@ import OtpVerification from "../pages/OtpVerification";
 import Tracking from "../pages/Tracking";
 import ViewProfile from "../pages/ViewProfile";
 import Wishlist from "../pages/Wishlist";
+import Search from "../pages/Search";
 import Notifications from "../pages/Notifications";
 import IgnoredProfiles from "../pages/IgnoredProfiles";
 import DashboardUserDetails from "../pages/DashboardUserDetails";
@@ -36,6 +37,7 @@ function AppRoutes() {
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/view-profile" element={<ViewProfile />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/ignored-profiles" element={<IgnoredProfiles />} />
         <Route path="/dashboard-users"  element={<DashboardUserDetails />}/>
