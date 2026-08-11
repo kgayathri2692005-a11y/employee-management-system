@@ -1,263 +1,586 @@
 /* =========================================================
-   MAIN PROFILE CONTAINER
+   NIYATI MY PROFILE
+   Theme: Maroon + Orange + Cream
 ========================================================= */
 
 .profile-container {
-  padding: 30px;
-  width: 100%;
-  box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 28px 5%;
+    background:
+        linear-gradient(
+            180deg,
+            #fffdf9 0%,
+            #faf7f0 100%
+        );
 }
 
-
 /* =========================================================
-   PROFILE CARD
+   MAIN PROFILE CARD
 ========================================================= */
 
 .profile-card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  max-width: 1200px;
-  margin: 0 auto;
+    position: relative;
+
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 32px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #ead8cc;
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 28px rgba(77, 23, 18, 0.07);
 }
 
+/* Small orange top decoration */
+
+.profile-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 70px;
+    height: 4px;
+
+    background: #f47b16;
+
+    border-radius: 0 0 5px 5px;
+}
 
 /* =========================================================
    PROFILE HEADER
 ========================================================= */
 
 .profile-header {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  padding: 10px 10px 30px;
-  border-bottom: 1px solid #eeeeee;
-  margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 28px;
+
+    padding: 10px 20px 28px;
+
+    max-width: 760px;
+    margin: 0 auto 28px;
+
+    border-bottom: 1px solid #eaded7;
+
+    position: relative;
 }
 
+/* Decorative heart */
+
+.profile-header::after {
+    content: "♥";
+
+    position: absolute;
+
+    right: 15px;
+    top: 20px;
+
+    color: rgba(244, 123, 22, 0.07);
+
+    font-size: 70px;
+    line-height: 1;
+}
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
 
 .profile-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 5px solid #f3e8ff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    width: 125px;
+    height: 125px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 5px solid #fff7f0;
+
+    box-shadow:
+        0 4px 15px rgba(77, 23, 18, 0.15);
+
+    outline: 2px solid #ead0c0;
 }
 
+/* =========================================================
+   HEADER INFORMATION
+========================================================= */
+
+.profile-header-info {
+    min-width: 0;
+}
 
 .profile-header-info h2 {
-  margin: 0 0 8px;
-  font-size: 28px;
-  color: #1f2937;
+    position: relative;
+
+    margin: 0 0 7px;
+
+    padding-left: 14px;
+
+    color: #790707;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    line-height: 1.2;
 }
 
+/* Orange vertical accent */
+
+.profile-header-info h2::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 2px;
+
+    width: 4px;
+    height: 34px;
+
+    background: #f47b16;
+
+    border-radius: 3px;
+}
 
 .profile-header-info p {
-  margin: 5px 0;
-  color: #6b7280;
-  font-size: 16px;
+    margin: 5px 0;
+
+    color: #75665f;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
 }
 
+.profile-header-info p:first-of-type {
+    color: #ed6e13;
+    font-weight: 600;
+}
 
 /* =========================================================
    PROFILE STAGE GRID
 ========================================================= */
 
 .profile-stage-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
+    display: grid;
 
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+}
 
 /* =========================================================
    PROFILE STAGE CARD
 ========================================================= */
 
 .profile-stage-card {
-  position: relative;
-  background: #fafafa;
-  border: 1px solid #eeeeee;
-  border-radius: 16px;
-  padding: 22px;
-  min-height: 230px;
-  transition: all 0.3s ease;
-}
+    position: relative;
 
+    min-height: 205px;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffdfb 0%,
+            #fffaf6 100%
+        );
+
+    border: 1px solid #ead8cc;
+
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
 
 .profile-stage-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-  border-color: #d8b4fe;
-}
+    transform: translateY(-2px);
 
+    border-color: #efb58f;
+
+    box-shadow:
+        0 7px 18px rgba(77, 23, 18, 0.09);
+}
 
 /* =========================================================
    CARD TITLE
 ========================================================= */
 
 .profile-stage-card h3 {
-  margin: 0 0 20px;
-  font-size: 19px;
-  color: #374151;
-  border-bottom: 1px solid #eeeeee;
-  padding-bottom: 12px;
-}
+    margin: 0 0 16px;
 
+    padding-bottom: 11px;
+
+    border-bottom: 1px solid #eaded7;
+
+    color: #790707;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
 
 /* =========================================================
    CARD INFORMATION
 ========================================================= */
 
 .stage-info {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+    display: flex;
 
+    flex-direction: column;
+
+    gap: 8px;
+}
 
 .stage-info p {
-  margin: 0;
-  font-size: 14px;
-  color: #4b5563;
-  line-height: 1.5;
-}
+    display: flex;
 
+    align-items: baseline;
+
+    margin: 0;
+
+    color: #75665f;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
 
 .stage-info p span {
-  display: inline-block;
-  min-width: 125px;
-  font-weight: 600;
-  color: #374151;
-}
+    display: inline-block;
 
+    min-width: 125px;
+
+    color: #5d2119;
+
+    font-weight: 700;
+}
 
 /* =========================================================
    EDIT BUTTON
 ========================================================= */
 
 .stage-edit-btn {
-  margin-top: 20px;
-  border: none;
-  background: #7c3aed;
-  color: white;
-  padding: 9px 18px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+    margin-top: 16px;
 
+    min-width: 67px;
+    height: 33px;
+
+    padding: 0 13px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #f47b16;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
 
 .stage-edit-btn:hover {
-  background: #6d28d9;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(124, 58, 237, 0.25);
-}
+    background: #d94d0b;
 
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(217, 76, 11, 0.20);
+}
 
 /* =========================================================
    VERIFICATION CARD
 ========================================================= */
 
 .verification-card {
-  grid-column: span 2;
-  min-height: auto;
-}
+    grid-column: span 2;
 
+    min-height: auto;
+}
 
 .verification-card .stage-info {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
 }
 
-
 /* =========================================================
-   BOTTOM ACTION BUTTON
+   BOTTOM ACTION
 ========================================================= */
 
 .profile-action-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 28px;
 }
-
-
-.view-profile-btn {
-  border: none;
-  background: #7c3aed;
-  color: white;
-  padding: 13px 25px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-
-.view-profile-btn:hover {
-  background: #6d28d9;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(124, 58, 237, 0.25);
-}
-
 
 /* =========================================================
-   RESPONSIVE DESIGN
+   VIEW FULL PROFILE BUTTON
+
+   IMPORTANT:
+   No blue / purple here.
+========================================================= */
+/* =========================================================
+VIEW FULL PROFILE BUTTON
+NO BLUE / PURPLE
+========================================================= */
+
+.profile-action-buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 28px;
+    padding-left: 0;
+}
+
+.profile-action-buttons .view-profile-btn,
+button.view-profile-btn,
+.view-profile-btn {
+    min-height: 48px !important;
+    height: 48px !important;
+
+    padding: 0 28px !important;
+
+    border: none !important;
+    outline: none !important;
+
+    border-radius: 7px !important;
+
+    background: #6d0404 !important;
+    background-color: #6d0404 !important;
+
+    color: #ffffff !important;
+
+    font-family: "Poppins", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+
+    cursor: pointer;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 7px;
+
+    text-decoration: none !important;
+
+    box-shadow: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-action-buttons .view-profile-btn:hover,
+button.view-profile-btn:hover,
+.view-profile-btn:hover {
+    background: #8a0808 !important;
+    background-color: #8a0808 !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 13px rgba(141, 8, 8, 0.22);
+}
+
+/* =========================================================
+   RESPONSIVE
 ========================================================= */
 
 @media (max-width: 900px) {
 
-  .profile-stage-grid {
-    grid-template-columns: 1fr;
-  }
+    .profile-container {
+        padding: 24px 4%;
+    }
 
-  .verification-card {
-    grid-column: span 1;
-  }
+    .profile-card {
+        padding: 25px;
+    }
 
-  .verification-card .stage-info {
-    grid-template-columns: 1fr;
-  }
+    .profile-stage-grid {
+        grid-template-columns: 1fr;
+    }
 
+    .verification-card {
+        grid-column: span 1;
+    }
+
+    .verification-card .stage-info {
+        grid-template-columns: 1fr;
+    }
 }
 
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 600px) {
 
-  .profile-container {
-    padding: 15px;
-  }
+    .profile-container {
+        padding: 15px;
+    }
 
-  .profile-card {
-    padding: 20px;
-  }
+    .profile-card {
+        padding: 20px 15px;
+        border-radius: 14px;
+    }
 
-  .profile-header {
-    flex-direction: column;
-    text-align: center;
-  }
+    .profile-header {
+        flex-direction: column;
 
-  .profile-image {
-    width: 100px;
-    height: 100px;
-  }
+        text-align: center;
 
-  .profile-header-info h2 {
-    font-size: 24px;
-  }
+        gap: 15px;
 
-  .profile-stage-card {
-    padding: 18px;
-  }
+        padding-bottom: 22px;
+    }
 
-  .stage-info p span {
-    min-width: 110px;
-  }
+    .profile-header::after {
+        display: none;
+    }
 
+    .profile-image {
+        width: 105px;
+        height: 105px;
+    }
+
+    .profile-header-info h2 {
+        font-size: 25px;
+
+        padding-left: 0;
+    }
+
+    .profile-header-info h2::before {
+        display: none;
+    }
+
+    .profile-header-info p {
+        font-size: 12px;
+    }
+
+    .profile-stage-card {
+        min-height: auto;
+
+        padding: 17px;
+    }
+
+    .profile-stage-card h3 {
+        font-size: 17px;
+    }
+
+    .stage-info p {
+        font-size: 11px;
+    }
+
+    .stage-info p span {
+        min-width: 105px;
+    }
+
+    .view-profile-btn {
+        width: 100%;
+
+        max-width: 300px;
+    }
+}
+
+/* =========================================================
+   MY PROFILE - INCREASE TEXT SIZE
+========================================================= */
+
+/* Profile name */
+.profile-header-info h2 {
+    font-size: 34px !important;
+}
+
+/* Occupation and location */
+.profile-header-info p {
+    font-size: 16px !important;
+}
+
+/* Card headings */
+.profile-stage-card h3 {
+    font-size: 21px !important;
+}
+
+/* Information labels and values */
+.stage-info p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+}
+
+/* Information labels */
+.stage-info p span {
+    font-size: 15px !important;
+    min-width: 145px !important;
+}
+
+/* Edit button text */
+.stage-edit-btn {
+    font-size: 12px !important;
+}
+
+/* View Full Profile button */
+.view-profile-btn {
+    font-size: 14px !important;
 }

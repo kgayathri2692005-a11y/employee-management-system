@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
+import PageNavigation from "../components/PageNavigation";
 function DashboardCards() {
   const navigate = useNavigate();
 
@@ -245,6 +245,7 @@ function DashboardCards() {
           ♥
         </div>
       </div>
+      <PageNavigation />
 
     </div>
   );

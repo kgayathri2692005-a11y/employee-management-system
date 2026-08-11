@@ -514,8 +514,7 @@ function Navbar() {
                     <span
                         className="notification-icon"
                         aria-hidden="true"
-                    >
-                        ♡
+                    >🔔
                     </span>
 
 
@@ -648,7 +647,7 @@ function Navbar() {
                                 className="dropdown-item"
                                 onClick={() =>
                                     handleNavigation(
-                                        "/view-profile"
+                                        "/myprofile"
                                     )
                                 }
                             >
@@ -788,22 +787,14 @@ function Navbar() {
 
                             {/* About Us */}
 
-                            <button
+<button
                                 type="button"
                                 className="dropdown-item"
-                                onClick={(e) => {
-
-                                    e.stopPropagation();
-
-                                    alert(
-                                        "About Niyati page coming soon."
-                                    );
-
-                                    setShowProfileMenu(
-                                        false
-                                    );
-
-                                }}
+                                onClick={() =>
+                                    handleNavigation(
+                                        "/about-us"
+                                    )
+                                }
                             >
 
                                 <span className="dropdown-item-icon">
@@ -817,10 +808,11 @@ function Navbar() {
                             </button>
 
 
+
                             <div className="dropdown-divider" />
 
 
-                            {/* Logout */}
+                            {/* Logout */} 
 
                             <button
                                 type="button"

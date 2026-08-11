@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
+import PageNavigation from "../components/PageNavigation";
 import "../styles/Dashboard.css";
 
 function Dashboard() {
@@ -984,8 +985,13 @@ function Dashboard() {
 
       </section>
 
+<PageNavigation />
+      
+
     </div>
   );
+  
 }
+
 
 export default Dashboard;

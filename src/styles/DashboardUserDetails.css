@@ -18,23 +18,12 @@
 
   box-sizing: border-box;
 
-  background:
-    radial-gradient(
-      circle at 10% 10%,
-      rgba(242, 107, 33, 0.07),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 90% 20%,
-      rgba(122, 0, 0, 0.05),
-      transparent 28%
-    ),
-    linear-gradient(
-      180deg,
-      #fffdf9 0%,
-      #fff8f2 48%,
-      #fffaf7 100%
-    );
+ background:
+        linear-gradient(
+            180deg,
+            #fffdf9 0%,
+            #faf7f0 100%
+        );
 
   color: #4a1e28;
 

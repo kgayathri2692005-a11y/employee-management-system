@@ -1,0 +1,1406 @@
+/* =========================================================
+   NIYATI - ABOUT US
+   FULL MAROON DESIGN
+   EXACTLY 2 LOGO SECTIONS
+   NO WHITE LOGO BOXES
+========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap");
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.about-page {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(216, 168, 91, 0.08),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 35%,
+            rgba(255, 248, 242, 0.035),
+            transparent 30%
+        ),
+        #6f0808;
+
+    color: #fff8f2;
+
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.about-main {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.about-hero {
+    width: 100%;
+    min-height: 500px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 70px 30px 75px;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   HERO DECORATIVE CIRCLES
+========================================================= */
+
+.about-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    border: 1px solid rgba(
+        216,
+        168,
+        91,
+        0.16
+    );
+
+    border-radius: 50%;
+
+    left: -190px;
+    top: 30px;
+}
+
+
+.about-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    border: 1px solid rgba(
+        255,
+        248,
+        242,
+        0.08
+    );
+
+    border-radius: 50%;
+
+    right: -145px;
+    bottom: 10px;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.about-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    max-width: 850px;
+}
+
+
+/* =========================================================
+   LOGO 1
+   TRANSPARENT - NO WHITE BOX
+========================================================= */
+
+.about-logo {
+    width: fit-content;
+    max-width: 90%;
+
+    margin: 0 auto 30px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+}
+
+
+.about-main-logo {
+    width: 190px;
+    max-width: 100%;
+
+    height: auto;
+
+    display: block;
+
+    object-fit: contain;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   SMALL TITLE
+========================================================= */
+
+.about-small-title {
+    margin: 0 0 10px;
+
+    color: #d8a85b;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   HERO HEADING
+========================================================= */
+
+.about-hero h1 {
+    margin: 0;
+
+    color: #fff8f2;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 56px;
+
+    font-weight: 700;
+
+    line-height: 1.12;
+}
+
+
+.about-hero h1 span {
+    color: #d8a85b;
+}
+
+
+/* =========================================================
+   TITLE LINE
+========================================================= */
+
+.about-title-line {
+    width: 85px;
+
+    height: 2px;
+
+    margin: 20px auto;
+
+    background: #d8a85b;
+
+    border-radius: 20px;
+}
+
+
+.about-hero-text {
+    width: 100%;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: #ead8c8;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.about-section {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 75px 7%;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.about-section-heading {
+    margin-bottom: 45px;
+}
+
+
+.section-label {
+    margin: 0 0 8px;
+
+    color: #d8a85b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+.about-section-heading h2 {
+    margin: 0;
+
+    color: #fff8f2;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 37px;
+
+    font-weight: 700;
+
+    line-height: 1.25;
+}
+
+
+.about-section-heading h2 span {
+    color: #d8a85b;
+}
+
+
+.heading-line {
+    width: 60px;
+
+    height: 2px;
+
+    margin-top: 16px;
+
+    background: #d8a85b;
+}
+
+
+.center-heading {
+    text-align: center;
+}
+
+
+.center-heading .heading-line {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   STORY GRID
+========================================================= */
+
+.about-story-grid {
+    width: 100%;
+
+    max-width: 1180px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.7fr)
+        minmax(260px, 0.8fr);
+
+    gap: 55px;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   STORY CONTENT
+========================================================= */
+
+.about-story-content {
+    width: 100%;
+}
+
+
+.about-story-content p {
+    margin: 0 0 20px;
+
+    color: #ead8c8;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+}
+
+
+.about-story-content p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   HIGHLIGHT CARD
+========================================================= */
+
+.about-highlight {
+    min-height: 300px;
+
+    box-sizing: border-box;
+
+    padding: 38px 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 248, 242, 0.08),
+            rgba(216, 168, 91, 0.08)
+        );
+
+    border: 1px solid rgba(
+        216,
+        168,
+        91,
+        0.35
+    );
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+.highlight-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 50%;
+
+    background: rgba(
+        216,
+        168,
+        91,
+        0.14
+    );
+
+    border: 1px solid rgba(
+        216,
+        168,
+        91,
+        0.45
+    );
+
+    color: #d8a85b;
+
+    font-size: 28px;
+}
+
+
+.about-highlight h3 {
+    margin: 0 0 14px;
+
+    color: #fff8f2;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 25px;
+
+    line-height: 1.25;
+}
+
+
+.about-highlight p {
+    margin: 0;
+
+    color: #d8c0b4;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   WHY SECTION
+========================================================= */
+
+.why-section {
+    padding-top: 80px;
+
+    padding-bottom: 85px;
+}
+
+
+/* =========================================================
+   FEATURE GRID
+========================================================= */
+
+.about-features {
+    width: 100%;
+
+    max-width: 1180px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   FEATURE CARD
+========================================================= */
+
+.about-feature-card {
+    position: relative;
+
+    min-height: 270px;
+
+    box-sizing: border-box;
+
+    padding: 32px 27px;
+
+    border-radius: 17px;
+
+    background: rgba(
+        255,
+        248,
+        242,
+        0.045
+    );
+
+    border: 1px solid rgba(
+        255,
+        248,
+        242,
+        0.13
+    );
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.about-feature-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(
+        216,
+        168,
+        91,
+        0.45
+    );
+
+    background: rgba(
+        255,
+        248,
+        242,
+        0.075
+    );
+}
+
+
+.feature-number {
+    position: absolute;
+
+    top: 20px;
+    right: 22px;
+
+    color: rgba(
+        216,
+        168,
+        91,
+        0.35
+    );
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+
+    margin-bottom: 23px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(
+        216,
+        168,
+        91,
+        0.11
+    );
+
+    border: 1px solid rgba(
+        216,
+        168,
+        91,
+        0.35
+    );
+
+    color: #d8a85b;
+
+    font-size: 24px;
+}
+
+
+.about-feature-card h3 {
+    margin: 0 0 12px;
+
+    color: #fff8f2;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 22px;
+
+    font-weight: 700;
+}
+
+
+.about-feature-card p {
+    margin: 0;
+
+    color: #d8c0b4;
+
+    font-size: 12px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.about-closing {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 95px 25px 100px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(
+        216,
+        168,
+        91,
+        0.14
+    );
+
+    border-bottom: 1px solid rgba(
+        216,
+        168,
+        91,
+        0.14
+    );
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(216, 168, 91, 0.09),
+            transparent 45%
+        );
+}
+
+
+.closing-decoration {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 24px;
+}
+
+
+.closing-decoration span {
+    display: block;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #d8a85b;
+}
+
+
+.closing-decoration span:nth-child(2) {
+    width: 9px;
+    height: 9px;
+}
+
+
+.about-closing h2 {
+    margin: 0;
+
+    color: #fff8f2;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 40px;
+
+    line-height: 1.3;
+}
+
+
+.about-closing h2 span {
+    color: #d8a85b;
+}
+
+
+.about-closing p {
+    margin: 18px auto 28px;
+
+    color: #d8c0b4;
+
+    font-size: 14px;
+}
+
+
+.explore-button {
+    height: 45px;
+
+    padding: 0 27px;
+
+    border: 1px solid #d8a85b;
+
+    border-radius: 7px;
+
+    background: #d8a85b;
+
+    color: #4d0505;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.explore-button:hover {
+    background: #e5bd79;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.about-footer {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    background: #4d0505;
+
+    color: #fff8f2;
+}
+
+
+/* =========================================================
+   FOOTER MAIN
+========================================================= */
+
+.footer-main {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 65px 7% 50px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1.3fr;
+
+    gap: 40px;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   FOOTER BRAND
+========================================================= */
+
+.footer-brand {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   LOGO 2
+   TRANSPARENT - NO WHITE BOX
+========================================================= */
+
+.footer-logo {
+    width: fit-content;
+
+    max-width: 100%;
+
+    padding: 0;
+
+    margin-bottom: 15px;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+}
+
+
+.footer-logo img {
+    width: 145px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    display: block;
+
+    object-fit: contain;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+
+    filter:
+        drop-shadow(
+            0 5px 12px
+            rgba(0, 0, 0, 0.2)
+        );
+}
+
+
+.footer-brand p {
+    margin: 0;
+
+    color: #d8c0b4;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   SOCIAL
+========================================================= */
+
+.footer-social {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 22px;
+}
+
+
+.social-link {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(
+        216,
+        168,
+        91,
+        0.5
+    );
+
+    background: rgba(
+        216,
+        168,
+        91,
+        0.08
+    );
+
+    color: #d8a85b;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.social-link:hover {
+    background: #d8a85b;
+
+    color: #4d0505;
+
+    transform: translateY(-2px);
+}
+
+
+.instagram-link {
+    font-size: 21px;
+}
+
+
+/* =========================================================
+   FOOTER COLUMNS
+========================================================= */
+
+.footer-column {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+.footer-column h3 {
+    margin: 0 0 19px;
+
+    color: #fff8f2;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 19px;
+
+    font-weight: 700;
+}
+
+
+.footer-column a {
+    margin-bottom: 10px;
+
+    color: #d8c0b4;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.footer-column a:hover {
+    color: #d8a85b;
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-column a {
+    display: flex;
+
+    align-items: flex-start;
+
+    margin-bottom: 13px;
+}
+
+
+.contact-symbol {
+    display: inline-block;
+
+    flex-shrink: 0;
+
+    width: 23px;
+
+    color: #d8a85b;
+
+    font-size: 13px;
+}
+
+
+.email-text {
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 17px 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-top: 1px solid rgba(
+        255,
+        248,
+        242,
+        0.10
+    );
+}
+
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #ad8980;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+}
+
+
+.footer-heart {
+    margin: 0 4px;
+
+    color: #d8a85b;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1100px
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .about-story-grid {
+        gap: 35px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 900px
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .about-hero {
+        min-height: 450px;
+
+        padding:
+            60px 25px
+            65px;
+    }
+
+
+    .about-hero h1 {
+        font-size: 47px;
+    }
+
+
+    .about-hero-text {
+        font-size: 14px;
+    }
+
+
+    .about-section {
+        padding:
+            60px 30px;
+    }
+
+
+    .about-story-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .about-highlight {
+        max-width: 430px;
+
+        width: 100%;
+
+        margin: 0 auto;
+    }
+
+
+    .about-features {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .footer-main {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        padding:
+            55px 30px 40px;
+    }
+
+
+    .footer-brand {
+        grid-column: span 2;
+    }
+
+
+    .footer-bottom {
+        padding:
+            16px 30px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 600px
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .about-hero {
+        min-height: 420px;
+
+        padding:
+            45px 18px
+            55px;
+    }
+
+
+    .about-logo {
+        margin-bottom: 24px;
+    }
+
+
+    .about-main-logo {
+        width: 150px;
+    }
+
+
+    .about-small-title {
+        font-size: 9px;
+
+        letter-spacing: 2.5px;
+    }
+
+
+    .about-hero h1 {
+        font-size: 38px;
+    }
+
+
+    .about-title-line {
+        margin: 16px auto;
+    }
+
+
+    .about-hero-text {
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+
+    .about-section {
+        padding:
+            50px 18px;
+    }
+
+
+    .about-section-heading {
+        margin-bottom: 32px;
+    }
+
+
+    .section-label {
+        font-size: 9px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .about-section-heading h2 {
+        font-size: 29px;
+    }
+
+
+    .about-story-content p {
+        font-size: 12px;
+
+        line-height: 1.8;
+    }
+
+
+    .about-highlight {
+        min-height: 260px;
+
+        padding: 30px 22px;
+    }
+
+
+    .about-highlight h3 {
+        font-size: 22px;
+    }
+
+
+    .about-highlight p {
+        font-size: 11px;
+    }
+
+
+    .about-features {
+        grid-template-columns: 1fr;
+
+        gap: 13px;
+    }
+
+
+    .about-feature-card {
+        min-height: auto;
+
+        padding: 27px 22px;
+    }
+
+
+    .about-feature-card h3 {
+        font-size: 20px;
+    }
+
+
+    .about-feature-card p {
+        font-size: 11px;
+    }
+
+
+    .about-closing {
+        padding:
+            70px 18px
+            75px;
+    }
+
+
+    .about-closing h2 {
+        font-size: 31px;
+    }
+
+
+    .about-closing p {
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+
+    .footer-main {
+        grid-template-columns: 1fr;
+
+        padding:
+            45px 20px
+            35px;
+
+        gap: 30px;
+    }
+
+
+    .footer-brand {
+        grid-column: auto;
+    }
+
+
+    .footer-logo img {
+        width: 130px;
+    }
+
+
+    .footer-column h3 {
+        font-size: 18px;
+
+        margin-bottom: 14px;
+    }
+
+
+    .footer-column a {
+        font-size: 11px;
+    }
+
+
+    .footer-bottom {
+        padding:
+            15px 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+    }
+
+
+    .footer-bottom p {
+        font-size: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE - 400px
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .about-hero h1 {
+        font-size: 33px;
+    }
+
+
+    .about-main-logo {
+        width: 135px;
+    }
+
+
+    .about-section-heading h2 {
+        font-size: 26px;
+    }
+
+
+    .about-closing h2 {
+        font-size: 27px;
+    }
+
+
+    .explore-button {
+        width: 100%;
+
+        max-width: 230px;
+    }
+
+
+    .footer-logo img {
+        width: 120px;
+    }
+
+}

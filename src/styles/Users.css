@@ -1,639 +1,988 @@
 /* =========================================================
-   USERS PAGE
-========================================================= */
+   NIYATI USERS PAGE
+   Matrimony Profile Layout
+   Theme:
+   Cream      #fff8f2
+   Maroon     #8d0808
+   Dark Red   #7f0808
+   Orange     #f47b16
+   ========================================================= */
 
 .users-container {
-  width: 100%;
-  box-sizing: border-box;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #fff8f2;
+
+    padding: 22px 24px 28px;
+
+    color: #4d1712;
 }
 
 
 /* =========================================================
-   SEARCH + FILTER SECTION
+   PAGE HEADER
+   ========================================================= */
+/* =========================================================
+   USERS PAGE HEADER
 ========================================================= */
 
-.search-section {
-  width: 100%;
-  box-sizing: border-box;
+.users-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
 
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 150px 150px auto;
+.users-title-block {
+    text-align: left;
+}
 
-  align-items: center;
-  gap: 12px;
+.users-header h1 {
+    margin: 0 0 5px;
 
-  background: #ffffff;
+    color: #8d0808;
 
-  padding: 14px;
+    font-family: "Playfair Display", serif;
 
-  border: 1px solid #e5e7eb;
-  border-radius: 10px;
+    font-size: 34px !important;
+    font-weight: 700;
 
-  margin-bottom: 18px;
+    line-height: 1.15;
 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.users-header p {
+    margin: 0;
+
+    color: #806d65;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px !important;
+    font-weight: 400;
+
+    line-height: 1.5;
+
+    text-align: left;
 }
 
 
-/* SEARCH INPUT */
+/* =========================================================
+   VIEW ALL
+========================================================= */
 
-.search-section input {
-  width: 100%;
-  min-width: 0;
-  height: 38px;
+.view-all-btn {
+    height: 36px;
 
-  box-sizing: border-box;
+    padding: 0 18px;
 
-  padding: 0 12px;
+    border: 1px solid #8d0808;
+    border-radius: 7px;
 
-  border: 1px solid #d1d5db;
-  border-radius: 7px;
+    background: transparent;
 
-  outline: none;
+    color: #8d0808;
 
-  font-family: inherit;
-  font-size: 13px;
+    font-family: "Poppins", sans-serif;
 
-  color: #111827;
-  background: #ffffff;
+    font-size: 11px !important;
+    font-weight: 600;
 
-  transition: 0.2s ease;
+    cursor: pointer;
 }
 
 
-.search-section input::placeholder {
-  color: #9ca3af;
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 14px;
+
+    text-align: left;
+}
+
+.section-heading > div {
+    text-align: left;
 }
 
 
-.search-section input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.08);
+/* PROFILES YOU MAY LIKE */
+
+.section-heading h2 {
+    margin: 0 0 3px;
+
+    color: #7f0808;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 24px !important;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    text-align: left;
 }
 
 
-/* FILTER DROPDOWNS */
+/* DESCRIPTION */
 
-.search-section select {
-  width: 100%;
-  height: 38px;
+.section-heading p {
+    margin: 0;
 
-  box-sizing: border-box;
+    color: #8a756d;
 
-  padding: 0 10px;
+    font-family: "Poppins", sans-serif;
 
-  border: 1px solid #d1d5db;
-  border-radius: 7px;
+    font-size: 11px !important;
+    font-weight: 400;
 
-  outline: none;
+    line-height: 1.4;
 
-  background: #ffffff;
-
-  font-family: inherit;
-  font-size: 13px;
-
-  color: #374151;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
+    text-align: left;
 }
 
 
-.search-section select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.08);
+/* PROFILE COUNT */
+
+.section-heading > span {
+    flex-shrink: 0;
+
+    color: #8d0808;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px !important;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .users-header {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .users-header h1 {
+        font-size: 23px;
+    }
+
+    .users-header p {
+        font-size: 11px;
+    }
+
+    .view-all-btn {
+        height: 34px;
+        padding: 0 13px;
+        font-size: 11px;
+    }
+
+    .section-heading h2 {
+        font-size: 16px;
+    }
+
+    .section-heading p {
+        font-size: 10px;
+    }
 }
 
+/* =========================================================
+   PROFILE GRID
+   ========================================================= */
 
-/* CLEAR FILTER BUTTON */
+.profiles-grid {
+    width: 100%;
 
-.clear-filter-btn {
-  height: 38px;
+    display: grid;
 
-  padding: 0 16px;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
-  border: none;
-  border-radius: 7px;
-
-  background: #e91e63;
-  color: #ffffff;
-
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  white-space: nowrap;
-
-  transition: all 0.2s ease;
-}
-
-
-.clear-filter-btn:hover {
-  background: #d81b60;
-  transform: translateY(-1px);
+    gap: 16px;
 }
 
 
 /* =========================================================
    PROFILE CARD
-========================================================= */
+   ========================================================= */
 
-.employee-card {
-  width: 100%;
-  min-height: 92px;
+.profile-card {
+    position: relative;
 
-  box-sizing: border-box;
+    width: 100%;
 
-  display: grid;
+    min-width: 0;
 
-  /*
-    IMAGE | INFORMATION | BUTTONS
-  */
+    box-sizing: border-box;
 
-  grid-template-columns: 72px minmax(180px, 1fr) auto;
+    overflow: hidden;
 
-  align-items: center;
+    display: flex;
 
-  column-gap: 18px;
+    flex-direction: column;
 
-  padding: 12px 16px;
+    align-items: center;
 
-  margin-bottom: 8px;
+    background: #ffffff;
 
-  background: #ffffff;
+    border: 1px solid #ead8cc;
 
-  border: 1px solid #e5e7eb;
-  border-radius: 9px;
+    border-radius: 13px;
 
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+    padding: 14px 13px 15px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(93, 16, 12, 0.055);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #e7b89b;
+
+    box-shadow:
+        0 9px 22px
+        rgba(93, 16, 12, 0.10);
 }
 
 
-.employee-card:hover {
-  border-color: #cbd5e1;
+/* =========================================================
+   MATCH BADGE
+   ========================================================= */
 
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.07);
+.match-badge {
+    position: absolute;
 
-  transform: translateY(-1px);
+    top: 12px;
+    left: 12px;
+
+    z-index: 2;
+
+    padding: 5px 8px;
+
+    border-radius: 5px;
+
+    background: #fff1e5;
+
+    color: #d95f0d;
+
+    border: 1px solid #f3c9aa;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
 }
 
 
 /* =========================================================
    PROFILE IMAGE
-========================================================= */
+   OVAL FRAME
+   ========================================================= */
 
-.employee-card > img {
-  width: 62px;
-  height: 62px;
+.profile-image-wrapper {
+    width: 112px;
+    height: 130px;
 
-  display: block;
+    margin-top: 23px;
+    margin-bottom: 11px;
 
-  object-fit: cover;
+    display: flex;
 
-  border-radius: 50%;
+    align-items: center;
+    justify-content: center;
 
-  border: 2px solid #2563eb;
+    border-radius: 50%;
 
-  background: #f3f4f6;
+    background: #fff4eb;
 
-  box-sizing: border-box;
+    border: 3px solid #f47b16;
+
+    padding: 3px;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-image-wrapper:hover {
+    transform: scale(1.03);
+
+    border-color: #8d0808;
+
+    box-shadow:
+        0 5px 14px
+        rgba(141, 8, 8, 0.15);
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+   Full image visible
+   ========================================================= */
+
+.profile-image-wrapper img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    border-radius: 50%;
+
+    background: #fff4eb;
+
+    /*
+     * contain keeps the complete uploaded
+     * profile image visible.
+     */
+    object-fit: contain;
+
+    object-position: center;
 }
 
 
 /* =========================================================
    PROFILE INFORMATION
-========================================================= */
+   ========================================================= */
 
-.employee-info {
-  min-width: 0;
+.profile-card-info {
+    width: 100%;
 
-  display: flex;
-  flex-direction: column;
+    min-width: 0;
 
-  justify-content: center;
-
-  padding: 2px 0;
+    text-align: center;
 }
 
+.profile-card-info h3 {
+    margin: 0 0 4px;
 
-.employee-info h3 {
-  margin: 0 0 4px 0;
+    color: #7f0808;
 
-  color: #e91e63;
+    font-family: "Playfair Display", serif;
 
-  font-size: 15px;
-  font-weight: 700;
+    font-size: 17px;
 
-  line-height: 1.25;
+    font-weight: 700;
 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    line-height: 1.25;
 
-  cursor: pointer;
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
 }
 
+.profile-card-info h3:hover {
+    color: #f47b16;
 
-.employee-info h3:hover {
-  text-decoration: underline;
-}
-
-
-.employee-info p {
-  margin: 1px 0;
-
-  color: #4b5563;
-
-  font-size: 12px;
-  font-weight: 400;
-
-  line-height: 1.4;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    text-decoration: underline;
 }
 
 
 /* =========================================================
-   BUTTON AREA
-========================================================= */
+   BASIC INFORMATION
+   ========================================================= */
 
-.buttons {
-  display: grid;
+.profile-basic {
+    margin: 0 0 4px;
 
-  grid-template-columns:
-    repeat(4, 112px);
+    color: #6f5c55;
 
-  align-items: center;
+    font-family: "Poppins", sans-serif;
 
-  gap: 7px;
+    font-size: 11px;
 
-  flex-shrink: 0;
-}
+    font-weight: 500;
 
+    line-height: 1.4;
 
-/* ALL BUTTONS */
+    white-space: nowrap;
 
-.buttons button {
-  width: 112px;
-  height: 34px;
+    overflow: hidden;
 
-  box-sizing: border-box;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0 7px;
-
-  border: none;
-  border-radius: 6px;
-
-  background: #2563eb;
-  color: #ffffff;
-
-  font-family: inherit;
-
-  font-size: 11px;
-  font-weight: 600;
-
-  line-height: 1;
-
-  white-space: nowrap;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
-}
-
-
-.buttons button:hover {
-  transform: translateY(-1px);
-
-  box-shadow:
-    0 3px 8px rgba(37, 99, 235, 0.22);
-}
-
-
-/* VIEW PROFILE */
-
-.buttons button:first-child {
-  background: #2563eb;
-}
-
-
-.buttons button:first-child:hover {
-  background: #1d4ed8;
-}
-
-
-/* SEND INTEREST */
-
-.buttons button:nth-child(2) {
-  background: #2563eb;
-}
-
-
-.buttons button:nth-child(2):hover {
-  background: #1d4ed8;
-}
-
-
-/* IGNORE */
-
-.buttons button:nth-child(3) {
-  background: #2563eb;
-}
-
-
-.buttons button:nth-child(3):hover {
-  background: #1d4ed8;
-}
-
-
-/* MESSAGE */
-
-.buttons button:nth-child(4) {
-  background: #10b981;
-}
-
-
-.buttons button:nth-child(4):hover {
-  background: #059669;
+    text-overflow: ellipsis;
 }
 
 
 /* =========================================================
-   DISABLED BUTTONS
-========================================================= */
+   JOB
+   ========================================================= */
 
-.buttons button:disabled {
-  cursor: default;
+.profile-job {
+    margin: 0;
 
-  transform: none;
+    color: #4d1712;
 
-  box-shadow: none;
+    font-family: "Poppins", sans-serif;
 
-  opacity: 0.85;
+    font-size: 11px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   LOCATION
+   ========================================================= */
+
+.profile-location {
+    margin: 2px 0 0;
+
+    color: #9a837a;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   WISHLIST HEART
+   BELOW IMAGE + INFORMATION
+   ========================================================= */
+
+.profile-heart {
+    width: 38px;
+    height: 38px;
+
+    margin-top: 11px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #edc9b5;
+
+    border-radius: 50%;
+
+    background: #fff8f2;
+
+    color: #8d0808;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-heart:hover {
+    background: #fff1e5;
+
+    color: #f47b16;
+
+    border-color: #f47b16;
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 4px 10px
+        rgba(244, 123, 22, 0.15);
+}
+
+
+/* =========================================================
+   ACTIVE WISHLIST
+   ========================================================= */
+
+.profile-heart.wishlist-active {
+    background: #8d0808;
+
+    color: #ffffff;
+
+    border-color: #8d0808;
+
+    box-shadow:
+        0 4px 10px
+        rgba(141, 8, 8, 0.18);
+}
+
+.profile-heart.wishlist-active:hover {
+    background: #700707;
+
+    border-color: #700707;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.profile-status {
+    margin-top: 7px;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    line-height: 1;
 }
 
 
 /* MATCHED */
 
-.buttons .matched-btn {
-  background: #16a34a;
+.matched-status {
+    background: #fff1e5;
+
+    color: #8d0808;
+
+    border: 1px solid #edc9b5;
 }
 
 
-/* REQUEST SENT */
+/* INTEREST SENT */
 
-.buttons .interest-sent-btn {
-  background: #64748b;
+.pending-status {
+    background: #f8eee9;
+
+    color: #806d65;
+
+    border: 1px solid #dfc9be;
 }
 
 
-/* REQUEST IGNORED */
+/* =========================================================
+   WISHLIST RIBBON POPUP
+   ========================================================= */
 
-.buttons .interest-rejected-btn {
-  background: #ef4444;
+.wishlist-ribbon {
+    position: fixed;
+
+    top: 82px;
+    right: 24px;
+
+    z-index: 9999;
+
+    min-width: 270px;
+
+    max-width: 360px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 17px;
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 22px
+        rgba(93, 16, 12, 0.18);
+
+    animation:
+        wishlistRibbonIn
+        0.3s ease-out;
+}
+
+
+/* =========================================================
+   ADD POPUP
+   ORANGE - NIYATI ACCENT
+   ========================================================= */
+
+.wishlist-ribbon-added {
+    background: #f47b16;
+
+    border-left: 5px solid #d95f0d;
+}
+
+
+/* =========================================================
+   REMOVE POPUP
+   MAROON - NIYATI PRIMARY
+   ========================================================= */
+
+.wishlist-ribbon-removed {
+    background: #8d0808;
+
+    border-left: 5px solid #650606;
+}
+
+
+/* =========================================================
+   POPUP ICON
+   ========================================================= */
+
+.wishlist-ribbon-icon {
+    width: 27px;
+    height: 27px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.18
+    );
+
+    color: #ffffff;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   POPUP ANIMATION
+   ========================================================= */
+
+@keyframes wishlistRibbonIn {
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(35px)
+            translateY(-5px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            translateY(0);
+    }
 }
 
 
 /* =========================================================
    NO PROFILES
-========================================================= */
+   ========================================================= */
 
-.users-container > h3 {
-  width: 100%;
+.no-profiles {
+    width: 100%;
 
-  padding: 30px 10px;
+    box-sizing: border-box;
 
-  margin: 0;
+    padding: 45px 20px;
 
-  box-sizing: border-box;
+    text-align: center;
 
-  color: #6b7280;
+    background: #ffffff;
 
-  font-size: 15px;
-  font-weight: 500;
+    border: 1px solid #ead8cc;
 
-  text-align: center;
+    border-radius: 12px;
+}
+
+.no-profile-icon {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff1e5;
+
+    color: #8d0808;
+
+    font-size: 27px;
+}
+
+.no-profiles h3 {
+    margin: 0 0 5px;
+
+    color: #7f0808;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 18px;
+}
+
+.no-profiles p {
+    margin: 0;
+
+    color: #8a756d;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
 }
 
 
 /* =========================================================
    PAGE NAVIGATION
-========================================================= */
+   ========================================================= */
 
 .page-navigation {
-  width: 100%;
-
-  display: flex;
-
-  justify-content: flex-start;
-  align-items: center;
-
-  margin-top: 20px;
-}
-
-
-.previous-btn {
-  height: 36px;
-
-  padding: 0 18px;
-
-  background: #e91e63;
-  color: #ffffff;
-
-  border: none;
-  border-radius: 7px;
-
-  font-family: inherit;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-
-.previous-btn:hover {
-  background: #d81b60;
-
-  transform: translateY(-1px);
+    margin-top: 20px;
 }
 
 
 /* =========================================================
-   RESPONSIVE - MEDIUM SCREEN
-========================================================= */
+   RESPONSIVE - 1200
+   ========================================================= */
 
-@media (max-width: 1250px) {
-
-  .employee-card {
-    grid-template-columns: 64px minmax(140px, 1fr) auto;
-
-    column-gap: 12px;
-
-    padding: 12px;
-  }
-
-
-  .employee-card > img {
-    width: 56px;
-    height: 56px;
-  }
-
-
-  .buttons {
-    grid-template-columns:
-      repeat(4, 96px);
-
-    gap: 5px;
-  }
-
-
-  .buttons button {
-    width: 96px;
-
-    font-size: 10px;
-
-    padding: 0 4px;
-  }
-
+@media (max-width: 1200px) {
+    .profiles-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
 }
 
 
 /* =========================================================
-   RESPONSIVE - SMALL SCREEN
-========================================================= */
+   RESPONSIVE - 900
+   ========================================================= */
 
-@media (max-width: 1050px) {
+@media (max-width: 900px) {
+    .users-container {
+        padding: 18px;
+    }
 
-  .search-section {
-    grid-template-columns: 1fr 1fr;
-  }
-
-
-  .search-section input {
-    grid-column: 1 / -1;
-  }
-
-
-  .clear-filter-btn {
-    width: 100%;
-  }
-
-
-  .employee-card {
-    grid-template-columns: 62px 1fr;
-
-    row-gap: 12px;
-  }
-
-
-  .buttons {
-    grid-column: 1 / -1;
-
-    width: 100%;
-
-    grid-template-columns:
-      repeat(4, 1fr);
-  }
-
-
-  .buttons button {
-    width: 100%;
-  }
-
+    .profiles-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
 }
 
 
 /* =========================================================
-   RESPONSIVE - MOBILE
-========================================================= */
+   RESPONSIVE - 600
+   ========================================================= */
 
-@media (max-width: 650px) {
+@media (max-width: 600px) {
+    .users-container {
+        padding: 14px 12px 20px;
+    }
 
-  .users-container {
-    padding: 12px;
-  }
+    .users-header {
+        align-items: flex-start;
 
+        gap: 12px;
+    }
 
-  .search-section {
-    grid-template-columns: 1fr;
+    .users-header h1 {
+        font-size: 23px;
+    }
 
-    padding: 12px;
-  }
+    .users-header p {
+        font-size: 11px;
+    }
 
+    .view-all-btn {
+        height: 34px;
 
-  .search-section input {
-    grid-column: auto;
-  }
+        padding: 0 13px;
 
+        font-size: 11px;
+    }
 
-  .search-section select {
-    width: 100%;
-  }
+    .section-heading {
+        align-items: flex-start;
 
+        flex-direction: column;
 
-  .clear-filter-btn {
-    width: 100%;
-  }
+        gap: 4px;
+    }
 
+    .section-heading h2 {
+        font-size: 17px;
+    }
 
-  .employee-card {
-    grid-template-columns: 54px 1fr;
+    .section-heading p {
+        font-size: 10px;
+    }
 
-    padding: 12px;
-  }
+    .profiles-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
 
+        gap: 10px;
+    }
 
-  .employee-card > img {
-    width: 50px;
-    height: 50px;
-  }
+    .profile-card {
+        padding: 11px 9px 12px;
 
+        border-radius: 10px;
+    }
 
-  .employee-info h3 {
-    font-size: 14px;
-  }
+    .match-badge {
+        top: 8px;
+        left: 8px;
 
+        padding: 4px 6px;
 
-  .employee-info p {
-    font-size: 11px;
-  }
+        font-size: 8px;
+    }
 
+    .profile-image-wrapper {
+        width: 82px;
+        height: 100px;
 
-  .buttons {
-    grid-template-columns: 1fr 1fr;
+        margin-top: 22px;
 
-    gap: 7px;
-  }
+        border-width: 2px;
+    }
 
+    .profile-card-info h3 {
+        font-size: 14px;
+    }
 
-  .buttons button {
-    width: 100%;
-    height: 36px;
+    .profile-basic,
+    .profile-job {
+        font-size: 9px;
+    }
 
-    font-size: 11px;
-  }
+    .profile-location {
+        font-size: 8px;
+    }
 
+    .profile-heart {
+        width: 34px;
+        height: 34px;
+
+        margin-top: 9px;
+
+        font-size: 21px;
+    }
+
+    .profile-status {
+        font-size: 8px;
+    }
+
+    .wishlist-ribbon {
+        top: 70px;
+        right: 12px;
+        left: 12px;
+
+        min-width: auto;
+        max-width: none;
+
+        font-size: 11px;
+    }
 }
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+    .profiles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        max-width: 300px;
+
+        margin: 0 auto;
+    }
+
+    .profile-image-wrapper {
+        width: 100px;
+        height: 118px;
+    }
+
+    .profile-card-info h3 {
+        font-size: 16px;
+    }
+
+    .profile-basic,
+    .profile-job {
+        font-size: 10px;
+    }
+
+    .profile-location {
+        font-size: 9px;
+    }
+}
+

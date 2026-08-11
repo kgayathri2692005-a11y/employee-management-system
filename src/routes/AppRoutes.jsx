@@ -17,6 +17,7 @@ import Wishlist from "../pages/Wishlist";
 import Search from "../pages/Search";
 import Notifications from "../pages/Notifications";
 import IgnoredProfiles from "../pages/IgnoredProfiles";
+import AboutUs from "../pages/AboutUs";
 import DashboardUserDetails from "../pages/DashboardUserDetails";
 
 function AppRoutes() {
@@ -40,6 +41,10 @@ function AppRoutes() {
         <Route path="/search" element={<Search />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/ignored-profiles" element={<IgnoredProfiles />} />
+        <Route
+    path="/about-us"
+    element={<AboutUs />}
+/>
         <Route path="/dashboard-users"  element={<DashboardUserDetails />}/>
 
       </Routes>

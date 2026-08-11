@@ -7,7 +7,12 @@
 
 .search-page {
     min-height: 100vh;
-    background: #ffffff;
+    background:
+        linear-gradient(
+            180deg,
+            #fffdf9 0%,
+            #faf7f0 100%
+        );
     color: #4d1712;
     font-family: "Poppins", sans-serif;
 }
@@ -621,26 +626,28 @@
 
 .search-profile-photo {
     width: 100%;
-
-    height: 175px;
+    height: 280px;
 
     position: relative;
-
     overflow: hidden;
 
-    background: #f3ece7;
+    background: #faf7f0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search-profile-photo img {
     width: 100%;
-
     height: 100%;
 
     display: block;
 
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
 
-    transition: transform 0.3s ease;
+    background: #faf7f0;
 }
 
 .search-profile-card:hover
@@ -692,15 +699,14 @@
 /* =========================================================
    HEART
 ========================================================= */
-
 .search-heart {
     position: absolute;
 
     top: 8px;
     right: 8px;
 
-    width: 27px;
-    height: 27px;
+    width: 32px;
+    height: 32px;
 
     display: flex;
 
@@ -709,15 +715,43 @@
 
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.96);
 
     color: #8d0808;
 
     border: 1px solid #efd3c3;
 
-    font-size: 18px;
+    font-size: 20px;
 
     line-height: 1;
+
+    cursor: pointer;
+
+    padding: 0;
+
+    z-index: 5;
+
+    transition: all 0.2s ease;
+}
+
+.search-heart:hover {
+    transform: scale(1.1);
+
+    border-color: #f47b16;
+
+    background: #fff8f3;
+}
+
+.search-heart.wishlist-active {
+    color: #8d0808;
+
+    background: #fff1eb;
+
+    border-color: #8d0808;
+}
+
+.search-heart:active {
+    transform: scale(0.92);
 }
 
 
@@ -749,153 +783,115 @@
    PROFILE CONTENT
 ========================================================= */
 
+/* PROFILE CONTENT */
 .search-profile-content {
-    padding: 10px;
+    padding: 14px;
 }
 
 .search-profile-label {
     color: #ef7118;
-
-    font-size: 7px;
-
+    font-size: 9px;
     font-weight: 700;
-
     letter-spacing: 0.9px;
 }
 
 .search-profile-content h3 {
-    margin: 3px 0 2px;
+    margin: 5px 0 4px;
 
     color: #67100c;
 
     font-family: "Playfair Display", serif;
 
-    font-size: 17px;
-
-    line-height: 1.2;
+    font-size: 21px;
+    line-height: 1.25;
 
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
-
-/* =========================================================
-   OCCUPATION
-========================================================= */
-
+/* OCCUPATION */
 .search-occupation {
-    margin: 0 0 4px;
+    margin: 0 0 6px;
 
     color: #675954;
 
-    font-size: 10px;
-
+    font-size: 12px;
     font-weight: 500;
 
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
-
-/* =========================================================
-   LOCATION
-========================================================= */
-
+/* LOCATION */
 .search-location {
     display: flex;
-
     align-items: center;
+    gap: 5px;
 
-    gap: 4px;
-
-    margin: 0 0 7px;
+    margin: 0 0 10px;
 
     color: #85766f;
 
-    font-size: 9px;
+    font-size: 11px;
 
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
 .location-icon {
     color: #f47b16;
-
-    font-size: 7px;
+    font-size: 8px;
 }
 
-
-/* =========================================================
-   META
-========================================================= */
-
+/* BASIC DETAILS */
 .search-profile-meta {
     display: flex;
-
     flex-wrap: wrap;
 
-    gap: 4px;
+    gap: 6px;
 
-    margin-bottom: 7px;
+    margin-bottom: 10px;
 }
 
 .search-profile-meta span {
-    padding: 3px 6px;
+    padding: 5px 8px;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
     background: #fff3e9;
-
     color: #9b3c19;
 
-    font-size: 7px;
-
+    font-size: 9px;
     font-weight: 600;
 }
 
-
-/* =========================================================
-   EXTRA DETAILS
-========================================================= */
-
+/* EXTRA DETAILS */
 .search-extra-details {
     display: grid;
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 6px;
+    gap: 10px;
 
-    margin-bottom: 8px;
+    margin-bottom: 11px;
 
-    padding: 7px 0;
+    padding: 9px 0;
 
     border-top: 1px solid #f0e5df;
-
     border-bottom: 1px solid #f0e5df;
-}
-
-.search-extra-details div {
-    min-width: 0;
 }
 
 .search-extra-details small {
     display: block;
 
-    margin-bottom: 1px;
+    margin-bottom: 3px;
 
     color: #a18d85;
 
-    font-size: 7px;
-
+    font-size: 9px;
     font-weight: 600;
 }
 
@@ -904,83 +900,65 @@
 
     color: #5e2921;
 
-    font-size: 8px;
-
+    font-size: 10px;
     font-weight: 600;
 
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
-
-/* =========================================================
-   CARD BOTTOM
-========================================================= */
-
+/* CARD BOTTOM */
 .search-card-bottom {
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
-    gap: 6px;
+    gap: 8px;
 }
 
 .search-match {
     color: #5d8a52;
 
-    font-size: 7px;
-
+    font-size: 9px;
     font-weight: 600;
 
     white-space: nowrap;
 }
 
-
-/* =========================================================
-   VIEW PROFILE BUTTON
-========================================================= */
-
+/* VIEW PROFILE BUTTON */
 .search-view-btn {
     flex-shrink: 0;
 
-    min-height: 29px;
+    min-height: 34px;
 
-    padding: 0 9px;
+    padding: 0 12px;
 
     border: none;
-
     border-radius: 5px;
 
     background: #f47b16;
-
     color: #ffffff;
 
     font-family: "Poppins", sans-serif;
 
-    font-size: 8px;
-
+    font-size: 10px;
     font-weight: 700;
 
     cursor: pointer;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    gap: 4px;
+    gap: 5px;
 
     transition: 0.2s ease;
 }
 
 .search-view-btn span {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .search-view-btn:hover {
@@ -1095,7 +1073,7 @@
     }
 
     .search-profile-photo {
-        height: 160px;
+        height: 230px;
     }
 
     .search-profile-content {
@@ -1153,7 +1131,7 @@
     }
 
     .search-profile-photo {
-        height: 185px;
+        height: 240px;
     }
 }
 
@@ -1209,7 +1187,7 @@
     }
 
     .search-profile-photo {
-        height: 220px;
+        height: 260px;
     }
 
     .search-profile-content {
