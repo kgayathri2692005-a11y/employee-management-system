@@ -1,296 +1,926 @@
-.notification-container{
+/* =========================================================
+   NIYATI NOTIFICATIONS
+   Theme: Maroon + Orange + Cream
+   ========================================================= */
 
-    padding:40px;
 
+/* =========================================================
+   MAIN NOTIFICATION CONTAINER
+   ========================================================= */
+
+.notification-container {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 28px 5% 40px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffdf9 0%,
+            #faf7f0 100%
+        );
+
+    min-height: calc(100vh - 70px);
 }
 
 
-.notification-container h2{
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
 
-    color:#b02a5b;
-    margin-bottom:25px;
+.notification-container h2 {
+    position: relative;
 
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto 28px;
+
+    padding: 0 0 14px 16px;
+
+    box-sizing: border-box;
+
+    color: #790707;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    border-bottom: 1px solid #eaded7;
 }
 
 
+/* Orange vertical accent */
 
-.empty-notification{
+.notification-container h2::before {
+    content: "";
 
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
-    color:#777;
+    position: absolute;
 
+    left: 0;
+    top: 2px;
+
+    width: 5px;
+    height: 35px;
+
+    background: #f47b16;
+
+    border-radius: 4px;
 }
 
 
+/* =========================================================
+   EMPTY NOTIFICATION
+   ========================================================= */
 
-.notification-card{
+.empty-notification {
+    position: relative;
 
-    display:flex;
-    align-items:center;
+    width: 100%;
+    max-width: 1200px;
 
-    background:white;
+    box-sizing: border-box;
 
-    padding:20px;
+    margin: 0 auto;
 
-    margin-bottom:20px;
+    padding: 40px 25px;
 
-    border-radius:20px;
+    background: #ffffff;
 
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid #ead8cc;
 
-    width:70%;
+    border-radius: 15px;
 
+    text-align: center;
+
+    color: #75665f;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(77, 23, 18, 0.06);
 }
 
 
+/* =========================================================
+   NOTIFICATION CARD
+   ========================================================= */
 
-.profile-circle{
+.notification-card {
+    position: relative;
 
-    width:70px;
-    height:70px;
+    display: flex;
+    align-items: center;
 
-    border-radius:50%;
+    width: 100%;
+    max-width: 1050px;
 
-    background:#ffe4ef;
+    box-sizing: border-box;
 
-    display:flex;
+    margin: 0 auto 18px;
 
-    justify-content:center;
-    align-items:center;
+    padding: 22px 25px;
 
-    font-size:35px;
+    background:
+        linear-gradient(
+            180deg,
+            #fffdfb 0%,
+            #fffaf6 100%
+        );
 
-    margin-right:20px;
+    border: 1px solid #ead8cc;
 
+    border-radius: 14px;
+
+    box-shadow:
+        0 6px 20px rgba(77, 23, 18, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
 
+/* Small orange decoration */
 
-.notification-details h3{
+.notification-card::before {
+    content: "";
 
-    margin:0;
+    position: absolute;
 
-    color:#333;
+    left: 0;
+    top: 18px;
 
+    width: 4px;
+    height: 55px;
+
+    background: #f47b16;
+
+    border-radius: 0 4px 4px 0;
 }
 
 
+.notification-card:hover {
+    transform: translateY(-2px);
 
-.notification-details p{
+    border-color: #efb58f;
 
-    color:#b02a5b;
-
-    margin:8px 0;
-
+    box-shadow:
+        0 9px 24px rgba(77, 23, 18, 0.09);
 }
 
 
-
-.notification-details span{
-
-    color:#777;
-
-    font-size:14px;
-
-}
-
-
-
-.notification-buttons{
-
-    margin-top:15px;
-
-}
-
-
-
-.accept-btn{
-
-    background:#e91e63;
-
-    color:white;
-
-    border:none;
-
-    padding:10px 20px;
-
-    border-radius:25px;
-
-    cursor:pointer;
-
-}
-
-
-
-.reject-btn{
-
-    margin-left:15px;
-
-    background:white;
-
-    color:#e91e63;
-
-    border:1px solid #e91e63;
-
-    padding:10px 20px;
-
-    border-radius:25px;
-
-    cursor:pointer;
-
-}
-
-
-
-.accept-btn:hover{
-
-    background:#c2185b;
-
-}
-
-
-
-.reject-btn:hover{
-
-    background:#ffe4ef;
-
-}
-
-/* ===========================
-   Ignore Modal
-=========================== */
-
-.ignore-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.45);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  z-index: 9999;
-}
-
-.ignore-modal {
-  width: 420px;
-  background: #fff;
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-
-  animation: popupAnimation 0.25s ease;
-}
-
-.ignore-modal h2 {
-  margin-bottom: 10px;
-  color: #e91e63;
-  text-align: center;
-}
-
-.ignore-modal p {
-  color: #666;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.ignore-modal label {
-  display: block;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.ignore-modal input[type="radio"] {
-  margin-right: 10px;
-}
-
-.ignore-modal textarea {
-  width: 100%;
-  min-height: 80px;
-  margin-top: 15px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  resize: none;
-}
-
-.ignore-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.cancel-btn {
-  background: #ddd;
-  color: #333;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.submit-btn {
-  background: #e91e63;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.cancel-btn:hover {
-  background: #cfcfcf;
-}
-
-.submit-btn:hover {
-  background: #d81b60;
-}
-
-@keyframes popupAnimation {
-  from {
-    transform: scale(0.85);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.view-profile-btn {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.view-profile-btn:hover {
-  background: #1d4ed8;
-}
+/* =========================================================
+   PROFILE CIRCLE
+   ========================================================= */
 
 .profile-circle {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
+    width: 78px;
+    height: 78px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    margin-right: 22px;
+
+    background: #fff7f0;
+
+    border: 4px solid #fff7f0;
+
+    outline: 2px solid #ead0c0;
+
+    box-shadow:
+        0 4px 12px rgba(77, 23, 18, 0.12);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
 }
 
+
 .profile-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================================================
+   NOTIFICATION DETAILS
+   ========================================================= */
+
+.notification-details {
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+/* =========================================================
+   USER NAME
+   ========================================================= */
+
+.notification-details h3 {
+    margin: 0 0 7px;
+
+    color: #790707;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    cursor: pointer;
+}
+
+
+.notification-details h3:hover {
+    color: #f47b16;
+}
+
+
+/* =========================================================
+   NOTIFICATION MESSAGE
+   ========================================================= */
+
+.notification-details p {
+    margin: 6px 0;
+
+    color: #5d2119;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* Interest message */
+
+.notification-details p:first-of-type {
+    color: #ed6e13;
+
+    font-weight: 600;
+}
+
+
+/* Reason */
+
+.notification-details p strong {
+    color: #790707;
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.notification-details span {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #75665f;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   BUTTON CONTAINER
+   ========================================================= */
+
+.notification-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 16px;
+}
+
+
+/* =========================================================
+   VIEW PROFILE BUTTON
+   NO BLUE / PURPLE
+   ========================================================= */
+
+.notification-buttons .view-profile-btn,
+.view-profile-btn {
+    min-height: 40px;
+
+    padding: 0 18px;
+
+    border: none !important;
+
+    border-radius: 7px;
+
+    background: #6d0404 !important;
+
+    color: #ffffff !important;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.notification-buttons .view-profile-btn:hover,
+.view-profile-btn:hover {
+    background: #8a0808 !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(109, 4, 4, 0.20);
+}
+
+
+/* =========================================================
+   ACCEPT BUTTON
+   ========================================================= */
+
+.accept-btn {
+    min-height: 40px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #f47b16;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.accept-btn:hover {
+    background: #d94d0b;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(217, 76, 11, 0.20);
+}
+
+
+/* =========================================================
+   IGNORE BUTTON
+   ========================================================= */
+
+.reject-btn {
+    min-height: 40px;
+
+    padding: 0 18px;
+
+    margin-left: 0;
+
+    border: 1px solid #8a0808;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #790707;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.reject-btn:hover {
+    background: #fff1ea;
+
+    color: #790707;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   IGNORE MODAL OVERLAY
+   ========================================================= */
+
+.ignore-modal-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(77, 23, 18, 0.50);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    z-index: 9999;
+}
+
+
+/* =========================================================
+   IGNORE MODAL
+   ========================================================= */
+
+.ignore-modal {
+    position: relative;
+
+    width: 100%;
+    max-width: 440px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #ead8cc;
+
+    border-radius: 16px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 15px 40px rgba(77, 23, 18, 0.20);
+
+    animation:
+        popupAnimation 0.25s ease;
+}
+
+
+/* Orange top decoration */
+
+.ignore-modal::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 65px;
+    height: 4px;
+
+    background: #f47b16;
+
+    border-radius: 0 0 5px 5px;
+}
+
+
+/* =========================================================
+   MODAL HEADING
+   ========================================================= */
+
+.ignore-modal h2 {
+    margin: 0 0 12px;
+
+    color: #790707;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MODAL TEXT
+   ========================================================= */
+
+.ignore-modal p {
+    margin: 0 0 15px;
+
+    color: #75665f;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MODAL LABELS
+   ========================================================= */
+
+.ignore-modal label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    padding: 10px 12px;
+
+    color: #5d2119;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    border: 1px solid transparent;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.ignore-modal label:hover {
+    background: #fff8f2;
+
+    border-color: #ead8cc;
+}
+
+
+.ignore-modal input[type="radio"] {
+    margin-right: 10px;
+
+    accent-color: #f47b16;
+}
+
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+.ignore-modal textarea {
+    width: 100%;
+
+    min-height: 90px;
+
+    margin-top: 8px;
+
+    padding: 11px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dfcfc5;
+
+    border-radius: 8px;
+
+    background: #fffdfb;
+
+    color: #5d2119;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    resize: vertical;
+
+    outline: none;
+}
+
+
+.ignore-modal textarea:focus {
+    border-color: #f47b16;
+
+    box-shadow:
+        0 0 0 2px rgba(244, 123, 22, 0.10);
+}
+
+
+.ignore-modal textarea::placeholder {
+    color: #9b8d86;
+}
+
+
+/* =========================================================
+   MODAL BUTTONS
+   ========================================================= */
+
+.ignore-buttons {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+   ========================================================= */
+
+.cancel-btn {
+    min-height: 40px;
+
+    padding: 0 18px;
+
+    border: 1px solid #d8c8c0;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #5d2119;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.cancel-btn:hover {
+    background: #fff7f0;
+
+    border-color: #c9b2a6;
+}
+
+
+/* =========================================================
+   SUBMIT / YES IGNORE BUTTON
+   ========================================================= */
+
+.submit-btn {
+    min-height: 40px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #6d0404;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.submit-btn:hover {
+    background: #8a0808;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(109, 4, 4, 0.20);
+}
+
+
+/* =========================================================
+   POPUP ANIMATION
+   ========================================================= */
+
+@keyframes popupAnimation {
+
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .notification-container {
+        padding: 24px 4% 35px;
+    }
+
+    .notification-container h2 {
+        font-size: 27px;
+    }
+
+    .notification-card {
+        max-width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .notification-container {
+        padding: 18px 15px 30px;
+    }
+
+
+    .notification-container h2 {
+        font-size: 24px;
+
+        padding-left: 13px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .notification-container h2::before {
+        height: 29px;
+    }
+
+
+    .notification-card {
+        align-items: flex-start;
+
+        padding: 18px;
+
+        border-radius: 13px;
+    }
+
+
+    .notification-card::before {
+        top: 16px;
+
+        height: 48px;
+    }
+
+
+    .profile-circle {
+        width: 62px;
+        height: 62px;
+
+        margin-right: 15px;
+    }
+
+
+    .notification-details h3 {
+        font-size: 19px;
+    }
+
+
+    .notification-details p {
+        font-size: 13px;
+    }
+
+
+    .notification-details span {
+        font-size: 11px;
+    }
+
+
+    .notification-buttons {
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+
+    .notification-buttons .view-profile-btn,
+    .accept-btn,
+    .reject-btn {
+        min-height: 38px;
+
+        padding: 0 13px;
+
+        font-size: 12px;
+    }
+
+
+    .ignore-modal {
+        padding: 24px 18px;
+    }
+
+
+    .ignore-modal h2 {
+        font-size: 22px;
+    }
+
+
+    .ignore-buttons {
+        flex-direction: column-reverse;
+    }
+
+
+    .cancel-btn,
+    .submit-btn {
+        width: 100%;
+    }
+
 }

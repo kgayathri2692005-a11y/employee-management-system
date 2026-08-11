@@ -2,55 +2,66 @@ import "./../styles/PageNavigation.css";
 import { useNavigate } from "react-router-dom";
 
 function PageNavigation() {
+    const navigate = useNavigate();
 
-  const navigate = useNavigate();
+    /*
+    =====================================================
+    BROWSER-LIKE BACK
+    Goes to the previous page in browser history
+    =====================================================
+    */
+    const handlePrevious = () => {
+        navigate(-1);
+    };
 
-  /*
-  =========================================================
-  BROWSER-LIKE BACK
-  =========================================================
-  */
+    /*
+    =====================================================
+    BROWSER-LIKE FORWARD
+    Goes to the next page in browser history
+    =====================================================
+    */
+    const handleNext = () => {
+        navigate(1);
+    };
 
-  const handlePrevious = () => {
-    navigate(-1);
-  };
+    return (
+        <div className="page-navigation">
 
+            {/* PREVIOUS */}
 
-  /*
-  =========================================================
-  BROWSER-LIKE FORWARD
-  =========================================================
-  */
+            <button
+                type="button"
+                className="previous-btn"
+                onClick={handlePrevious}
+            >
+                <span className="nav-arrow">
+                    ←
+                </span>
 
-  const handleNext = () => {
-    navigate(1);
-  };
-
-
-  return (
-    <div className="page-navigation">
-
-      <button
-        type="button"
-        className="previous-btn"
-        onClick={handlePrevious}
-      >
-        <span className="nav-arrow">←</span>
-        <span>Previous</span>
-      </button>
+                <span>
+                    Previous
+                </span>
+            </button>
 
 
-      <button
-        type="button"
-        className="next-btn"
-        onClick={handleNext}
-      >
-        <span>Next</span>
-        <span className="nav-arrow">→</span>
-      </button>
+            {/* NEXT */}
 
-    </div>
-  );
+            <button
+                type="button"
+                className="next-btn"
+                onClick={handleNext}
+            >
+                <span>
+                    Next
+                </span>
+
+                <span className="nav-arrow">
+                    →
+                </span>
+            </button>
+
+        </div>
+    );
 }
 
 export default PageNavigation;

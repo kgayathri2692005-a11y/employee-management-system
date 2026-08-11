@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import PageNavigation from "../components/PageNavigation";
 import Navbar from "../components/Navbar";
 import "../styles/Search.css";
 
@@ -9,6 +9,7 @@ function Search() {
 
     const [profiles, setProfiles] = useState([]);
     const [filteredProfiles, setFilteredProfiles] = useState([]);
+    const [wishlist, setWishlist] = useState([]);
 
     // =========================================================
     // FILTER STATES
@@ -43,39 +44,39 @@ function Search() {
     // GET PROFILE IMAGE
     // =========================================================
 
-    const getProfileImage = (profile) => {
-        if (
-            typeof profile?.profilePhoto === "string" &&
-            profile.profilePhoto.trim() !== ""
-        ) {
-            return profile.profilePhoto;
+   const getProfileImage = (profile) => {
+
+    if (
+        typeof profile?.profileImage === "string" &&
+        profile.profileImage.trim() !== ""
+    ) {
+        return profile.profileImage;
+    }
+
+    if (
+        typeof profile?.profilePhoto === "string" &&
+        profile.profilePhoto.trim() !== ""
+    ) {
+        return profile.profilePhoto;
+    }
+
+    if (
+        Array.isArray(profile?.additionalPhotos) &&
+        profile.additionalPhotos.length > 0
+    ) {
+        const photo = profile.additionalPhotos.find(
+            (item) =>
+                typeof item === "string" &&
+                item.trim() !== ""
+        );
+
+        if (photo) {
+            return photo;
         }
+    }
 
-        if (
-            Array.isArray(profile?.additionalPhotos) &&
-            profile.additionalPhotos.length > 0
-        ) {
-            const photo = profile.additionalPhotos.find(
-                (item) =>
-                    typeof item === "string" &&
-                    item.trim() !== ""
-            );
-
-            if (photo) {
-                return photo;
-            }
-        }
-
-        if (
-            typeof profile?.profileImage === "string" &&
-            profile.profileImage.trim() !== ""
-        ) {
-            return profile.profileImage;
-        }
-
-        return "https://randomuser.me/api/portraits/lego/1.jpg";
-    };
-
+    return "https://randomuser.me/api/portraits/lego/1.jpg";
+};
     // =========================================================
     // GET AGE
     // =========================================================
@@ -337,6 +338,13 @@ function Search() {
         profiles
     ]);
 
+    useEffect(() => {
+    const savedWishlist =
+        JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    setWishlist(savedWishlist);
+}, []);
+
     const applyFilters = () => {
         let result = [...profiles];
 
@@ -505,6 +513,40 @@ function Search() {
     // =========================================================
     // PROFILE CARD
     // =========================================================
+    const toggleWishlist = (profile) => {
+    const profileEmail = profile.email;
+
+    const alreadyAdded = wishlist.some(
+        (item) => item.email === profileEmail
+    );
+
+    let updatedWishlist;
+
+    if (alreadyAdded) {
+        // Remove from wishlist
+        updatedWishlist = wishlist.filter(
+            (item) => item.email !== profileEmail
+        );
+    } else {
+        // Add to wishlist
+        updatedWishlist = [
+            ...wishlist,
+            profile
+        ];
+    }
+
+    setWishlist(updatedWishlist);
+
+    localStorage.setItem(
+        "wishlist",
+        JSON.stringify(updatedWishlist)
+    );
+
+    // Notify other pages/components
+    window.dispatchEvent(
+        new Event("wishlistUpdated")
+    );
+};
 
     const ProfileCard = ({ profile }) => {
         const age = getAge(profile);
@@ -539,10 +581,30 @@ function Search() {
 
                     {/* HEART */}
 
-                    <span className="search-heart">
-                        ♡
-                    </span>
-
+<button
+    type="button"
+    className={`search-heart ${
+        wishlist.some(
+            (item) => item.email === profile.email
+        )
+            ? "wishlist-active"
+            : ""
+    }`}
+    onClick={() => toggleWishlist(profile)}
+    aria-label={
+        wishlist.some(
+            (item) => item.email === profile.email
+        )
+            ? "Remove from wishlist"
+            : "Add to wishlist"
+    }
+>
+    {wishlist.some(
+        (item) => item.email === profile.email
+    )
+        ? "♥"
+        : "♡"}
+</button>
                     {/* AGE OVER IMAGE */}
 
                     {age && (
@@ -1111,7 +1173,7 @@ function Search() {
                 </section>
 
             </main>
-
+<PageNavigation />
         </div>
     );
 }
