@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import PageNavigation from "../components/PageNavigation";
 
 import "../styles/Dashboard.css";
+import "../styles/IgnoredProfiles.css";
 
 function IgnoredProfiles() {
 
@@ -576,14 +577,17 @@ window.dispatchEvent(
             }}
           >
 
-            <h2
-              style={{
-                margin: 0,
-                color: "#172b52"
-              }}
-            >
-              🚫 Ignored Profiles
-            </h2>
+            <div className="ignored-page-header">
+
+  <h2>
+    Ignored Profiles
+  </h2>
+
+  <p>
+    🧡 Profiles you chose to ignore
+  </p>
+
+</div>
 
             <p
               style={{
@@ -647,35 +651,12 @@ window.dispatchEvent(
                 (user) => (
 
                   <div
-                    key={user.email}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent:
-                        "space-between",
-                      gap: "20px",
-                      background: "#fff",
-                      border:
-                        "1px solid #e8e8e8",
-                      borderRadius: "14px",
-                      padding: "18px",
-                      marginBottom: "15px",
-                      boxShadow:
-                        "0 4px 15px rgba(0,0,0,0.05)"
-                    }}
-                  >
-
+  key={user.email}
+  className="ignored-profile-card"
+>
                     {/* PROFILE */}
 
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems:
-                          "center",
-                        gap: "15px",
-                        minWidth: 0
-                      }}
-                    >
+                   <div className="ignored-profile-info">
 
                       <img
                         src={user.image}
@@ -689,55 +670,24 @@ window.dispatchEvent(
                             "https://randomuser.me/api/portraits/lego/1.jpg";
 
                         }}
-                        style={{
-                          width: "72px",
-                          height: "72px",
-                          borderRadius: "50%",
-                          objectFit: "cover",
-                          flexShrink: 0
-                        }}
+                         className="ignored-profile-image"
                       />
 
                       <div>
 
-                        <h3
-                          style={{
-                            margin:
-                              "0 0 6px",
-                            color:
-                              "#172b52"
-                          }}
-                        >
-                          {user.name}
-                        </h3>
+                        <h3>
+  {user.name}
+</h3>
 
-                        <p
-                          style={{
-                            margin:
-                              "4px 0",
-                            color:
-                              "#666"
-                          }}
-                        >
-                          💼{" "}
-                          {user.occupation}
-                        </p>
-
-                        <p
-                          style={{
-                            margin:
-                              "4px 0",
-                            color:
-                              "#666"
-                          }}
-                        >
-                          📍{" "}
-                          {user.city}
-
-                          {user.state
-                            ? `, ${user.state}`
-                            : ""}
-                        </p>
+                        <p>
+  💼 {user.occupation}
+</p>
+                        <p>
+  📍 {user.city}
+  {user.state
+    ? `, ${user.state}`
+    : ""}
+</p>
 
                       </div>
 
@@ -746,13 +696,7 @@ window.dispatchEvent(
 
                     {/* BUTTONS */}
 
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "10px",
-                        flexShrink: 0
-                      }}
-                    >
+                   <div className="ignored-profile-buttons">
 
                       <button
                         className=
