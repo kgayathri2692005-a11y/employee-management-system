@@ -18,6 +18,7 @@ import Search from "../pages/Search";
 import Notifications from "../pages/Notifications";
 import IgnoredProfiles from "../pages/IgnoredProfiles";
 import AboutUs from "../pages/AboutUs";
+import Home from "../pages/Home";
 import DashboardUserDetails from "../pages/DashboardUserDetails";
 
 function AppRoutes() {
@@ -25,7 +26,7 @@ function AppRoutes() {
     <>
       <Routes>
 
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
@@ -45,6 +46,7 @@ function AppRoutes() {
     path="/about-us"
     element={<AboutUs />}
 />
+ <Route path="/home"  element={<Home/>}/>
         <Route path="/dashboard-users"  element={<DashboardUserDetails />}/>
 
       </Routes>

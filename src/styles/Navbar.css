@@ -1536,3 +1536,93 @@
     outline-offset: 2px;
 
 }
+
+/* =========================================================
+   PUBLIC NAVBAR BUTTONS
+========================================================= */
+
+.navbar-login-btn,
+.navbar-register-btn {
+    height: 38px;
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+
+/* LOGIN */
+
+.navbar-login-btn {
+    border: 1px solid #8d0808;
+
+    background: #ffffff;
+
+    color: #8d0808;
+}
+
+.navbar-login-btn:hover {
+    background: #fff4eb;
+
+    transform: translateY(-1px);
+}
+
+
+/* REGISTER */
+
+.navbar-register-btn {
+    border: 1px solid #f47b16;
+
+    background: #f47b16;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 4px 10px rgba(244, 123, 22, 0.18);
+}
+
+.navbar-register-btn:hover {
+    background: #d94d0b;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(217, 77, 11, 0.22);
+}
+
+
+/* =========================================================
+   RIGHT SIDE GAP
+========================================================= */
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar-login-btn,
+    .navbar-register-btn {
+        height: 34px;
+
+        padding: 0 12px;
+
+        font-size: 10px;
+    }
+
+}

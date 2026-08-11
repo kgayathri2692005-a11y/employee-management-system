@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Navbar from "../components/Navbar";
 import PageNavigation from "../components/PageNavigation";
@@ -497,9 +498,37 @@ function Dashboard() {
   =========================================================
   */
 
-  const browseProfiles = () => {
+ const browseProfiles = () => {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
     navigate("/users");
-  };
+  } else {
+    navigate("/login", {
+      state: {
+        message:
+          "Please login or register to explore profiles and discover meaningful connections."
+      }
+    });
+  }
+};
+
+const requireLogin = (destination, state = {}) => {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  if (loggedInUser) {
+    navigate(destination, {
+      state
+    });
+  } else {
+    navigate("/login", {
+      state: {
+        message:
+          "Please login or register to access this feature."
+      }
+    });
+  }
+};
 
   const registerFree = () => {
     navigate("/register");
@@ -565,18 +594,13 @@ function Dashboard() {
               NIYATI MATRIMONY
             </div>
 
-            <h1>
-              Find Your
-              <span>
-                Destined Partner
-              </span>
-            </h1>
+           <h1>
+ Find the Connection You Were Meant For
+</h1>
 
-            <p className="hero-description">
-              Where Hearts Meet,
-              <br />
-              Families Unite.
-            </p>
+<p className="hero-description">
+  Where meaningful relationships begin with trust, understanding and destiny.
+</p>
 
             <div className="hero-actions">
 
@@ -588,13 +612,26 @@ function Dashboard() {
                 Register Free
               </button>
 
-              <button
-                type="button"
-                className="secondary-btn"
-                onClick={browseProfiles}
-              >
-                Browse Profiles
-              </button>
+<button
+    type="button"
+    className="hero-explore-btn"
+    onClick={() => {
+        toast.info(
+            "Please login or register to explore profiles and discover meaningful connections."
+        );
+
+        setTimeout(() => {
+            navigate("/login", {
+                state: {
+                    message:
+                        "Please login or register to explore profiles and discover meaningful connections."
+                }
+            });
+        }, 3200);
+    }}
+>
+    Explore Profiles
+</button>
 
             </div>
 
@@ -882,13 +919,11 @@ function Dashboard() {
 
           <div
             className="stat-item clickable"
-            onClick={() =>
-              navigate("/dashboard-users", {
-                state: {
-                  type: "totalUsers"
-                }
-              })
-            }
+onClick={() =>
+  requireLogin("/dashboard-users", {
+    type: "totalUsers"
+  })
+}
           >
 
             <div className="stat-icon">
@@ -911,13 +946,11 @@ function Dashboard() {
 
           <div
             className="stat-item clickable"
-            onClick={() =>
-              navigate("/dashboard-users", {
-                state: {
-                  type: "activeUsers"
-                }
-              })
-            }
+onClick={() =>
+  requireLogin("/dashboard-users", {
+    type: "activeUsers"
+  })
+}
           >
 
             <div className="stat-icon">
@@ -982,6 +1015,314 @@ function Dashboard() {
           </div>
 
         </div>
+
+      </section>
+      {/* =================================================
+          HOW NIYATI WORKS
+      ================================================= */}
+
+      <section className="how-niyati-works">
+
+        <div className="how-section-heading">
+
+          <span className="how-heading-decoration">
+            ✦
+          </span>
+
+          <h2>
+            How Niyati Works
+          </h2>
+
+          <span className="how-heading-decoration">
+            ✦
+          </span>
+
+        </div>
+
+        <p className="how-section-subtitle">
+          A simple journey towards a meaningful connection.
+        </p>
+
+
+        <div className="how-steps">
+
+          {/* STEP 01 */}
+
+          <div className="how-step">
+
+            <div className="how-step-number">
+              01
+            </div>
+
+            <div className="how-step-icon">
+              ♡
+            </div>
+
+            <h3>
+              Create Your Profile
+            </h3>
+
+            <p>
+              Tell us about yourself,
+              your interests and what
+              you are looking for.
+            </p>
+
+          </div>
+
+
+          <div className="how-step-connector">
+            <span>→</span>
+          </div>
+
+
+          {/* STEP 02 */}
+
+          <div className="how-step">
+
+            <div className="how-step-number">
+              02
+            </div>
+
+            <div className="how-step-icon">
+              ✦
+            </div>
+
+            <h3>
+              Discover Connections
+            </h3>
+
+            <p>
+              Explore meaningful
+              profiles based on
+              compatibility.
+            </p>
+
+          </div>
+
+
+          <div className="how-step-connector">
+            <span>→</span>
+          </div>
+
+
+          {/* STEP 03 */}
+
+          <div className="how-step">
+
+            <div className="how-step-number">
+              03
+            </div>
+
+            <div className="how-step-icon">
+              ♡
+            </div>
+
+            <h3>
+              Start a Conversation
+            </h3>
+
+            <p>
+              Connect with someone
+              who feels right.
+            </p>
+
+          </div>
+
+
+          <div className="how-step-connector">
+            <span>→</span>
+          </div>
+
+
+          {/* STEP 04 */}
+
+          <div className="how-step">
+
+            <div className="how-step-number">
+              04
+            </div>
+
+            <div className="how-step-icon">
+              ♥
+            </div>
+
+            <h3>
+              Build Your Story
+            </h3>
+
+            <p>
+              Take your connection
+              towards something
+              meaningful.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =================================================
+          WHY CHOOSE NIYATI
+      ================================================= */}
+
+      <section className="why-niyati">
+
+        <div className="why-niyati-inner">
+
+          <div className="why-section-heading">
+
+            <span className="why-heading-decoration">
+              ✦
+            </span>
+
+            <h2>
+              Why Choose Niyati?
+            </h2>
+
+            <span className="why-heading-decoration">
+              ✦
+            </span>
+
+          </div>
+
+          <p className="why-section-subtitle">
+            Because meaningful connections deserve
+            a thoughtful beginning.
+          </p>
+
+
+          <div className="why-features">
+
+            {/* FEATURE 01 */}
+
+            <div className="why-feature-card">
+
+              <div className="why-feature-icon">
+                ♡
+              </div>
+
+              <div className="why-feature-content">
+
+                <h3>
+                  Meaningful Connections
+                </h3>
+
+                <p>
+                  Find people looking for
+                  genuine and meaningful
+                  relationships.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* FEATURE 02 */}
+
+            <div className="why-feature-card">
+
+              <div className="why-feature-icon">
+                ♧
+              </div>
+
+              <div className="why-feature-content">
+
+                <h3>
+                  Trusted Profiles
+                </h3>
+
+                <p>
+                  Profile information designed
+                  around authenticity and trust.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* FEATURE 03 */}
+
+            <div className="why-feature-card">
+
+              <div className="why-feature-icon">
+                ✦
+              </div>
+
+              <div className="why-feature-content">
+
+                <h3>
+                  Compatibility Focused
+                </h3>
+
+                <p>
+                  Discover people based on
+                  preferences, values and
+                  compatibility.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* FEATURE 04 */}
+
+            <div className="why-feature-card">
+
+              <div className="why-feature-icon">
+                ♡
+              </div>
+
+              <div className="why-feature-content">
+
+                <h3>
+                  Private Conversations
+                </h3>
+
+                <p>
+                  Connect privately and take
+                  your conversations forward
+                  with confidence.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* FEATURE 05 */}
+
+            <div className="why-feature-card">
+
+              <div className="why-feature-icon">
+                ♥
+              </div>
+
+              <div className="why-feature-content">
+
+                <h3>
+                  Your Privacy Matters
+                </h3>
+
+                <p>
+                  Your personal information
+                  stays protected while you
+                  explore meaningful connections.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+        
 
       </section>
 

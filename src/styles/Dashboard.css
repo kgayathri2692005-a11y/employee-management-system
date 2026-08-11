@@ -86,7 +86,7 @@
       calc(100% - 80px)
     );
 
-  min-height: 365px;
+  min-height: 350px;
 
   margin: 0 auto;
 
@@ -98,7 +98,7 @@
 
   align-items: center;
 
-  gap: 25px;
+  gap: 20px;
 
   padding:
     25px
@@ -109,14 +109,12 @@
 /* =========================================================
    HERO CONTENT
    ========================================================= */
-
 .hero-content {
-  position: relative;
-  z-index: 3;
+    position: relative;
+    z-index: 3;
 
-  padding-left: 5px;
+    padding-left: 15px;
 }
-
 .hero-kicker {
   display: flex;
   align-items: center;
@@ -145,31 +143,25 @@
    ========================================================= */
 
 .hero-content h1 {
-  margin: 0;
+    margin: 0;
 
-  max-width: 570px;
+    max-width: 520px;
 
-  color: var(--maroon);
+    color: var(--maroon);
 
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
 
-  font-size:
-    clamp(
-      54px,
-      6vw,
-      74px
-    );
+    font-size: clamp(48px, 5vw, 60px);
 
-  line-height: 0.9;
+    line-height: 0.95;
 
-  font-weight: 600;
+    font-weight: 600;
 
-  letter-spacing: -2.2px;
+    letter-spacing: -1.5px;
 }
-
 .hero-content h1 span {
   display: block;
 
@@ -195,7 +187,7 @@
     Georgia,
     serif;
 
-  font-size: 21px;
+  font-size: 18px;
 
   line-height: 1.12;
 
@@ -1145,30 +1137,25 @@
 
 @media (max-width: 1000px) {
 
-  .hero-inner {
-    width:
-      min(
-        calc(100% - 50px),
-        900px
-      );
+.hero-inner {
+    width: min(1180px, calc(100% - 80px));
 
-    min-height: 330px;
+    min-height: 350px;
 
-    grid-template-columns:
-      1fr
-      0.85fr;
+    margin: 0 auto;
 
-    gap: 10px;
+    display: grid;
 
-    padding:
-      20px
-      0;
-  }
+    grid-template-columns: 1fr 0.9fr;
 
-  .hero-content h1 {
-    font-size: 62px;
-  }
+    align-items: center;
 
+    gap: 20px;
+
+    padding: 25px 0;
+}
+
+ 
   .hero-logo {
     width: 290px;
   }
@@ -1227,18 +1214,10 @@
     justify-content: center;
   }
 
-  .hero-content h1 {
-    margin:
-      0
-      auto;
-
-    font-size:
-      clamp(
-        52px,
-        10vw,
-        68px
-      );
-  }
+.hero-content h1 {
+margin: 0 auto;
+font-size: clamp(42px, 10vw, 58px);
+}
 
   .hero-description {
     font-size: 21px;
@@ -1347,19 +1326,19 @@
     letter-spacing: 1.6px;
   }
 
-  .hero-content h1 {
-    font-size:
-      clamp(
-        46px,
-        13vw,
-        58px
-      );
+.hero-content h1 {
+font-size:
+clamp(
+40px,
+13vw,
+54px
+);
 
-    letter-spacing:
-      -1.5px;
+letter-spacing:
+-1.5px;
 
-    line-height: 0.93;
-  }
+line-height: 0.93;
+}
 
   .hero-description {
     margin:
@@ -2099,4 +2078,1157 @@ VERY SMALL PHONES
         width: 230px;
         height: 230px;
     }
+}
+/* =========================================================
+   NIYATI BRAND TOAST
+   ========================================================= */
+
+.Toastify__toast {
+    background: #8b0000 !important;
+    color: #ffffff !important;
+
+    border-radius: 14px !important;
+
+    border-left: 6px solid #ff7a00 !important;
+
+    box-shadow:
+        0 8px 25px rgba(139, 0, 0, 0.30) !important;
+}
+
+.Toastify__toast-body {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+.Toastify__close-button {
+    color: #ffffff !important;
+}
+
+.Toastify__progress-bar {
+    background: #ff7a00 !important;
+}
+/* =========================================================
+   EXPLORE PROFILES BUTTON
+   ========================================================= */
+
+.hero-explore-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 44px;
+
+    padding: 0 24px;
+
+    background: #ffffff;
+
+    color: #8b0000;
+
+    border: 1.5px solid #8b0000;
+
+    border-radius: 6px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.hero-explore-btn:hover {
+    background: #8b0000;
+
+    color: #ffffff;
+
+    border-color: #8b0000;
+
+    box-shadow:
+        0 6px 16px rgba(139, 0, 0, 0.20);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ACTIVE
+   ========================================================= */
+
+.hero-explore-btn:active {
+    transform: translateY(0);
+
+    box-shadow:
+        0 3px 8px rgba(139, 0, 0, 0.15);
+}
+
+/* =========================================================
+   HOW NIYATI WORKS
+   Public / Before Login Section
+   ========================================================= */
+
+.how-niyati-works {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffdf9 0%,
+            #faf6ef 100%
+        );
+
+    padding:
+        72px
+        0
+        76px;
+
+    border-top:
+        1px solid
+        rgba(104, 25, 35, 0.07);
+
+    border-bottom:
+        1px solid
+        rgba(104, 25, 35, 0.07);
+}
+
+
+/* =========================================================
+   SUBTLE DECORATIVE BACKGROUND
+   ========================================================= */
+
+.how-niyati-works::before {
+    content: "";
+
+    position: absolute;
+
+    width: 360px;
+    height: 360px;
+
+    left: -180px;
+    top: 30px;
+
+    border:
+        1px solid
+        rgba(184, 138, 85, 0.10);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+.how-niyati-works::after {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    right: -150px;
+    bottom: -150px;
+
+    border:
+        1px solid
+        rgba(184, 138, 85, 0.10);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.how-section-heading {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 11px;
+
+    margin: 0;
+}
+
+
+.how-section-heading h2 {
+    margin: 0;
+
+    color:
+        var(--maroon);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+.how-heading-decoration {
+    color:
+        var(--gold);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 17px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   SUBTITLE
+   ========================================================= */
+
+.how-section-subtitle {
+    position: relative;
+
+    z-index: 2;
+
+    margin:
+        10px
+        auto
+        42px;
+
+    color:
+        var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   STEPS CONTAINER
+   ========================================================= */
+
+.how-steps {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(
+            1180px,
+            calc(100% - 80px)
+        );
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        42px
+        minmax(0, 1fr)
+        42px
+        minmax(0, 1fr)
+        42px
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   INDIVIDUAL STEP
+   ========================================================= */
+
+.how-step {
+    position: relative;
+
+    min-height: 245px;
+
+    padding:
+        27px
+        20px
+        25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    border:
+        1px solid
+        rgba(104, 25, 35, 0.09);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 7px 24px
+        rgba(65, 34, 34, 0.055);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.how-step:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(184, 138, 85, 0.38);
+
+    box-shadow:
+        0 15px 32px
+        rgba(65, 34, 34, 0.10);
+}
+
+
+/* =========================================================
+   STEP NUMBER
+   ========================================================= */
+
+.how-step-number {
+    position: absolute;
+
+    top: 13px;
+    left: 16px;
+
+    color:
+        rgba(184, 138, 85, 0.55);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================================
+   STEP ICON
+   ========================================================= */
+
+.how-step-icon {
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(184, 138, 85, 0.52);
+
+    border-radius: 50%;
+
+    background:
+        #fffaf3;
+
+    color:
+        var(--gold);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(184, 138, 85, 0.08);
+}
+
+
+/* =========================================================
+   STEP TITLE
+   ========================================================= */
+
+.how-step h3 {
+    margin:
+        0
+        0
+        8px;
+
+    color:
+        var(--maroon);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 23px;
+
+    line-height: 1.05;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STEP DESCRIPTION
+   ========================================================= */
+
+.how-step p {
+    max-width: 210px;
+
+    margin: 0;
+
+    color:
+        #806c70;
+
+    font-size: 12px;
+
+    line-height: 1.65;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   CONNECTING ARROWS
+   ========================================================= */
+
+.how-step-connector {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color:
+        var(--gold);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 27px;
+
+    opacity: 0.75;
+}
+
+
+.how-step-connector span {
+    display: block;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   WHY CHOOSE NIYATI
+   ========================================================= */
+
+.why-niyati {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        #fff;
+
+    padding:
+        76px
+        0
+        82px;
+}
+
+
+.why-niyati::before {
+    content: "";
+
+    position: absolute;
+
+    width: 430px;
+    height: 430px;
+
+    left: 50%;
+    top: -300px;
+
+    transform:
+        translateX(-50%);
+
+    border:
+        1px solid
+        rgba(184, 138, 85, 0.08);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   WHY INNER
+   ========================================================= */
+
+.why-niyati-inner {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(
+            1180px,
+            calc(100% - 80px)
+        );
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   WHY HEADING
+   ========================================================= */
+
+.why-section-heading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 11px;
+}
+
+
+.why-section-heading h2 {
+    margin: 0;
+
+    color:
+        var(--maroon);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+.why-heading-decoration {
+    color:
+        var(--gold);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 17px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   WHY SUBTITLE
+   ========================================================= */
+
+.why-section-subtitle {
+    max-width: 500px;
+
+    margin:
+        12px
+        auto
+        42px;
+
+    color:
+        var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   WHY FEATURE GRID
+   ========================================================= */
+
+.why-features {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   FEATURE CARD
+   ========================================================= */
+
+.why-feature-card {
+    position: relative;
+
+    min-height: 205px;
+
+    padding:
+        27px
+        18px
+        24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffdf9 0%,
+            #fff 100%
+        );
+
+    border:
+        1px solid
+        rgba(104, 25, 35, 0.09);
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(65, 34, 34, 0.045);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+/*
+First three cards occupy equal width.
+Last two cards sit centered underneath.
+*/
+
+.why-feature-card:nth-child(1),
+.why-feature-card:nth-child(2),
+.why-feature-card:nth-child(3) {
+    grid-column:
+        span 2;
+}
+
+
+.why-feature-card:nth-child(4) {
+    grid-column:
+        2 / span 2;
+}
+
+
+.why-feature-card:nth-child(5) {
+    grid-column:
+        4 / span 2;
+}
+
+
+.why-feature-card:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(184, 138, 85, 0.38);
+
+    box-shadow:
+        0 14px 28px
+        rgba(65, 34, 34, 0.085);
+}
+
+
+/* =========================================================
+   FEATURE ICON
+   ========================================================= */
+
+.why-feature-icon {
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 14px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(184, 138, 85, 0.48);
+
+    border-radius: 50%;
+
+    background:
+        #fffaf3;
+
+    color:
+        var(--gold);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 23px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.why-feature-card:hover
+.why-feature-icon {
+    transform:
+        scale(1.05);
+
+    background:
+        #fff7eb;
+}
+
+
+/* =========================================================
+   FEATURE TITLE
+   ========================================================= */
+
+.why-feature-content h3 {
+    margin:
+        0
+        0
+        7px;
+
+    color:
+        var(--maroon);
+
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+
+    font-size: 22px;
+
+    line-height: 1.05;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FEATURE DESCRIPTION
+   ========================================================= */
+
+.why-feature-content p {
+    max-width: 245px;
+
+    margin: 0 auto;
+
+    color:
+        #806c70;
+
+    font-size: 11.5px;
+
+    line-height: 1.6;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .how-steps {
+        width:
+            calc(100% - 50px);
+    }
+
+    .why-niyati-inner {
+        width:
+            calc(100% - 50px);
+    }
+
+
+    .how-step {
+        padding:
+            25px
+            15px;
+    }
+
+
+    .how-step h3 {
+        font-size: 20px;
+    }
+
+
+    .how-step p {
+        font-size: 11.5px;
+    }
+
+
+    .why-feature-content h3 {
+        font-size: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .how-niyati-works {
+        padding:
+            60px
+            0
+            65px;
+    }
+
+
+    .how-section-heading h2,
+    .why-section-heading h2 {
+        font-size: 38px;
+    }
+
+
+    .how-steps {
+        width:
+            calc(100% - 30px);
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 18px;
+    }
+
+
+    .how-step {
+        min-height: 225px;
+    }
+
+
+    .how-step-connector {
+        display: none;
+    }
+
+
+    .why-niyati {
+        padding:
+            65px
+            0
+            70px;
+    }
+
+
+    .why-niyati-inner {
+        width:
+            calc(100% - 30px);
+    }
+
+
+    .why-features {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 16px;
+    }
+
+
+    .why-feature-card:nth-child(1),
+    .why-feature-card:nth-child(2),
+    .why-feature-card:nth-child(3),
+    .why-feature-card:nth-child(4),
+    .why-feature-card:nth-child(5) {
+        grid-column:
+            auto;
+    }
+
+
+    .why-feature-card:nth-child(5) {
+        grid-column:
+            1 / -1;
+
+        max-width: 50%;
+
+        width: 100%;
+
+        justify-self: center;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+    .how-niyati-works {
+        padding:
+            52px
+            0
+            58px;
+    }
+
+
+    .how-section-heading,
+    .why-section-heading {
+        gap: 8px;
+    }
+
+
+    .how-section-heading h2,
+    .why-section-heading h2 {
+        font-size: 33px;
+    }
+
+
+    .how-heading-decoration,
+    .why-heading-decoration {
+        font-size: 15px;
+    }
+
+
+    .how-section-subtitle,
+    .why-section-subtitle {
+        padding:
+            0
+            15px;
+
+        margin-top: 10px;
+
+        margin-bottom: 30px;
+
+        font-size: 12.5px;
+    }
+
+
+    .how-steps {
+        width:
+            calc(100% - 28px);
+
+        grid-template-columns:
+            1fr;
+
+        gap: 14px;
+    }
+
+
+    .how-step {
+        min-height: 205px;
+
+        padding:
+            26px
+            18px
+            23px;
+    }
+
+
+    .how-step-number {
+        top: 12px;
+        left: 14px;
+
+        font-size: 12px;
+    }
+
+
+    .how-step-icon {
+        width: 52px;
+        height: 52px;
+
+        margin-bottom: 12px;
+
+        font-size: 22px;
+    }
+
+
+    .how-step h3 {
+        font-size: 22px;
+    }
+
+
+    .how-step p {
+        font-size: 11.5px;
+
+        line-height: 1.55;
+    }
+
+
+    .why-niyati {
+        padding:
+            58px
+            0
+            65px;
+    }
+
+
+    .why-niyati-inner {
+        width:
+            calc(100% - 28px);
+    }
+
+
+    .why-features {
+        grid-template-columns:
+            1fr;
+
+        gap: 14px;
+    }
+
+
+    .why-feature-card,
+    .why-feature-card:nth-child(5) {
+        width: 100%;
+
+        max-width: none;
+
+        min-height: 175px;
+
+        grid-column:
+            auto;
+
+        justify-self: stretch;
+    }
+
+
+    .why-feature-icon {
+        width: 50px;
+        height: 50px;
+
+        margin-bottom: 12px;
+
+        font-size: 21px;
+    }
+
+
+    .why-feature-content h3 {
+        font-size: 21px;
+    }
+
+
+    .why-feature-content p {
+        font-size: 11px;
+
+        line-height: 1.55;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .how-section-heading h2,
+    .why-section-heading h2 {
+        font-size: 30px;
+    }
+
+
+    .how-heading-decoration,
+    .why-heading-decoration {
+        font-size: 14px;
+    }
+
+
+    .how-section-subtitle,
+    .why-section-subtitle {
+        font-size: 11.5px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .how-step {
+        min-height: 195px;
+    }
+
+
+    .how-step h3 {
+        font-size: 20px;
+    }
+
+
+    .how-step p {
+        font-size: 11px;
+    }
+
+
+    .why-feature-card {
+        min-height: 165px;
+    }
+
+
+    .why-feature-content h3 {
+        font-size: 20px;
+    }
+
 }

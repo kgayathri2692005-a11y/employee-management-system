@@ -1,15 +1,40 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import PageNavigation from "../components/PageNavigation";
 import Navbar from "../components/Navbar";
+
 import "../styles/Search.css";
 
 function Search() {
+
     const navigate = useNavigate();
+
+    const loggedInUser =
+        JSON.parse(
+            localStorage.getItem("loggedInUser")
+        );
+
+    const isLoggedIn = !!loggedInUser;
 
     const [profiles, setProfiles] = useState([]);
     const [filteredProfiles, setFilteredProfiles] = useState([]);
     const [wishlist, setWishlist] = useState([]);
+    // =========================================================
+// GET PROFILE NAME
+// =========================================================
+
+const getProfileName = (profile) => {
+    const fullName =
+        `${profile?.firstName || ""} ${profile?.lastName || ""}`.trim();
+
+    return (
+        fullName ||
+        profile?.fullName ||
+        profile?.userName ||
+        "Niyati Member"
+    );
+};
 
     // =========================================================
     // FILTER STATES
@@ -28,67 +53,96 @@ function Search() {
     // GET PROFILE NAME
     // =========================================================
 
-    const getProfileName = (profile) => {
-        const fullName =
-            `${profile?.firstName || ""} ${profile?.lastName || ""}`.trim();
+const getProfileImage = (profile) => {
 
-        return (
-            fullName ||
-            profile?.fullName ||
-            profile?.userName ||
-            "Niyati Member"
-        );
-    };
-
-    // =========================================================
-    // GET PROFILE IMAGE
-    // =========================================================
-
-   const getProfileImage = (profile) => {
-
-    if (
-        typeof profile?.profileImage === "string" &&
-        profile.profileImage.trim() !== ""
-    ) {
-        return profile.profileImage;
-    }
-
+    // Prefer uploaded profile photo
     if (
         typeof profile?.profilePhoto === "string" &&
         profile.profilePhoto.trim() !== ""
     ) {
-        return profile.profilePhoto;
+        return profile.profilePhoto.trim();
     }
 
+    // Use profileImage only if profilePhoto is unavailable
     if (
-        Array.isArray(profile?.additionalPhotos) &&
-        profile.additionalPhotos.length > 0
+        typeof profile?.profileImage === "string" &&
+        profile.profileImage.trim() !== ""
     ) {
-        const photo = profile.additionalPhotos.find(
-            (item) =>
-                typeof item === "string" &&
-                item.trim() !== ""
-        );
+        return profile.profileImage.trim();
+    }
 
-        if (photo) {
-            return photo;
+    // Other possible image fields
+    const possibleImages = [
+        profile?.profilePicture,
+        profile?.photo,
+        profile?.image,
+        profile?.imageUrl
+    ];
+
+    for (const image of possibleImages) {
+
+        if (
+            typeof image === "string" &&
+            image.trim() !== ""
+        ) {
+            return image.trim();
         }
     }
 
+    // Additional photos
+    if (Array.isArray(profile?.additionalPhotos)) {
+
+        for (const photo of profile.additionalPhotos) {
+
+            if (
+                typeof photo === "string" &&
+                photo.trim() !== ""
+            ) {
+                return photo.trim();
+            }
+
+            if (
+                photo &&
+                typeof photo === "object"
+            ) {
+
+                const objectPhoto =
+                    photo.url ||
+                    photo.image ||
+                    photo.imageUrl ||
+                    photo.photo;
+
+                if (
+                    typeof objectPhoto === "string" &&
+                    objectPhoto.trim() !== ""
+                ) {
+                    return objectPhoto.trim();
+                }
+            }
+        }
+    }
+
+    // Final fallback
     return "https://randomuser.me/api/portraits/lego/1.jpg";
 };
+
     // =========================================================
     // GET AGE
     // =========================================================
 
     const getAge = (profile) => {
+
         if (profile?.age) {
             return Number(profile.age);
         }
 
         if (profile?.dob) {
-            const birthDate = new Date(profile.dob);
-            const today = new Date();
+
+            const birthDate =
+                new Date(profile.dob);
+
+            const today =
+                new Date();
 
             let age =
                 today.getFullYear() -
@@ -102,7 +156,8 @@ function Search() {
                 monthDifference < 0 ||
                 (
                     monthDifference === 0 &&
-                    today.getDate() < birthDate.getDate()
+                    today.getDate() <
+                    birthDate.getDate()
                 )
             ) {
                 age--;
@@ -119,6 +174,7 @@ function Search() {
     // =========================================================
 
     const getCity = (profile) => {
+
         return (
             profile?.currentCity ||
             profile?.city ||
@@ -132,6 +188,7 @@ function Search() {
     // =========================================================
 
     const getOccupation = (profile) => {
+
         return (
             profile?.occupation ||
             profile?.job ||
@@ -145,6 +202,7 @@ function Search() {
     // =========================================================
 
     const getReligion = (profile) => {
+
         return (
             profile?.religion ||
             profile?.religiousPreference ||
@@ -158,6 +216,7 @@ function Search() {
     // =========================================================
 
     const getEducation = (profile) => {
+
         return (
             profile?.education ||
             profile?.highestEducation ||
@@ -170,74 +229,59 @@ function Search() {
     // LOAD PROFILES
     // =========================================================
 
-    useEffect(() => {
-        loadProfiles();
-
-        window.addEventListener(
-            "profileUpdated",
-            loadProfiles
-        );
-
-        return () => {
-            window.removeEventListener(
-                "profileUpdated",
-                loadProfiles
-            );
-        };
-    }, []);
-
     const loadProfiles = () => {
+
         const allProfiles =
             JSON.parse(
                 localStorage.getItem("allProfiles")
             ) || {};
 
-        const loggedInUser =
+        const currentLoggedInUser =
             JSON.parse(
                 localStorage.getItem("loggedInUser")
             );
 
-        if (!loggedInUser) {
+        if (!currentLoggedInUser) {
+
             setProfiles([]);
             setFilteredProfiles([]);
+
             return;
         }
 
         const currentEmail =
             (
-                loggedInUser.email ||
-                loggedInUser.userEmail ||
+                currentLoggedInUser.email ||
+                currentLoggedInUser.userEmail ||
                 ""
             )
                 .trim()
                 .toLowerCase();
 
         // =====================================================
-        // FIND CURRENT USER PROFILE
+        // ALL USERS
         // =====================================================
 
-        let currentProfile =
-            allProfiles[currentEmail];
+        const allUsers =
+            Object.entries(allProfiles).map(
+                ([email, profile]) => ({
+                    ...profile,
+                    email
+                })
+            );
 
-        if (!currentProfile) {
-            const matchingKey =
-                Object.keys(allProfiles).find(
-                    (email) =>
-                        email.trim().toLowerCase() ===
-                        currentEmail
-                );
+        // =====================================================
+        // FIND CURRENT USER
+        // =====================================================
 
-            if (matchingKey) {
-                currentProfile =
-                    allProfiles[matchingKey];
-            }
-        }
-
-        if (!currentProfile) {
-            setProfiles([]);
-            setFilteredProfiles([]);
-            return;
-        }
+        const currentProfile =
+            allUsers.find(
+                (profile) =>
+                    (profile.email || "")
+                        .trim()
+                        .toLowerCase() ===
+                    currentEmail
+            );
 
         // =====================================================
         // CURRENT USER GENDER
@@ -245,8 +289,8 @@ function Search() {
 
         const currentGender =
             (
-                currentProfile.gender ||
-                loggedInUser.gender ||
+                currentProfile?.gender ||
+                currentLoggedInUser.gender ||
                 ""
             )
                 .trim()
@@ -262,71 +306,116 @@ function Search() {
             currentGender === "male" ||
             currentGender === "m"
         ) {
-            oppositeGender = "female";
-        }
 
-        if (
+            oppositeGender = "female";
+
+        } else if (
             currentGender === "female" ||
             currentGender === "f"
         ) {
+
             oppositeGender = "male";
         }
 
         // =====================================================
-        // ALL USERS
+        // FILTER PROFILES
         // =====================================================
 
-        const allUsers =
-            Object.entries(allProfiles).map(
-                ([email, profile]) => ({
-                    ...profile,
-                    email
-                })
+        const otherProfiles =
+            allUsers.filter(
+                (profile) => {
+
+                    const profileEmail =
+                        (
+                            profile.email ||
+                            ""
+                        )
+                            .trim()
+                            .toLowerCase();
+
+                    // Never show logged-in user
+
+                    if (
+                        profileEmail ===
+                        currentEmail
+                    ) {
+                        return false;
+                    }
+
+                    const profileGender =
+                        (
+                            profile.gender ||
+                            ""
+                        )
+                            .trim()
+                            .toLowerCase();
+
+                    // Show opposite gender
+
+                    if (oppositeGender) {
+
+                        return (
+                            profileGender ===
+                            oppositeGender
+                        );
+                    }
+
+                    // If gender is missing for
+                    // current user, show other profiles
+
+                    return true;
+                }
             );
 
-        // =====================================================
-        // OPPOSITE GENDER ONLY
-        // =====================================================
+        setProfiles(
+            otherProfiles
+        );
 
-        const oppositeGenderProfiles =
-            allUsers.filter((profile) => {
-                const profileEmail =
-                    (profile.email || "")
-                        .trim()
-                        .toLowerCase();
-
-                const profileGender =
-                    (profile.gender || "")
-                        .trim()
-                        .toLowerCase();
-
-                // Never show yourself
-                if (
-                    profileEmail === currentEmail
-                ) {
-                    return false;
-                }
-
-                if (oppositeGender) {
-                    return (
-                        profileGender ===
-                        oppositeGender
-                    );
-                }
-
-                return false;
-            });
-
-        setProfiles(oppositeGenderProfiles);
-        setFilteredProfiles(oppositeGenderProfiles);
+        setFilteredProfiles(
+            otherProfiles
+        );
     };
+
+    // =========================================================
+    // LOAD PROFILES WHEN LOGGED IN
+    // =========================================================
+
+    useEffect(() => {
+
+        if (!isLoggedIn) {
+
+            setProfiles([]);
+            setFilteredProfiles([]);
+
+            return;
+        }
+
+        loadProfiles();
+
+        window.addEventListener(
+            "profileUpdated",
+            loadProfiles
+        );
+
+        return () => {
+
+            window.removeEventListener(
+                "profileUpdated",
+                loadProfiles
+            );
+
+        };
+
+    }, [isLoggedIn]);
 
     // =========================================================
     // APPLY FILTERS
     // =========================================================
 
     useEffect(() => {
+
         applyFilters();
+
     }, [
         searchName,
         selectedCity,
@@ -338,91 +427,184 @@ function Search() {
         profiles
     ]);
 
-    useEffect(() => {
-    const savedWishlist =
-        JSON.parse(localStorage.getItem("wishlist")) || [];
+    // =========================================================
+    // LOAD WISHLIST
+    // =========================================================
 
-    setWishlist(savedWishlist);
-}, []);
+    useEffect(() => {
+
+        const savedWishlist =
+            JSON.parse(
+                localStorage.getItem("wishlist")
+            ) || [];
+
+        setWishlist(
+            savedWishlist
+        );
+
+    }, []);
+
+    // =========================================================
+    // APPLY FILTERS
+    // =========================================================
 
     const applyFilters = () => {
-        let result = [...profiles];
 
+        let result = [
+            ...profiles
+        ];
+
+        // =====================================================
         // NAME
-        if (searchName.trim() !== "") {
+        // =====================================================
+
+        if (
+            searchName.trim() !== ""
+        ) {
+
             const search =
                 searchName
                     .trim()
                     .toLowerCase();
 
-            result = result.filter((profile) =>
-                getProfileName(profile)
-                    .toLowerCase()
-                    .includes(search)
-            );
+            result =
+                result.filter(
+                    (profile) =>
+                        getProfileName(
+                            profile
+                        )
+                            .toLowerCase()
+                            .includes(search)
+                );
         }
 
+        // =====================================================
         // CITY
-        if (selectedCity !== "") {
-            result = result.filter((profile) =>
-                getCity(profile)
-                    .toLowerCase() ===
-                selectedCity.toLowerCase()
-            );
+        // =====================================================
+
+        if (
+            selectedCity !== ""
+        ) {
+
+            result =
+                result.filter(
+                    (profile) =>
+                        getCity(
+                            profile
+                        )
+                            .toLowerCase() ===
+                        selectedCity.toLowerCase()
+                );
         }
 
+        // =====================================================
         // OCCUPATION
-        if (selectedOccupation !== "") {
-            result = result.filter((profile) =>
-                getOccupation(profile)
-                    .toLowerCase() ===
-                selectedOccupation.toLowerCase()
-            );
+        // =====================================================
+
+        if (
+            selectedOccupation !== ""
+        ) {
+
+            result =
+                result.filter(
+                    (profile) =>
+                        getOccupation(
+                            profile
+                        )
+                            .toLowerCase() ===
+                        selectedOccupation.toLowerCase()
+                );
         }
 
+        // =====================================================
         // RELIGION
-        if (selectedReligion !== "") {
-            result = result.filter((profile) =>
-                getReligion(profile)
-                    .toLowerCase() ===
-                selectedReligion.toLowerCase()
-            );
+        // =====================================================
+
+        if (
+            selectedReligion !== ""
+        ) {
+
+            result =
+                result.filter(
+                    (profile) =>
+                        getReligion(
+                            profile
+                        )
+                            .toLowerCase() ===
+                        selectedReligion.toLowerCase()
+                );
         }
 
+        // =====================================================
         // EDUCATION
-        if (selectedEducation !== "") {
-            result = result.filter((profile) =>
-                getEducation(profile)
-                    .toLowerCase() ===
-                selectedEducation.toLowerCase()
-            );
+        // =====================================================
+
+        if (
+            selectedEducation !== ""
+        ) {
+
+            result =
+                result.filter(
+                    (profile) =>
+                        getEducation(
+                            profile
+                        )
+                            .toLowerCase() ===
+                        selectedEducation.toLowerCase()
+                );
         }
 
+        // =====================================================
         // MIN AGE
-        if (minAge !== "") {
-            result = result.filter((profile) => {
-                const age = getAge(profile);
+        // =====================================================
 
-                return (
-                    age !== "" &&
-                    age >= Number(minAge)
+        if (
+            minAge !== ""
+        ) {
+
+            result =
+                result.filter(
+                    (profile) => {
+
+                        const age =
+                            getAge(profile);
+
+                        return (
+                            age !== "" &&
+                            age >=
+                            Number(minAge)
+                        );
+                    }
                 );
-            });
         }
 
+        // =====================================================
         // MAX AGE
-        if (maxAge !== "") {
-            result = result.filter((profile) => {
-                const age = getAge(profile);
+        // =====================================================
 
-                return (
-                    age !== "" &&
-                    age <= Number(maxAge)
+        if (
+            maxAge !== ""
+        ) {
+
+            result =
+                result.filter(
+                    (profile) => {
+
+                        const age =
+                            getAge(profile);
+
+                        return (
+                            age !== "" &&
+                            age <=
+                            Number(maxAge)
+                        );
+                    }
                 );
-            });
         }
 
-        setFilteredProfiles(result);
+        setFilteredProfiles(
+            result
+        );
     };
 
     // =========================================================
@@ -432,13 +614,15 @@ function Search() {
     const cities = [
         ...new Set(
             profiles
-                .map((profile) =>
-                    getCity(profile)
+                .map(
+                    (profile) =>
+                        getCity(profile)
                 )
                 .filter(
                     (city) =>
                         city &&
-                        city !== "Location not added"
+                        city !==
+                        "Location not added"
                 )
         )
     ].sort();
@@ -446,13 +630,15 @@ function Search() {
     const occupations = [
         ...new Set(
             profiles
-                .map((profile) =>
-                    getOccupation(profile)
+                .map(
+                    (profile) =>
+                        getOccupation(profile)
                 )
                 .filter(
                     (occupation) =>
                         occupation &&
-                        occupation !== "Professional"
+                        occupation !==
+                        "Professional"
                 )
         )
     ].sort();
@@ -460,8 +646,9 @@ function Search() {
     const religions = [
         ...new Set(
             profiles
-                .map((profile) =>
-                    getReligion(profile)
+                .map(
+                    (profile) =>
+                        getReligion(profile)
                 )
                 .filter(Boolean)
         )
@@ -470,8 +657,9 @@ function Search() {
     const educations = [
         ...new Set(
             profiles
-                .map((profile) =>
-                    getEducation(profile)
+                .map(
+                    (profile) =>
+                        getEducation(profile)
                 )
                 .filter(Boolean)
         )
@@ -482,6 +670,7 @@ function Search() {
     // =========================================================
 
     const clearFilters = () => {
+
         setSearchName("");
         setSelectedCity("");
         setSelectedOccupation("");
@@ -496,6 +685,7 @@ function Search() {
     // =========================================================
 
     const viewProfile = (profile) => {
+
         navigate(
             "/view-profile",
             {
@@ -511,49 +701,86 @@ function Search() {
     };
 
     // =========================================================
+    // TOGGLE WISHLIST
+    // =========================================================
+
+    const toggleWishlist = (profile) => {
+
+        const profileEmail =
+            profile.email;
+
+        const alreadyAdded =
+            wishlist.some(
+                (item) =>
+                    item.email ===
+                    profileEmail
+            );
+
+        let updatedWishlist;
+
+        if (alreadyAdded) {
+
+            // Remove from wishlist
+
+            updatedWishlist =
+                wishlist.filter(
+                    (item) =>
+                        item.email !==
+                        profileEmail
+                );
+
+        } else {
+
+            // Add to wishlist
+
+            updatedWishlist = [
+                ...wishlist,
+                profile
+            ];
+        }
+
+        setWishlist(
+            updatedWishlist
+        );
+
+        localStorage.setItem(
+            "wishlist",
+            JSON.stringify(
+                updatedWishlist
+            )
+        );
+
+        window.dispatchEvent(
+            new Event("wishlistUpdated")
+        );
+    };
+
+    // =========================================================
     // PROFILE CARD
     // =========================================================
-    const toggleWishlist = (profile) => {
-    const profileEmail = profile.email;
 
-    const alreadyAdded = wishlist.some(
-        (item) => item.email === profileEmail
-    );
+    const ProfileCard = ({
+        profile
+    }) => {
 
-    let updatedWishlist;
+        const age =
+            getAge(profile);
 
-    if (alreadyAdded) {
-        // Remove from wishlist
-        updatedWishlist = wishlist.filter(
-            (item) => item.email !== profileEmail
-        );
-    } else {
-        // Add to wishlist
-        updatedWishlist = [
-            ...wishlist,
-            profile
-        ];
-    }
+        const religion =
+            getReligion(profile);
 
-    setWishlist(updatedWishlist);
+        const education =
+            getEducation(profile);
 
-    localStorage.setItem(
-        "wishlist",
-        JSON.stringify(updatedWishlist)
-    );
-
-    // Notify other pages/components
-    window.dispatchEvent(
-        new Event("wishlistUpdated")
-    );
-};
-
-    const ProfileCard = ({ profile }) => {
-        const age = getAge(profile);
-        const religion = getReligion(profile);
-        const education = getEducation(profile);
+        const isInWishlist =
+            wishlist.some(
+                (item) =>
+                    item.email ===
+                    profile.email
+            );
 
         return (
+
             <article className="search-profile-card">
 
                 {/* IMAGE */}
@@ -564,7 +791,9 @@ function Search() {
                         src={getProfileImage(profile)}
                         alt={getProfileName(profile)}
                         onError={(e) => {
-                            e.currentTarget.onerror = null;
+
+                            e.currentTarget.onerror =
+                                null;
 
                             e.currentTarget.src =
                                 "https://randomuser.me/api/portraits/lego/1.jpg";
@@ -574,43 +803,50 @@ function Search() {
                     {/* IMAGE OVERLAY */}
 
                     <div className="search-photo-overlay">
+
                         <span>
                             ✦ NIYATI MEMBER
                         </span>
+
                     </div>
 
                     {/* HEART */}
 
-<button
-    type="button"
-    className={`search-heart ${
-        wishlist.some(
-            (item) => item.email === profile.email
-        )
-            ? "wishlist-active"
-            : ""
-    }`}
-    onClick={() => toggleWishlist(profile)}
-    aria-label={
-        wishlist.some(
-            (item) => item.email === profile.email
-        )
-            ? "Remove from wishlist"
-            : "Add to wishlist"
-    }
->
-    {wishlist.some(
-        (item) => item.email === profile.email
-    )
-        ? "♥"
-        : "♡"}
-</button>
+                    <button
+                        type="button"
+                        className={
+                            `search-heart ${
+                                isInWishlist
+                                    ? "wishlist-active"
+                                    : ""
+                            }`
+                        }
+                        onClick={() =>
+                            toggleWishlist(
+                                profile
+                            )
+                        }
+                        aria-label={
+                            isInWishlist
+                                ? "Remove from wishlist"
+                                : "Add to wishlist"
+                        }
+                    >
+
+                        {isInWishlist
+                            ? "♥"
+                            : "♡"}
+
+                    </button>
+
                     {/* AGE OVER IMAGE */}
 
                     {age && (
+
                         <div className="search-photo-age">
                             {age} yrs
                         </div>
+
                     )}
 
                 </div>
@@ -632,11 +868,13 @@ function Search() {
                     </p>
 
                     <p className="search-location">
+
                         <span className="location-icon">
                             ●
                         </span>
 
                         {getCity(profile)}
+
                     </p>
 
                     {/* BASIC DETAILS */}
@@ -644,21 +882,27 @@ function Search() {
                     <div className="search-profile-meta">
 
                         {age && (
+
                             <span>
                                 {age} yrs
                             </span>
+
                         )}
 
                         {profile.gender && (
+
                             <span>
                                 {profile.gender}
                             </span>
+
                         )}
 
                         {profile.maritalStatus && (
+
                             <span>
                                 {profile.maritalStatus}
                             </span>
+
                         )}
 
                     </div>
@@ -666,10 +910,13 @@ function Search() {
                     {/* EXTRA DETAILS */}
 
                     {(religion || education) && (
+
                         <div className="search-extra-details">
 
                             {religion && (
+
                                 <div>
+
                                     <small>
                                         Religion
                                     </small>
@@ -677,11 +924,15 @@ function Search() {
                                     <strong>
                                         {religion}
                                     </strong>
+
                                 </div>
+
                             )}
 
                             {education && (
+
                                 <div>
+
                                     <small>
                                         Education
                                     </small>
@@ -689,10 +940,13 @@ function Search() {
                                     <strong>
                                         {education}
                                     </strong>
+
                                 </div>
+
                             )}
 
                         </div>
+
                     )}
 
                     {/* BOTTOM */}
@@ -703,17 +957,24 @@ function Search() {
                             ● Profile available
                         </span>
 
-                        {/* VIEW PROFILE REMAINS */}
+                        {/* VIEW PROFILE */}
 
                         <button
                             type="button"
                             className="search-view-btn"
                             onClick={() =>
-                                viewProfile(profile)
+                                viewProfile(
+                                    profile
+                                )
                             }
                         >
+
                             View Profile
-                            <span>→</span>
+
+                            <span>
+                                →
+                            </span>
+
                         </button>
 
                     </div>
@@ -729,6 +990,7 @@ function Search() {
     // =========================================================
 
     return (
+
         <div className="search-page">
 
             <Navbar />
@@ -747,7 +1009,9 @@ function Search() {
 
                     <h1>
                         Discover Your
-                        <span> Perfect Match</span>
+                        <span>
+                            {" "}Perfect Match
+                        </span>
                     </h1>
 
                     <p>
@@ -759,6 +1023,7 @@ function Search() {
                 </div>
 
                 <div className="search-intro-decoration">
+
                     <div className="intro-person maroon">
                         ●
                     </div>
@@ -770,6 +1035,7 @@ function Search() {
                     <div className="intro-person orange">
                         ●
                     </div>
+
                 </div>
 
             </section>
@@ -793,6 +1059,7 @@ function Search() {
                         </div>
 
                         <div>
+
                             <span>
                                 REFINE SEARCH
                             </span>
@@ -800,6 +1067,7 @@ function Search() {
                             <h2>
                                 Find Your Match
                             </h2>
+
                         </div>
 
                     </div>
@@ -853,21 +1121,30 @@ function Search() {
                                     )
                                 }
                             >
+
                                 <option value="">
                                     Min
                                 </option>
 
                                 {Array.from(
-                                    { length: 33 },
-                                    (_, i) => i + 18
-                                ).map((age) => (
-                                    <option
-                                        key={age}
-                                        value={age}
-                                    >
-                                        {age}
-                                    </option>
-                                ))}
+                                    {
+                                        length: 33
+                                    },
+                                    (_, i) =>
+                                        i + 18
+                                ).map(
+                                    (age) => (
+
+                                        <option
+                                            key={age}
+                                            value={age}
+                                        >
+                                            {age}
+                                        </option>
+
+                                    )
+                                )}
+
                             </select>
 
                             <span>
@@ -882,21 +1159,30 @@ function Search() {
                                     )
                                 }
                             >
+
                                 <option value="">
                                     Max
                                 </option>
 
                                 {Array.from(
-                                    { length: 33 },
-                                    (_, i) => i + 18
-                                ).map((age) => (
-                                    <option
-                                        key={age}
-                                        value={age}
-                                    >
-                                        {age}
-                                    </option>
-                                ))}
+                                    {
+                                        length: 33
+                                    },
+                                    (_, i) =>
+                                        i + 18
+                                ).map(
+                                    (age) => (
+
+                                        <option
+                                            key={age}
+                                            value={age}
+                                        >
+                                            {age}
+                                        </option>
+
+                                    )
+                                )}
+
                             </select>
 
                         </div>
@@ -924,14 +1210,18 @@ function Search() {
                                 All Locations
                             </option>
 
-                            {cities.map((city) => (
-                                <option
-                                    key={city}
-                                    value={city}
-                                >
-                                    {city}
-                                </option>
-                            ))}
+                            {cities.map(
+                                (city) => (
+
+                                    <option
+                                        key={city}
+                                        value={city}
+                                    >
+                                        {city}
+                                    </option>
+
+                                )
+                            )}
 
                         </select>
 
@@ -960,12 +1250,14 @@ function Search() {
 
                             {religions.map(
                                 (religion) => (
+
                                     <option
                                         key={religion}
                                         value={religion}
                                     >
                                         {religion}
                                     </option>
+
                                 )
                             )}
 
@@ -996,12 +1288,14 @@ function Search() {
 
                             {educations.map(
                                 (education) => (
+
                                     <option
                                         key={education}
                                         value={education}
                                     >
                                         {education}
                                     </option>
+
                                 )
                             )}
 
@@ -1032,12 +1326,14 @@ function Search() {
 
                             {occupations.map(
                                 (occupation) => (
+
                                     <option
                                         key={occupation}
                                         value={occupation}
                                     >
                                         {occupation}
                                     </option>
+
                                 )
                             )}
 
@@ -1052,8 +1348,13 @@ function Search() {
                         className="search-apply-btn"
                         onClick={applyFilters}
                     >
+
                         Search Profiles
-                        <span>→</span>
+
+                        <span>
+                            →
+                        </span>
+
                     </button>
 
                     {/* RESET */}
@@ -1120,18 +1421,83 @@ function Search() {
 
                     </div>
 
-                    {/* PROFILE GRID */}
+                    {/* =================================================
+                        PROFILE GRID
+                    ================================================= */}
 
-                    {filteredProfiles.length > 0 ? (
+                    {!isLoggedIn ? (
+
+                        <div className="search-empty">
+
+                            <div className="search-empty-heart">
+                                ♡
+                            </div>
+
+                            <span>
+                                NIYATI MATRIMONY
+                            </span>
+
+                            <h3>
+                                Login to Explore Profiles
+                            </h3>
+
+                            <p>
+                                Please login or register
+                                to explore profiles and
+                                discover meaningful
+                                connections.
+                            </p>
+
+                            <div className="search-login-actions">
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        navigate(
+                                            "/login",
+                                            {
+                                                state: {
+                                                    message:
+                                                        "Please login or register to explore profiles and discover meaningful connections."
+                                                }
+                                            }
+                                        )
+                                    }
+                                >
+                                    Login
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        navigate(
+                                            "/register"
+                                        )
+                                    }
+                                >
+                                    Register Free
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    ) : filteredProfiles.length > 0 ? (
 
                         <div className="search-profile-grid">
 
                             {filteredProfiles.map(
                                 (profile) => (
+
                                     <ProfileCard
-                                        key={profile.email}
-                                        profile={profile}
+                                        key={
+                                            profile.email
+                                        }
+                                        profile={
+                                            profile
+                                        }
                                     />
+
                                 )
                             )}
 
@@ -1154,14 +1520,17 @@ function Search() {
                             </h3>
 
                             <p>
-                                We couldn't find profiles
-                                matching your current
+                                We couldn't find
+                                profiles matching
+                                your current
                                 preferences.
                             </p>
 
                             <button
                                 type="button"
-                                onClick={clearFilters}
+                                onClick={
+                                    clearFilters
+                                }
                             >
                                 Clear Filters
                             </button>
@@ -1173,7 +1542,9 @@ function Search() {
                 </section>
 
             </main>
-<PageNavigation />
+
+            <PageNavigation />
+
         </div>
     );
 }

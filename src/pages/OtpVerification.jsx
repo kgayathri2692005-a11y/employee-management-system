@@ -50,7 +50,7 @@ const userProfile =
   allProfiles[loggedInUser.email];
 
 if (userProfile) {
-  navigate("/dashboard");
+  navigate("/search");
 } else {
   navigate("/complete-profile");
 }
