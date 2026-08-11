@@ -463,14 +463,13 @@ function Wishlist() {
 
           <div className="wishlist-heading">
 
-            <h1>
-              ⭐ My Wishlist
-            </h1>
+           <h1>
+  Wishlist
+</h1>
 
-            <p>
-              Profiles you have saved for
-              later.
-            </p>
+<p>
+  🧡 Profiles you are interested in
+</p>
 
           </div>
 

@@ -1,0 +1,331 @@
+/* =========================================================
+   NIYATI MATRIMONY - IGNORED PROFILES
+   ========================================================= */
+
+.ignored-profiles-page {
+  min-height: calc(100vh - 80px);
+  padding: 35px 45px 45px !important;
+  background: #fff5ea !important;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.ignored-page-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.ignored-page-header h2 {
+  margin: 0 !important;
+
+  color: #8b1e1e !important;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.ignored-page-header p {
+  margin-top: 10px !important;
+
+  color: #70483b !important;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.ignored-empty-box {
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  background: #fffdf9 !important;
+
+  border: 1px solid #f1d7c3 !important;
+
+  border-radius: 16px !important;
+
+  padding: 55px 25px !important;
+
+  text-align: center;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 5px 18px rgba(122, 63, 38, 0.08);
+}
+
+.ignored-empty-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.ignored-empty-box h3 {
+  color: #7c301e !important;
+
+  font-size: 21px;
+
+  margin: 0 0 10px;
+}
+
+.ignored-empty-box p {
+  color: #765044 !important;
+
+  margin: 0;
+}
+
+
+/* =========================================================
+   PROFILE LIST
+   ========================================================= */
+
+.ignored-profiles-list {
+  width: 100%;
+  max-width: 1050px;
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   PROFILE CARD
+   ========================================================= */
+
+.ignored-profile-card {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+
+  background: #fffdf9 !important;
+
+  border: 1px solid #f1d7c3 !important;
+
+  border-radius: 16px !important;
+
+  padding: 14px 18px !important;
+
+  margin-bottom: 14px;
+
+  box-shadow: 0 4px 15px rgba(122, 63, 38, 0.08) !important;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ignored-profile-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #edb994 !important;
+
+  box-shadow: 0 8px 22px rgba(122, 63, 38, 0.12) !important;
+}
+
+
+/* =========================================================
+   PROFILE INFORMATION
+   ========================================================= */
+
+.ignored-profile-info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  min-width: 0;
+}
+
+.ignored-profile-image {
+  width: 100px !important;
+  height: 96px !important;
+
+  border-radius: 12px !important;
+
+  object-fit: cover;
+
+  flex-shrink: 0;
+
+  border: 1px solid #f1d7c3;
+}
+
+.ignored-profile-details {
+  min-width: 0;
+}
+
+.ignored-profile-details h3 {
+  margin: 0 0 7px !important;
+
+  color: #4f2419 !important;
+
+  font-size: 17px;
+
+  font-weight: 700;
+}
+
+.ignored-profile-details p {
+  margin: 5px 0 !important;
+
+  color: #70483b !important;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   MATCH BADGE
+   ========================================================= */
+
+.ignored-match-badge {
+  display: inline-block;
+
+  margin-left: 15px;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  background: #fff0e3;
+
+  color: #a84d24;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.ignored-profile-buttons {
+  display: flex;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+.ignored-view-btn,
+.ignored-restore-btn {
+  height: 36px;
+
+  padding: 0 16px;
+
+  border-radius: 7px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+
+/* VIEW PROFILE */
+
+.ignored-view-btn {
+  background: #f47721 !important;
+
+  color: #ffffff !important;
+
+  border: 1px solid #f47721 !important;
+}
+
+.ignored-view-btn:hover {
+  background: #d95f16 !important;
+
+  border-color: #d95f16 !important;
+
+  transform: translateY(-1px);
+}
+
+
+/* RESTORE */
+
+.ignored-restore-btn {
+  background: #fffaf5 !important;
+
+  color: #d95f16 !important;
+
+  border: 1px solid #f39a67 !important;
+}
+
+.ignored-restore-btn:hover {
+  background: #fff0e5 !important;
+
+  border-color: #e46622 !important;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+  .ignored-profiles-page {
+    padding: 25px 15px 35px !important;
+  }
+
+  .ignored-page-header h2 {
+    font-size: 28px;
+  }
+
+  .ignored-profile-card {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 15px;
+  }
+
+  .ignored-profile-buttons {
+    width: 100%;
+  }
+
+  .ignored-view-btn,
+  .ignored-restore-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .ignored-profile-info {
+    align-items: flex-start;
+  }
+
+  .ignored-profile-image {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .ignored-profile-details h3 {
+    font-size: 15px;
+  }
+
+  .ignored-profile-details p {
+    font-size: 12px;
+  }
+}

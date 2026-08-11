@@ -512,10 +512,12 @@ function Navbar() {
                 >
 
                     <span
-                        className="notification-icon"
-                        aria-hidden="true"
-                    >🔔
-                    </span>
+    className="notification-icon"
+    aria-hidden="true"
+>
+    🔔
+</span>
+
 
 
                     {notificationCount > 0 && (
