@@ -1308,3 +1308,40 @@
     }
 
 }
+
+/* =====================================================
+   IGNORE PROFILE BUTTON
+===================================================== */
+
+.ignore-profile-btn {
+    background: transparent;
+    color: #b85c38;
+    border: 1px solid #e5b99f;
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.ignore-profile-btn:hover {
+    background: #fff4ed;
+    border-color: #d88b65;
+    color: #9f4728;
+}
+
+.ignore-profile-btn.ignored {
+    background: #f8eee8;
+    border-color: #d8b5a2;
+    color: #9b6b55;
+    cursor: default;
+}
+
+.ignore-profile-btn:disabled {
+    opacity: 0.85;
+}

@@ -169,6 +169,11 @@ function ViewProfile() {
         setInterestSent
     ] = useState(false);
 
+    const [
+    isIgnored,
+    setIsIgnored
+] = useState(false);
+
 
     /* =====================================================
        DISPLAY NAME
@@ -408,6 +413,24 @@ function ViewProfile() {
         setInterestSent(
             alreadySent
         );
+        const ignoredProfilesData =
+    JSON.parse(
+        localStorage.getItem("ignoredProfiles")
+    ) || {};
+
+const ignoredList =
+    ignoredProfilesData[loggedInEmail] || [];
+
+const alreadyIgnored =
+    ignoredList.some(
+        (user) =>
+            (user.email || "")
+                .trim()
+                .toLowerCase() ===
+            normalizedProfileEmail
+    );
+
+setIsIgnored(alreadyIgnored);
 
     }, [
         wishlistKey,
@@ -579,6 +602,119 @@ function ViewProfile() {
             );
         }
     };
+
+    /* =====================================================
+   IGNORE PROFILE
+===================================================== */
+
+const handleIgnore = () => {
+
+    if (!isOtherUser) {
+        return;
+    }
+
+   const ignoredProfilesData =
+    JSON.parse(
+        localStorage.getItem("ignoredProfiles")
+    ) || {};
+
+const currentKey =
+    loggedInEmail;
+
+const ignoredProfiles =
+    ignoredProfilesData[currentKey] || [];
+
+    const alreadyIgnored =
+        ignoredProfiles.some(
+            (user) =>
+                (
+                    user.email ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase() ===
+                normalizedProfileEmail
+        );
+
+    if (alreadyIgnored) {
+
+        setIsIgnored(true);
+
+        toast.info(
+            "This profile is already ignored."
+        );
+
+        return;
+    }
+
+    const ignoredUser = {
+
+        email:
+            profileEmail,
+
+        name:
+            displayName,
+
+        gender:
+            profileData.gender || "",
+
+        occupation:
+            occupation,
+
+        city:
+            city,
+
+        state:
+            state,
+
+        image:
+            profileImage,
+
+        aboutMe:
+            aboutMe,
+
+        age:
+            age
+    };
+
+    const updatedIgnoredProfiles = [
+        ...ignoredProfiles,
+        ignoredUser
+    ];
+
+    try {
+
+       ignoredProfilesData[currentKey] =
+    updatedIgnoredProfiles;
+
+localStorage.setItem(
+    "ignoredProfiles",
+    JSON.stringify(
+        ignoredProfilesData
+    )
+);
+
+        setIsIgnored(true);
+
+        toast.success(
+            "Profile moved to ignored profiles."
+        );
+
+        // Go to Ignored Profiles page
+        navigate("/ignored-profiles");
+
+    } catch (error) {
+
+        console.error(
+            "Unable to save ignored profile:",
+            error
+        );
+
+        toast.error(
+            "Unable to ignore this profile."
+        );
+    }
+};
 
 
     /* =====================================================
@@ -1167,6 +1303,25 @@ function ViewProfile() {
                                             : "Add to Wishlist"}
 
                                     </button>
+
+                                    <button
+    type="button"
+    className={
+        isIgnored
+            ? "ignore-profile-btn ignored"
+            : "ignore-profile-btn"
+    }
+    onClick={handleIgnore}
+    disabled={isIgnored}
+>
+    <span>
+        {isIgnored ? "✓" : "⊘"}
+    </span>
+
+    {isIgnored
+        ? "Ignored"
+        : "Ignore"}
+</button>
 
 
                                     {isMatched && (
