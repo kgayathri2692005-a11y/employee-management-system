@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { recordProfileView } from "../utils/profileViewUtils";
 
 import Navbar from "../components/Navbar";
 import PageNavigation from "../components/PageNavigation";
@@ -439,6 +440,35 @@ setIsIgnored(alreadyIgnored);
         loggedInEmail
     ]);
 
+   /* =====================================================
+   RECORD PROFILE VIEW
+===================================================== */
+
+useEffect(() => {
+
+    if (!isOtherUser) {
+        return;
+    }
+
+    if (!profileEmail) {
+        return;
+    }
+
+    const viewedProfile = {
+        ...profileData,
+        email: profileEmail,
+        name: displayName
+    };
+
+    recordProfileView(
+        loggedInUser,
+        viewedProfile
+    );
+
+}, [
+    isOtherUser,
+    normalizedProfileEmail
+]);
 
     /* =====================================================
        BROWSER HISTORY BACK

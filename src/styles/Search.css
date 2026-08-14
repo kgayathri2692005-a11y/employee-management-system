@@ -130,7 +130,7 @@
 
     display: grid;
 
-    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-columns: 320px minmax(0, 1fr);
 
     gap: 24px;
 
@@ -1060,7 +1060,7 @@
         width: 93%;
 
         grid-template-columns:
-            205px minmax(0, 1fr);
+            280px minmax(0, 1fr);
 
         gap: 18px;
     }

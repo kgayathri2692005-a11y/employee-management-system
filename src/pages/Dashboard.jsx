@@ -910,114 +910,6 @@ const requireLogin = (destination, state = {}) => {
       </section>
 
       {/* =================================================
-          STATISTICS
-      ================================================= */}
-
-      <section className="niyati-stats">
-
-        <div className="stats-inner">
-
-          <div
-            className="stat-item clickable"
-onClick={() =>
-  requireLogin("/dashboard-users", {
-    type: "totalUsers"
-  })
-}
-          >
-
-            <div className="stat-icon">
-              ♡
-            </div>
-
-            <div>
-
-              <strong>
-                {totalProfiles}
-              </strong>
-
-              <span>
-                Profiles
-              </span>
-
-            </div>
-
-          </div>
-
-          <div
-            className="stat-item clickable"
-onClick={() =>
-  requireLogin("/dashboard-users", {
-    type: "activeUsers"
-  })
-}
-          >
-
-            <div className="stat-icon">
-              ✓
-            </div>
-
-            <div>
-
-              <strong>
-                {activeProfiles}
-              </strong>
-
-              <span>
-                Active Profiles
-              </span>
-
-            </div>
-
-          </div>
-
-          <div
-            className="stat-item clickable"
-            onClick={openMatchedUsers}
-          >
-
-            <div className="stat-icon">
-              ♥
-            </div>
-
-            <div>
-
-              <strong>
-                {totalMatches}
-              </strong>
-
-              <span>
-                Successful Matches
-              </span>
-
-            </div>
-
-          </div>
-
-          <div className="stat-item">
-
-            <div className="stat-icon">
-              ★
-            </div>
-
-            <div>
-
-              <strong>
-                4.8/5
-              </strong>
-
-              <span>
-                User Rating
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-      {/* =================================================
           HOW NIYATI WORKS
       ================================================= */}
 
@@ -1323,6 +1215,115 @@ onClick={() =>
 
         </div>
         
+
+      </section>
+      
+      {/* =================================================
+          STATISTICS
+      ================================================= */}
+
+      <section className="niyati-stats">
+
+        <div className="stats-inner">
+
+          <div
+            className="stat-item clickable"
+onClick={() =>
+  requireLogin("/dashboard-users", {
+    type: "totalUsers"
+  })
+}
+          >
+
+            <div className="stat-icon">
+              ♡
+            </div>
+
+            <div>
+
+              <strong>
+                {totalProfiles}
+              </strong>
+
+              <span>
+                Profiles
+              </span>
+
+            </div>
+
+          </div>
+
+          <div
+            className="stat-item clickable"
+onClick={() =>
+  requireLogin("/dashboard-users", {
+    type: "activeUsers"
+  })
+}
+          >
+
+            <div className="stat-icon">
+              ✓
+            </div>
+
+            <div>
+
+              <strong>
+                {activeProfiles}
+              </strong>
+
+              <span>
+                Active Profiles
+              </span>
+
+            </div>
+
+          </div>
+
+          <div
+            className="stat-item clickable"
+            onClick={openMatchedUsers}
+          >
+
+            <div className="stat-icon">
+              ♥
+            </div>
+
+            <div>
+
+              <strong>
+                {totalMatches}
+              </strong>
+
+              <span>
+                Successful Matches
+              </span>
+
+            </div>
+
+          </div>
+
+          <div className="stat-item">
+
+            <div className="stat-icon">
+              ★
+            </div>
+
+            <div>
+
+              <strong>
+                4.8/5
+              </strong>
+
+              <span>
+                User Rating
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </section>
 

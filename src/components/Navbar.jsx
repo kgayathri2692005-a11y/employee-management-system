@@ -174,10 +174,27 @@ function Navbar() {
                         notification.read === false
                 );
 
-            const totalCount =
-                pendingRequests.length +
-                unreadRejectionNotifications.length;
+                const profileViewNotifications =
+    JSON.parse(
+        localStorage.getItem(
+            "profileViewNotifications"
+        )
+    ) || [];
 
+const unreadProfileViewNotifications =
+    profileViewNotifications.filter(
+        (notification) =>
+            notification.receiverEmail ===
+                currentUser.email.toLowerCase() &&
+            notification.type ===
+                "profile_view" &&
+            notification.isRead === false
+    );
+
+           const totalCount =
+    pendingRequests.length +
+    unreadRejectionNotifications.length +
+    unreadProfileViewNotifications.length;
             setNotificationCount(
                 totalCount
             );
@@ -247,15 +264,17 @@ function Navbar() {
         // PROTECTED PAGES
         // =====================================================
 
-        const protectedPaths = [
-            "/search",
-            "/users",
-            "/inbox",
-            "/notifications",
-            "/wishlist",
-            "/ignored-profiles",
-            "/myprofile"
-        ];
+       const protectedPaths = [
+    "/search",
+    "/users",
+    "/inbox",
+    "/notifications",
+    "/wishlist",
+    "/ignored-profiles",
+    "/viewed-profiles",
+    "/who-viewed-me",
+    "/myprofile"
+];
 
         // =====================================================
         // PUBLIC USER TRYING TO ACCESS PROTECTED PAGE
@@ -854,6 +873,49 @@ function Navbar() {
                                         </span>
 
                                     </button>
+                                    {/* VIEWED PROFILES */}
+
+<button
+    type="button"
+    className="dropdown-item"
+    onClick={() =>
+        handleNavigation(
+            "/viewed-profiles"
+        )
+    }
+>
+
+    <span className="dropdown-item-icon">
+        ◉
+    </span>
+
+    <span>
+        Viewed Profiles
+    </span>
+
+</button>
+
+{/* WHO VIEWED ME */}
+
+<button
+    type="button"
+    className="dropdown-item"
+    onClick={() =>
+        handleNavigation(
+            "/who-viewed-me"
+        )
+    }
+>
+
+    <span className="dropdown-item-icon">
+        👁
+    </span>
+
+    <span>
+        Who Viewed Me
+    </span>
+
+</button>
 
                                     {/* ABOUT */}
 

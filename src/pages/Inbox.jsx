@@ -13,8 +13,6 @@ import {
     FaSearch,
     FaPaperPlane,
     FaCheckCircle,
-    FaPhone,
-    FaVideo,
     FaEllipsisV
 } from "react-icons/fa";
 
@@ -714,69 +712,6 @@ function Inbox() {
 
 
     /* =====================================================
-       PHONE CALL
-    ===================================================== */
-
-    const handleCall = () => {
-
-        if (
-            !selectedUser
-        ) {
-
-            return;
-
-        }
-
-
-        const phone =
-            getProfileByEmail(
-                selectedUser.email
-            )?.phone ||
-            getProfileByEmail(
-                selectedUser.email
-            )?.mobile;
-
-
-        if (phone) {
-
-            window.location.href =
-                `tel:${phone}`;
-
-            return;
-
-        }
-
-
-        showMessageToast(
-            "Phone number is not available"
-        );
-
-    };
-
-
-    /* =====================================================
-       VIDEO CALL
-    ===================================================== */
-
-    const handleVideoCall = () => {
-
-        if (
-            !selectedUser
-        ) {
-
-            return;
-
-        }
-
-
-        showMessageToast(
-            "Video call feature will be available soon"
-        );
-
-    };
-
-
-    /* =====================================================
        MARK AS READ
     ===================================================== */
 
@@ -1130,37 +1065,6 @@ function Inbox() {
 
                                 <div className="chat-actions">
 
-
-                                    {/* CALL */}
-
-                                    <button
-                                        type="button"
-                                        className="chat-action-btn"
-                                        title="Audio Call"
-                                        onClick={
-                                            handleCall
-                                        }
-                                    >
-
-                                        <FaPhone />
-
-                                    </button>
-
-
-                                    {/* VIDEO CALL */}
-
-                                    <button
-                                        type="button"
-                                        className="chat-action-btn"
-                                        title="Video Call"
-                                        onClick={
-                                            handleVideoCall
-                                        }
-                                    >
-
-                                        <FaVideo />
-
-                                    </button>
 
 
                                     {/* MENU */}

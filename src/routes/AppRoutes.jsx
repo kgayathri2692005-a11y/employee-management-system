@@ -13,6 +13,8 @@ import MyProfile from "../pages/MyProfile";
 import OtpVerification from "../pages/OtpVerification";
 import Tracking from "../pages/Tracking";
 import ViewProfile from "../pages/ViewProfile";
+import ViewedProfiles from "../pages/ViewedProfiles";
+import WhoViewedMe from "../pages/WhoViewedMe";
 import Wishlist from "../pages/Wishlist";
 import Search from "../pages/Search";
 import Notifications from "../pages/Notifications";
@@ -20,6 +22,7 @@ import IgnoredProfiles from "../pages/IgnoredProfiles";
 import AboutUs from "../pages/AboutUs";
 import Home from "../pages/Home";
 import DashboardUserDetails from "../pages/DashboardUserDetails";
+
 
 function AppRoutes() {
   return (
@@ -38,6 +41,14 @@ function AppRoutes() {
         <Route path="/otp" element={<OtpVerification />} />
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/view-profile" element={<ViewProfile />} />
+        <Route
+    path="/viewed-profiles"
+    element={<ViewedProfiles />}
+/>
+<Route
+    path="/who-viewed-me"
+    element={<WhoViewedMe />}
+/>
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/search" element={<Search />} />
         <Route path="/notifications" element={<Notifications />} />

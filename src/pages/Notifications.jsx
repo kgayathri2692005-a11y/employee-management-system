@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { toast } from "react-toastify";
+import {
+  getMyProfileViewNotifications,
+  markProfileViewNotificationAsRead
+} from "../utils/profileViewUtils";
 
 import "../styles/Notifications.css";
 
@@ -325,39 +329,61 @@ function Notifications() {
         }
       );
 
+      /*
+---------------------------------------------------------
+PROFILE VIEW NOTIFICATIONS
+---------------------------------------------------------
+*/
+
+const profileViewNotifications =
+  getMyProfileViewNotifications(
+    loggedInEmail
+  );
+
 
     /*
     ---------------------------------------------------------
     COMBINE ALL NOTIFICATIONS
     ---------------------------------------------------------
     */
+const combinedNotifications = [
 
-    const combinedNotifications = [
+  ...pendingRequests.map(
+    (request) => ({
 
-      ...pendingRequests.map(
-        (request) => ({
+      ...request,
 
-          ...request,
+      notificationType:
+        "interest"
 
-          notificationType:
-            "interest"
-
-        })
-      ),
+    })
+  ),
 
 
-      ...rejectionNotifications.map(
-        (notification) => ({
+  ...rejectionNotifications.map(
+    (notification) => ({
 
-          ...notification,
+      ...notification,
 
-          notificationType:
-            "ignore"
+      notificationType:
+        "ignore"
 
-        })
-      )
+    })
+  ),
 
-    ];
+
+  ...profileViewNotifications.map(
+    (notification) => ({
+
+      ...notification,
+
+      notificationType:
+        "profile_view"
+
+    })
+  )
+
+];
 
 
     setNotifications(
@@ -1695,6 +1721,208 @@ if (!alreadyInWishlist) {
                 notification,
                 index
               ) => {
+
+                /*
+=================================================
+PROFILE VIEW NOTIFICATION
+=================================================
+*/
+
+if (
+  notification?.notificationType ===
+  "profile_view"
+) {
+
+  const viewerProfile =
+    getSenderProfile(
+      notification.senderEmail
+    );
+
+
+  return (
+
+    <div
+      className="notification-card"
+      key={
+        notification.id ||
+        `${notification.senderEmail}-${notification.createdAt}-${index}`
+      }
+    >
+
+      <div
+        className="profile-circle"
+        onClick={() => {
+
+          navigate(
+            "/view-profile",
+            {
+              state: {
+
+                profile: {
+
+                  ...viewerProfile,
+
+                  email:
+                    notification.senderEmail
+
+                },
+
+                from:
+                  "/notifications"
+
+              }
+
+            }
+          );
+
+          markProfileViewNotificationAsRead(
+            notification.id
+          );
+
+        }}
+        style={{
+          cursor: "pointer"
+        }}
+      >
+
+        <img
+          src={getProfileImage(
+            viewerProfile
+          )}
+          alt={
+            notification.senderName ||
+            "User"
+          }
+          onError={(e) => {
+
+            e.currentTarget.onerror =
+              null;
+
+            e.currentTarget.src =
+              "https://randomuser.me/api/portraits/lego/1.jpg";
+
+          }}
+        />
+
+      </div>
+
+
+      <div className="notification-details">
+
+        <h3
+          onClick={() => {
+
+            navigate(
+              "/view-profile",
+              {
+                state: {
+
+                  profile: {
+
+                    ...viewerProfile,
+
+                    email:
+                      notification.senderEmail
+
+                  },
+
+                  from:
+                    "/notifications"
+
+                }
+
+              }
+            );
+
+            markProfileViewNotificationAsRead(
+              notification.id
+            );
+
+          }}
+          style={{
+            cursor: "pointer"
+          }}
+        >
+
+          {
+            notification.senderName ||
+            "Someone"
+          }
+
+        </h3>
+
+
+        <p>
+
+          👁️{" "}
+          {
+            notification.message ||
+            "Someone viewed your profile."
+          }
+
+        </p>
+
+
+        <span>
+
+          📅{" "}
+
+          {
+            notification.createdAt ||
+            "Date not available"
+          }
+
+        </span>
+
+
+        <div className="notification-buttons">
+
+          <button
+            className="view-profile-btn"
+            onClick={() => {
+
+              navigate(
+                "/view-profile",
+                {
+                  state: {
+
+                    profile: {
+
+                      ...viewerProfile,
+
+                      email:
+                        notification.senderEmail
+
+                    },
+
+                    from:
+                      "/notifications"
+
+                  }
+
+                }
+              );
+
+              markProfileViewNotificationAsRead(
+                notification.id
+              );
+
+            }}
+          >
+
+            👁 View Profile
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  );
+
+}
 
                 /*
                 =================================================

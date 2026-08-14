@@ -1,0 +1,297 @@
+/* =====================================================
+   VIEWED PROFILES PAGE
+===================================================== */
+
+.viewed-profiles-page {
+    padding: 35px 45px 50px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.viewed-profiles-header {
+    margin-bottom: 30px;
+}
+
+
+.viewed-kicker {
+    display: block;
+    color: #8f2f3f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+
+.viewed-profiles-header h1 {
+    margin: 0;
+    color: #702c36;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+
+.viewed-profiles-header p {
+    margin-top: 8px;
+    color: #7c6666;
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   PROFILE GRID
+===================================================== */
+
+.viewed-profile-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(270px, 1fr)
+        );
+
+    gap: 25px;
+}
+
+
+/* =====================================================
+   PROFILE CARD
+===================================================== */
+
+.viewed-profile-card {
+    background: #fffaf5;
+    border: 1px solid #ead6cc;
+    border-radius: 18px;
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 18px
+        rgba(112, 44, 54, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.viewed-profile-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(112, 44, 54, 0.14);
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.viewed-photo-wrapper {
+    width: 100%;
+    height: 270px;
+    overflow: hidden;
+    background: #f8e8dc;
+}
+
+
+.viewed-profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =====================================================
+   PROFILE INFO
+===================================================== */
+
+.viewed-profile-info {
+    padding: 20px;
+}
+
+
+.viewed-member-label {
+    color: #a04a58;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+
+.viewed-profile-info h2 {
+    margin:
+        6px 0 5px;
+
+    color: #702c36;
+    font-size: 21px;
+}
+
+
+.viewed-basic-info {
+    margin: 0;
+    color: #6f5c5c;
+    font-size: 14px;
+}
+
+
+.viewed-occupation {
+    margin:
+        8px 0 0;
+
+    color: #806b67;
+    font-size: 14px;
+}
+
+
+.viewed-time {
+    margin:
+        12px 0 15px;
+
+    color: #a04a58;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   VIEW BUTTON
+===================================================== */
+
+.viewed-view-button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+
+    padding: 11px 16px;
+
+    background: #8f2f3f;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.viewed-view-button:hover {
+    background: #702c36;
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.viewed-empty-card {
+    max-width: 550px;
+    margin: 70px auto;
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    background: #fffaf5;
+
+    border:
+        1px solid #ead6cc;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(112, 44, 54, 0.08);
+}
+
+
+.viewed-empty-icon {
+    width: 65px;
+    height: 65px;
+
+    margin:
+        0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f7ddd1;
+
+    color: #8f2f3f;
+
+    font-size: 28px;
+}
+
+
+.viewed-empty-card h2 {
+    margin: 0;
+
+    color: #702c36;
+}
+
+
+.viewed-empty-card p {
+    margin:
+        10px 0 22px;
+
+    color: #7c6666;
+}
+
+
+.viewed-empty-card button {
+    border: none;
+    border-radius: 10px;
+
+    padding:
+        11px 22px;
+
+    background: #8f2f3f;
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+.viewed-page-navigation {
+    margin-top: 35px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .viewed-profiles-page {
+        padding: 25px 18px 40px;
+    }
+
+
+    .viewed-profiles-header h1 {
+        font-size: 27px;
+    }
+
+
+    .viewed-profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
