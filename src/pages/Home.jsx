@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
@@ -8,6 +8,7 @@ import "../styles/Home.css";
 
 function Home() {
 const navigate = useNavigate();
+const [showAllRecommendations, setShowAllRecommendations] = useState(false);
 
 // =====================================================
 // LOGGED IN USER
@@ -22,6 +23,7 @@ const loggedInUser =
 
 const allProfiles =
     JSON.parse(localStorage.getItem("allProfiles")) || {};
+    
 
 // =====================================================
 // CURRENT PROFILE
@@ -29,6 +31,343 @@ const allProfiles =
 
 const profile =
     allProfiles[loggedInUser.email] || {};
+
+// =====================================================
+// DAILY RECOMMENDATIONS
+// =====================================================
+
+const preferredGender =
+    String(profile.gender || "")
+        .trim()
+        .toLowerCase() === "male"
+        ? "female"
+        : String(profile.gender || "")
+              .trim()
+              .toLowerCase() === "female"
+        ? "male"
+        : "";
+
+const calculateRecommendationAge = (dob) => {
+    if (!dob) return null;
+
+    const birthDate = new Date(dob);
+
+    if (Number.isNaN(birthDate.getTime())) {
+        return null;
+    }
+
+    const today = new Date();
+
+    let age =
+        today.getFullYear() -
+        birthDate.getFullYear();
+
+    const monthDifference =
+        today.getMonth() -
+        birthDate.getMonth();
+
+    if (
+        monthDifference < 0 ||
+        (
+            monthDifference === 0 &&
+            today.getDate() <
+                birthDate.getDate()
+        )
+    ) {
+        age--;
+    }
+
+    return age;
+};
+
+const calculateMatchPercentage = (user) => {
+
+    let matchedCriteria = 0;
+    let totalCriteria = 0;
+
+    // =====================================================
+    // 1. AGE
+    // =====================================================
+
+    const ageFrom =
+        Number(profile.partnerAgeFrom);
+
+    const ageTo =
+        Number(profile.partnerAgeTo);
+
+    if (
+        ageFrom &&
+        ageTo &&
+        user.dob
+    ) {
+        const userAge =
+            calculateRecommendationAge(
+                user.dob
+            );
+
+        if (userAge !== null) {
+
+            totalCriteria++;
+
+            if (
+                userAge >= ageFrom &&
+                userAge <= ageTo
+            ) {
+                matchedCriteria++;
+            }
+        }
+    }
+
+
+    // =====================================================
+    // 2. RELIGION
+    // =====================================================
+
+    const preferredReligion =
+        (
+            profile.partnerReligion ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredReligion) {
+
+        totalCriteria++;
+
+        const userReligion =
+            (
+                user.religion ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        if (
+            preferredReligion ===
+                "any religion" ||
+            preferredReligion ===
+                userReligion
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+
+    // =====================================================
+    // 3. EDUCATION
+    // =====================================================
+
+    const preferredEducation =
+        (
+            profile.partnerEducation ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredEducation) {
+
+        totalCriteria++;
+
+        const userEducation =
+            (
+                user.qualification ||
+                user.education ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        if (
+            preferredEducation ===
+                "any education" ||
+            preferredEducation ===
+                userEducation
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+
+    // =====================================================
+    // 4. OCCUPATION
+    // =====================================================
+
+    const preferredOccupation =
+        (
+            profile.partnerOccupation ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredOccupation) {
+
+        totalCriteria++;
+
+        const userOccupation =
+            (
+                user.occupation ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        if (
+            preferredOccupation ===
+                "any occupation" ||
+            preferredOccupation ===
+                userOccupation
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+
+    // =====================================================
+    // 5. LOCATION
+    // Same logic as Users.jsx
+    // =====================================================
+
+    const preferredLocation =
+        (
+            profile.partnerCountry ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredLocation) {
+
+        totalCriteria++;
+
+        const userCity =
+            (
+                user.currentCity ||
+                user.city ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        const userState =
+            (
+                user.currentState ||
+                user.stateName ||
+                user.state ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        const userCountry =
+            (
+                user.currentCountry ||
+                user.country ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        if (
+            userCity.includes(
+                preferredLocation
+            ) ||
+            userState.includes(
+                preferredLocation
+            ) ||
+            userCountry.includes(
+                preferredLocation
+            ) ||
+            preferredLocation.includes(
+                userCity
+            ) ||
+            preferredLocation.includes(
+                userState
+            ) ||
+            preferredLocation.includes(
+                userCountry
+            )
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+
+    // =====================================================
+    // FINAL MATCH PERCENTAGE
+    // =====================================================
+
+    if (totalCriteria === 0) {
+        return 0;
+    }
+
+    return Math.round(
+        (
+            matchedCriteria /
+            totalCriteria
+        ) * 100
+    );
+};
+
+const dailyRecommendations = Object.entries(allProfiles)
+
+    .filter(([email, user]) => {
+
+        // =====================================================
+        // NEVER SHOW LOGGED-IN USER
+        // =====================================================
+
+        if (
+            email.trim().toLowerCase() ===
+            (loggedInUser.email || "")
+                .trim()
+                .toLowerCase()
+        ) {
+            return false;
+        }
+
+
+        // =====================================================
+        // GENDER FILTER
+        // =====================================================
+
+        const userGender =
+            String(user.gender || "")
+                .trim()
+                .toLowerCase();
+
+        // Only recommend the opposite gender
+        if (
+            preferredGender &&
+            userGender !== preferredGender
+        ) {
+            return false;
+        }
+
+
+        return true;
+    })
+
+.map(([email, user]) => {
+
+    const matchPercent =
+        calculateMatchPercentage(user);
+
+    return {
+        ...user,
+        email,
+        recommendationScore: matchPercent
+    };
+})
+
+    .sort(
+        (a, b) =>
+            b.recommendationScore -
+            a.recommendationScore
+    );
+  
 
 // =====================================================
 // DISPLAY NAME
@@ -324,6 +663,255 @@ return (
 
             </section>
 
+            {/* =================================================
+    DAILY RECOMMENDATIONS
+================================================= */}
+
+<section className="home-section daily-recommendations-section">
+
+    <div className="home-section-heading">
+
+        <div>
+
+            <span>
+                DAILY RECOMMENDATIONS
+            </span>
+
+            <h2>
+                People You May Like
+            </h2>
+
+            <p>
+                Handpicked profiles based on your
+                partner preferences.
+            </p>
+
+        </div>
+
+       <button
+    type="button"
+    className="daily-view-all-btn"
+    onClick={() =>
+        setShowAllRecommendations(
+            !showAllRecommendations
+        )
+    }
+>
+    {showAllRecommendations
+        ? "Show Less "
+        : "View All "}
+</button>
+
+    </div>
+
+
+    <div className="daily-recommendations-grid">
+
+        {dailyRecommendations.length > 0 ? (
+
+            (showAllRecommendations
+    ? dailyRecommendations
+    : dailyRecommendations.slice(0, 4)
+).map((user) => {
+
+                const name =
+                    `${user.firstName || ""} ${
+                        user.lastName || ""
+                    }`
+                        .trim() ||
+                    user.userName ||
+                    user.fullName ||
+                    user.name ||
+                    "Niyati Member";
+
+                const image =
+                    user.profilePhoto ||
+                    user.profileImage ||
+                    user.photo ||
+                    user.image ||
+                    "/logo.jpeg";
+
+                const userCity =
+                    user.currentCity ||
+                    user.city ||
+                    "";
+
+                const userState =
+                    user.currentState ||
+                    user.stateName ||
+                    user.state ||
+                    "";
+
+                const userLocation =
+                    [userCity, userState]
+                        .filter(Boolean)
+                        .join(", ");
+
+                const userAge =
+                    (() => {
+
+                        if (!user.dob) {
+                            return "";
+                        }
+
+                        const birthDate =
+                            new Date(user.dob);
+
+                        if (
+                            Number.isNaN(
+                                birthDate.getTime()
+                            )
+                        ) {
+                            return "";
+                        }
+
+                        const today =
+                            new Date();
+
+                        let calculatedAge =
+                            today.getFullYear() -
+                            birthDate.getFullYear();
+
+                        const monthDifference =
+                            today.getMonth() -
+                            birthDate.getMonth();
+
+                        if (
+                            monthDifference < 0 ||
+                            (
+                                monthDifference === 0 &&
+                                today.getDate() <
+                                    birthDate.getDate()
+                            )
+                        ) {
+                            calculatedAge--;
+                        }
+
+                        return calculatedAge;
+                    })();
+
+                return (
+
+                    <button
+                        type="button"
+                        className="daily-recommendation-card"
+                        key={user.email}
+                        onClick={() =>
+                            navigate(
+                                "/view-profile",
+                                {
+                                    state: {
+                                        profile: {
+                                            ...user,
+                                            email:
+                                                user.email,
+                                            name,
+                                            image
+                                        }
+                                    }
+                                }
+                            )
+                        }
+                    >
+
+                        <div className="daily-recommendation-image">
+
+                            <img
+                                src={image}
+                                alt={name}
+                            />
+
+                        </div>
+
+
+                        <div className="daily-recommendation-info">
+
+                            <h3>
+                                {name}
+                            </h3>
+
+                            <p className="daily-recommendation-basic">
+
+                                {userAge
+                                    ? `${userAge} yrs`
+                                    : ""}
+
+                                {userAge &&
+                                    user.gender &&
+                                    " • "}
+
+                                {user.gender || ""}
+
+                            </p>
+
+                            {user.occupation && (
+
+                                <p className="daily-recommendation-job">
+                                    {user.occupation}
+                                </p>
+
+                            )}
+
+                            {userLocation && (
+
+                                <p className="daily-recommendation-location">
+                                    {userLocation}
+                                </p>
+
+                            )}
+
+                        </div>
+
+
+                        <div className="daily-match-score">
+
+                            {Math.max(
+                                user.recommendationScore,
+                                0
+                            )}%
+
+                            <span>
+                                Match
+                            </span>
+
+                        </div>
+
+
+                        <div className="daily-recommendation-arrow">
+                            →
+                        </div>
+
+                    </button>
+
+                );
+
+            })
+
+        ) : (
+
+            <div className="daily-recommendations-empty">
+
+                <span>
+                    ♡
+                </span>
+
+                <h3>
+                    No Recommendations Yet
+                </h3>
+
+                <p>
+                    Complete your partner preferences
+                    to discover better recommendations.
+                </p>
+
+            </div>
+
+        )}
+
+    </div>
+
+</section>
+
 
             {/* =================================================
                 ACTIVITY
@@ -408,7 +996,7 @@ return (
                     <button
                         className="activity-card"
                         onClick={() =>
-                            navigate("/matches")
+                            navigate("/users")
                         }
                     >
 
@@ -486,7 +1074,7 @@ return (
 
                     <button
                         onClick={() =>
-                            navigate("/matches")
+                            navigate("/users")
                         }
                     >
                         <span>♥</span>

@@ -21,6 +21,13 @@ function Search() {
     const [filteredProfiles, setFilteredProfiles] = useState([]);
     const [wishlist, setWishlist] = useState([]);
     // =========================================================
+// PAGINATION
+// =========================================================
+
+const PROFILES_PER_PAGE = 2;
+
+const [currentPage, setCurrentPage] = useState(1);
+    // =========================================================
 // GET PROFILE NAME
 // =========================================================
 
@@ -412,20 +419,21 @@ const getProfileImage = (profile) => {
     // APPLY FILTERS
     // =========================================================
 
-    useEffect(() => {
+useEffect(() => {
 
-        applyFilters();
+    applyFilters();
+    setCurrentPage(1);
 
-    }, [
-        searchName,
-        selectedCity,
-        selectedOccupation,
-        selectedReligion,
-        selectedEducation,
-        minAge,
-        maxAge,
-        profiles
-    ]);
+}, [
+    searchName,
+    selectedCity,
+    selectedOccupation,
+    selectedReligion,
+    selectedEducation,
+    minAge,
+    maxAge,
+    profiles
+]);
 
     // =========================================================
     // LOAD WISHLIST
@@ -754,7 +762,26 @@ const getProfileImage = (profile) => {
             new Event("wishlistUpdated")
         );
     };
+// =========================================================
+// PAGINATION
+// =========================================================
 
+const totalPages = Math.ceil(
+    filteredProfiles.length / PROFILES_PER_PAGE
+);
+
+const startIndex =
+    (currentPage - 1) * PROFILES_PER_PAGE;
+
+const currentProfiles =
+    filteredProfiles.slice(
+        startIndex,
+        startIndex + PROFILES_PER_PAGE
+    );
+
+const goToPage = (page) => {
+    setCurrentPage(page);
+};
     // =========================================================
     // PROFILE CARD
     // =========================================================
@@ -1481,29 +1508,74 @@ const getProfileImage = (profile) => {
                             </div>
 
                         </div>
+) : filteredProfiles.length > 0 ? (
 
-                    ) : filteredProfiles.length > 0 ? (
+    <>
+        <div className="search-profile-grid">
 
-                        <div className="search-profile-grid">
+            {currentProfiles.map(
+                (profile) => (
+                    <ProfileCard
+                        key={profile.email}
+                        profile={profile}
+                    />
+                )
+            )}
 
-                            {filteredProfiles.map(
-                                (profile) => (
+        </div>
 
-                                    <ProfileCard
-                                        key={
-                                            profile.email
-                                        }
-                                        profile={
-                                            profile
-                                        }
-                                    />
+        {totalPages > 1 && (
+            <div className="search-pagination">
 
-                                )
-                            )}
+                <button
+                    type="button"
+                    className="pagination-arrow"
+                    disabled={currentPage === 1}
+                    onClick={() =>
+                        goToPage(currentPage - 1)
+                    }
+                >
+                    ←
+                </button>
 
-                        </div>
+                {Array.from(
+                    { length: totalPages },
+                    (_, index) => index + 1
+                ).map((page) => (
+                    <button
+                        key={page}
+                        type="button"
+                        className={`pagination-number ${
+                            currentPage === page
+                                ? "active"
+                                : ""
+                        }`}
+                        onClick={() =>
+                            goToPage(page)
+                        }
+                    >
+                        {page}
+                    </button>
+                ))}
 
-                    ) : (
+                <button
+                    type="button"
+                    className="pagination-arrow"
+                    disabled={
+                        currentPage === totalPages
+                    }
+                    onClick={() =>
+                        goToPage(currentPage + 1)
+                    }
+                >
+                    →
+                </button>
+
+            </div>
+        )}
+    </>
+
+) : (
 
                         <div className="search-empty">
 

@@ -1163,12 +1163,274 @@ function Users() {
     };
 
     /* =====================================================
+   ACTUAL PROFILE MATCH CALCULATION
+   Based on Partner Preferences
+===================================================== */
+
+const calculateMatchPercentage = (employee) => {
+
+    const currentProfile =
+        JSON.parse(
+            localStorage.getItem("allProfiles")
+        ) || {};
+
+    const currentUser =
+        currentProfile[loggedInEmail] || {};
+
+    let matchedCriteria = 0;
+    let totalCriteria = 0;
+
+    /* =================================================
+       1. AGE
+    ================================================= */
+
+    const ageFrom =
+        Number(currentUser.partnerAgeFrom);
+
+    const ageTo =
+        Number(currentUser.partnerAgeTo);
+
+    if (
+        ageFrom &&
+        ageTo &&
+        employee.dob
+    ) {
+        const birthDate =
+            new Date(employee.dob);
+
+        const today =
+            new Date();
+
+        let age =
+            today.getFullYear() -
+            birthDate.getFullYear();
+
+        const monthDifference =
+            today.getMonth() -
+            birthDate.getMonth();
+
+        if (
+            monthDifference < 0 ||
+            (
+                monthDifference === 0 &&
+                today.getDate() <
+                    birthDate.getDate()
+            )
+        ) {
+            age--;
+        }
+
+        totalCriteria++;
+
+        if (
+            age >= ageFrom &&
+            age <= ageTo
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       2. RELIGION
+    ================================================= */
+
+    const preferredReligion =
+        (
+            currentUser.partnerReligion ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredReligion) {
+
+        totalCriteria++;
+
+        if (
+            preferredReligion ===
+                "any religion" ||
+            preferredReligion ===
+                (
+                    employee.religion ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase()
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       3. EDUCATION
+    ================================================= */
+
+    const preferredEducation =
+        (
+            currentUser.partnerEducation ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredEducation) {
+
+        totalCriteria++;
+
+        if (
+            preferredEducation ===
+                "any education" ||
+            preferredEducation ===
+                (
+                    employee.qualification ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase()
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       4. OCCUPATION
+    ================================================= */
+
+    const preferredOccupation =
+        (
+            currentUser.partnerOccupation ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredOccupation) {
+
+        totalCriteria++;
+
+        const employeeOccupation =
+            (
+                employee.occupation ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        if (
+            preferredOccupation ===
+                "any occupation" ||
+            preferredOccupation ===
+                employeeOccupation
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       5. LOCATION
+    ================================================= */
+
+    const preferredLocation =
+        (
+            currentUser.partnerCountry ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredLocation) {
+
+        totalCriteria++;
+
+        const employeeCity =
+            (
+                employee.city ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        const employeeState =
+            (
+                employee.stateName ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        const employeeCountry =
+            (
+                employee.country ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        if (
+            employeeCity.includes(
+                preferredLocation
+            ) ||
+            employeeState.includes(
+                preferredLocation
+            ) ||
+            employeeCountry.includes(
+                preferredLocation
+            ) ||
+            preferredLocation.includes(
+                employeeCity
+            ) ||
+            preferredLocation.includes(
+                employeeState
+            ) ||
+            preferredLocation.includes(
+                employeeCountry
+            )
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       CALCULATE FINAL PERCENTAGE
+    ================================================= */
+
+    if (totalCriteria === 0) {
+        return 0;
+    }
+
+    return Math.round(
+        (
+            matchedCriteria /
+            totalCriteria
+        ) * 100
+    );
+};
+    
+
+    /* =====================================================
        RECOMMENDED PROFILES
        First 4 profiles are displayed as recommendations.
     ===================================================== */
 
-    const recommendedProfiles =
-        employees.slice(0, 4);
+const recommendedProfiles =
+    [...employees]
+        .map((employee) => ({
+            employee,
+            matchPercent:
+                calculateMatchPercentage(
+                    employee
+                )
+        }))
+        .sort(
+            (a, b) =>
+                b.matchPercent -
+                a.matchPercent
+        )
+        .slice(0, 4)
+        .map(
+            (item) =>
+                item.employee
+        );
 
     /* =====================================================
        ALL PROFILES
@@ -1208,12 +1470,10 @@ function Users() {
          * This does not change any functionality.
          */
 
-        const matchPercent =
-            95 -
-            (
-                index % 5
-            ) *
-                2;
+const matchPercent =
+    calculateMatchPercentage(
+        employee
+    );
 
         return (
             <div
@@ -1423,7 +1683,7 @@ function Users() {
         <h2>Profiles You May Like</h2>
 
         <p>
-            Recommended connections based on your profile.
+           Recommended based on your partner preferences.
         </p>
     </div>
 
@@ -1492,21 +1752,25 @@ function Users() {
                             </div>
 
                             <div className="profiles-grid">
-                                {allProfiles
-                                    .slice(
-                                        recommendedProfiles.length
-                                    )
-                                    .map(
-                                        (
-                                            employee,
-                                            index
-                                        ) =>
-                                            renderProfileCard(
-                                                employee,
-                                                index +
-                                                    recommendedProfiles.length
-                                            )
-                                    )}
+{allProfiles
+    .filter(
+        (employee) =>
+            !recommendedProfiles.some(
+                (recommended) =>
+                    recommended.email ===
+                    employee.email
+            )
+    )
+    .map(
+        (
+            employee,
+            index
+        ) =>
+            renderProfileCard(
+                employee,
+                index
+            )
+    )}
                             </div>
                         </section>
                     )}
