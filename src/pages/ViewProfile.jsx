@@ -335,15 +335,264 @@ function ViewProfile() {
         profileData.aboutMe ||
         "";
 
+/* =====================================================
+   ACTUAL PROFILE MATCH CALCULATION
+   Same calculation used in Users.jsx
+===================================================== */
 
-    /* =====================================================
-       MATCH PERCENTAGE
-    ===================================================== */
+const calculateMatchPercentage = (employee) => {
 
-    const matchPercentage =
-        profileData.matchPercentage ||
-        selectedUser?.matchPercentage ||
-        "95";
+    const currentProfiles =
+        JSON.parse(
+            localStorage.getItem("allProfiles")
+        ) || {};
+
+    const currentUser =
+        currentProfiles[loggedInEmail] || {};
+
+    let matchedCriteria = 0;
+    let totalCriteria = 0;
+
+    /* =================================================
+       1. AGE
+    ================================================= */
+
+    const ageFrom =
+        Number(currentUser.partnerAgeFrom);
+
+    const ageTo =
+        Number(currentUser.partnerAgeTo);
+
+    if (
+        ageFrom &&
+        ageTo &&
+        employee.dob
+    ) {
+        const birthDate =
+            new Date(employee.dob);
+
+        const today =
+            new Date();
+
+        let employeeAge =
+            today.getFullYear() -
+            birthDate.getFullYear();
+
+        const monthDifference =
+            today.getMonth() -
+            birthDate.getMonth();
+
+        if (
+            monthDifference < 0 ||
+            (
+                monthDifference === 0 &&
+                today.getDate() <
+                    birthDate.getDate()
+            )
+        ) {
+            employeeAge--;
+        }
+
+        totalCriteria++;
+
+        if (
+            employeeAge >= ageFrom &&
+            employeeAge <= ageTo
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       2. RELIGION
+    ================================================= */
+
+    const preferredReligion =
+        (
+            currentUser.partnerReligion ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredReligion) {
+
+        totalCriteria++;
+
+        if (
+            preferredReligion ===
+                "any religion" ||
+            preferredReligion ===
+                (
+                    employee.religion ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase()
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       3. EDUCATION
+    ================================================= */
+
+    const preferredEducation =
+        (
+            currentUser.partnerEducation ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredEducation) {
+
+        totalCriteria++;
+
+        if (
+            preferredEducation ===
+                "any education" ||
+            preferredEducation ===
+                (
+                    employee.qualification ||
+                    employee.education ||
+                    ""
+                )
+                    .trim()
+                    .toLowerCase()
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       4. OCCUPATION
+    ================================================= */
+
+    const preferredOccupation =
+        (
+            currentUser.partnerOccupation ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredOccupation) {
+
+        totalCriteria++;
+
+        const employeeOccupation =
+            (
+                employee.occupation ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        if (
+            preferredOccupation ===
+                "any occupation" ||
+            preferredOccupation ===
+                employeeOccupation
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       5. LOCATION
+    ================================================= */
+
+    const preferredLocation =
+        (
+            currentUser.partnerCountry ||
+            ""
+        )
+            .trim()
+            .toLowerCase();
+
+    if (preferredLocation) {
+
+        totalCriteria++;
+
+        const employeeCity =
+            (
+                employee.city ||
+                employee.currentCity ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        const employeeState =
+            (
+                employee.stateName ||
+                employee.currentState ||
+                employee.state ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        const employeeCountry =
+            (
+                employee.country ||
+                employee.currentCountry ||
+                ""
+            )
+                .trim()
+                .toLowerCase();
+
+        if (
+            employeeCity.includes(
+                preferredLocation
+            ) ||
+            employeeState.includes(
+                preferredLocation
+            ) ||
+            employeeCountry.includes(
+                preferredLocation
+            ) ||
+            preferredLocation.includes(
+                employeeCity
+            ) ||
+            preferredLocation.includes(
+                employeeState
+            ) ||
+            preferredLocation.includes(
+                employeeCountry
+            )
+        ) {
+            matchedCriteria++;
+        }
+    }
+
+    /* =================================================
+       FINAL PERCENTAGE
+    ================================================= */
+
+    if (totalCriteria === 0) {
+        return 0;
+    }
+
+    return Math.round(
+        (
+            matchedCriteria /
+            totalCriteria
+        ) * 100
+    );
+};
+
+
+/* =================================================
+   CURRENT PROFILE MATCH PERCENTAGE
+================================================= */
+
+const matchPercentage =
+    calculateMatchPercentage(
+        profileData
+    );
 
 
     /* =====================================================

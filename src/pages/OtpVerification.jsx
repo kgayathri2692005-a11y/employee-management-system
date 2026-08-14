@@ -51,7 +51,7 @@ const userProfile =
   allProfiles[loggedInUser.email];
 
 if (userProfile) {
-  navigate("/search");
+  navigate("/home");
 } else {
   navigate("/complete-profile");
 }
