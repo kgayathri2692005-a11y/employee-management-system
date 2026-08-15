@@ -20,6 +20,7 @@ import IgnoredProfiles from "../pages/IgnoredProfiles";
 import AboutUs from "../pages/AboutUs";
 import Home from "../pages/Home";
 import DashboardUserDetails from "../pages/DashboardUserDetails";
+import Settings from "../pages/Settings";
 
 function AppRoutes() {
   return (
@@ -48,6 +49,7 @@ function AppRoutes() {
 />
  <Route path="/home"  element={<Home/>}/>
         <Route path="/dashboard-users"  element={<DashboardUserDetails />}/>
+        <Route path="/settings" element={<Settings/>} />
 
       </Routes>
 
