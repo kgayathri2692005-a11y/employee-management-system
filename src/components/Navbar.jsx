@@ -830,6 +830,28 @@ const unreadProfileViewNotifications =
 
                                     </button>
 
+                                      {/* Settings */}
+
+                                     <button
+                                        type="button"
+                                        className="dropdown-item"
+                                        onClick={() =>
+                                            handleNavigation(
+                                                "/settings"
+                                            )
+                                        }
+                                    >
+
+                                        <span className="dropdown-item-icon">
+                                            ⚙
+                                        </span>
+
+                                        <span>
+                                            Settings
+                                        </span>
+
+                                    </button>
+
                                     {/* WISHLIST */}
 
                                     <button
