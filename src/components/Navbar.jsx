@@ -917,30 +917,51 @@ const unreadProfileViewNotifications =
 
 </button>
 
-                                    {/* ABOUT */}
+                                   {/* ABOUT */}
 
-                                    <button
-                                        type="button"
-                                        className="dropdown-item"
-                                        onClick={() =>
-                                            handleNavigation(
-                                                "/about-us"
-                                            )
-                                        }
-                                    >
+<button
+    type="button"
+    className="dropdown-item"
+    onClick={() =>
+        handleNavigation(
+            "/about-us"
+        )
+    }
+>
 
-                                        <span className="dropdown-item-icon">
-                                            i
-                                        </span>
+    <span className="dropdown-item-icon">
+        i
+    </span>
 
-                                        <span>
-                                            About Niyati
-                                        </span>
+    <span>
+        About Niyati
+    </span>
 
-                                    </button>
+</button>
 
-                                    <div className="dropdown-divider" />
+{/* HELP & SUPPORT */}
 
+<button
+    type="button"
+    className="dropdown-item"
+    onClick={() =>
+        handleNavigation(
+            "/help-support"
+        )
+    }
+>
+
+    <span className="dropdown-item-icon">
+        ?
+    </span>
+
+    <span>
+        Help & Support
+    </span>
+
+</button>
+
+<div className="dropdown-divider" />
                                     {/* LOGOUT */}
 
                                     <button

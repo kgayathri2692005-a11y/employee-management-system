@@ -111,9 +111,11 @@
 }
 
 .section-heading > div {
+    flex: 1;
+    min-width: 0;
+
     display: flex;
     flex-direction: column;
-
     gap: 9px;
 
     text-align: left;
@@ -137,6 +139,8 @@
     line-height: 1.2;
 
     text-align: left;
+
+    white-space: nowrap;
 }
 
 
@@ -1122,4 +1126,33 @@
     .profile-location {
         font-size: 9px;
     }
+}
+
+/* FIX - RECOMMENDED SECTION HEADING */
+.recommended-section .section-heading {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.recommended-section .section-heading > div {
+    display: block;
+    width: 100%;
+}
+
+.recommended-section .section-heading h2 {
+    white-space: nowrap;
+    margin: 0 0 9px;
+}
+
+.recommended-section .section-heading p {
+    white-space: nowrap;
+    margin: 0;
+}
+
+.recommended-section .section-heading > span {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    white-space: nowrap;
 }
