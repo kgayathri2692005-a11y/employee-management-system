@@ -22,6 +22,9 @@ import IgnoredProfiles from "../pages/IgnoredProfiles";
 import AboutUs from "../pages/AboutUs";
 import Home from "../pages/Home";
 import DashboardUserDetails from "../pages/DashboardUserDetails";
+import AdminDashboard from "../pages/AdminDashboard";
+import AdminUsers from "../pages/AdminUsers";
+import AdminProfileManagement from "../pages/AdminProfileManagement";
 import HelpSupport from "../pages/HelpSupport";
 import Settings from "../pages/Settings";
 
@@ -36,6 +39,12 @@ function AppRoutes() {
         <Route path="/register" element={<Register />} />
         <Route path="/complete-profile" element={<CompleteProfile />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route
+    path="/admin/profiles"
+    element={<AdminProfileManagement />}
+/>
         <Route path="/users" element={<Users />} />
         <Route path="/inbox" element={<Inbox />} />
         <Route path="/myprofile" element={<MyProfile />} />

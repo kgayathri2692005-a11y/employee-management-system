@@ -1,0 +1,624 @@
+/* =========================================================
+   NIYATI MATRIMONY - PROFILE MANAGEMENT
+   ========================================================= */
+
+.admin-profile-management {
+    min-height: 100%;
+    box-sizing: border-box;
+    padding: 4px 0 30px;
+    color: #4f3835;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.profile-management-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.profile-management-header h1 {
+    margin: 0 0 6px;
+    color: #6f1d2b;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.profile-management-header p {
+    margin: 0;
+    color: #816b65;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FILTERS
+   ========================================================= */
+
+.profile-management-filters {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fffdf9;
+    border: 1px solid #ead5bc;
+    border-radius: 12px;
+}
+
+.profile-management-filters input {
+    width: 100%;
+    max-width: 500px;
+    height: 43px;
+    box-sizing: border-box;
+    padding: 0 14px;
+    border: 1px solid #dfc5a6;
+    border-radius: 8px;
+    outline: none;
+    background: #fffaf4;
+    color: #543d3a;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.profile-management-filters input::placeholder {
+    color: #a58d80;
+}
+
+.profile-management-filters input:focus,
+.profile-management-filters select:focus {
+    border-color: #b45b4c;
+}
+
+.profile-management-filters select {
+    width: 170px;
+    height: 43px;
+    padding: 0 12px;
+    border: 1px solid #dfc5a6;
+    border-radius: 8px;
+    outline: none;
+    background: #fffaf4;
+    color: #654b47;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.profile-management-card {
+    overflow: hidden;
+    background: #fffdf9;
+    border: 1px solid #ead5bc;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(111, 29, 43, 0.035);
+}
+
+.profile-management-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 22px;
+    border-bottom: 1px solid #eadfce;
+}
+
+.profile-management-title h2 {
+    margin: 0;
+    color: #711f2c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+}
+
+.profile-management-title span {
+    color: #917a72;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.profile-management-empty {
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    color: #927b72;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .admin-profile-management {
+        padding-top: 0;
+    }
+
+    .profile-management-header h1 {
+        font-size: 25px;
+    }
+
+    .profile-management-filters {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .profile-management-filters input {
+        max-width: none;
+    }
+
+    .profile-management-filters select {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   PROFILE LIST
+   ========================================================= */
+
+.admin-profile-list {
+    width: 100%;
+}
+
+.admin-profile-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 22px;
+    border-bottom: 1px solid #f0dfce;
+    transition: 0.2s ease;
+}
+
+.admin-profile-item:last-child {
+    border-bottom: none;
+}
+
+.admin-profile-item:hover {
+    background: #fffaf4;
+}
+
+
+/* =========================================================
+   PROFILE AVATAR
+   ========================================================= */
+
+.admin-profile-avatar {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f3d4c9;
+    color: #8f2836;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   PROFILE INFORMATION
+   ========================================================= */
+
+.admin-profile-info {
+    flex: 1;
+    min-width: 180px;
+}
+
+.admin-profile-info h3 {
+    margin: 0 0 5px;
+
+    color: #5f3033;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.admin-profile-info p {
+    margin: 0 0 4px;
+
+    color: #806a63;
+    font-size: 11px;
+}
+
+.admin-profile-info span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #9a7d73;
+    font-size: 10px;
+}
+
+.admin-profile-info small {
+    display: block;
+
+    color: #ad9186;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   PROFILE STATUS
+   ========================================================= */
+
+.admin-profile-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+
+    min-width: 110px;
+}
+
+.profile-status,
+.profile-verification {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 72px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* APPROVED */
+
+.profile-status.approved {
+    background: #e5f1e4;
+    color: #417343;
+}
+
+
+/* PENDING */
+
+.profile-status.pending {
+    background: #fff0ce;
+    color: #9b711e;
+}
+
+
+/* REJECTED */
+
+.profile-status.rejected {
+    background: #f4e1df;
+    color: #9b4b46;
+}
+
+
+/* VERIFIED */
+
+.profile-verification.verified {
+    background: #ffe7d2;
+    color: #b95825;
+}
+
+
+/* PENDING VERIFICATION */
+
+.profile-verification.pending {
+    background: #fff0ce;
+    color: #9b711e;
+}
+
+
+/* NOT VERIFIED */
+
+.profile-verification.not-verified {
+    background: #f4e1df;
+    color: #9b4b46;
+}
+
+
+/* =========================================================
+   VIEW BUTTON
+   ========================================================= */
+
+.admin-profile-action {
+    min-width: 65px;
+    text-align: right;
+}
+
+.admin-profile-action button {
+    padding: 7px 15px;
+
+    border: 1px solid #9d2435;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #9d2435;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.admin-profile-action button:hover {
+    background: #9d2435;
+    color: white;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .admin-profile-item {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .admin-profile-info {
+        min-width: calc(100% - 75px);
+    }
+
+    .admin-profile-status {
+        margin-left: 70px;
+    }
+
+    .admin-profile-action {
+        margin-left: auto;
+    }
+}
+/* =========================================================
+   PROFILE DETAILS PANEL
+   ========================================================= */
+
+.admin-profile-details {
+    margin-top: 20px;
+    overflow: hidden;
+
+    background: #fffdf9;
+    border: 1px solid #ead5bc;
+    border-radius: 15px;
+
+    box-shadow: 0 3px 12px rgba(111, 29, 43, 0.035);
+}
+
+
+/* =========================================================
+   DETAILS HEADER
+   ========================================================= */
+
+.profile-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 22px;
+
+    background: #fff5e9;
+    border-bottom: 1px solid #eadfce;
+}
+
+.profile-details-header h2 {
+    margin: 0 0 4px;
+
+    color: #711f2c;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+}
+
+.profile-details-header p {
+    margin: 0;
+
+    color: #917a72;
+    font-size: 11px;
+}
+
+.profile-details-close {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f4dfd5;
+    color: #8f2836;
+
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.profile-details-close:hover {
+    background: #9d2435;
+    color: white;
+}
+
+
+/* =========================================================
+   DETAILS CONTENT
+   ========================================================= */
+
+.profile-details-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 24px;
+}
+
+
+/* =========================================================
+   LARGE AVATAR
+   ========================================================= */
+
+.profile-details-avatar {
+    width: 75px;
+    height: 75px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f3d4c9;
+    color: #8f2836;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DETAILS INFORMATION
+   ========================================================= */
+
+.profile-details-info {
+    flex: 1;
+}
+
+.profile-details-info h2 {
+    margin: 0 0 8px;
+
+    color: #5f3033;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 21px;
+}
+
+.profile-details-info p {
+    margin: 5px 0;
+
+    color: #806a63;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   DETAILS STATUS
+   ========================================================= */
+
+.profile-details-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+
+    min-width: 110px;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.profile-details-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    padding: 17px 22px;
+
+    background: #fffaf4;
+    border-top: 1px solid #eadfce;
+}
+
+.profile-approve-button,
+.profile-reject-button {
+    padding: 9px 16px;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.profile-approve-button {
+    border: 1px solid #4d804d;
+
+    background: #e5f1e4;
+    color: #417343;
+}
+
+.profile-approve-button:hover {
+    background: #4d804d;
+    color: white;
+}
+
+.profile-reject-button {
+    border: 1px solid #9b4b46;
+
+    background: #f4e1df;
+    color: #9b4b46;
+}
+
+.profile-reject-button:hover {
+    background: #9b4b46;
+    color: white;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .profile-details-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .profile-details-status {
+        align-items: flex-start;
+    }
+
+    .profile-details-actions {
+        justify-content: stretch;
+        flex-direction: column;
+    }
+
+    .profile-approve-button,
+    .profile-reject-button {
+        width: 100%;
+    }
+}
