@@ -22,9 +22,17 @@ import IgnoredProfiles from "../pages/IgnoredProfiles";
 import AboutUs from "../pages/AboutUs";
 import Home from "../pages/Home";
 import DashboardUserDetails from "../pages/DashboardUserDetails";
+import AdminLayout from "../components/AdminLayout";
 import AdminDashboard from "../pages/AdminDashboard";
 import AdminUsers from "../pages/AdminUsers";
 import AdminProfileManagement from "../pages/AdminProfileManagement";
+import AdminManagement from "../pages/AdminManagement";
+import AdminSettings from "../pages/AdminSettings";
+import AdminSupportRequests from "../pages/AdminSupportRequests";
+import AdminContentManagement from "../pages/AdminContentManagement"; 
+import AdminNotifications from "../pages/AdminNotifications";
+import AdminPayments from "../pages/AdminPayments";
+import AdminReportsAnalytics from "../pages/AdminReportsAnalytics";
 import HelpSupport from "../pages/HelpSupport";
 import Settings from "../pages/Settings";
 
@@ -40,10 +48,60 @@ function AppRoutes() {
         <Route path="/complete-profile" element={<CompleteProfile />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin-management" element={<AdminManagement />} />
+<Route
+    path="/admin/settings"
+    element={<AdminSettings />}
+/>
+<Route
+    path="/admin/support"
+    element={
+        <AdminLayout>
+            <AdminSupportRequests />
+        </AdminLayout>
+    }
+/>
         <Route path="/admin/users" element={<AdminUsers />} />
-        <Route
-    path="/admin/profiles"
-    element={<AdminProfileManagement />}
+<Route
+    path="/admin/management"
+    element={
+        <AdminLayout>
+            <AdminManagement />
+        </AdminLayout>
+    }
+/>
+<Route
+    path="/admin/content"
+    element={
+        <AdminLayout>
+            <AdminContentManagement />
+        </AdminLayout>
+    }
+/>
+<Route
+    path="/admin/notifications"
+    element={
+        <AdminLayout>
+            <AdminNotifications />
+        </AdminLayout>
+    }
+/>
+
+<Route
+    path="/admin/payments"
+    element={
+        <AdminLayout>
+            <AdminPayments />
+        </AdminLayout>
+    }
+/>
+<Route
+    path="/admin/reports-analytics"
+    element={
+        <AdminLayout>
+            <AdminReportsAnalytics />
+        </AdminLayout>
+    }
 />
         <Route path="/users" element={<Users />} />
         <Route path="/inbox" element={<Inbox />} />

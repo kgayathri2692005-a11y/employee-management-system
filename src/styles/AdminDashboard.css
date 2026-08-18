@@ -98,9 +98,8 @@
 }
 
 .admin-nav-item.active {
-    background: #9d2435;
-    color: white;
-    box-shadow: 0 4px 10px rgba(157, 36, 53, 0.15);
+    background: #861b31;
+    color: #ffffff;
 }
 
 .admin-nav-item.active span {
