@@ -16,9 +16,11 @@ function AdminLayout({ children }) {
 
                 <div className="admin-logo">
 
-                    <div className="admin-logo-icon">
-                        ♡
-                    </div>
+                    <img
+                        src="/logo.jpeg"
+                        alt="Niyati Matrimony"
+                        className="navbar-logo"
+                    />
 
                     <div>
                         <h2>Niyati</h2>

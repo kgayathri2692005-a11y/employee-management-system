@@ -112,13 +112,10 @@ function AppRoutes() {
           element={<AdminUsers />}
         />
 
+        
         <Route
           path="/admin/settings"
-          element={
-            <AdminLayout>
-              <AdminSettings />
-            </AdminLayout>
-          }
+          element={<AdminSettings />}
         />
 
         <Route
