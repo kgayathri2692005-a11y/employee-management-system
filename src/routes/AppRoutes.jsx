@@ -178,51 +178,30 @@ function AppRoutes() {
 
         {/* ================= MEMBERSHIP ROUTES ================= */}
 
-        <Route
-          path="/admin/memberships"
-          element={
-            <AdminLayout>
-              <Memberships />
-            </AdminLayout>
-          }
-        />
+       <Route
+  path="/admin/memberships"
+  element={<Memberships />}
+/>
 
-        <Route
-          path="/admin/membership-plans"
-          element={
-            <AdminLayout>
-              <MembershipPlans />
-            </AdminLayout>
-          }
-        />
+       <Route
+  path="/admin/membership-plans"
+  element={<MembershipPlans />}
+/>
 
-        <Route
-          path="/admin/matches-interests"
-          element={
-            <AdminLayout>
-              <MatchesInterests />
-            </AdminLayout>
-          }
-        />
+       <Route
+  path="/admin/matches-interests"
+  element={<MatchesInterests />}
+/>
 
-        <Route
-          path="/admin/approved-profiles"
-          element={
-            <AdminLayout>
-              <ApprovedProfiles />
-            </AdminLayout>
-          }
-        />
+       <Route
+  path="/admin/approved-profiles"
+  element={<ApprovedProfiles />}
+/>
 
-        <Route
-          path="/admin/profile-management"
-          element={
-            <AdminLayout>
-              <AdminProfileManagement />
-            </AdminLayout>
-          }
-        />
-
+       <Route
+  path="/admin/profiles"
+  element={<AdminProfileManagement />}
+/>
       </Routes>
 
       <ToastContainer
