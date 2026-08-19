@@ -1,0 +1,991 @@
+/* =========================================================
+   NIYATI MATRIMONY - MEMBERSHIP PLANS
+   ========================================================= */
+
+.membership-plans-page {
+    min-height: 100%;
+    box-sizing: border-box;
+    padding: 4px 0 30px;
+    color: #4f3835;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.membership-plans-header {
+    margin-bottom: 25px;
+}
+
+.membership-plans-header h1 {
+    margin: 0 0 6px;
+
+    color: #6f1d2b;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.membership-plans-header p {
+    margin: 0;
+
+    color: #816b65;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   PLAN GRID
+   ========================================================= */
+
+.membership-plans-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   PLAN CARD
+   ========================================================= */
+
+.membership-plan-card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 390px;
+
+    overflow: hidden;
+
+    background: #fffdf9;
+
+    border: 1px solid #ead5bc;
+
+    border-radius: 15px;
+
+    box-shadow: 0 3px 12px rgba(111, 29, 43, 0.035);
+
+    transition: 0.2s ease;
+}
+
+.membership-plan-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 6px 18px rgba(111, 29, 43, 0.08);
+}
+
+
+/* =========================================================
+   PLAN HEADER
+   ========================================================= */
+
+.membership-plan-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    padding: 20px;
+
+    background: #fff5e9;
+
+    border-bottom: 1px solid #eadfce;
+}
+
+.membership-plan-header h2 {
+    margin: 0 0 5px;
+
+    color: #711f2c;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 21px;
+}
+
+.membership-plan-header span {
+    color: #917a72;
+
+    font-size: 11px;
+}
+
+.membership-plan-status {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #e5f1e4;
+
+    color: #417343 !important;
+
+    font-size: 9px !important;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   PRICE
+   ========================================================= */
+
+.membership-plan-price {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 5px;
+
+    padding: 22px 20px 10px;
+}
+
+.membership-plan-price strong {
+    color: #6f1d2b;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 28px;
+}
+
+.membership-plan-price span {
+    color: #927b72;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+.membership-plan-features {
+    flex: 1;
+
+    padding: 10px 20px;
+}
+
+.membership-plan-features h3 {
+    margin: 0 0 12px;
+
+    color: #5f3033;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 14px;
+}
+
+.membership-plan-features ul {
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+.membership-plan-features li {
+    margin-bottom: 10px;
+
+    color: #806a63;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ACTION
+   ========================================================= */
+
+.membership-plan-action {
+    padding: 18px 20px;
+
+    background: #fffaf4;
+
+    border-top: 1px solid #eadfce;
+}
+
+.membership-plan-action button {
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #9d2435;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #9d2435;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.membership-plan-action button:hover {
+    background: #9d2435;
+
+    color: white;
+}
+
+
+/* =========================================================
+   PLAN DETAILS
+   ========================================================= */
+
+.membership-plan-details {
+    margin-top: 20px;
+
+    overflow: hidden;
+
+    background: #fffdf9;
+
+    border: 1px solid #ead5bc;
+
+    border-radius: 15px;
+
+    box-shadow: 0 3px 12px rgba(111, 29, 43, 0.035);
+}
+
+
+/* =========================================================
+   DETAILS HEADER
+   ========================================================= */
+
+.membership-plan-details-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 20px 22px;
+
+    background: #fff5e9;
+
+    border-bottom: 1px solid #eadfce;
+}
+
+.membership-plan-details-header h2 {
+    margin: 0 0 4px;
+
+    color: #711f2c;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 19px;
+}
+
+.membership-plan-details-header p {
+    margin: 0;
+
+    color: #917a72;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.membership-plan-close {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f4dfd5;
+
+    color: #8f2836;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.membership-plan-close:hover {
+    background: #9d2435;
+
+    color: white;
+}
+
+
+/* =========================================================
+   DETAILS CONTENT
+   ========================================================= */
+
+.membership-plan-details-content {
+    display: flex;
+
+    gap: 50px;
+
+    padding: 25px;
+}
+
+.membership-plan-details-info {
+    flex: 1;
+}
+
+.membership-plan-details-info h2 {
+    margin: 0 0 15px;
+
+    color: #5f3033;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 22px;
+}
+
+.membership-plan-details-info p {
+    margin: 8px 0;
+
+    color: #806a63;
+
+    font-size: 12px;
+}
+
+.membership-plan-details-features {
+    flex: 1;
+}
+
+.membership-plan-details-features h3 {
+    margin: 0 0 12px;
+
+    color: #711f2c;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 15px;
+}
+
+.membership-plan-details-features ul {
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+.membership-plan-details-features li {
+    margin-bottom: 10px;
+
+    color: #806a63;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .membership-plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .membership-plans-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .membership-plan-details-content {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+}
+/* =========================================================
+   ADD NEW PLAN BUTTON
+   ========================================================= */
+
+.membership-plans-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.add-plan-button {
+    padding: 10px 18px;
+
+    border: 1px solid #9d2435;
+    border-radius: 7px;
+
+    background: #9d2435;
+    color: white;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.add-plan-button:hover {
+    background: #7f1d2c;
+    border-color: #7f1d2c;
+}
+
+
+/* =========================================================
+   PLAN ACTION BUTTONS
+   ========================================================= */
+
+.membership-plan-action {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.membership-plan-action button {
+    flex: 1;
+    min-width: 80px;
+}
+
+.membership-plan-action .edit-plan-btn {
+    border-color: #b45b4c;
+    background: #fff5e9;
+    color: #8f2836;
+}
+
+.membership-plan-action .edit-plan-btn:hover {
+    background: #b45b4c;
+    color: white;
+}
+
+
+/* =========================================================
+   ACTIVATE / DEACTIVATE BUTTON
+   ========================================================= */
+
+.status-plan-btn {
+    border: 1px solid #dfc5a6 !important;
+}
+
+.status-plan-btn.deactivate {
+    background: #f4e1df !important;
+    color: #9b4b46 !important;
+    border-color: #d7aaa4 !important;
+}
+
+.status-plan-btn.deactivate:hover {
+    background: #9b4b46 !important;
+    color: white !important;
+}
+
+.status-plan-btn.activate {
+    background: #e5f1e4 !important;
+    color: #417343 !important;
+    border-color: #aac8a8 !important;
+}
+
+.status-plan-btn.activate:hover {
+    background: #417343 !important;
+    color: white !important;
+}
+
+
+/* =========================================================
+   ACTIVE / INACTIVE STATUS
+   ========================================================= */
+
+.membership-plan-status.active {
+    background: #e5f1e4;
+    color: #417343 !important;
+}
+
+.membership-plan-status.inactive {
+    background: #f4e1df;
+    color: #9b4b46 !important;
+}
+
+
+/* =========================================================
+   PLAN FORM OVERLAY
+   ========================================================= */
+
+.plan-form-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background: rgba(79, 56, 53, 0.35);
+}
+
+
+/* =========================================================
+   PLAN FORM
+   ========================================================= */
+
+.plan-form {
+    width: 100%;
+    max-width: 520px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #fffdf9;
+
+    border: 1px solid #ead5bc;
+
+    border-radius: 15px;
+
+    box-shadow: 0 10px 35px rgba(111, 29, 43, 0.15);
+}
+
+
+/* =========================================================
+   FORM HEADER
+   ========================================================= */
+
+.plan-form-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 20px;
+
+    background: #fff5e9;
+
+    border-bottom: 1px solid #eadfce;
+}
+
+.plan-form-header h2 {
+    margin: 0;
+
+    color: #711f2c;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 19px;
+}
+
+.plan-form-header button {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f4dfd5;
+
+    color: #8f2836;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.plan-form-header button:hover {
+    background: #9d2435;
+    color: white;
+}
+
+
+/* =========================================================
+   FORM BODY
+   ========================================================= */
+
+.plan-form-body {
+    display: flex;
+    flex-direction: column;
+
+    padding: 22px;
+}
+
+.plan-form-body label {
+    margin-bottom: 6px;
+
+    color: #5f3033;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.plan-form-body input,
+.plan-form-body textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-bottom: 16px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #dfc5a6;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    background: #fffaf4;
+
+    color: #543d3a;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    resize: vertical;
+}
+
+.plan-form-body input {
+    height: 40px;
+}
+
+.plan-form-body input::placeholder,
+.plan-form-body textarea::placeholder {
+    color: #a58d80;
+}
+
+.plan-form-body input:focus,
+.plan-form-body textarea:focus {
+    border-color: #b45b4c;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
+.plan-form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 15px 20px;
+
+    background: #fffaf4;
+
+    border-top: 1px solid #eadfce;
+}
+
+.plan-form-actions button {
+    padding: 9px 17px;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.cancel-plan {
+    border: 1px solid #dfc5a6;
+
+    background: transparent;
+
+    color: #806a63;
+}
+
+.cancel-plan:hover {
+    background: #f4e1df;
+
+    color: #9b4b46;
+}
+
+.save-plan {
+    border: 1px solid #9d2435;
+
+    background: #9d2435;
+
+    color: white;
+}
+
+.save-plan:hover {
+    background: #7f1d2c;
+
+    border-color: #7f1d2c;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .membership-plans-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .add-plan-button {
+        width: 100%;
+    }
+
+    .membership-plan-action {
+        flex-direction: column;
+    }
+
+    .membership-plan-action button {
+        width: 100%;
+    }
+
+    .plan-form-overlay {
+        padding: 12px;
+    }
+
+    .plan-form-actions {
+        flex-direction: column;
+    }
+
+    .plan-form-actions button {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   DELETE PLAN BUTTON
+========================================= */
+
+.delete-plan-btn {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.delete-plan-btn:hover {
+    background-color: #b02a37;
+}
+
+
+/* =========================================
+   DELETE CONFIRMATION OVERLAY
+========================================= */
+
+.delete-plan-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+
+/* =========================================
+   DELETE MODAL
+========================================= */
+
+.delete-plan-modal {
+    width: 420px;
+    max-width: 90%;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+    animation: deleteModalAnimation 0.2s ease;
+}
+
+
+@keyframes deleteModalAnimation {
+
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================================
+   DELETE ICON
+========================================= */
+
+.delete-plan-icon {
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: #fde8e8;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 25px;
+}
+
+
+/* =========================================
+   DELETE TITLE
+========================================= */
+
+.delete-plan-modal h2 {
+    margin: 0 0 12px;
+
+    color: #800000;
+
+    font-size: 22px;
+}
+
+
+.delete-plan-modal p {
+    margin: 0;
+
+    color: #555;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+.delete-plan-modal p strong {
+    color: #800000;
+}
+
+
+/* =========================================
+   WARNING
+========================================= */
+
+.delete-plan-warning {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #dc3545;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   DELETE ACTIONS
+========================================= */
+
+.delete-plan-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+
+.cancel-delete-btn,
+.confirm-delete-btn {
+    min-width: 110px;
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+/* Cancel */
+
+.cancel-delete-btn {
+    background: #6c757d;
+
+    color: white;
+}
+
+
+.cancel-delete-btn:hover {
+    background: #545b62;
+}
+
+
+/* Delete */
+
+.confirm-delete-btn {
+    background: #dc3545;
+
+    color: white;
+}
+
+
+.confirm-delete-btn:hover {
+    background: #b02a37;
+}

@@ -1,0 +1,762 @@
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.matches-interests-page {
+    padding: 30px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.matches-interests-header {
+    margin-bottom: 25px;
+}
+
+.matches-interests-header h1 {
+    margin: 0;
+
+    color: #800000;
+
+    font-size: 28px;
+}
+
+.matches-interests-header p {
+    margin-top: 8px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SUMMARY CARDS
+========================================= */
+
+.mi-summary-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+.mi-summary-card {
+    background: #ffffff;
+
+    border: 1px solid #ead9ca;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.mi-summary-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 8px;
+
+    background: #fff1e4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+.mi-summary-card span {
+    display: block;
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+.mi-summary-card strong {
+    display: block;
+
+    color: #800000;
+
+    font-size: 22px;
+}
+
+
+/* =========================================
+   TABS
+========================================= */
+
+.mi-tabs {
+    display: flex;
+
+    gap: 5px;
+
+    background: #ffffff;
+
+    border: 1px solid #ead9ca;
+
+    border-radius: 8px;
+
+    padding: 5px;
+
+    width: fit-content;
+
+    margin-bottom: 18px;
+}
+
+.mi-tab {
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    padding: 11px 25px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+.mi-tab:hover {
+    color: #800000;
+}
+
+.mi-tab.active {
+    background: #a91f36;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   FILTER
+========================================= */
+
+.mi-filter-section {
+    background: #ffffff;
+
+    border: 1px solid #ead9ca;
+
+    border-radius: 10px;
+
+    padding: 16px;
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.mi-search {
+    flex: 1;
+}
+
+.mi-search input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 14px;
+
+    border: 1px solid #dfd1c5;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    background: #fffdfb;
+}
+
+.mi-search input:focus {
+    border-color: #a91f36;
+}
+
+.mi-status-filter select {
+    min-width: 160px;
+
+    padding: 11px 14px;
+
+    border: 1px solid #dfd1c5;
+
+    border-radius: 6px;
+
+    background: #fffdfb;
+
+    outline: none;
+
+    color: #555;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   TABLE CONTAINER
+========================================= */
+
+.mi-table-container {
+    background: #ffffff;
+
+    border: 1px solid #ead9ca;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================
+   TABLE HEADING
+========================================= */
+
+.mi-table-heading {
+    padding: 18px 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #ead9ca;
+}
+
+.mi-table-heading h2 {
+    margin: 0;
+
+    color: #800000;
+
+    font-size: 18px;
+}
+
+.mi-table-heading p {
+    margin: 5px 0 0;
+
+    color: #888;
+
+    font-size: 12px;
+}
+
+.mi-table-heading > span {
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.mi-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.mi-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.mi-table th {
+    background: #fff8f1;
+
+    color: #800000;
+
+    text-align: left;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    padding: 14px 16px;
+
+    white-space: nowrap;
+}
+
+.mi-table td {
+    padding: 14px 16px;
+
+    border-top: 1px solid #f0e5dc;
+
+    color: #555;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+.mi-table tbody tr:hover {
+    background: #fffcf9;
+}
+
+
+/* =========================================
+   USER
+========================================= */
+
+.mi-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.mi-avatar {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+
+    border-radius: 50%;
+
+    background: #f7e3d5;
+
+    color: #800000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 600;
+
+    font-size: 14px;
+}
+
+.mi-user strong {
+    display: block;
+
+    color: #333;
+
+    font-size: 13px;
+}
+
+.mi-user span {
+    display: block;
+
+    color: #999;
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.mi-status {
+    display: inline-block;
+
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.mi-status.mutual,
+.mi-status.accepted {
+    background: #e8f5e9;
+
+    color: #2e7d32;
+}
+
+.mi-status.pending {
+    background: #fff3cd;
+
+    color: #856404;
+}
+
+.mi-status.rejected {
+    background: #fde8e8;
+
+    color: #b02a37;
+}
+
+
+/* =========================================
+   VIEW BUTTON
+========================================= */
+
+.mi-view-btn {
+    border: 1px solid #a91f36;
+
+    background: transparent;
+
+    color: #a91f36;
+
+    padding: 7px 16px;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.mi-view-btn:hover {
+    background: #a91f36;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.mi-empty {
+    padding: 60px 20px;
+
+    text-align: center;
+}
+
+.mi-empty > div {
+    font-size: 40px;
+
+    margin-bottom: 10px;
+}
+
+.mi-empty h3 {
+    margin: 0 0 6px;
+
+    color: #555;
+}
+
+.mi-empty p {
+    margin: 0;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.mi-modal-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.mi-modal {
+    width: 650px;
+
+    max-width: 90%;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.mi-modal-header {
+    padding: 20px 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #ead9ca;
+}
+
+.mi-modal-header h2 {
+    margin: 0;
+
+    color: #800000;
+
+    font-size: 20px;
+}
+
+.mi-modal-header p {
+    margin: 5px 0 0;
+
+    color: #888;
+
+    font-size: 12px;
+}
+
+.mi-close-btn {
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   MATCH MODAL
+========================================= */
+
+.mi-modal-body {
+    padding: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 35px;
+}
+
+.mi-profile {
+    flex: 1;
+
+    text-align: center;
+}
+
+.mi-large-avatar {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 10px;
+
+    border-radius: 50%;
+
+    background: #f7e3d5;
+
+    color: #800000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    font-weight: 600;
+}
+
+.mi-profile h3 {
+    margin: 5px 0;
+
+    color: #333;
+}
+
+.mi-profile p {
+    margin: 0;
+
+    color: #999;
+
+    font-size: 12px;
+}
+
+.mi-love-icon {
+    font-size: 27px;
+}
+
+
+/* =========================================
+   INTEREST DETAILS
+========================================= */
+
+.mi-interest-details {
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.mi-interest-person {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 15px;
+
+    border: 1px solid #ead9ca;
+
+    border-radius: 8px;
+
+    background: #fffaf6;
+}
+
+.mi-interest-person .mi-large-avatar {
+    margin: 0;
+}
+
+.mi-interest-person span {
+    color: #999;
+
+    font-size: 11px;
+}
+
+.mi-interest-person h3 {
+    margin: 4px 0;
+
+    color: #800000;
+}
+
+.mi-interest-person p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+.mi-interest-arrow {
+    text-align: center;
+
+    color: #a91f36;
+
+    font-size: 24px;
+}
+
+
+/* =========================================
+   MODAL INFO
+========================================= */
+
+.mi-modal-info {
+    background: #fff8f1;
+
+    padding: 18px 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 100px;
+}
+
+.mi-modal-info div {
+    text-align: center;
+}
+
+.mi-modal-info span {
+    display: block;
+
+    color: #999;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+.mi-modal-info strong {
+    color: #800000;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .mi-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .matches-interests-page {
+        padding: 15px;
+    }
+
+    .mi-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mi-filter-section {
+        flex-direction: column;
+    }
+
+    .mi-tabs {
+        width: 100%;
+    }
+
+    .mi-tab {
+        flex: 1;
+    }
+
+    .mi-modal-body {
+        flex-direction: column;
+    }
+
+}

@@ -49,28 +49,63 @@ function AdminLayout({ children }) {
                     </button>
 
 
-                    <button className="admin-nav-item">
-                        <span>▣</span>
-                        Profile Management
-                    </button>
+                   <button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/profiles"
+            ? "active"
+            : ""
+    }`}
+    onClick={() => navigate("/admin/profiles")}
+>
+    <span>▣</span>
+    Profile Management
+</button>
+
+<button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/approved-profiles"
+            ? "active"
+            : ""
+    }`}
+    onClick={() => navigate("/admin/approved-profiles")}
+>
+    <span>✓</span>
+    Approved Profiles
+</button>
+
+                 <button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/memberships" ? "active" : ""
+    }`}
+    onClick={() => navigate("/admin/memberships")}
+>
+    <span>♕</span>
+    Memberships
+</button>
 
 
-                    <button className="admin-nav-item">
-                        <span>✓</span>
-                        Approved Profiles
-                    </button>
+<button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/membership-plans" ? "active" : ""
+    }`}
+    onClick={() => navigate("/admin/membership-plans")}
+>
+    <span>▣</span>
+    Membership Plans
+</button>
 
 
-                    <button className="admin-nav-item">
-                        <span>♕</span>
-                        Memberships
-                    </button>
-
-
-                    <button className="admin-nav-item">
-                        <span>♡</span>
-                        Matches & Interests
-                    </button>
+                    <button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/matches-interests"
+            ? "active"
+            : ""
+    }`}
+    onClick={() => navigate("/admin/matches-interests")}
+>
+    <span>♡</span>
+    Matches & Interests
+</button>
 
 
                     <button className="admin-nav-item">

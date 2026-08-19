@@ -25,6 +25,10 @@ import DashboardUserDetails from "../pages/DashboardUserDetails";
 import AdminDashboard from "../pages/AdminDashboard";
 import AdminUsers from "../pages/AdminUsers";
 import AdminProfileManagement from "../pages/AdminProfileManagement";
+import Memberships from "../pages/Memberships";
+import MembershipPlans from "../pages/MembershipPlans";
+import MatchesInterests from "../pages/MatchesInterests";
+import ApprovedProfiles from "../pages/ApprovedProfiles";
 import HelpSupport from "../pages/HelpSupport";
 import Settings from "../pages/Settings";
 
@@ -45,6 +49,23 @@ function AppRoutes() {
     path="/admin/profiles"
     element={<AdminProfileManagement />}
 />
+<Route
+    path="/admin/memberships"
+    element={<Memberships />}
+/>
+<Route
+    path="/admin/membership-plans"
+   element={<MembershipPlans />}
+/>
+<Route
+    path="/admin/matches-interests"
+    element={<MatchesInterests />}
+/>
+<Route
+    path="/admin/approved-profiles"
+    element={<ApprovedProfiles />}
+/>
+
         <Route path="/users" element={<Users />} />
         <Route path="/inbox" element={<Inbox />} />
         <Route path="/myprofile" element={<MyProfile />} />
