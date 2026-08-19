@@ -1,0 +1,225 @@
+/* =========================================================
+   PAGE NAVIGATION
+   Elegant Matrimony Theme
+========================================================= */
+
+.page-navigation {
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 32px auto 0;
+  padding: 18px 24px 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  border-top: 1px solid #f1e3e8;
+}
+
+
+/* =========================================================
+   NAVIGATION BUTTONS
+========================================================= */
+
+.page-navigation .previous-btn,
+.page-navigation .next-btn {
+
+  height: 42px;
+  min-width: 122px;
+
+  padding: 0 17px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  background: #ffffff !important;
+
+  color: #9f3156 !important;
+
+  border: 1px solid #e5c3cf !important;
+
+  border-radius: 24px !important;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.1px;
+
+  cursor: pointer;
+
+  outline: none;
+
+  box-shadow:
+    0 2px 7px rgba(145, 50, 82, 0.06) !important;
+
+  transition:
+    all 0.22s ease;
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.page-navigation .previous-btn span:first-child,
+.page-navigation .next-btn span:last-child {
+
+  font-size: 17px;
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  transition:
+    transform 0.22s ease;
+}
+
+
+/* =========================================================
+   PREVIOUS HOVER
+========================================================= */
+
+.page-navigation .previous-btn:hover {
+
+  background: #fff5f8 !important;
+
+  color: #8f294b !important;
+
+  border-color: #d99caf !important;
+
+  transform: translateX(-2px);
+
+  box-shadow:
+    0 5px 15px rgba(145, 50, 82, 0.10) !important;
+}
+
+
+.page-navigation .previous-btn:hover span:first-child {
+
+  transform: translateX(-3px);
+}
+
+
+/* =========================================================
+   NEXT HOVER
+========================================================= */
+
+.page-navigation .next-btn:hover {
+
+  background: #fff5f8 !important;
+
+  color: #8f294b !important;
+
+  border-color: #d99caf !important;
+
+  transform: translateX(2px);
+
+  box-shadow:
+    0 5px 15px rgba(145, 50, 82, 0.10) !important;
+}
+
+
+.page-navigation .next-btn:hover span:last-child {
+
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   CLICK
+========================================================= */
+
+.page-navigation .previous-btn:active,
+.page-navigation .next-btn:active {
+
+  transform: translateY(1px);
+
+  box-shadow:
+    0 2px 5px rgba(145, 50, 82, 0.08) !important;
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.page-navigation .previous-btn:focus-visible,
+.page-navigation .next-btn:focus-visible {
+
+  outline: 3px solid rgba(159, 49, 86, 0.12) !important;
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .page-navigation {
+
+    margin-top: 24px;
+
+    padding:
+      15px
+      15px
+      24px;
+  }
+
+
+  .page-navigation .previous-btn,
+  .page-navigation .next-btn {
+
+    min-width: 105px;
+
+    height: 40px;
+
+    padding: 0 14px;
+
+    font-size: 12px;
+
+    border-radius: 22px !important;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .page-navigation {
+
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  .page-navigation .previous-btn,
+  .page-navigation .next-btn {
+
+    min-width: 96px;
+
+    height: 38px;
+
+    padding: 0 11px;
+
+    font-size: 11.5px;
+
+    gap: 7px;
+  }
+
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaShieldAlt, FaEnvelope, FaRedoAlt } from "react-icons/fa";
 import axios from "axios";
 import "../styles/OtpVerification.css";
 
@@ -50,7 +51,7 @@ const userProfile =
   allProfiles[loggedInUser.email];
 
 if (userProfile) {
-  navigate("/dashboard");
+  navigate("/home");
 } else {
   navigate("/complete-profile");
 }
@@ -114,6 +115,9 @@ if (userProfile) {
       )}
 
       <div className="otp-card">
+        <div className="otp-logo">
+    <img src="/niyati-logo.jpeg" alt="Niyati Matrimony" />
+</div>
 
         <div className="otp-header">
           <h1>OTP Verification</h1>
@@ -129,10 +133,10 @@ if (userProfile) {
 
           <div className="input-group">
 
-            <label>
-              Verification Code
-            </label>
-
+           <label className="otp-label">
+  <FaEnvelope />
+    Verification Code
+</label>
             <input
               type="text"
               className={`otp-input ${
@@ -174,13 +178,14 @@ if (userProfile) {
               Didn't receive the code?
             </p>
 
-            <button
-              type="button"
-              className="resend-btn"
-              onClick={handleResendOtp}
-            >
-              Resend OTP
-            </button>
+           <button
+  type="button"
+  className="resend-btn"
+  onClick={handleResendOtp}
+>
+  <FaRedoAlt />
+  Resend OTP
+</button>
 
           </div>
 

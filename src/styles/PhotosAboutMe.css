@@ -1,0 +1,1348 @@
+/* =========================================================
+   PHOTOS & ABOUT ME
+   PROFESSIONAL MATRIMONY PROFILE STYLE
+========================================================= */
+
+.profile-page {
+    min-height: 100vh;
+
+    padding: 42px 20px 60px;
+
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(244, 114, 182, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(168, 85, 247, 0.09),
+            transparent 30%
+        ),
+        #f8f7fb;
+}
+
+
+/* =========================================================
+   WARNING TOAST
+========================================================= */
+
+.toast-warning {
+    position: fixed;
+
+    top: 24px;
+    right: 24px;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    max-width: 380px;
+
+    padding: 13px 17px;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #5d2736;
+
+    border: 1px solid #f3d3dc;
+
+    box-shadow:
+        0 12px 35px
+        rgba(53, 24, 42, 0.15);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    animation:
+        toastSlideIn 0.25s ease;
+}
+
+
+.toast-icon {
+    width: 23px;
+    height: 23px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #fce7ef;
+
+    color: #d6336c;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+@keyframes toastSlideIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.profile-card {
+    width: 100%;
+
+    max-width: 920px;
+
+    margin: 0 auto;
+
+    padding: 38px 46px 35px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeaf1;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 18px 55px
+        rgba(47, 31, 52, 0.08);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.profile-header {
+    text-align: center;
+
+    margin-bottom: 34px;
+}
+
+
+.profile-title-icon {
+    width: 46px;
+    height: 46px;
+
+    margin: 0 auto 13px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f5,
+            #f8edff
+        );
+
+    font-size: 22px;
+
+    box-shadow:
+        0 7px 18px
+        rgba(190, 50, 120, 0.08);
+}
+
+
+.profile-title {
+    margin: 0;
+
+    color: #292433;
+
+    font-size: 29px;
+
+    line-height: 1.2;
+
+    font-weight: 750;
+
+    letter-spacing: -0.5px;
+}
+
+
+.profile-subtitle {
+    margin: 9px auto 0;
+
+    max-width: 560px;
+
+    color: #85818c;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 15px 17px;
+
+    margin-bottom: 26px;
+
+    border: 1px solid #f0e8f0;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffafd,
+            #faf7ff
+        );
+}
+
+
+.section-heading-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 4px 12px
+        rgba(45, 25, 50, 0.06);
+
+    font-size: 18px;
+}
+
+
+.section-heading h2 {
+    margin: 0;
+
+    color: #302b39;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+.section-heading p {
+    margin: 3px 0 0;
+
+    color: #918b96;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PHOTO SECTIONS
+========================================================= */
+
+.photo-section {
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #eeeaf1;
+
+    border-radius: 17px;
+
+    background: #ffffff;
+}
+
+
+.section-label-row {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+
+.section-label-row h3 {
+    margin: 0;
+
+    color: #332e3a;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+
+.photo-info {
+    margin: 5px 0 0;
+
+    color: #918b96;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+.required-star {
+    margin-left: 3px;
+
+    color: #e0527e;
+
+    font-size: 13px;
+}
+
+
+.photo-limit-badge {
+    flex-shrink: 0;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: #f7f2fa;
+
+    color: #8b5a91;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   MAIN PROFILE PHOTO
+========================================================= */
+
+.main-profile-photo-section {
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #fffcfe
+        );
+}
+
+
+.main-photo-wrapper {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+.main-photo-preview {
+    width: 158px;
+    height: 158px;
+
+    padding: 4px;
+
+    box-sizing: border-box;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e85891,
+            #a855f7
+        );
+
+    box-shadow:
+        0 10px 28px
+        rgba(164, 64, 128, 0.16);
+}
+
+
+.main-photo-preview img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 4px solid #ffffff;
+
+    box-sizing: border-box;
+}
+
+
+.photo-upload-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 11px;
+
+    color: #4c7b60;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.success-dot {
+    width: 18px;
+    height: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e9f8ef;
+
+    color: #32945c;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   NO PROFILE PHOTO
+========================================================= */
+
+.no-profile-photo {
+    min-height: 150px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    border: 1px dashed #e4ccd8;
+
+    border-radius: 15px;
+
+    background: #fffafd;
+
+    text-align: center;
+}
+
+
+.no-photo-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 8px;
+
+    border-radius: 50%;
+
+    background: #f8edf3;
+
+    font-size: 20px;
+}
+
+
+.no-profile-photo p {
+    margin: 0;
+
+    color: #8d7781;
+
+    font-size: 12px;
+}
+
+
+.field-error {
+    margin-top: 7px;
+
+    color: #d14c69;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   ADDITIONAL PHOTOS GRID
+========================================================= */
+
+.additional-photo-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 13px;
+}
+
+
+/* =========================================================
+   PHOTO ITEM
+========================================================= */
+
+.additional-photo-item {
+    position: relative;
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+
+    background: #f6f3f7;
+
+    border: 1px solid #eee8ef;
+
+    box-shadow:
+        0 5px 14px
+        rgba(38, 25, 42, 0.07);
+}
+
+
+.additional-photo-item img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.additional-photo-item:hover img {
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   PHOTO NUMBER
+========================================================= */
+
+.photo-number {
+    position: absolute;
+
+    left: 7px;
+    bottom: 7px;
+
+    min-width: 21px;
+    height: 21px;
+
+    padding: 0 5px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: rgba(40, 32, 45, 0.68);
+
+    color: #ffffff;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   REMOVE PHOTO
+========================================================= */
+
+.remove-photo-btn {
+    position: absolute;
+
+    top: 7px;
+    right: 7px;
+
+    width: 25px;
+    height: 25px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(40, 30, 38, 0.75);
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.remove-photo-btn:hover {
+    background: #d94d72;
+
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   ADD PHOTO BOX
+========================================================= */
+
+.add-photo-box {
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    border: 1.5px dashed #d9bfd3;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffafd,
+            #faf6ff
+        );
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.add-photo-box:hover {
+    border-color: #c475aa;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff5fa,
+            #f8f0ff
+        );
+
+    transform: translateY(-2px);
+}
+
+
+.add-photo-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 7px;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #a9578c;
+
+    font-size: 22px;
+
+    font-weight: 400;
+
+    box-shadow:
+        0 4px 10px
+        rgba(55, 32, 50, 0.07);
+}
+
+
+.add-photo-box strong {
+    color: #635062;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.add-photo-box span {
+    margin-top: 3px;
+
+    color: #a69ba7;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   PHOTO COUNT
+========================================================= */
+
+.photo-count-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 12px;
+
+    color: #99929c;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   ABOUT ME SECTION
+========================================================= */
+
+.about-me-section {
+    margin-top: 24px;
+
+    padding: 24px;
+
+    border: 1px solid #eee4ef;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffafd,
+            #fcf9ff
+        );
+
+    box-shadow:
+        0 6px 18px
+        rgba(65, 37, 69, 0.035);
+}
+
+
+/* =========================================================
+   ABOUT ME HEADER
+========================================================= */
+
+.about-me-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 16px;
+}
+
+
+.about-me-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+.about-me-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 4px 12px
+        rgba(67, 35, 63, 0.06);
+
+    font-size: 17px;
+}
+
+
+.about-me-title h3 {
+    margin: 0;
+
+    color: #322c39;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+
+.about-me-title p {
+    margin: 2px 0 0;
+
+    color: #9a929d;
+
+    font-size: 10px;
+}
+
+
+.optional-label {
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #f2edf5;
+
+    color: #8f8492;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   AUTO GENERATED INFO
+========================================================= */
+
+.about-me-helper {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 13px;
+
+    padding: 12px 13px;
+
+    border: 1px solid #eadcf0;
+
+    border-radius: 11px;
+
+    background: rgba(255, 255, 255, 0.75);
+}
+
+
+.helper-icon {
+    flex-shrink: 0;
+
+    font-size: 15px;
+
+    margin-top: 1px;
+}
+
+
+.about-me-helper strong {
+    display: block;
+
+    color: #604a67;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.about-me-helper p {
+    margin: 3px 0 0;
+
+    color: #938a97;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ABOUT ME TEXTAREA
+========================================================= */
+
+.about-me-section textarea {
+    width: 100%;
+
+    min-height: 265px;
+
+    padding: 17px;
+
+    box-sizing: border-box;
+
+    resize: vertical;
+
+    border: 1px solid #e1d9e3;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #4c4650;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.about-me-section textarea::placeholder {
+    color: #b5aeb8;
+}
+
+
+.about-me-section textarea:focus {
+    border-color: #c477a9;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(196, 119, 169, 0.10);
+}
+
+
+/* =========================================================
+   ABOUT ME FOOTER
+========================================================= */
+
+.about-me-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 9px;
+
+    color: #9b939d;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   STEP PROGRESS
+========================================================= */
+
+.step-progress {
+    margin-top: 30px;
+
+    padding-top: 3px;
+}
+
+
+.step-progress-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 8px;
+
+    color: #918b94;
+
+    font-size: 11px;
+}
+
+
+.step-progress-top strong {
+    color: #6e596d;
+
+    font-weight: 700;
+}
+
+
+.progress-track {
+    width: 100%;
+
+    height: 5px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #eee9ef;
+}
+
+
+.progress-fill {
+    width: 85.7%;
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #e65b8c,
+            #a855f7
+        );
+}
+
+
+/* =========================================================
+   BUTTON GROUP
+========================================================= */
+
+.button-group-between {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #eee9ee;
+}
+
+
+/* =========================================================
+   PREVIOUS BUTTON
+========================================================= */
+
+.previous-btn,
+.next-btn {
+    min-height: 43px;
+
+    padding: 0 20px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.previous-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 1px solid #ddd6df;
+
+    background: #ffffff;
+
+    color: #665d69;
+}
+
+
+.previous-btn:hover {
+    background: #faf8fb;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 12px
+        rgba(45, 30, 45, 0.06);
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+.next-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-width: 130px;
+
+    border: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e45b8a,
+            #a855f7
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 7px 17px
+        rgba(168, 85, 247, 0.18);
+}
+
+
+.next-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 23px
+        rgba(168, 85, 247, 0.24);
+}
+
+
+.next-btn span {
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .profile-page {
+        padding: 25px 13px 45px;
+    }
+
+
+    .profile-card {
+        padding: 30px 25px;
+
+        border-radius: 20px;
+    }
+
+
+    .profile-title {
+        font-size: 26px;
+    }
+
+
+    .additional-photo-grid {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .profile-page {
+        padding: 15px 9px 30px;
+    }
+
+
+    .profile-card {
+        padding: 25px 16px;
+
+        border-radius: 17px;
+    }
+
+
+    .profile-title {
+        font-size: 23px;
+    }
+
+
+    .profile-subtitle {
+        font-size: 12px;
+    }
+
+
+    .section-heading {
+        padding: 12px;
+    }
+
+
+    .section-heading-icon {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .photo-section,
+    .about-me-section {
+        padding: 17px;
+    }
+
+
+    .additional-photo-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 9px;
+    }
+
+
+    .additional-photo-section
+    .section-label-row {
+        align-items: center;
+    }
+
+
+    .about-me-section textarea {
+        min-height: 310px;
+
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+
+    .about-me-footer {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 4px;
+    }
+
+
+    .button-group-between {
+        flex-direction: row;
+    }
+
+
+    .previous-btn,
+    .next-btn {
+        flex: 1;
+
+        width: auto;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .profile-card {
+        padding: 22px 12px;
+    }
+
+
+    .additional-photo-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .button-group-between {
+        flex-direction: column;
+    }
+
+
+    .previous-btn,
+    .next-btn {
+        width: 100%;
+    }
+
+
+    .toast-warning {
+        top: 12px;
+        right: 12px;
+        left: 12px;
+
+        max-width: none;
+    }
+
+}

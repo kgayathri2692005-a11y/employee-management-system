@@ -23,7 +23,7 @@ function Sidebar() {
               isActive ? "nav-item active" : "nav-item"
             }
           >
-            👥 Employees
+            👥 Profiles
           </NavLink>
         </li>
 
@@ -49,29 +49,7 @@ function Sidebar() {
           </NavLink>
         </li>
 
-        <li>
-          <NavLink
-            to="/add-user"        
-            className={({ isActive }) =>
-              isActive ? "nav-item active" : "nav-item"
-            }
-          >
-            ➕ Add User
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink 
-            to="/edit-user"
-            className={({ isActive }) =>
-              isActive ? "nav-item active" : "nav-item"
-            }
-          >
-           ✏️ Edit User
-          </NavLink>
-        </li>
-
-        <li>
+                <li>
           <NavLink
             to="/tracking"
             className={({ isActive }) =>
@@ -81,6 +59,27 @@ function Sidebar() {
            📈 Tracking
           </NavLink>
         </li>
+        <li>
+        <NavLink 
+            to="/wishlist"
+            className={({ isActive }) =>
+              isActive ? "nav-item active" : "nav-item"
+            }
+          >
+            ⭐ Wishlist
+          </NavLink>
+        </li>
+        
+<li>
+  <NavLink
+    to="/ignored-profiles"
+    className={({ isActive }) =>
+      isActive ? "nav-item active" : "nav-item"
+    }
+  >
+    🚫 Ignored Profiles
+  </NavLink>
+</li>
       </ul>
     </div>
   );

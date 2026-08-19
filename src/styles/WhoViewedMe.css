@@ -1,0 +1,285 @@
+/* =====================================================
+   WHO VIEWED ME
+===================================================== */
+
+.who-viewed-me-page {
+    padding: 35px 45px 50px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.who-viewed-header {
+    margin-bottom: 30px;
+}
+
+.who-viewed-kicker {
+    display: block;
+    color: #8f2f3f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.who-viewed-header h1 {
+    margin: 0;
+    color: #702c36;
+    font-size: 32px;
+}
+
+.who-viewed-header p {
+    margin-top: 8px;
+    color: #7c6666;
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.who-viewed-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(270px, 1fr)
+        );
+
+    gap: 25px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.who-viewed-card {
+    background: #fffaf5;
+
+    border: 1px solid #ead6cc;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 18px
+        rgba(112, 44, 54, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.who-viewed-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(112, 44, 54, 0.14);
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.who-viewed-photo-wrapper {
+    width: 100%;
+    height: 270px;
+    overflow: hidden;
+    background: #f8e8dc;
+}
+
+.who-viewed-profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+.who-viewed-profile-info {
+    padding: 20px;
+}
+
+.who-viewed-member-label {
+    color: #a04a58;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.who-viewed-profile-info h2 {
+    margin: 6px 0 5px;
+
+    color: #702c36;
+
+    font-size: 21px;
+}
+
+.who-viewed-basic-info {
+    margin: 0;
+
+    color: #6f5c5c;
+
+    font-size: 14px;
+}
+
+.who-viewed-occupation {
+    margin: 8px 0 0;
+
+    color: #806b67;
+
+    font-size: 14px;
+}
+
+.who-viewed-time {
+    margin: 12px 0 15px;
+
+    color: #a04a58;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.who-viewed-button {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 11px 16px;
+
+    background: #8f2f3f;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.who-viewed-button:hover {
+    background: #702c36;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.who-viewed-empty-card {
+    max-width: 550px;
+
+    margin: 70px auto;
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    background: #fffaf5;
+
+    border: 1px solid #ead6cc;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(112, 44, 54, 0.08);
+}
+
+.who-viewed-empty-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f7ddd1;
+
+    color: #8f2f3f;
+
+    font-size: 27px;
+}
+
+.who-viewed-empty-card h2 {
+    margin: 0;
+
+    color: #702c36;
+}
+
+.who-viewed-empty-card p {
+    margin: 10px 0 22px;
+
+    color: #7c6666;
+}
+
+.who-viewed-empty-card button {
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 11px 22px;
+
+    background: #8f2f3f;
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.who-viewed-navigation {
+    margin-top: 35px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .who-viewed-me-page {
+        padding: 25px 18px 40px;
+    }
+
+    .who-viewed-header h1 {
+        font-size: 27px;
+    }
+
+    .who-viewed-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

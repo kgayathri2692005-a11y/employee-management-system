@@ -1,4 +1,10 @@
 import { useState } from "react";
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaLock
+} from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Register.css";
@@ -122,19 +128,17 @@ function Register() {
       return;
     }
 
-   axios
-  .post(
-    "https://localhost:7064/api/Auth/register",
-    {
-      fullName,
-      email,
-      password,
-    }
-  )
+   axios.post("https://localhost:7064/api/Auth/register", {
+  userName: fullName,
+  email: email,
+  phoneNumber: phone,
+  password: password,
+})
   .then((response) => {
     const userData = {
   fullName,
   email,
+  phone,
   password,
 };
 
@@ -193,13 +197,16 @@ const termsContent = {
 <div className="register-card">
 
         <div className="register-header">
-          <h1>Create Account</h1>
+    <img
+        src="/niyati-logo.jpeg"
+        alt="Niyati Matrimony"
+        className="register-logo"
+    />
 
-          <p>
-            Register to Employee Management
-            System
-          </p>
-        </div>
+    <h1>Create Account</h1>
+
+    <p>Begin your journey to a happy marriage</p>
+</div>
 
         <form onSubmit={handleRegister}>
 
@@ -211,22 +218,26 @@ const termsContent = {
               </span>
             </label>
 
-            <input
-              type="text"
-              placeholder="Enter Full Name"
-              value={fullName}
-              onChange={(e) => {
-                const value =
-                  e.target.value.replace(
-                    /[^a-zA-Z\s]/g,
-                    ""
-                  );
+           <div className="input-with-icon">
+  <FaUser className="input-icon" />
 
-                setFullName(value);
-                setFullNameError("");
-              }}
-              autoComplete="name"
-            />
+  <input
+    type="text"
+    placeholder="Enter Full Name"
+    value={fullName}
+    onChange={(e) => {
+      const value =
+        e.target.value.replace(
+          /[^a-zA-Z\s]/g,
+          ""
+        );
+
+      setFullName(value);
+      setFullNameError("");
+    }}
+    autoComplete="name"
+  />
+</div>
 
             {fullNameError && (
               <p className="error-text">
@@ -238,16 +249,22 @@ const termsContent = {
           <div className="input-group">
             <label>Email Address</label>
 
-            <input
-              type="email"
-              placeholder="Enter Email Address"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setContactError("");
-              }}
-              autoComplete="email"
-            />
+            
+
+            <div className="input-with-icon">
+  <FaEnvelope className="input-icon" />
+
+  <input
+    type="email"
+    placeholder="Enter Email Address"
+    value={email}
+    onChange={(e) => {
+      setEmail(e.target.value);
+      setContactError("");
+    }}
+    autoComplete="email"
+  />
+</div>
           </div>
 
           <div className="or-text">
@@ -257,20 +274,24 @@ const termsContent = {
           <div className="input-group">
             <label>Phone Number</label>
 
-            <input
-              type="tel"
-              placeholder="Enter Phone Number"
-              value={phone}
-              onChange={(e) => {
-                setPhone(
-                  e.target.value
-                    .replace(/\D/g, "")
-                    .slice(0, 10)
-                );
-                setContactError("");
-              }}
-              autoComplete="tel"
-            />
+            <div className="input-with-icon">
+  <FaPhone className="input-icon" />
+
+  <input
+    type="tel"
+    placeholder="Enter Phone Number"
+    value={phone}
+    onChange={(e) => {
+      setPhone(
+        e.target.value
+          .replace(/\D/g, "")
+          .slice(0, 10)
+      );
+      setContactError("");
+    }}
+    autoComplete="tel"
+  />
+</div>
 
             {contactError && (
               <p className="error-text">
@@ -294,36 +315,38 @@ const termsContent = {
 
             <div className="password-wrapper">
 
-              <input
-                type={
-                  showPassword
-                    ? "text"
-                    : "password"
-                }
-                placeholder="Enter Password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(
-                    e.target.value
-                  );
-                  setPasswordError("");
-                }}
-              />
+  <FaLock className="password-icon" />
 
-              <span
-                className="toggle-password"
-                onClick={() =>
-                  setShowPassword(
-                    !showPassword
-                  )
-                }
-              >
-                {showPassword
-                  ? "Hide"
-                  : "Show"}
-              </span>
+  <input
+    type={
+      showPassword
+        ? "text"
+        : "password"
+    }
+    placeholder="Enter Password"
+    value={password}
+    onChange={(e) => {
+      setPassword(
+        e.target.value
+      );
+      setPasswordError("");
+    }}
+  />
 
-            </div>
+  <span
+    className="toggle-password"
+    onClick={() =>
+      setShowPassword(
+        !showPassword
+      )
+    }
+  >
+    {showPassword
+      ? "Hide"
+      : "Show"}
+  </span>
+
+</div>
 
             {passwordError && (
               <p className="error-text">
@@ -342,38 +365,40 @@ const termsContent = {
 
             <div className="password-wrapper">
 
-              <input
-                type={
-                  showConfirmPassword
-                    ? "text"
-                    : "password"
-                }
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => {
-                  setConfirmPassword(
-                    e.target.value
-                  );
-                  setConfirmPasswordError(
-                    ""
-                  );
-                }}
-              />
+  <FaLock className="password-icon" />
 
-              <span
-                className="toggle-password"
-                onClick={() =>
-                  setShowConfirmPassword(
-                    !showConfirmPassword
-                  )
-                }
-              >
-                {showConfirmPassword
-                  ? "Hide"
-                  : "Show"}
-              </span>
+  <input
+    type={
+      showConfirmPassword
+        ? "text"
+        : "password"
+    }
+    placeholder="Confirm Password"
+    value={confirmPassword}
+    onChange={(e) => {
+      setConfirmPassword(
+        e.target.value
+      );
+      setConfirmPasswordError(
+        ""
+      );
+    }}
+  />
 
-            </div>
+  <span
+    className="toggle-password"
+    onClick={() =>
+      setShowConfirmPassword(
+        !showConfirmPassword
+      )
+    }
+  >
+    {showConfirmPassword
+      ? "Hide"
+      : "Show"}
+  </span>
+
+</div>
 
             {confirmPasswordError && (
               <p className="error-text">
@@ -382,53 +407,25 @@ const termsContent = {
             )}
           </div>
 {/* Terms & Conditions */}
-<div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    padding: "14px",
-    border: "1px solid #dbeafe",
-    borderRadius: "12px",
-    backgroundColor: "#f8fbff",
-    marginBottom: "20px"
-  }}
->
+ 
+ <div className="terms-box">
   <input
     type="checkbox"
     checked={agreed}
     onChange={(e) => setAgreed(e.target.checked)}
-    style={{
-      width: "16px",
-      height: "16px",
-      cursor: "pointer"
-    }}
+    className="terms-checkbox"
   />
 
-  <span
-    style={{
-      fontSize: "14px",
-      fontFamily: "'Inter', sans-serif",
-      color: "#374151"
-    }}
-  >
-    I have read and agree to the
-  </span>
+  <span className="terms-text">
+  I have read and agree to the
+</span>
 
-  <span
-    onClick={() => setShowTerms(true)}
-    style={{
-      color: "#2563eb",
-      textDecoration: "underline",
-      cursor: "pointer",
-      fontSize: "14px",
-      fontWeight: "600",
-      fontFamily: "'Inter', sans-serif",
-      whiteSpace: "nowrap"
-    }}
-  >
-    Terms & Conditions
-  </span>
+<span
+  className="terms-link"
+  onClick={() => setShowTerms(true)}
+>
+  Terms & Conditions
+</span>
 </div>
 
 
@@ -447,7 +444,7 @@ const termsContent = {
             }
           >
             Already have an account?
-            Login
+            <span>Login</span>
           </div>
 
         </form>

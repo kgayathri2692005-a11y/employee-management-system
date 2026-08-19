@@ -1,82 +1,1215 @@
-.users-container{
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
+/* =========================================================
+   NIYATI USERS PAGE
+   Matrimony Profile Layout
+   Theme:
+   Cream      #fff8f2
+   Maroon     #8d0808
+   Dark Red   #7f0808
+   Orange     #f47b16
+   ========================================================= */
+
+.users-container {
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #fff8f2;
+
+    padding: 22px 24px 28px;
+
+    color: #4d1712;
 }
 
-.search-section{
-  margin-bottom:25px;
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.users-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
 }
 
-.search-section input{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:8px;
+.users-title-block {
+    text-align: left;
 }
 
-.employee-card{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px;
-  border:1px solid #eee;
-  border-radius:10px;
+.users-header h1 {
+    margin: 0 0 5px;
+
+    color: #8d0808;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 34px !important;
+    font-weight: 700;
+
+    line-height: 1.15;
+
+    text-align: left;
 }
 
-.employee-card img{
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid #2563eb;
+.users-header p {
+    margin: 0;
+
+    color: #806d65;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px !important;
+    font-weight: 400;
+
+    line-height: 1.5;
+
+    text-align: left;
 }
 
-.buttons{
-  display:flex;
-  gap:10px;
+
+/* =========================================================
+   VIEW ALL
+========================================================= */
+
+.view-all-btn {
+    height: 36px;
+
+    padding: 0 18px;
+
+    border: 1px solid #8d0808;
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #8d0808;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px !important;
+    font-weight: 600;
+
+    cursor: pointer;
 }
 
-.buttons button{
-  background:#0f172a;
-  color:white;
-  border:none;
-  padding:10px 18px;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:600;
-  transition:all 0.3s ease;
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.section-heading {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+    text-align: left;
 }
 
-.buttons button:hover{
-  background:#2563eb;
-  transform:translateY(-2px);
-  box-shadow:0 4px 12px rgba(37,99,235,0.3);
+.section-heading > div {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    text-align: left;
 }
 
-.buttons button{
-  background:#1f6feb;
-  color:white;
-  border:none;
-  padding:10px 15px;
-  border-radius:6px;
-  cursor:pointer;
+
+/* =========================================================
+   SECTION HEADING TITLE
+========================================================= */
+
+.section-heading h2 {
+    margin: 0;
+
+    color: #7f0808;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 24px !important;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    text-align: left;
+
+    white-space: nowrap;
 }
 
-.buttons button:first-child{
-  background:#2563eb;
+
+/* =========================================================
+   SECTION DESCRIPTION
+========================================================= */
+
+.section-heading p {
+    margin: 0;
+
+    color: #8a756d;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px !important;
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    text-align: left;
 }
 
-.buttons button:last-child{
-  background:#10b981;
+
+/* =========================================================
+   PROFILE COUNT
+========================================================= */
+
+.section-heading > span {
+    flex-shrink: 0;
+
+    color: #8d0808;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px !important;
+    font-weight: 600;
+
+    white-space: nowrap;
 }
 
-.buttons button:first-child:hover{
-  background:#1d4ed8;
+
+/* =========================================================
+   RECOMMENDED SECTION
+========================================================= */
+
+.recommended-section {
+    margin-bottom: 55px;
+
+    padding: 24px 22px 26px;
+
+    background: #fffdfb;
+
+    border: 1px solid #ead8cc;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(93, 16, 12, 0.045);
 }
 
-.buttons button:last-child:hover{
-  background:#059669;
+
+/* =========================================================
+   RECOMMENDED SECTION HEADING
+========================================================= */
+
+.recommended-section .section-heading {
+    margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   PROFILES YOU MAY LIKE
+========================================================= */
+
+.recommended-section .section-heading h2 {
+    color: #7f0808;
+
+    font-size: 24px !important;
+    font-weight: 700;
+
+    letter-spacing: 0;
+}
+
+.recommended-section .section-heading p {
+    color: #8a756d;
+
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   ALL PROFILES SECTION
+========================================================= */
+
+.all-profiles-section {
+    margin-top: 0;
+
+    padding-top: 30px;
+
+    border-top: 2px solid #ead8cc;
+}
+
+
+/* =========================================================
+   ALL PROFILES HEADING
+========================================================= */
+
+.all-profiles-section .section-heading {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.all-profiles-section .section-heading > div {
+    display: block;
+    width: 100%;
+}
+
+.all-profiles-section .section-heading h2 {
+    margin: 0 0 9px;
+    white-space: nowrap;
+}
+
+.all-profiles-section .section-heading p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.all-profiles-section .section-heading > span {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    white-space: nowrap;
+}
+
+.all-profiles-section .section-heading h2 {
+    color: #8d0808;
+
+    font-size: 22px !important;
+    font-weight: 600;
+
+    letter-spacing: 0.2px;
+}
+
+.all-profiles-section .section-heading p {
+    color: #806d65;
+
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   PROFILE GRID
+========================================================= */
+
+.profiles-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+}
+.all-profiles-section .profiles-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.profile-card {
+    position: relative;
+
+    width: 100%;
+
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    background: #ffffff;
+
+    border: 1px solid #ead8cc;
+
+    border-radius: 15px;
+
+    padding: 14px 15px 16px;
+
+    box-shadow:
+        0 3px 12px
+        rgba(93, 16, 12, 0.055);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #e7b89b;
+
+    box-shadow:
+        0 9px 22px
+        rgba(93, 16, 12, 0.10);
+}
+
+
+/* =========================================================
+   MATCH BADGE
+========================================================= */
+
+.match-badge {
+    position: absolute;
+
+    top: 12px;
+    left: 12px;
+
+    z-index: 2;
+
+    padding: 5px 8px;
+
+    border-radius: 5px;
+
+    background: #fff1e5;
+
+    color: #d95f0d;
+
+    border: 1px solid #f3c9aa;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+   OVAL FRAME
+========================================================= */
+
+.profile-image-wrapper {
+    width: 116px;
+    height: 136px;
+
+    margin-top: 25px;
+    margin-bottom: 14px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff4eb;
+
+    border: 3px solid #f47b16;
+
+    padding: 3px;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-image-wrapper:hover {
+    transform: scale(1.03);
+
+    border-color: #8d0808;
+
+    box-shadow:
+        0 5px 14px
+        rgba(141, 8, 8, 0.15);
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+   Full image visible
+========================================================= */
+
+.profile-image-wrapper img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    border-radius: 50%;
+
+    background: #fff4eb;
+
+    object-fit: contain;
+
+    object-position: center;
+}
+
+
+/* =========================================================
+   PROFILE INFORMATION
+========================================================= */
+
+.profile-card-info {
+    width: 100%;
+
+    min-width: 0;
+
+    text-align: center;
+}
+
+.profile-card-info h3 {
+    margin: 0 0 6px;
+
+    color: #7f0808;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    line-height: 1.25;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+}
+
+.profile-card-info h3:hover {
+    color: #f47b16;
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   BASIC INFORMATION
+========================================================= */
+
+.profile-basic {
+    margin: 0 0 5px;
+
+    color: #6f5c55;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   JOB
+========================================================= */
+
+.profile-job {
+    margin: 0;
+
+    color: #4d1712;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+.profile-location {
+    margin: 2px 0 0;
+
+    color: #9a837a;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   WISHLIST HEART
+   BELOW IMAGE + INFORMATION
+========================================================= */
+
+.profile-heart {
+    width: 40px;
+    height: 40px;
+
+    margin-top: 14px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #edc9b5;
+
+    border-radius: 50%;
+
+    background: #fff8f2;
+
+    color: #8d0808;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-heart:hover {
+    background: #fff1e5;
+
+    color: #f47b16;
+
+    border-color: #f47b16;
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 4px 10px
+        rgba(244, 123, 22, 0.15);
+}
+
+
+/* =========================================================
+   ACTIVE WISHLIST
+========================================================= */
+
+.profile-heart.wishlist-active {
+    background: #8d0808;
+
+    color: #ffffff;
+
+    border-color: #8d0808;
+
+    box-shadow:
+        0 4px 10px
+        rgba(141, 8, 8, 0.18);
+}
+
+.profile-heart.wishlist-active:hover {
+    background: #700707;
+
+    border-color: #700707;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.profile-status {
+    margin-top: 9px;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   MATCHED
+========================================================= */
+
+.matched-status {
+    background: #fff1e5;
+
+    color: #8d0808;
+
+    border: 1px solid #edc9b5;
+}
+
+
+/* =========================================================
+   INTEREST SENT
+========================================================= */
+
+.pending-status {
+    background: #f8eee9;
+
+    color: #806d65;
+
+    border: 1px solid #dfc9be;
+}
+
+
+/* =========================================================
+   WISHLIST RIBBON POPUP
+========================================================= */
+
+.wishlist-ribbon {
+    position: fixed;
+
+    top: 82px;
+    right: 24px;
+
+    z-index: 9999;
+
+    min-width: 270px;
+
+    max-width: 360px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 17px;
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 22px
+        rgba(93, 16, 12, 0.18);
+
+    animation:
+        wishlistRibbonIn
+        0.3s ease-out;
+}
+
+
+/* =========================================================
+   ADD POPUP
+   ORANGE - NIYATI ACCENT
+========================================================= */
+
+.wishlist-ribbon-added {
+    background: #f47b16;
+
+    border-left: 5px solid #d95f0d;
+}
+
+
+/* =========================================================
+   REMOVE POPUP
+   MAROON - NIYATI PRIMARY
+========================================================= */
+
+.wishlist-ribbon-removed {
+    background: #8d0808;
+
+    border-left: 5px solid #650606;
+}
+
+
+/* =========================================================
+   POPUP ICON
+========================================================= */
+
+.wishlist-ribbon-icon {
+    width: 27px;
+    height: 27px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.18
+    );
+
+    color: #ffffff;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   POPUP ANIMATION
+========================================================= */
+
+@keyframes wishlistRibbonIn {
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(35px)
+            translateY(-5px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   NO PROFILES
+========================================================= */
+
+.no-profiles {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #ead8cc;
+
+    border-radius: 12px;
+}
+
+.no-profile-icon {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff1e5;
+
+    color: #8d0808;
+
+    font-size: 27px;
+}
+
+.no-profiles h3 {
+    margin: 0 0 5px;
+
+    color: #7f0808;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 18px;
+}
+
+.no-profiles p {
+    margin: 0;
+
+    color: #8a756d;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+.page-navigation {
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1200
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .profiles-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 900
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .users-container {
+        padding: 18px;
+    }
+
+    .profiles-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 600
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .users-container {
+        padding: 14px 12px 20px;
+    }
+
+    .users-header {
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .users-header h1 {
+        font-size: 23px;
+    }
+
+    .users-header p {
+        font-size: 11px;
+    }
+
+    .view-all-btn {
+        height: 34px;
+
+        padding: 0 13px;
+
+        font-size: 11px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .section-heading > div {
+        gap: 7px;
+    }
+
+    .section-heading h2 {
+        margin: 0;
+
+        font-size: 17px !important;
+    }
+
+    .section-heading p {
+        margin: 0;
+
+        font-size: 10px !important;
+    }
+
+
+    /* =========================================================
+       PROFILES YOU MAY LIKE - MOBILE
+    ========================================================= */
+
+    .recommended-section .section-heading h2 {
+        font-size: 17px !important;
+    }
+
+
+    /* =========================================================
+       RECOMMENDED SECTION - MOBILE
+    ========================================================= */
+
+    .recommended-section {
+        margin-bottom: 40px;
+
+        padding: 18px 12px 20px;
+
+        border-radius: 12px;
+    }
+
+    .recommended-section .section-heading {
+        margin-bottom: 18px;
+    }
+
+
+    /* =========================================================
+       FIND YOUR CONNECTION - MOBILE
+    ========================================================= */
+
+    .all-profiles-section .section-heading h2 {
+        font-size: 16px !important;
+        font-weight: 600;
+    }
+
+    .all-profiles-section .section-heading {
+        margin-bottom: 18px;
+    }
+
+
+    /* =========================================================
+       ALL PROFILES SECTION - MOBILE
+    ========================================================= */
+
+    .all-profiles-section {
+        margin-top: 0;
+
+        padding-top: 24px;
+
+        border-top-width: 2px;
+    }
+
+
+    /* =========================================================
+       PROFILE GRID
+    ========================================================= */
+
+    .profiles-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+    .profile-card {
+        padding: 11px 9px 12px;
+
+        border-radius: 10px;
+    }
+
+    .match-badge {
+        top: 8px;
+        left: 8px;
+
+        padding: 4px 6px;
+
+        font-size: 8px;
+    }
+
+    .profile-image-wrapper {
+        width: 82px;
+        height: 100px;
+
+        margin-top: 22px;
+
+        border-width: 2px;
+    }
+
+    .profile-card-info h3 {
+        font-size: 14px;
+    }
+
+    .profile-basic,
+    .profile-job {
+        font-size: 9px;
+    }
+
+    .profile-location {
+        font-size: 8px;
+    }
+
+    .profile-heart {
+        width: 34px;
+        height: 34px;
+
+        margin-top: 9px;
+
+        font-size: 21px;
+    }
+
+    .profile-status {
+        font-size: 8px;
+    }
+
+
+    /* =========================================================
+       WISHLIST RIBBON
+    ========================================================= */
+
+    .wishlist-ribbon {
+        top: 70px;
+        right: 12px;
+        left: 12px;
+
+        min-width: auto;
+        max-width: none;
+
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .profiles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        max-width: 300px;
+
+        margin: 0 auto;
+    }
+
+    .profile-image-wrapper {
+        width: 100px;
+        height: 118px;
+        margin-top: 22px;
+        margin-bottom: 10px;
+}
+
+    .profile-card-info h3 {
+        font-size: 16px;
+    }
+
+    .profile-basic,
+    .profile-job {
+        font-size: 10px;
+    }
+
+    .profile-location {
+        font-size: 9px;
+    }
+}
+
+/* FIX - RECOMMENDED SECTION HEADING */
+.recommended-section .section-heading {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.recommended-section .section-heading > div {
+    display: block;
+    width: 100%;
+}
+
+.recommended-section .section-heading h2 {
+    white-space: nowrap;
+    margin: 0 0 9px;
+}
+
+.recommended-section .section-heading p {
+    white-space: nowrap;
+    margin: 0;
+}
+
+.recommended-section .section-heading > span {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    white-space: nowrap;
+}
+/* =========================================================
+   ALL PROFILES - FINAL ALIGNMENT
+========================================================= */
+
+.all-profiles-section {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0;
+    padding-top: 30px;
+}
+
+.all-profiles-section .section-heading {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 0 0 0;
+    margin-bottom: 22px;
+}
+
+.all-profiles-section .profiles-grid {
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
 }

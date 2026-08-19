@@ -1,0 +1,1370 @@
+/* =========================================================
+   NIYATI MATRIMONY
+   SUCCESS STORIES
+   PREMIUM MAROON + ORANGE THEME
+   ========================================================= */
+
+@import url(
+  'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap'
+);
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.success-stories-page {
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+ background:
+        linear-gradient(
+            180deg,
+            #fffdf9 0%,
+            #faf7f0 100%
+        );
+
+  color: #4a1e28;
+
+  font-family:
+    "Inter",
+    sans-serif;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.success-stories-container {
+  width: min(
+    1280px,
+    calc(100% - 50px)
+  );
+
+  margin: 0 auto;
+
+  padding:
+    25px 0
+    65px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE HEADING
+   ========================================================= */
+
+.success-page-heading {
+  position: relative;
+
+  text-align: center;
+
+  padding:
+    25px
+    20px
+    15px;
+
+  margin-bottom: 8px;
+}
+
+
+.heading-decoration {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 10px;
+}
+
+
+.heading-decoration span {
+  width: 70px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #e58a42
+    );
+}
+
+
+.heading-decoration span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      #e58a42,
+      transparent
+    );
+}
+
+
+.heading-decoration i {
+  font-size: 17px;
+
+  color: #f26b21;
+
+  font-style: normal;
+}
+
+
+.heading-eyebrow {
+  margin: 0 0 5px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  color: #a64b36;
+}
+
+
+.success-page-heading h1 {
+  margin: 0;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 42px;
+
+  line-height: 1.15;
+
+  font-weight: 700;
+
+  color: #7a0000;
+}
+
+
+.heading-description {
+  margin:
+    8px auto
+    0;
+
+  max-width: 570px;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  color: #8a6662;
+}
+
+
+.heading-heart {
+  margin: 12px auto 0;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #f26b21;
+
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   SUCCESS COUNT
+   ========================================================= */
+
+.success-count {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin:
+    0 auto
+    27px;
+
+  color: #8a4b43;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.4px;
+}
+
+
+.success-count strong {
+  color: #7a0000;
+
+  font-size: 18px;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+}
+
+
+.count-heart {
+  color: #f26b21;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   STORIES GRID
+   ========================================================= */
+
+.success-stories-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 28px;
+
+  align-items: start;
+}
+
+
+/* =========================================================
+   SUCCESS STORY CARD
+   ========================================================= */
+
+.success-story-card {
+  position: relative;
+
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  padding:
+    28px
+    27px
+    20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #fffdfb 55%,
+      #fff6ef 100%
+    );
+
+  border:
+    1px solid
+    #efd8ca;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(101, 24, 22, 0.07);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.success-story-card:hover {
+  transform:
+    translateY(-5px);
+
+  box-shadow:
+    0 18px 42px
+    rgba(101, 24, 22, 0.12);
+}
+
+
+/* =========================================================
+   CARD TOP GLOW
+   ========================================================= */
+
+.success-story-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7a0000,
+      #f26b21,
+      #7a0000
+    );
+}
+
+
+/* =========================================================
+   SUBTLE BACKGROUND HEART
+   ========================================================= */
+
+.success-story-card::after {
+  content: "♥";
+
+  position: absolute;
+
+  right: -45px;
+  bottom: -75px;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 190px;
+
+  color: #f26b21;
+
+  opacity: 0.035;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   DECORATIVE CORNERS
+   ========================================================= */
+
+.story-corner {
+  position: absolute;
+
+  color: #e7a06d;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 25px;
+
+  opacity: 0.55;
+
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+
+.story-corner-top-left {
+  top: 15px;
+  left: 17px;
+
+  transform:
+    rotate(-20deg);
+}
+
+
+.story-corner-top-right {
+  top: 15px;
+  right: 17px;
+
+  transform:
+    rotate(20deg);
+}
+
+
+.story-corner-bottom-left {
+  bottom: 15px;
+  left: 17px;
+
+  transform:
+    rotate(-155deg);
+}
+
+
+.story-corner-bottom-right {
+  bottom: 15px;
+  right: 17px;
+
+  transform:
+    rotate(155deg);
+}
+
+
+/* =========================================================
+   STORY HEADER
+   ========================================================= */
+
+.success-story-header {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-bottom: 22px;
+}
+
+
+.story-line {
+  width: 42px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #e6a171
+    );
+}
+
+
+.story-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      #e6a171,
+      transparent
+    );
+}
+
+
+.story-star {
+  color: #f26b21;
+
+  font-size: 11px;
+}
+
+
+.story-label {
+  color: #8b1e24;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   COUPLE
+   ========================================================= */
+
+.success-couple {
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    82px
+    1fr;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.success-person {
+  min-width: 0;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   PHOTOS
+   ========================================================= */
+
+.success-photo-wrapper {
+  position: relative;
+
+  width: 112px;
+  height: 112px;
+
+  margin:
+    0 auto
+    10px;
+}
+
+
+.photo-outer-ring {
+  width: 100%;
+  height: 100%;
+
+  padding: 4px;
+
+  box-sizing: border-box;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7a0000,
+      #f26b21,
+      #7a0000
+    );
+
+  box-shadow:
+    0 8px 20px
+    rgba(122, 0, 0, 0.13);
+}
+
+
+.photo-inner-ring {
+  width: 100%;
+  height: 100%;
+
+  padding: 3px;
+
+  box-sizing: border-box;
+
+  background: #fff;
+
+  border-radius: 50%;
+}
+
+
+.photo-inner-ring img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+
+.photo-heart {
+  position: absolute;
+
+  right: -3px;
+  bottom: 2px;
+
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #fff;
+
+  border:
+    1px solid
+    #f0c5ae;
+
+  border-radius: 50%;
+
+  color: #f26b21;
+
+  font-size: 12px;
+
+  box-shadow:
+    0 4px 12px
+    rgba(90, 30, 20, 0.12);
+}
+
+
+/* =========================================================
+   PERSON NAME
+   ========================================================= */
+
+.success-person h3 {
+  margin: 0;
+
+  color: #6f1720;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 18px;
+
+  line-height: 1.25;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+.person-caption {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #aa8078;
+
+  font-size: 8px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.7px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CONNECTION
+   ========================================================= */
+
+.couple-connection {
+  position: relative;
+
+  min-height: 120px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+.connection-line {
+  position: absolute;
+
+  top: 48px;
+
+  left: -12px;
+  right: -12px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #e9b79b,
+      transparent
+    );
+}
+
+
+.connection-heart {
+  position: relative;
+
+  z-index: 2;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #fff7f0
+    );
+
+  border:
+    1px solid
+    #edc5b1;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 5px 16px
+    rgba(122, 0, 0, 0.10);
+}
+
+
+.connection-heart span {
+  color: #f26b21;
+
+  font-size: 20px;
+}
+
+
+.connection-label {
+  position: relative;
+
+  z-index: 3;
+
+  margin-top: 8px;
+
+  padding:
+    3px 6px;
+
+  background: #fffaf6;
+
+  color: #9a5149;
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   STORY CONTENT
+   ========================================================= */
+
+.story-content {
+  position: relative;
+
+  z-index: 2;
+
+  margin-top: 22px;
+
+  padding:
+    18px
+    20px
+    16px;
+
+  text-align: center;
+
+  background:
+    rgba(255, 248, 242, 0.75);
+
+  border:
+    1px solid
+    #f1dfd3;
+
+  border-radius: 14px;
+}
+
+
+.story-title {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+}
+
+
+.story-title span {
+  color: #f26b21;
+
+  font-size: 12px;
+}
+
+
+.story-title h2 {
+  margin: 0;
+
+  color: #7a0000;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 17px;
+
+  font-weight: 600;
+}
+
+
+.story-description {
+  margin:
+    9px auto
+    0;
+
+  max-width: 480px;
+
+  color: #735c58;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 12px;
+
+  line-height: 1.75;
+
+  font-style: italic;
+}
+
+
+/* =========================================================
+   STORY FOOTER
+   ========================================================= */
+
+.story-footer {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+
+.footer-decoration {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+
+.footer-decoration span {
+  width: 18px;
+
+  height: 1px;
+
+  background: #e5b095;
+}
+
+
+.footer-decoration i {
+  color: #f26b21;
+
+  font-size: 7px;
+
+  font-style: normal;
+}
+
+
+.matched-text {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 3px;
+
+  white-space: nowrap;
+}
+
+
+.matched-text strong {
+  color: #8b1e24;
+
+  font-size: 9px;
+
+  letter-spacing: 0.7px;
+}
+
+
+.matched-text span {
+  color: #a8867f;
+
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   PRIVACY NOTE
+   ========================================================= */
+
+.story-privacy {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 14px;
+
+  color: #b0958d;
+
+  font-size: 7px;
+
+  letter-spacing: 0.3px;
+}
+
+
+.story-privacy span {
+  color: #e79a68;
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.success-empty-state {
+  position: relative;
+
+  max-width: 570px;
+
+  margin:
+    35px auto
+    50px;
+
+  padding:
+    55px 35px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fff8f2
+    );
+
+  border:
+    1px solid
+    #efd8ca;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(101, 24, 22, 0.07);
+
+  overflow: hidden;
+}
+
+
+.success-empty-icon {
+  width: 78px;
+  height: 78px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff1e6,
+      #fffaf7
+    );
+
+  border:
+    1px solid
+    #efcbb8;
+
+  color: #f26b21;
+
+  font-size: 40px;
+}
+
+
+.success-empty-decoration {
+  color: #e8a16e;
+
+  font-size: 12px;
+}
+
+
+.success-empty-state h2 {
+  margin:
+    8px 0
+    8px;
+
+  color: #7a0000;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 25px;
+}
+
+
+.success-empty-state p {
+  max-width: 410px;
+
+  margin: 0 auto;
+
+  color: #8c706b;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+}
+
+
+.success-empty-state button {
+  margin-top: 22px;
+
+  padding:
+    11px 20px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7a0000,
+      #a52220
+    );
+
+  color: #fff;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.success-empty-state button:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 7px 18px
+    rgba(122, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   BOTTOM DECORATION
+   ========================================================= */
+
+.success-bottom-decoration {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 35px;
+}
+
+
+.success-bottom-decoration span:first-child,
+.success-bottom-decoration span:last-child {
+  width: 90px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #e4b092
+    );
+}
+
+
+.success-bottom-decoration span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      #e4b092,
+      transparent
+    );
+}
+
+
+.success-bottom-decoration span:nth-child(2) {
+  color: #f26b21;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .success-stories-container {
+    width:
+      min(
+        920px,
+        calc(100% - 35px)
+      );
+  }
+
+  .success-stories-grid {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .success-stories-container {
+    width:
+      calc(100% - 22px);
+
+    padding:
+      15px
+      0
+      45px;
+  }
+
+  .success-page-heading {
+    padding:
+      20px
+      8px
+      12px;
+  }
+
+  .success-page-heading h1 {
+    font-size: 32px;
+  }
+
+  .heading-description {
+    font-size: 11px;
+  }
+
+  .success-stories-grid {
+    gap: 18px;
+  }
+
+  .success-story-card {
+    padding:
+      25px
+      15px
+      17px;
+
+    border-radius: 19px;
+  }
+
+  .success-story-header {
+    margin-bottom: 18px;
+  }
+
+  .story-line {
+    width: 27px;
+  }
+
+  .story-label {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .success-couple {
+    grid-template-columns:
+      minmax(0, 1fr)
+      58px
+      minmax(0, 1fr);
+
+    gap: 0;
+  }
+
+  .success-photo-wrapper {
+    width: 88px;
+    height: 88px;
+  }
+
+  .success-person h3 {
+    font-size: 15px;
+  }
+
+  .person-caption {
+    font-size: 7px;
+  }
+
+  .couple-connection {
+    min-height: 100px;
+  }
+
+  .connection-line {
+    top: 38px;
+
+    left: -7px;
+    right: -7px;
+  }
+
+  .connection-heart {
+    width: 38px;
+    height: 38px;
+  }
+
+  .connection-heart span {
+    font-size: 16px;
+  }
+
+  .connection-label {
+    font-size: 6px;
+  }
+
+  .story-content {
+    margin-top: 17px;
+
+    padding:
+      15px
+      12px;
+  }
+
+  .story-title h2 {
+    font-size: 15px;
+  }
+
+  .story-description {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .story-footer {
+    gap: 6px;
+  }
+
+  .footer-decoration span {
+    width: 12px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .success-page-heading h1 {
+    font-size: 28px;
+  }
+
+  .heading-decoration span {
+    width: 35px;
+  }
+
+  .success-story-card {
+    padding:
+      23px
+      10px
+      15px;
+  }
+
+  .success-couple {
+    grid-template-columns:
+      minmax(0, 1fr)
+      48px
+      minmax(0, 1fr);
+  }
+
+  .success-photo-wrapper {
+    width: 76px;
+    height: 76px;
+  }
+
+  .photo-heart {
+    width: 23px;
+    height: 23px;
+
+    right: -1px;
+    bottom: 0;
+
+    font-size: 10px;
+  }
+
+  .success-person h3 {
+    font-size: 13px;
+  }
+
+  .person-caption {
+    font-size: 6px;
+  }
+
+  .connection-heart {
+    width: 34px;
+    height: 34px;
+  }
+
+  .connection-heart span {
+    font-size: 14px;
+  }
+
+  .story-title h2 {
+    font-size: 14px;
+  }
+
+  .story-description {
+    font-size: 10px;
+  }
+
+  .matched-text strong {
+    font-size: 8px;
+  }
+
+  .matched-text span {
+    font-size: 7px;
+  }
+
+}

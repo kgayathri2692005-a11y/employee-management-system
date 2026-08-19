@@ -5,11 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    135deg,
-    #f4f7fc 0%,
-    #eef4ff 100%
-  );
+  background: #FCE8D5;
   padding: 20px;
 }
 
@@ -18,8 +14,8 @@
   background: #ffffff;
   padding: 40px;
   border-radius: 18px;
-  border: 1px solid #eef2f7;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  border: 1px solid #F3D2B8;
+  box-shadow: 0 12px 35px rgba(107, 31, 31, 0.08);
 }
 
 .otp-header {
@@ -28,14 +24,14 @@
 }
 
 .otp-header h1 {
-  color: var(--dark-blue);
+  color: #6B1F1F;
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
 .otp-header p {
-  color: #6b7280;
+  color: #8B4A3A;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -49,7 +45,7 @@
   margin-bottom: 6px;
   font-size: 13px;
   font-weight: 600;
-  color: #374151;
+color: #6B1F1F;
 }
 
 .otp-input  {
@@ -66,14 +62,14 @@
 }
 
 .input-group input:focus {
-  border-color: var(--primary-blue);
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  border-color: #E87512;
+  box-shadow: 0 0 0 4px rgba(232, 117, 18, 0.12);
 }
 
 .verify-btn {
   width: 100%;
   height: 50px;
-  background: var(--primary-blue);
+  background:  #E87512;
   color: white;
   border: none;
   border-radius: 10px;
@@ -84,7 +80,7 @@
 }
 
 .verify-btn:hover {
-  background: var(--dark-blue);
+  background: #B84D0B;
   transform: translateY(-1px);
 }
 
@@ -94,7 +90,7 @@
 }
 
 .resend-text {
-  color: #6b7280;
+  color:  #6B1F1F;
   font-size: 13px;
   margin-bottom: 10px;
 }
@@ -102,7 +98,7 @@
 .resend-btn {
   background: transparent;
   border: none;
-  color: var(--primary-blue);
+  color: #E87512;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -110,7 +106,8 @@
 }
 
 .resend-btn:hover {
-  color: var(--dark-blue);
+  color: #B84D0B;
+  text-decoration: underline;
 }
 
 @media (max-width: 480px) {
@@ -173,4 +170,53 @@ to {
 transform: translateX(0);
 opacity: 1;
 }
+}
+.otp-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.otp-logo img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 6px 18px rgba(232, 117, 18, 0.12);
+}
+/* =========================================================
+   OTP ICONS - THEME
+========================================================= */
+
+.otp-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.otp-title svg {
+    color: #E87512;
+}
+
+.otp-label {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+}
+
+.otp-label svg {
+    color: #E87512;
+}
+
+.resend-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.resend-btn svg {
+    color: #E87512;
 }
