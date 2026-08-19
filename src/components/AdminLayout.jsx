@@ -108,47 +108,80 @@ function AdminLayout({ children }) {
 </button>
 
 
-                    <button className="admin-nav-item">
-                        <span>▥</span>
-                        Reports & Analytics
-                    </button>
+<button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/reports-analytics" ? "active" : ""
+    }`}
+    onClick={() => navigate("/admin/reports-analytics")}
+>
+    <span>▥</span>
+    Reports and Analytics
+</button>
 
 
-                    <button className="admin-nav-item">
-                        <span>▣</span>
-                        Payments
-                    </button>
+<button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/payments" ? "active" : ""
+    }`}
+    onClick={() => navigate("/admin/payments")}
+>
+    <span>▣</span>
+    Payments
+</button>
 
 
-                    <button className="admin-nav-item">
-                        <span>♧</span>
-                        Notifications
-                    </button>
+<button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/notifications"
+            ? "active"
+            : ""
+    }`}
+    onClick={() => navigate("/admin/notifications")}
+>
+    <span>♧</span>
+    Notifications
+</button>
 
 
-                    <button className="admin-nav-item">
-                        <span>▤</span>
-                        Content Management
-                    </button>
+<button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/content" ? "active" : ""
+    }`}
+    onClick={() => navigate("/admin/content")}
+>
+    <span>▤</span>
+    Content Management
+</button>
 
 
-                    <button className="admin-nav-item">
-                        <span>?</span>
-                        Support Requests
-                    </button>
+<button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/support" ? "active" : ""
+    }`}
+    onClick={() => navigate("/admin/support")}
+>
+    <span>?</span>
+    Support Requests
+</button>
 
 
-                    <button className="admin-nav-item">
-                        <span>⚙</span>
-                        Settings
-                    </button>
+<button
+    className="admin-nav-item"
+    onClick={() => navigate("/admin/settings")}
+>
+    <span>⚙</span>
+    Settings
+</button>
 
-
-                    <button className="admin-nav-item">
-                        <span>♙</span>
-                        Admin Management
-                    </button>
-
+<button
+    className={`admin-nav-item ${
+        location.pathname === "/admin/management" ? "active" : ""
+    }`}
+    onClick={() => navigate("/admin/management")}
+>
+    <span>♙</span>
+    Admin Management
+</button>
                 </nav>
 
 

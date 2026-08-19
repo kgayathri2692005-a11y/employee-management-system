@@ -1080,3 +1080,25 @@
     }
 
 }
+/* FIX: Online status indicator */
+.inbox-user .user-photo-wrapper .user-status {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 1px !important;
+
+    width: 11px !important;
+    height: 11px !important;
+    min-width: 11px !important;
+    max-width: 11px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: block !important;
+
+    background: #2dbb63 !important;
+    border: 2px solid #fffdf9 !important;
+    border-radius: 50% !important;
+
+    box-sizing: border-box !important;
+}

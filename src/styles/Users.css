@@ -250,7 +250,32 @@
 ========================================================= */
 
 .all-profiles-section .section-heading {
+    position: relative;
+    display: block;
+    width: 100%;
     margin-bottom: 22px;
+}
+
+.all-profiles-section .section-heading > div {
+    display: block;
+    width: 100%;
+}
+
+.all-profiles-section .section-heading h2 {
+    margin: 0 0 9px;
+    white-space: nowrap;
+}
+
+.all-profiles-section .section-heading p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.all-profiles-section .section-heading > span {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    white-space: nowrap;
 }
 
 .all-profiles-section .section-heading h2 {
@@ -283,7 +308,12 @@
 
     gap: 20px;
 }
-
+.all-profiles-section .profiles-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
 
 /* =========================================================
    PROFILE CARD
@@ -312,7 +342,7 @@
 
     border-radius: 15px;
 
-    padding: 16px 15px 18px;
+    padding: 14px 15px 16px;
 
     box-shadow:
         0 3px 12px
@@ -1112,7 +1142,9 @@
     .profile-image-wrapper {
         width: 100px;
         height: 118px;
-    }
+        margin-top: 22px;
+        margin-bottom: 10px;
+}
 
     .profile-card-info h3 {
         font-size: 16px;
@@ -1155,4 +1187,29 @@
     right: 0;
     top: 4px;
     white-space: nowrap;
+}
+/* =========================================================
+   ALL PROFILES - FINAL ALIGNMENT
+========================================================= */
+
+.all-profiles-section {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0;
+    padding-top: 30px;
+}
+
+.all-profiles-section .section-heading {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 0 0 0;
+    margin-bottom: 22px;
+}
+
+.all-profiles-section .profiles-grid {
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
 }
