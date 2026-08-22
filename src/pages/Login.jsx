@@ -5,6 +5,7 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import axiosClient from "../utils/axiosClients";
 import "../styles/Login.css";
 
 function Login() {
@@ -27,101 +28,102 @@ function Login() {
 
   const [passwordError, setPasswordError] =
     useState("");
+const handleLogin = (e) => {
+  e.preventDefault();
 
-  const handleLogin = (e) => {
-e.preventDefault();
+  console.log("LOGIN BUTTON CLICKED");
 
-setUsernameError("");
-setPasswordError("");
+  setUsernameError("");
+  setPasswordError("");
 
-const isPhone = /^\d+$/.test(username);
+  const isPhone = /^\d+$/.test(username);
 
-if (isPhone && username.length !== 10) {
-setUsernameError(
-"Phone Number must contain exactly 10 digits"
-);
-return;
-}
-
-if (
-!isPhone &&
-username.trim().length < 5
-) {
-setUsernameError(
-"Email or Username must contain at least 5 characters"
-);
-return;
-}
-
-if (password.length < 8) {
-setPasswordError(
-"Password must contain at least 8 characters"
-);
-return;
-}
-axios
-  .post(
-    "https://localhost:7064/api/Auth/login",
-    {
-      email: username,
-      password: password,
-    }
-  )
-  .then((loginResponse) => {
-
-    console.log(
-      "LOGIN SUCCESS",
-      loginResponse.data
+  if (isPhone && username.length !== 10) {
+    setUsernameError(
+      "Phone Number must contain exactly 10 digits"
     );
-    localStorage.setItem(
-  "loggedInUser",
-  JSON.stringify(loginResponse.data)
-);
+    return;
+  }
 
-    axios
-      .post(
-        "https://localhost:7064/api/Auth/send-otp",
-        {
-          email: username,
-        }
-      )
-      .then((otpResponse) => {
-
-        localStorage.setItem(
-          "otp",
-          otpResponse.data.otp
-        );
-
-        localStorage.setItem(
-          "email",
-          username
-        );
-
-        setToast(
-          "OTP Sent Successfully"
-        );
-
-        setTimeout(() => {
-          navigate("/otp");
-        }, 1500);
-
-      });
-
-  })
-  .catch((error) => {
-
-    console.log(
-      "LOGIN ERROR",
-      error.response
+  if (!isPhone && username.trim().length < 5) {
+    setUsernameError(
+      "Email or Username must contain at least 5 characters"
     );
+    return;
+  }
 
+  if (password.length < 8) {
     setPasswordError(
-      "Invalid Email or Password"
+      "Password must contain at least 8 characters"
     );
+    return;
+  }
 
+  console.log("LOGIN REQUEST:", {
+    username,
+    password
   });
 
+ axiosClient
+  .post("/auth/login", {
+    userNameOrEmailOrPhone: username,
+    password: password
+  })
+    .then((loginResponse) => {
+
+      console.log(
+        "LOGIN SUCCESS",
+        loginResponse.data
+      );
+
+      localStorage.setItem(
+        "loggedInUser",
+        JSON.stringify(loginResponse.data)
+      );
+      localStorage.setItem(
+  "token",
+  loginResponse.data.token
+);
+
+      return axios.post(
+        "https://localhost:7064/api/Auth/send-otp",
+        {
+          email: username
+        }
+      );
+    })
+    .then((otpResponse) => {
+
+      localStorage.setItem(
+        "otp",
+        otpResponse.data.otp
+      );
+
+      localStorage.setItem(
+        "email",
+        username
+      );
+
+      setToast("OTP Sent Successfully");
+
+      setTimeout(() => {
+        navigate("/otp");
+      }, 1500);
+
+    })
+    .catch((error) => {
+
+      console.log(
+        "LOGIN ERROR:",
+        error.response?.data || error.message
+      );
+
+      setPasswordError(
+        "Invalid Email or Password"
+      );
+    });
 };
+ 
 
 
   return (
